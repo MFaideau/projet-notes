@@ -6,7 +6,7 @@
  */
 
 try {
-    $bdd = new PDO('mysql:host=localhost;dbname=projet-notes', 'root', '');
+    $bdd = new PDO('mysql:host=localhost;dbname=projet_notes', 'root', '');
 }
 catch(Exception $error) {
     die('Erreur : '.$error->getMessage());
