@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 23 Mai 2016 à 15:18
+-- Généré le :  Lun 23 Mai 2016 à 17:41
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `competence` (
   `Nom_competence` int(11) NOT NULL COMMENT 'Exemple : Signaux et systèmes',
   PRIMARY KEY (`ID_competence`),
   UNIQUE KEY `ID_competence` (`ID_competence`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -44,8 +44,9 @@ DROP TABLE IF EXISTS `competencecursus`;
 CREATE TABLE IF NOT EXISTS `competencecursus` (
   `ID_Cursus` int(3) NOT NULL,
   `ID_Competence` int(3) NOT NULL,
-  PRIMARY KEY (`ID_Cursus`,`ID_Competence`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`ID_Cursus`,`ID_Competence`),
+  KEY `ID_Competence` (`ID_Competence`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -60,8 +61,9 @@ CREATE TABLE IF NOT EXISTS `cours` (
   `Nom_cours` varchar(55) NOT NULL COMMENT 'Exemple : Transformations',
   `Credits_Cours` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID_cours`),
-  UNIQUE KEY `ID_cours` (`ID_cours`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  UNIQUE KEY `ID_cours` (`ID_cours`),
+  UNIQUE KEY `ID_competence` (`ID_competence`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -75,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `cursus` (
   `Nom_Cursus` varchar(55) NOT NULL COMMENT 'Exemple : CSI3',
   PRIMARY KEY (`ID_Cursus`),
   UNIQUE KEY `ID_Cursus` (`ID_Cursus`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `cursus`
@@ -99,8 +101,9 @@ CREATE TABLE IF NOT EXISTS `epreuve` (
   `ID_etudiant` varchar(55) NOT NULL,
   `Note` float NOT NULL,
   `Coeff_epreuve` float NOT NULL,
-  PRIMARY KEY (`ID_epreuve`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`ID_epreuve`),
+  UNIQUE KEY `ID_etudiant` (`ID_etudiant`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -112,8 +115,9 @@ DROP TABLE IF EXISTS `etudiant`;
 CREATE TABLE IF NOT EXISTS `etudiant` (
   `ID_etudiant` varchar(55) NOT NULL,
   `ID_cursus` int(3) NOT NULL,
-  PRIMARY KEY (`ID_etudiant`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`ID_etudiant`),
+  UNIQUE KEY `ID_cursus` (`ID_cursus`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -127,8 +131,9 @@ CREATE TABLE IF NOT EXISTS `evaluation` (
   `ID_cours` int(4) NOT NULL,
   `Coef_eval` float NOT NULL,
   PRIMARY KEY (`Nom_eval`),
-  UNIQUE KEY `Nom_eval` (`Nom_eval`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  UNIQUE KEY `Nom_eval` (`Nom_eval`),
+  UNIQUE KEY `ID_cours` (`ID_cours`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -142,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `type_eval` (
   `Nom_eval` varchar(55) NOT NULL,
   `Coeff_type_eval` float NOT NULL,
   PRIMARY KEY (`Nom_type`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -157,8 +162,50 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `Autorité` int(1) NOT NULL,
   `Nom` varchar(55) NOT NULL,
   `Prénom` varchar(55) NOT NULL,
-  PRIMARY KEY (`Mail`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`Mail`),
+  UNIQUE KEY `ID_etudiant` (`ID_etudiant`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `competencecursus`
+--
+ALTER TABLE `competencecursus`
+  ADD CONSTRAINT `competencecursus_ibfk_1` FOREIGN KEY (`ID_Cursus`) REFERENCES `cursus` (`ID_Cursus`),
+  ADD CONSTRAINT `competencecursus_ibfk_2` FOREIGN KEY (`ID_Competence`) REFERENCES `competence` (`ID_competence`);
+
+--
+-- Contraintes pour la table `cours`
+--
+ALTER TABLE `cours`
+  ADD CONSTRAINT `cours_ibfk_1` FOREIGN KEY (`ID_competence`) REFERENCES `competence` (`ID_competence`);
+
+--
+-- Contraintes pour la table `epreuve`
+--
+ALTER TABLE `epreuve`
+  ADD CONSTRAINT `epreuve_ibfk_1` FOREIGN KEY (`ID_etudiant`) REFERENCES `etudiant` (`ID_etudiant`);
+
+--
+-- Contraintes pour la table `etudiant`
+--
+ALTER TABLE `etudiant`
+  ADD CONSTRAINT `etudiant_ibfk_1` FOREIGN KEY (`ID_cursus`) REFERENCES `cursus` (`ID_Cursus`);
+
+--
+-- Contraintes pour la table `evaluation`
+--
+ALTER TABLE `evaluation`
+  ADD CONSTRAINT `evaluation_ibfk_1` FOREIGN KEY (`ID_cours`) REFERENCES `cours` (`ID_cours`);
+
+--
+-- Contraintes pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD CONSTRAINT `utilisateur_ibfk_1` FOREIGN KEY (`ID_etudiant`) REFERENCES `etudiant` (`ID_etudiant`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
