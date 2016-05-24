@@ -5,7 +5,11 @@
 
 .logo {
     width: 100%;
-}  
+}
+
+.separator_login {
+    border-bottom: 1px dashed red;
+}
 
 .texte_logo {
     height: 100%;
@@ -13,4 +17,27 @@
     font-family: Rockwell, serif;
     font-size: 25px;
     margin-left: 10%;
+}
+
+.connect_button {
+    background: #b62224;
+    border: none;
+    border: 1px solid #a92021;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: 600;
+    line-height: 1;
+    margin: 20px 10px 10px 0;
+    outline: none;
+    padding: 10px 20px 11px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    -moz-transition: background-color 0.15s ease-in-out;
+    -o-transition: background-color 0.15s ease-in-out;
+    -webkit-transition: background-color 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out;
+    width: auto;
 }
