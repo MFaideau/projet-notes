@@ -20,7 +20,7 @@
                         <img src="vues/assets/img/logo_isen.png" alt="Logo ISEN" />
                         <p>Simulateur de notes</p>
                     </div>
-
+                    <button class="button" name="button">Connexion au site</button>
                 </div>
             </div>
         </div>
