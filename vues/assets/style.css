@@ -22,3 +22,27 @@
     font-size: 25px;
     margin-left: 10px;
 }
+
+.login_bloc .button {
+    background: #b62224;
+    border: none;
+    border: 1px solid #a92021;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 200%;
+    font-weight: 600;
+    line-height: 1;
+    margin: 60px 0 0 -80px;
+    outline: none;
+    padding: 10px 20px 11px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    -moz-transition: background-color 0.15s ease-in-out;
+    -o-transition: background-color 0.15s ease-in-out;
+    -webkit-transition: background-color 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out;
+    width: auto;
+}
