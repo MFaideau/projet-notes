@@ -28,7 +28,7 @@
                     </div>
                     <div class="row separator_login"></div>
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="col-md-12">
                             <a href="#Google"><div class="connect_button">Connexion au site</div></a>
                         </div>
                     </div>
