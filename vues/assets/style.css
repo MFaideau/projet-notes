@@ -1,3 +1,24 @@
 .login_bloc {
-    margin-top: 10%;
+    margin-top: 35%;
+    border: 1px solid gray;
+    height: 250px;
+}
+
+.barre_login_haut {
+    height: 75px;
+    border-bottom: 2px dashed red;
+}
+
+.barre_login_haut img {
+    float: left;
+    width: 40%;
+}
+.barre_login_haut p {
+    float: right;
+    width: 65%;
+    text-align: center;
+    margin-top: -11%;
+    font-family: Rockwell, serif;
+    font-size: 25px;
+    margin-left: 10px;
 }
