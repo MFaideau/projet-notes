@@ -11,18 +11,10 @@
     border-bottom: 1px dashed red;
 }
 
-<<<<<<< HEAD
-        .barre_login_haut p {
-            float: right;
-            width: 65%;
-            text-align: center;
-            margin-top: -11%;
-=======
 .texte_logo {
     height: 100%;
     vertical-align: middle;
->>>>>>> 004b7cb1bdba607c2d92702763a82210b6fdca11
-font-family: Rockwell, serif;
+    font-family: Rockwell, serif;
     font-size: 25px;
     margin-left: 10%;
 }
