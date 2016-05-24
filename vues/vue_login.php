@@ -13,19 +13,14 @@
 </head>
 <body>
     <div class="container">
-        <div class="row login_bloc">
+        <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Connexion</h3>
+                <div class="login_bloc">
+                    <div class="barre_login_haut">
+                        <img src="vues/assets/img/logo_isen.png" alt="Logo ISEN" />
+                        <p>Simulateur de notes</p>
                     </div>
-                    <div class="panel-body">
-                        Cette page vous permet de vous connecter à la plateforme directement à partir de votre compte Google ISEN
-                        <h3 style="text-align: center;">
-                            <!-- TODO : Créer le formulaire de connexion Google !-->
-                            <b><a href="#FormGoogle">CONNEXION</a></b>
-                        </h3>
-                    </div>
+
                 </div>
             </div>
         </div>
