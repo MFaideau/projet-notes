@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 23 Mai 2016 à 15:18
+-- Généré le :  Mar 24 Mai 2016 à 13:20
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -28,11 +28,18 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `competence`;
 CREATE TABLE IF NOT EXISTS `competence` (
-  `ID_competence` int(11) NOT NULL AUTO_INCREMENT,
-  `Nom_competence` int(11) NOT NULL COMMENT 'Exemple : Signaux et systèmes',
-  PRIMARY KEY (`ID_competence`),
-  UNIQUE KEY `ID_competence` (`ID_competence`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `ID_Competence` int(5) NOT NULL AUTO_INCREMENT,
+  `Nom_Competence` varchar(55) NOT NULL,
+  PRIMARY KEY (`ID_Competence`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `competence`
+--
+
+INSERT INTO `competence` (`ID_Competence`, `Nom_Competence`) VALUES
+(1, 'Physique, Electronique, Nanotechnologies'),
+(2, 'Signaux & Systèmes');
 
 -- --------------------------------------------------------
 
@@ -42,10 +49,19 @@ CREATE TABLE IF NOT EXISTS `competence` (
 
 DROP TABLE IF EXISTS `competencecursus`;
 CREATE TABLE IF NOT EXISTS `competencecursus` (
-  `ID_Cursus` int(3) NOT NULL,
-  `ID_Competence` int(3) NOT NULL,
-  PRIMARY KEY (`ID_Cursus`,`ID_Competence`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `ID_Cursus` int(5) NOT NULL,
+  `ID_Competence` int(5) NOT NULL,
+  PRIMARY KEY (`ID_Cursus`,`ID_Competence`),
+  KEY `ID_Competence` (`ID_Competence`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `competencecursus`
+--
+
+INSERT INTO `competencecursus` (`ID_Cursus`, `ID_Competence`) VALUES
+(1, 1),
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -55,13 +71,21 @@ CREATE TABLE IF NOT EXISTS `competencecursus` (
 
 DROP TABLE IF EXISTS `cours`;
 CREATE TABLE IF NOT EXISTS `cours` (
-  `ID_cours` int(4) NOT NULL AUTO_INCREMENT,
-  `ID_competence` int(3) NOT NULL,
-  `Nom_cours` varchar(55) NOT NULL COMMENT 'Exemple : Transformations',
-  `Credits_Cours` float NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID_cours`),
-  UNIQUE KEY `ID_cours` (`ID_cours`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `ID_Cours` int(5) NOT NULL AUTO_INCREMENT,
+  `ID_Competence` int(5) NOT NULL,
+  `Nom_Cours` varchar(55) NOT NULL,
+  `Credits_Cours` float NOT NULL,
+  PRIMARY KEY (`ID_Cours`),
+  KEY `ID_Competence` (`ID_Competence`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `cours`
+--
+
+INSERT INTO `cours` (`ID_Cours`, `ID_Competence`, `Nom_Cours`, `Credits_Cours`) VALUES
+(1, 1, 'Mécanique Quantique - Laser', 2.5),
+(2, 1, 'Physique des solides - Nanosciences', 2);
 
 -- --------------------------------------------------------
 
@@ -71,20 +95,19 @@ CREATE TABLE IF NOT EXISTS `cours` (
 
 DROP TABLE IF EXISTS `cursus`;
 CREATE TABLE IF NOT EXISTS `cursus` (
-  `ID_Cursus` int(3) NOT NULL AUTO_INCREMENT COMMENT 'Exemple : 0 = CIR3 / 1 = CSI-U3 / 2 = CSI3',
-  `Nom_Cursus` varchar(55) NOT NULL COMMENT 'Exemple : CSI3',
-  PRIMARY KEY (`ID_Cursus`),
-  UNIQUE KEY `ID_Cursus` (`ID_Cursus`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `ID_Cursus` int(5) NOT NULL AUTO_INCREMENT,
+  `Nom_Cursus` varchar(55) NOT NULL,
+  PRIMARY KEY (`ID_Cursus`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `cursus`
 --
 
 INSERT INTO `cursus` (`ID_Cursus`, `Nom_Cursus`) VALUES
-(1, 'CIR3'),
+(1, 'CSI3'),
 (2, 'CSI-U3'),
-(3, 'CSI3');
+(3, 'CIR3');
 
 -- --------------------------------------------------------
 
@@ -94,13 +117,25 @@ INSERT INTO `cursus` (`ID_Cursus`, `Nom_Cursus`) VALUES
 
 DROP TABLE IF EXISTS `epreuve`;
 CREATE TABLE IF NOT EXISTS `epreuve` (
-  `ID_epreuve` int(5) NOT NULL AUTO_INCREMENT,
-  `Nom_type` varchar(55) NOT NULL,
-  `ID_etudiant` varchar(55) NOT NULL,
+  `ID_Epreuve` int(5) NOT NULL AUTO_INCREMENT,
+  `ID_Type` int(5) NOT NULL,
+  `ID_Etudiant` varchar(55) NOT NULL,
   `Note` float NOT NULL,
-  `Coeff_epreuve` float NOT NULL,
-  PRIMARY KEY (`ID_epreuve`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Coef_Epreuve` float NOT NULL,
+  PRIMARY KEY (`ID_Epreuve`),
+  KEY `ID_Type` (`ID_Type`),
+  KEY `ID_Etudiant` (`ID_Etudiant`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `epreuve`
+--
+
+INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `ID_Etudiant`, `Note`, `Coef_Epreuve`) VALUES
+(1, 1, 'p59060', 12.6, 1),
+(2, 1, 'p59080', 13.3, 1),
+(3, 1, 'p59051', 6.3, 1),
+(4, 1, 'p59062', 11.9, 1);
 
 -- --------------------------------------------------------
 
@@ -110,10 +145,21 @@ CREATE TABLE IF NOT EXISTS `epreuve` (
 
 DROP TABLE IF EXISTS `etudiant`;
 CREATE TABLE IF NOT EXISTS `etudiant` (
-  `ID_etudiant` varchar(55) NOT NULL,
-  `ID_cursus` int(3) NOT NULL,
-  PRIMARY KEY (`ID_etudiant`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `ID_Etudiant` varchar(55) NOT NULL,
+  `ID_Cursus` int(5) NOT NULL,
+  `Mail` varchar(55) NOT NULL,
+  PRIMARY KEY (`ID_Etudiant`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `etudiant`
+--
+
+INSERT INTO `etudiant` (`ID_Etudiant`, `ID_Cursus`, `Mail`) VALUES
+('p59051', 1, 'maxence.faideau@isen-lille.fr'),
+('p59060', 1, 'antoine.goelzer@isen-lille.fr'),
+('p59062', 1, 'joel.guillem@isen-lille.fr'),
+('p59080', 1, 'baudouin.landais@isen-lille.fr');
 
 -- --------------------------------------------------------
 
@@ -123,12 +169,20 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
 
 DROP TABLE IF EXISTS `evaluation`;
 CREATE TABLE IF NOT EXISTS `evaluation` (
-  `Nom_eval` varchar(100) NOT NULL COMMENT 'Exemple : Théorie',
-  `ID_cours` int(4) NOT NULL,
-  `Coef_eval` float NOT NULL,
-  PRIMARY KEY (`Nom_eval`),
-  UNIQUE KEY `Nom_eval` (`Nom_eval`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `ID_Eval` int(5) NOT NULL AUTO_INCREMENT,
+  `ID_Cours` int(5) NOT NULL,
+  `Nom_Eval` varchar(55) NOT NULL,
+  `Coef_Eval` float NOT NULL,
+  PRIMARY KEY (`ID_Eval`),
+  KEY `ID_Cours` (`ID_Cours`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `evaluation`
+--
+
+INSERT INTO `evaluation` (`ID_Eval`, `ID_Cours`, `Nom_Eval`, `Coef_Eval`) VALUES
+(1, 1, 'Théorie', 1);
 
 -- --------------------------------------------------------
 
@@ -138,11 +192,22 @@ CREATE TABLE IF NOT EXISTS `evaluation` (
 
 DROP TABLE IF EXISTS `type_eval`;
 CREATE TABLE IF NOT EXISTS `type_eval` (
-  `Nom_type` varchar(55) NOT NULL COMMENT 'Exemple : Interrogation',
-  `Nom_eval` varchar(55) NOT NULL,
-  `Coeff_type_eval` float NOT NULL,
-  PRIMARY KEY (`Nom_type`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `ID_Type` int(5) NOT NULL AUTO_INCREMENT,
+  `ID_Eval` int(5) NOT NULL,
+  `Nom_Type` varchar(55) NOT NULL,
+  `Coef_Type_Eval` float NOT NULL,
+  PRIMARY KEY (`ID_Type`),
+  KEY `ID_Eval` (`ID_Eval`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `type_eval`
+--
+
+INSERT INTO `type_eval` (`ID_Type`, `ID_Eval`, `Nom_Type`, `Coef_Type_Eval`) VALUES
+(1, 1, 'Interrogation', 0.2),
+(2, 1, 'DS', 0.3),
+(3, 1, 'Partiel', 0.5);
 
 -- --------------------------------------------------------
 
@@ -153,12 +218,21 @@ CREATE TABLE IF NOT EXISTS `type_eval` (
 DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `Mail` varchar(55) NOT NULL,
-  `ID_etudiant` varchar(55) NOT NULL,
-  `Autorité` int(1) NOT NULL,
+  `Autorite` int(5) NOT NULL,
   `Nom` varchar(55) NOT NULL,
-  `Prénom` varchar(55) NOT NULL,
+  `Prenom` varchar(55) NOT NULL,
   PRIMARY KEY (`Mail`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`Mail`, `Autorite`, `Nom`, `Prenom`) VALUES
+('antoine.goelzer@isen-lille.fr', 0, 'Goelzer', 'Antoine'),
+('baudouin.landais@isen-lille.fr', 0, 'Landais', 'Baudouin'),
+('joel.guillem@isen-lille.fr', 0, 'Guillem', 'Joël'),
+('maxence.faideau@isen-lille.fr', 0, 'Faideau', 'Maxence');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
