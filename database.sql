@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 24 Mai 2016 à 07:19
+-- Généré le :  Mar 24 Mai 2016 à 09:00
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -29,10 +29,17 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `competence`;
 CREATE TABLE IF NOT EXISTS `competence` (
   `ID_Competence` int(5) NOT NULL AUTO_INCREMENT,
-  `Nom_Competence` varchar(55) NOT NULL COMMENT 'Exemple : Signaux et systèmes',
-  PRIMARY KEY (`ID_Competence`),
-  UNIQUE KEY `ID_competence` (`ID_Competence`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Nom_Competence` varchar(55) NOT NULL,
+  PRIMARY KEY (`ID_Competence`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `competence`
+--
+
+INSERT INTO `competence` (`ID_Competence`, `Nom_Competence`) VALUES
+(1, 'Physique, Electronique, Nanotechnologies'),
+(2, 'Signaux & Systèmes');
 
 -- --------------------------------------------------------
 
@@ -48,6 +55,14 @@ CREATE TABLE IF NOT EXISTS `competencecursus` (
   KEY `ID_Competence` (`ID_Competence`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `competencecursus`
+--
+
+INSERT INTO `competencecursus` (`ID_Cursus`, `ID_Competence`) VALUES
+(1, 1),
+(1, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -58,12 +73,19 @@ DROP TABLE IF EXISTS `cours`;
 CREATE TABLE IF NOT EXISTS `cours` (
   `ID_Cours` int(5) NOT NULL AUTO_INCREMENT,
   `ID_Competence` int(5) NOT NULL,
-  `Nom_Cours` varchar(55) NOT NULL COMMENT 'Exemple : Transformations',
-  `Credits_Cours` float NOT NULL DEFAULT '0',
+  `Nom_Cours` varchar(55) NOT NULL,
+  `Credits_Cours` float NOT NULL,
   PRIMARY KEY (`ID_Cours`),
-  UNIQUE KEY `ID_cours` (`ID_Cours`),
-  UNIQUE KEY `ID_competence` (`ID_Competence`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `ID_Competence` (`ID_Competence`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `cours`
+--
+
+INSERT INTO `cours` (`ID_Cours`, `ID_Competence`, `Nom_Cours`, `Credits_Cours`) VALUES
+(1, 1, 'Mécanique Quantique - Laser', 2.5),
+(2, 1, 'Physique des solides - Nanosciences', 2);
 
 -- --------------------------------------------------------
 
@@ -73,10 +95,9 @@ CREATE TABLE IF NOT EXISTS `cours` (
 
 DROP TABLE IF EXISTS `cursus`;
 CREATE TABLE IF NOT EXISTS `cursus` (
-  `ID_Cursus` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Exemple : 0 = CIR3 / 1 = CSI-U3 / 2 = CSI3',
-  `Nom_Cursus` varchar(55) NOT NULL COMMENT 'Exemple : CSI3',
-  PRIMARY KEY (`ID_Cursus`),
-  UNIQUE KEY `ID_Cursus` (`ID_Cursus`)
+  `ID_Cursus` int(5) NOT NULL AUTO_INCREMENT,
+  `Nom_Cursus` varchar(55) NOT NULL,
+  PRIMARY KEY (`ID_Cursus`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
@@ -84,9 +105,9 @@ CREATE TABLE IF NOT EXISTS `cursus` (
 --
 
 INSERT INTO `cursus` (`ID_Cursus`, `Nom_Cursus`) VALUES
-(1, 'CIR3'),
+(1, 'CSI3'),
 (2, 'CSI-U3'),
-(3, 'CSI3');
+(3, 'CIR3');
 
 -- --------------------------------------------------------
 
@@ -102,9 +123,19 @@ CREATE TABLE IF NOT EXISTS `epreuve` (
   `Note` float NOT NULL,
   `Coef_Epreuve` float NOT NULL,
   PRIMARY KEY (`ID_Epreuve`),
-  UNIQUE KEY `ID_etudiant` (`ID_Etudiant`),
-  UNIQUE KEY `ID_Type` (`ID_Type`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `ID_Type` (`ID_Type`),
+  KEY `ID_Etudiant` (`ID_Etudiant`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `epreuve`
+--
+
+INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `ID_Etudiant`, `Note`, `Coef_Epreuve`) VALUES
+(1, 1, 'p59060', 12.6, 1),
+(2, 1, 'p59080', 13.3, 1),
+(3, 1, 'p59051', 6.3, 1),
+(4, 1, 'p59062', 11.9, 1);
 
 -- --------------------------------------------------------
 
@@ -117,9 +148,18 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
   `ID_Etudiant` varchar(55) NOT NULL,
   `ID_Cursus` int(5) NOT NULL,
   `Mail` varchar(55) NOT NULL,
-  PRIMARY KEY (`ID_Etudiant`),
-  UNIQUE KEY `ID_cursus` (`ID_Cursus`)
+  PRIMARY KEY (`ID_Etudiant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `etudiant`
+--
+
+INSERT INTO `etudiant` (`ID_Etudiant`, `ID_Cursus`, `Mail`) VALUES
+('p59051', 1, 'maxence.faideau@isen-lille.fr'),
+('p59060', 1, 'antoine.goelzer@isen-lille.fr'),
+('p59062', 1, 'joel.guillem@isen-lille.fr'),
+('p59080', 1, 'baudouin.landais@isen-lille.fr');
 
 -- --------------------------------------------------------
 
@@ -134,9 +174,15 @@ CREATE TABLE IF NOT EXISTS `evaluation` (
   `Nom_Eval` varchar(55) NOT NULL,
   `Coef_Eval` float NOT NULL,
   PRIMARY KEY (`ID_Eval`),
-  UNIQUE KEY `Nom_eval` (`ID_Eval`),
-  UNIQUE KEY `ID_cours` (`ID_Cours`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `ID_Cours` (`ID_Cours`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `evaluation`
+--
+
+INSERT INTO `evaluation` (`ID_Eval`, `ID_Cours`, `Nom_Eval`, `Coef_Eval`) VALUES
+(1, 1, 'Théorie', 1);
 
 -- --------------------------------------------------------
 
@@ -150,8 +196,18 @@ CREATE TABLE IF NOT EXISTS `type_eval` (
   `ID_Eval` int(5) NOT NULL,
   `Nom_Type` varchar(55) NOT NULL,
   `Coef_Type_Eval` float NOT NULL,
-  PRIMARY KEY (`ID_Type`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`ID_Type`),
+  KEY `ID_Eval` (`ID_Eval`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `type_eval`
+--
+
+INSERT INTO `type_eval` (`ID_Type`, `ID_Eval`, `Nom_Type`, `Coef_Type_Eval`) VALUES
+(1, 1, 'Interrogation', 0.2),
+(2, 1, 'DS', 0.3),
+(3, 1, 'Partiel', 0.5);
 
 -- --------------------------------------------------------
 
@@ -162,53 +218,21 @@ CREATE TABLE IF NOT EXISTS `type_eval` (
 DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `Mail` varchar(55) NOT NULL,
-  `Autorité` int(5) NOT NULL,
+  `Autorite` int(5) NOT NULL,
   `Nom` varchar(55) NOT NULL,
-  `Prénom` varchar(55) NOT NULL,
+  `Prenom` varchar(55) NOT NULL,
   PRIMARY KEY (`Mail`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contraintes pour les tables exportées
+-- Contenu de la table `utilisateur`
 --
 
---
--- Contraintes pour la table `competencecursus`
---
-ALTER TABLE `competencecursus`
-  ADD CONSTRAINT `competencecursus_ibfk_1` FOREIGN KEY (`ID_Cursus`) REFERENCES `cursus` (`ID_Cursus`),
-  ADD CONSTRAINT `competencecursus_ibfk_2` FOREIGN KEY (`ID_Competence`) REFERENCES `competence` (`ID_Competence`);
-
---
--- Contraintes pour la table `cours`
---
-ALTER TABLE `cours`
-  ADD CONSTRAINT `cours_ibfk_1` FOREIGN KEY (`ID_Competence`) REFERENCES `competence` (`ID_Competence`);
-
---
--- Contraintes pour la table `epreuve`
---
-ALTER TABLE `epreuve`
-  ADD CONSTRAINT `epreuve_ibfk_1` FOREIGN KEY (`ID_Etudiant`) REFERENCES `etudiant` (`ID_Etudiant`),
-  ADD CONSTRAINT `epreuve_ibfk_2` FOREIGN KEY (`ID_Type`) REFERENCES `type_eval` (`ID_Type`);
-
---
--- Contraintes pour la table `etudiant`
---
-ALTER TABLE `etudiant`
-  ADD CONSTRAINT `etudiant_ibfk_1` FOREIGN KEY (`ID_Cursus`) REFERENCES `cursus` (`ID_Cursus`);
-
---
--- Contraintes pour la table `evaluation`
---
-ALTER TABLE `evaluation`
-  ADD CONSTRAINT `evaluation_ibfk_1` FOREIGN KEY (`ID_Cours`) REFERENCES `cours` (`ID_Cours`);
-
---
--- Contraintes pour la table `type_eval`
---
-ALTER TABLE `type_eval`
-  ADD CONSTRAINT `type_eval_ibfk_1` FOREIGN KEY (`ID_Type`) REFERENCES `evaluation` (`ID_Eval`);
+INSERT INTO `utilisateur` (`Mail`, `Autorite`, `Nom`, `Prenom`) VALUES
+('antoine.goelzer@isen-lille.fr', 0, 'Goelzer', 'Antoine'),
+('baudouin.landais@isen-lile.fr', 0, 'Landais', 'Baudouin'),
+('joel.guillem@isen-lile.fr', 0, 'Guillem', 'Joël'),
+('maxence.faideau@isen-lille.fr', 0, 'Faideau', 'Maxence');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
