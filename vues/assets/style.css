@@ -11,17 +11,24 @@
     border-bottom: 1px dashed red;
 }
 
+<<<<<<< HEAD
+        .barre_login_haut p {
+            float: right;
+            width: 65%;
+            text-align: center;
+            margin-top: -11%;
+=======
 .texte_logo {
     height: 100%;
     vertical-align: middle;
-    font-family: Rockwell, serif;
+>>>>>>> 004b7cb1bdba607c2d92702763a82210b6fdca11
+font-family: Rockwell, serif;
     font-size: 25px;
     margin-left: 10%;
 }
 
 .connect_button {
     background: #b62224;
-    border: none;
     border: 1px solid #a92021;
     color: #fff;
     cursor: pointer;
