@@ -7,6 +7,20 @@
     width: 100%;
 }
 
+
+/* Permet d'aligner le texte dans le header */
+.header_login {
+    display: table;
+    table-layout: fixed; 
+}
+
+.header_login_cell {
+    top: -5px;
+    display: table-cell;
+    vertical-align: middle;
+    float: none;   
+}
+
 .separator_login {
     border-bottom: 1px dashed red;
 }
