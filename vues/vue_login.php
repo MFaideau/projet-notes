@@ -19,10 +19,10 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-xs-5 col-sm-5">
+                        <div class="col-xs-4 col-sm-5">
                             <img src="vues/assets/img/logo_isen.png" alt="Logo ISEN" class="logo"/>
                         </div>
-                        <div class="col-xs-7 col-sm-7">
+                        <div class="col-xs-8 col-sm-7">
                             <div class="texte_logo">Simulateur de notes</div>
                         </div>
                     </div>
