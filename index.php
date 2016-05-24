@@ -1,6 +1,6 @@
 <?php
 
-// TODO
 include_once("modeles/sqlConnection.php");
 
-echo "Bonjour";
+// TODO : Enlever cette include car on ne peut pas include une vue directement
+include_once("vues/vue_login.php");
