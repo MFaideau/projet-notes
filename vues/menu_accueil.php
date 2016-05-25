@@ -16,46 +16,69 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-5 col-md-offset-1">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <!-- Requete pour afficher le nom et le prénom de l'utilisateur !-->
+                    <div class="row">
+                        <div class="texte_logo">Nom<br>Prénom</div>
+                    </div>
+                    <div class="row">
+                        <a href="#Page_de_connexion">
+                            <div class="connect_button">Se déconnecter</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <!-- IF ADMIN !-->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="col-md-6 col-md-offset-3">
-                                <a href="#Gérer"><div class="connect_button">Gérer les compétences</div></a>
+                                <a href="#Gérer">
+                                    <div class="connect_button">Gérer les compétences</div>
+                                </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-6 col-md-offset-3">
-                                <a href="#Notes"><div class="connect_button">Rentrer les notes</div></a>
+                                <a href="#Notes">
+                                    <div class="connect_button">Rentrer les notes</div>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <!-- ELSE !-->
+                    <!-- ELSE
                     <div class="row">
                         <div class="col-md-6">
                             <div class="col-md-6 col-md-offset-3">
-                                <a href="#Notes"><div class="connect_button">Relevé de notes</div></a>
+                                <a href="#Notes">
+                                    <div class="connect_button">Relevé de notes</div>
+                                </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-6 col-md-offset-3">
-                                <a href="#Simulation"><div class="connect_button">Simulation</div></a>
+                                <a href="#Simulation">
+                                    <div class="connect_button">Simulation</div>
+                                </a>
                             </div>
                         </div>
-                    </div>
+                    </div> !-->
                 </div>
             </div>
         </div>
-        <div class="col-md-2 col-md-offset-3">
+        <div class="col-md-2 col-md-offset-10">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="col-xs-6 col-sm-6">
-                        <span class="glyphicon glyphicon-list-alt"> </span>
+                        <div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span></div>
                     </div>
                     <div class="col-xs-6 col-sm-6">
-                        <span class="glyphicon glyphicon-align-left"> </span>
+                        <div class="panel-heading"><span class="glyphicon glyphicon-align-left"></span></div>
                     </div>
                 </div>
             </div>
