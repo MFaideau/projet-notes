@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 24 Mai 2016 à 17:24
+-- Généré le :  Mer 25 Mai 2016 à 08:02
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -136,6 +136,19 @@ INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `Nom_Epreuve`, `Coef_Epreuve`) V
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `epreuvesession`
+--
+
+DROP TABLE IF EXISTS `epreuvesession`;
+CREATE TABLE IF NOT EXISTS `epreuvesession` (
+  `ID_Epreuve_Session1` int(5) NOT NULL,
+  `ID_Epreuve_Session_2` int(5) NOT NULL,
+  PRIMARY KEY (`ID_Epreuve_Session1`,`ID_Epreuve_Session_2`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `etudiant`
 --
 
@@ -167,8 +180,8 @@ DROP TABLE IF EXISTS `etudiantnote`;
 CREATE TABLE IF NOT EXISTS `etudiantnote` (
   `ID_Epreuve` int(5) NOT NULL,
   `ID_Etudiant` varchar(55) NOT NULL,
-  `Note finale` float NOT NULL,
-  `Note prevue` float NOT NULL,
+  `Note_Finale` float NOT NULL,
+  `Note_Prevue` float NOT NULL,
   PRIMARY KEY (`ID_Epreuve`,`ID_Etudiant`),
   KEY `ID_Epreuve` (`ID_Epreuve`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -177,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `etudiantnote` (
 -- Contenu de la table `etudiantnote`
 --
 
-INSERT INTO `etudiantnote` (`ID_Epreuve`, `ID_Etudiant`, `Note finale`, `Note prevue`) VALUES
+INSERT INTO `etudiantnote` (`ID_Epreuve`, `ID_Etudiant`, `Note_Finale`, `Note_Prevue`) VALUES
 (5, 'p59051', 6.3, 7),
 (5, 'p59060', 12.6, 10),
 (5, 'p59062', 11.9, 6),
