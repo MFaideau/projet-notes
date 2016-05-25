@@ -2,5 +2,4 @@
 
 // TODO
 include_once("modeles/sqlConnection.php");
-
-echo "Bonjour";
+include_once("/modeles/authentifcation/authentification.php");
