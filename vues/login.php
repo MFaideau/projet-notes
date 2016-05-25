@@ -29,7 +29,7 @@
                     <div class="row separator_login"></div>
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="#Google"><div class="connect_button">Connexion au site</div></a>
+                            <a href="<?php echo $authUrl; ?>"><div class="connect_button">Connexion au site</div></a>
                         </div>
                     </div>
                 </div>
