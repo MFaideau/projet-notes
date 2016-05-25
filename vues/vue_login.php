@@ -23,7 +23,7 @@
                             <img src="vues/assets/img/logo_isen.png" alt="Logo ISEN" class="logo"/>
                         </div>
                         <div class="col-xs-8 col-sm-7 header_login_cell">
-                            <div class="texte_logo">Simulateur de notes</div>
+                            <div class="texte_logo">Visual Year</div>
                         </div>
                     </div>
                     <div class="row separator_login"></div>
