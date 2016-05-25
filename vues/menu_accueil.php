@@ -1,0 +1,119 @@
+<?php
+/**
+ * @Auteur : Joël Guillem
+ * @Description : Fichier de vue pour la page menu visible après la connexion
+ */
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu</title>
+    <link href="vues/assets/bootstrap/bootstrap.css" rel="stylesheet"/>
+    <link href="vues/assets/bootstrap/bootstrap-theme.css" rel="stylesheet"/>
+    <link href="vues/assets/page_principale.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <!-- Requete pour afficher le nom et le prénom de l'utilisateur !-->
+                    <div class="row">
+                        <div class="texte_logo">Nom<br>Prénom</div>
+                    </div>
+                    <div class="row">
+                        <a href="index.php?action=disconnect">
+                            <div class="connect_button">Se déconnecter</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <!-- IF ADMIN !-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-6 col-md-offset-3">
+                                <a href="#Gérer">
+                                    <div class="connect_button">Gérer les compétences</div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-6 col-md-offset-3">
+                                <a href="#Notes">
+                                    <div class="connect_button">Rentrer les notes</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ELSE
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-6 col-md-offset-3">
+                                <a href="#Notes">
+                                    <div class="connect_button">Relevé de notes</div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-6 col-md-offset-3">
+                                <a href="#Simulation">
+                                    <div class="connect_button">Simulation</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div> !-->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-md-offset-10">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-xs-6 col-sm-6">
+                        <div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span></div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6">
+                        <div class="panel-heading"><span class="glyphicon glyphicon-align-left"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="texte_logo">Compétence<br>Info<br>Electronique<br>Management<br>Signaux<br>Année</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="texte_logo">Moyenne<br>12.2<br>9.1<br>10.6<br>11.3<br>11.1</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="texte_logo">ECTS<br>15<br>15<br>15<br>15<br>60</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="texte_logo">Grade<br>A<br>B<br>A<br>A<br>B</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
