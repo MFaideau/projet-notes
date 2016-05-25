@@ -4,44 +4,92 @@
  * @Desc : Système de connexion avec Google
  */
 
-require_once __DIR__ . '/gplus-lib/vendor/autoload.php';
+require_once '../gplus-lib/vendor/autoload.php';
 
 const CLIENT_ID = "";
 const CLIENT_SECRET = "";
 const REDIRECT_URI = "";
 
 session_start();
-
+/*
+ * INITIALIZATION
+ *
+ * Create a google client object
+ * set the id,secret and redirect uri
+ * set the scope variables if required
+ * create google plus object
+ */
 $client = new Google_Client();
 $client->setClientId(CLIENT_ID);
 $client->setClientSecret(CLIENT_SECRET);
 $client->setRedirectUri(REDIRECT_URI);
 $client->setScopes('email');
-
 $plus = new Google_Service_Plus($client);
-
-// Actual process
-if(isset($_REQUEST['logout'])) {
+/*
+ * PROCESS
+ *
+ * A. Pre-check for logout
+ * B. Authentication and Access token
+ * C. Retrive Data
+ */
+/*
+ * A. PRE-CHECK FOR LOGOUT
+ *
+ * Unset the session variable in order to logout if already logged in
+ */
+if (isset($_REQUEST['logout'])) {
     session_unset();
 }
-
-if(isset($_GET['code'])) {
+/*
+ * B. AUTHORIZATION AND ACCESS TOKEN
+ *
+ * If the request is a return url from the google server then
+ *  1. authenticate code
+ *  2. get the access token and store in session
+ *  3. redirect to same url to eleminate the url varaibles sent by google
+ */
+if (isset($_GET['code'])) {
     $client->authenticate($_GET['code']);
     $_SESSION['access_token'] = $client->getAccessToken();
-    $redirect = 'http://' . $_SERVER['HTTP_POST'] . $_SERVER['PHP_SELF'];
-    header('Location:'.filter_var($redirect,FILTER_SANITIZE_URL));
+    $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+    header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
 }
-
-if(isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+/*
+ * C. RETRIVE DATA
+ *
+ * If access token if available in session
+ * load it to the client object and access the required profile data
+ */
+if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
     $client->setAccessToken($_SESSION['access_token']);
     $me = $plus->people->get('me');
-
-    $email = $me['emails'][0]['value'];
-    // TODO : On a recupéré l'adresse mail, il faut maintenant l'envoyer au modèle
-    echo $email;
+    // Get User data
+    $id = $me['id'];
+    $name =  $me['displayName'];
+    $email =  $me['emails'][0]['value'];
+    $profile_image_url = $me['image']['url'];
+    $cover_image_url = $me['cover']['coverPhoto']['url'];
+    $profile_url = $me['url'];
 } else {
+    // get the login url
     $authUrl = $client->createAuthUrl();
-    // TODO : Mettre la vue
+}
+?>
+
+<div>
+    <?php
+    /*
+     * If login url is there then display login button
+     * else print the retieved data
+    */
+    if (isset($authUrl)) {
+        include_once ('./vues/login.php');
+    } else {
+        if(isset($_GET['action']) && $_GET['action'] == "disconnect") {
+            session_destroy();
+        }
+        $_SESSION['email'] = $email;
+        header('Location: accueil.php');
+    }
     ?>
-    <a href="<?php echo $authUrl; ?>">CONNECTE MOI, MON DIEU !!!</a>
-<?php } ?>
+</div>
