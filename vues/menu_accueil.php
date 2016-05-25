@@ -24,7 +24,7 @@
                         <div class="texte_logo">Nom<br>Prénom</div>
                     </div>
                     <div class="row">
-                        <a href="#Page_de_connexion">
+                        <a href="index.php?action=disconnect">
                             <div class="connect_button">Se déconnecter</div>
                         </a>
                     </div>
@@ -88,6 +88,27 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="texte_logo">Compétence<br>Info<br>Electronique<br>Management<br>Signaux<br>Année</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="texte_logo">Moyenne<br>12.2<br>9.1<br>10.6<br>11.3<br>11.1</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="texte_logo">ECTS<br>15<br>15<br>15<br>15<br>60</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="texte_logo">Grade<br>A<br>B<br>A<br>A<br>B</div>
                     </div>
                 </div>
             </div>
