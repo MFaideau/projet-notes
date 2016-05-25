@@ -85,7 +85,11 @@
         </div>
         <div class="row">
             <div class="col-md-4 col-md-offset-2">
-                <div class="texte_logo">Compétence<br>Info<br>bla<br>blabla<br>blablabla<br>Année</div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="texte_logo">Compétence<br>Info<br>Electronique<br>Management<br>Signaux<br>Année</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
