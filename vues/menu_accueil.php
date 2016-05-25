@@ -9,111 +9,109 @@
 <head>
     <title>Menu</title>
     <link href="vues/assets/bootstrap/bootstrap.css" rel="stylesheet"/>
-    <link href="vues/assets/bootstrap/bootstrap-theme.css" rel="stylesheet"/>
+    <link href="vues/assets/style.css" rel="stylesheet"/>
     <link href="vues/assets/page_principale.css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <!-- Requete pour afficher le nom et le prénom de l'utilisateur !-->
-                    <div class="row">
-                        <div class="texte_logo">Nom<br>Prénom</div>
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="row">
+            <div class="col-lg-3 identite">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row"><span><strong>Joël GUILLEM</strong></span></div>
+                        <div class="row"><span>CSI3</span></div>
+                        <div class="row">
+                            <a href="index.php?action=disconnect">
+                                <div class="disconnect">Se déconnecter</div>
+                            </a>
+                        </div>
                     </div>
-                    <div class="row">
-                        <a href="index.php?action=disconnect">
-                            <div class="connect_button">Se déconnecter</div>
+                </div>
+            </div>
+            <div class="col-lg-9 menu_rapide">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <a href="#Competences">
+                            <div class="col-md-6 bouton_competences">Gérer les compétences</div>
+                        </a>
+                        <a href="#Notes">
+                            <div class="col-md-6 bouton_notes">Saisie des notes</div>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <!-- IF ADMIN !-->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="col-md-6 col-md-offset-3">
-                                <a href="#Gérer">
-                                    <div class="connect_button">Gérer les compétences</div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="col-md-6 col-md-offset-3">
-                                <a href="#Notes">
-                                    <div class="connect_button">Rentrer les notes</div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ELSE
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="col-md-6 col-md-offset-3">
-                                <a href="#Notes">
-                                    <div class="connect_button">Relevé de notes</div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="col-md-6 col-md-offset-3">
-                                <a href="#Simulation">
-                                    <div class="connect_button">Simulation</div>
-                                </a>
-                            </div>
-                        </div>
-                    </div> !-->
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2 col-md-offset-10">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="col-xs-6 col-sm-6">
-                        <div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span></div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6">
-                        <div class="panel-heading"><span class="glyphicon glyphicon-align-left"></span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <!-- Selection entre les Tableaux et les Histogrammes !-->
         <div class="row">
-            <div class="col-md-4 col-md-offset-2">
+            <div class="col-md-2 col-md-offset-10 visualisation">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <div class="texte_logo">Compétence<br>Info<br>Electronique<br>Management<br>Signaux<br>Année</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="texte_logo">Moyenne<br>12.2<br>9.1<br>10.6<br>11.3<br>11.1</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-1">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="texte_logo">ECTS<br>15<br>15<br>15<br>15<br>60</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-1">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="texte_logo">Grade<br>A<br>B<br>A<br>A<br>B</div>
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        <span class="glyphicon glyphicon-align-left"></span>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Page de données !-->
+
+        <div class="row donnees">
+            <div class="panel panel-default">
+                <div class="panel-heading">Relevé de notes</div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Compétences</th>
+                        <th>Moyennes</th>
+                        <th>ECTS</th>
+                        <th>Grades</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Informatique</th>
+                        <td>12.2</td>
+                        <td>15</td>
+                        <td>A</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Electronique</th>
+                        <td>13.4</td>
+                        <td>15</td>
+                        <td>A</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Management</th>
+                        <td>13</td>
+                        <td>15</td>
+                        <td>A</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Signaux</th>
+                        <td>15</td>
+                        <td>15</td>
+                        <td>A</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Total</th>
+                        <th>XX</th>
+                        <th>60</th>
+                        <th>A</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
     </div>
 </div>
+
 </body>
 </html>
