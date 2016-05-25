@@ -48,10 +48,13 @@
             </div>
         </div>
         <div class="col-md-2 col-md-offset-3">
-            <div class="row">
-
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 </body>
