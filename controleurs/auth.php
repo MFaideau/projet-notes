@@ -87,9 +87,12 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
     } else {
         if(isset($_GET['action']) && $_GET['action'] == "disconnect") {
             session_destroy();
+            header('Location: index.php');
+            die();
         }
         $_SESSION['email'] = $email;
         header('Location: accueil.php');
+        die();
     }
     ?>
 </div>
