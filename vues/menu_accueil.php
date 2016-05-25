@@ -9,6 +9,7 @@
 <head>
     <title>Menu</title>
     <link href="vues/assets/bootstrap/bootstrap.css" rel="stylesheet"/>
+    <link href="vues/assets/bootstrap/bootstrap-theme.css" rel="stylesheet"/>
     <link href="vues/assets/page_principale.css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -50,11 +51,20 @@
         <div class="col-md-2 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <span class="glyphicon glyphicon-list-alt"></span>
+                    <div class="col-xs-6 col-sm-6">
+                        <span class="glyphicon glyphicon-list-alt"> </span>
+                    </div>
+                    <div class="col-xs-6 col-sm-6">
+                        <span class="glyphicon glyphicon-align-left"> </span>
+                    </div>
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+                <div class="texte_logo">Compétence<br>Info<br>bla<br>blabla<br>blablabla<br>Année</div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
