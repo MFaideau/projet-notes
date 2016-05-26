@@ -20,10 +20,52 @@
     float: right;
 }
 
+.container {
+    margin-top: 15px;
+}
+
+.identite .panel {
+    text-align: center;
+}
+
+.donnees .panel-heading {
+    color: white;
+    background-color: #b62224;
+    font-weight: bold;
+}
+
+.menu_rapide .panel {
+    text-align: center;
+    padding: 20px 0 20px 0;
+    font-weight: bolder;
+    font-family: Trebuchet MS, serif;
+    font-size: 14px;
+}
+
+.visualisation {
+    font-size: 200%;
+    text-align: center;
+    float: right;
+}
+
 .donnees table, tr, th {
     text-align: justify;
 }
 
 .icone, .identite a {
     color: #b62224;
+}
+
+.donnees table, tr, th {
+    text-align: justify;
+}
+
+.icone, .identite a {
+    color: #b62224;
+}
+
+.donnees .panel-heading {
+    color: white;
+    background-color: #b62224;
+    font-weight: bold;
 }
