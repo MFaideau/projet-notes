@@ -42,7 +42,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
         header('Location: index.php');
         die();
     }
-    $_SESSION['user'] = $user;
+    $_SESSION['user'] = serialize($user);
     header('Location: accueil.php');
     die();
 } else {
