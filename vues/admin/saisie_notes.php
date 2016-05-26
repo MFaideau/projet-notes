@@ -83,11 +83,16 @@
         </div>
     </div>
 
-    <div class="panel-heading">Note concernant</div>
+    <div class="panel-heading">Importation de la liste de notes</div>
     <div class="panel-body">
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group">
                 <div class="col-sm-6 col-sm-offset-3">
+                    <form method="post" action="saisie_notes.php" enctype="multipart/form-data">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+                        <input type="file" name="fichier_notes" id="fichier_notes" /><br />
+                        <input class="col-sm-6 col-sm-offset-3" type="submit" name="submit" value="Envoyer" />
+                    </form>
                     <input type="file" name="nom" />
                 </div>
             </div>
