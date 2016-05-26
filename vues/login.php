@@ -18,18 +18,18 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-5 col-sm-5">
+                    <div class="row header_login">
+                        <div class="col-xs-4 col-sm-5 header_login_cell">
                             <img src="vues/assets/img/logo_isen.png" alt="Logo ISEN" class="logo"/>
                         </div>
-                        <div class="col-xs-7 col-sm-7">
-                            <div class="texte_logo">Simulateur de notes</div>
+                        <div class="col-xs-8 col-sm-7 header_login_cell">
+                            <div class="texte_logo">Visual Year</div>
                         </div>
                     </div>
                     <div class="row separator_login"></div>
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            <a href="#Google"><div class="connect_button">Connexion au site</div></a>
+                        <div class="col-md-12">
+                            <a href="<?php echo $authUrl; ?>"><div class="connect_button">Connexion au site</div></a>
                         </div>
                     </div>
                 </div>
