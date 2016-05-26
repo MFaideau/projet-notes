@@ -1,3 +1,5 @@
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css");
+
 .container {
     margin: auto;
     margin-top: 10%;
@@ -5,6 +7,19 @@
 
 .logo {
     width: 100%;
+}
+
+/* Permet d'aligner le texte dans le header */
+.header_login {
+    display: table;
+    table-layout: fixed; 
+}
+
+.header_login_cell {
+    top: -5px;
+    display: table-cell;
+    vertical-align: middle;
+    float: none;   
 }
 
 .separator_login {
@@ -16,12 +31,11 @@
     vertical-align: middle;
     font-family: Rockwell, serif;
     font-size: 25px;
-    margin-left: 10%;
+    text-align: center;
 }
 
 .connect_button {
     background: #b62224;
-    border: none;
     border: 1px solid #a92021;
     color: #fff;
     cursor: pointer;
