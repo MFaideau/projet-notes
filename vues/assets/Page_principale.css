@@ -1,0 +1,27 @@
+.container {
+    margin-top: 15px;
+}
+
+.identite .panel {
+    text-align: center;
+}
+
+.menu_rapide .panel {
+    text-align: center;
+    padding: 20px 0 20px 0;
+    font-weight: bolder;
+    font-family: Trebuchet MS, serif;
+    font-size: 14px;
+}
+
+.visualisation {
+    font-size: 200%;
+    text-align: center;
+    float: right;
+}
+
+.donnees table, tr, th {
+    text-align: justify;
+}
+
+.identite a { color: #b62224; }
