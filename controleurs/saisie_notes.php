@@ -5,6 +5,7 @@
  * Date: 26/05/2016
  * Time: 14:06
  */
+include_once('modeles/sqlConnection.php');
 include_once ('./modeles/authentification/utilisateur.class.php');
 
 if (isset($_SESSION['user'])) {
@@ -20,3 +21,5 @@ include_once('./vues/menu.php');
 
 // On importe la vue
 include_once('./vues/admin/saisie_notes.php');
+
+include_once('./vues/footer.php');
