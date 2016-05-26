@@ -12,6 +12,7 @@
     font-weight: bolder;
     font-family: Trebuchet MS, serif;
     font-size: 14px;
+    color: #b62224;
 }
 
 .visualisation {
@@ -42,6 +43,10 @@
     font-size: 14px;
 }
 
+.menu_rapide a {
+    color: #b62224;
+}
+
 .visualisation {
     font-size: 200%;
     text-align: center;
@@ -50,6 +55,10 @@
 
 .donnees table, tr, th {
     text-align: justify;
+}
+
+.icone a {
+    text-decoration: none;
 }
 
 .icone, .identite a {
