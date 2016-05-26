@@ -7,10 +7,7 @@ include_once('./modeles/authentification/authentification.php');
 session_start();
 
 require_once './gplus-lib/vendor/autoload.php';
-
-const CLIENT_ID = "990644210421-ucdhjrc7uc963uhra78toao5gev30t3p.apps.googleusercontent.com";
-const CLIENT_SECRET = "Fv1WuyUR9jxoxPodQlVxTXF_";
-const REDIRECT_URI = "http://127.0.0.1/projet-notes";
+require_once 'credentials.php';
 
 $client = new Google_Client();
 $client->setClientId(CLIENT_ID);
