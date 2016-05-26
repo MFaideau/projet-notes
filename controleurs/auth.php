@@ -32,9 +32,14 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
     $me = $plus->people->get('me');
     $email = $me['emails'][0]['value'];
     $user = GetUser($email);
-    if (!isset($user) || (isset($_GET['action']) && $_GET['action'] == "disconnect")) {
+    if (!isset($user)) {
         session_destroy();
         header('Location: index.php?erreur_connexion=1');
+        die();
+    }
+    else if (isset($_GET['action']) && $_GET['action'] == "disconnect") {
+        session_destroy();
+        header('Location: index.php');
         die();
     }
     $_SESSION['user'] = $user;
