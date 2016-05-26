@@ -1,0 +1,57 @@
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css");
+
+.container {
+    margin: auto;
+    margin-top: 10%;
+}
+
+.logo {
+    width: 100%;
+}
+
+/* Permet d'aligner le texte dans le header */
+.header_login {
+    display: table;
+    table-layout: fixed; 
+}
+
+.header_login_cell {
+    top: -5px;
+    display: table-cell;
+    vertical-align: middle;
+    float: none;   
+}
+
+.separator_login {
+    border-bottom: 1px dashed red;
+}
+
+.texte_logo {
+    height: 100%;
+    vertical-align: middle;
+    font-family: Rockwell, serif;
+    font-size: 25px;
+    text-align: center;
+}
+
+.connect_button {
+    background: #b62224;
+    border: 1px solid #a92021;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: 600;
+    line-height: 1;
+    margin: 20px 10px 10px 0;
+    outline: none;
+    padding: 10px 20px 11px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    -moz-transition: background-color 0.15s ease-in-out;
+    -o-transition: background-color 0.15s ease-in-out;
+    -webkit-transition: background-color 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out;
+    width: auto;
+}
