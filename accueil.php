@@ -10,6 +10,7 @@ if(!isset($_SESSION['user'])) {
     header('Location: index.php?erreur_connexion=1');
     die("Pas connecté");
 }
-include_once("controleurs/accueil.php");
+
+include_once("controleurs/saisie_notes.php");
 
 ?>
