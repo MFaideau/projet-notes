@@ -25,5 +25,17 @@ class Utilisateur
     {
         return $this->mail;
     }
+    public function GetAutorite()
+    {
+        return $this->autorite;
+    }
+    public function GetNom()
+    {
+        return $this->nom;
+    }
+    public function GetPrenom()
+    {
+        return $this->prenom;
+    }
 }
 ?>

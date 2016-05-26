@@ -26,4 +26,12 @@ class Etudiant
     {
         return $this->id;
     }
+    public function GetCursus()
+    {
+        return $this->cursus;
+    }
+    public function GetUtilisateur()
+    {
+        return $this->utilisateur;
+    }
 }
