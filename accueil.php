@@ -10,5 +10,6 @@ if(!isset($_SESSION['email'])) {
     header('Location: index.php');
     die("Pas connecté");
 }
+include_once("controleurs/accueil.php");
 
 ?>

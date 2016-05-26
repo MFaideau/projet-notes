@@ -50,8 +50,12 @@
             <div class="col-md-2 col-md-offset-10 visualisation">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <span class="glyphicon glyphicon-list-alt"></span>
-                        <span class="glyphicon glyphicon-align-left"></span>
+                        <a href="#tableau_notes">
+                            <span class="glyphicon glyphicon-list-alt icone"></span>
+                        </a>
+                        <a href="#histogramme_notes">
+                            <span class="glyphicon glyphicon-align-left icone"></span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -109,7 +113,10 @@
             </div>
         </div>
 
-
+        <!-- Histogramme de données !-->
+        <div>
+            
+        </div>
     </div>
 </div>
 
