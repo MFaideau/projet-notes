@@ -3,13 +3,14 @@
  * @Auteur : Baudouin Landais
  * @Desc : Système de connexion avec Google
  */
+include_once('./modeles/authentification/authentification.php');
 session_start();
 
 require_once './gplus-lib/vendor/autoload.php';
 
-const CLIENT_ID = "";
-const CLIENT_SECRET = "";
-const REDIRECT_URI = "";
+const CLIENT_ID = "990644210421-ucdhjrc7uc963uhra78toao5gev30t3p.apps.googleusercontent.com";
+const CLIENT_SECRET = "Fv1WuyUR9jxoxPodQlVxTXF_";
+const REDIRECT_URI = "http://127.0.0.1/projet-notes";
 
 $client = new Google_Client();
 $client->setClientId(CLIENT_ID);
@@ -33,18 +34,22 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
     $client->setAccessToken($_SESSION['access_token']);
     $me = $plus->people->get('me');
     $email = $me['emails'][0]['value'];
-
-    if (isset($_GET['action']) && $_GET['action'] == "disconnect") {
+    $user = GetUser($email);
+    if (!isset($user) || (isset($_GET['action']) && $_GET['action'] == "disconnect")) {
         session_destroy();
-        header('Location: index.php');
+        header('Location: index.php?erreur_connexion=1');
         die();
     }
-    $_SESSION['email'] = $email;
+    $_SESSION['user'] = $user;
     header('Location: accueil.php');
     die();
 } else {
     $authUrl = $client->createAuthUrl();
-    include_once('./vues/login.php');
+    if (isset($_SESSION['user'])) {
+        header('Location: accueil.php');
+        die();
+    } else {
+        include_once('./vues/login.php');
+    }
 }
-
 ?>

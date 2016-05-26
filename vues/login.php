@@ -3,6 +3,7 @@
  * @Auteur: Baudouin Landais
  * @Description : Fichier de vue pour la page de connexion
  */
+const ERREUR_PAS_CONNECTE = 1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,19 @@
 <body>
 <div class="container">
     <div class="row">
+        <?php
+        if (isset($_GET['erreur_connexion'])) {
+            if ($_GET['erreur_connexion'] == ERREUR_PAS_CONNECTE) {
+                ?>
+                <div class="col-md-6 col-md-offset-3 message_erreur">
+                    <div class="alert alert-danger" role="alert">
+                        <span class="glyphicon glyphicon-lock"></span>
+                        <span class="texte_erreur">Vos informations de connexion n'ont pas été reconnues</span>
+                    </div>
+                </div><?php
+            }
+        }
+        ?>
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -29,7 +43,9 @@
                     <div class="row separator_login"></div>
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="<?php echo $authUrl; ?>"><div class="connect_button">Connexion au site</div></a>
+                            <a href="<?php echo $authUrl; ?>">
+                                <div class="connect_button">Connexion au site</div>
+                            </a>
                         </div>
                     </div>
                 </div>
