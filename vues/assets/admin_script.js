@@ -8,6 +8,9 @@ $("button").click(function() {
         data: 'idCursus=' + this.id.replace("cursus_",""),
         success: function(result){
             $(".panel_competences").remove();
-            $(".panel_cursus").append(result);
-    }});
+            $(".panel_cursus").append(result); },
+        error: function(result) {
+            alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
+        }
+    });
 });
