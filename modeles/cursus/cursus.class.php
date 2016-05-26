@@ -20,5 +20,9 @@ class Cursus
     {
         return $this->id;
     }
+    public function GetNom()
+    {
+        return $this->nom;
+    }
 
 }
