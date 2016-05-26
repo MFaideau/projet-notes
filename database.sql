@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 25 Mai 2016 à 08:02
+-- Généré le :  Jeu 26 Mai 2016 à 17:24
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -19,6 +19,22 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `projet_notes`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `absence`
+--
+
+DROP TABLE IF EXISTS `absence`;
+CREATE TABLE IF NOT EXISTS `absence` (
+  `ID_Absence` int(5) NOT NULL AUTO_INCREMENT,
+  `ID_Etudiant` varchar(55) NOT NULL,
+  `Date_Absence` date NOT NULL,
+  `Nombre_Heures_Absence` float NOT NULL,
+  `Excusee` int(1) NOT NULL COMMENT '0 = Non excusée // 1 = Excusée',
+  PRIMARY KEY (`ID_Absence`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -98,6 +114,7 @@ DROP TABLE IF EXISTS `cursus`;
 CREATE TABLE IF NOT EXISTS `cursus` (
   `ID_Cursus` int(5) NOT NULL AUTO_INCREMENT,
   `Nom_Cursus` varchar(55) NOT NULL,
+  `Cursus_Annee` year(4) NOT NULL COMMENT '"2015" pour l''année de septembre 2015 à juin 2016 par exemple',
   PRIMARY KEY (`ID_Cursus`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
@@ -105,10 +122,10 @@ CREATE TABLE IF NOT EXISTS `cursus` (
 -- Contenu de la table `cursus`
 --
 
-INSERT INTO `cursus` (`ID_Cursus`, `Nom_Cursus`) VALUES
-(1, 'CSI3'),
-(2, 'CSI-U3'),
-(3, 'CIR3');
+INSERT INTO `cursus` (`ID_Cursus`, `Nom_Cursus`, `Cursus_Annee`) VALUES
+(1, 'CSI3', 0000),
+(2, 'CSI-U3', 0000),
+(3, 'CIR3', 0000);
 
 -- --------------------------------------------------------
 
@@ -122,6 +139,8 @@ CREATE TABLE IF NOT EXISTS `epreuve` (
   `ID_Type` int(5) NOT NULL,
   `Nom_Epreuve` varchar(255) NOT NULL,
   `Coef_Epreuve` float NOT NULL,
+  `Date_Epreuve` date NOT NULL,
+  `Evaluateur_Epreuve` varchar(255) NOT NULL,
   PRIMARY KEY (`ID_Epreuve`),
   KEY `ID_Type` (`ID_Type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
@@ -130,8 +149,8 @@ CREATE TABLE IF NOT EXISTS `epreuve` (
 -- Contenu de la table `epreuve`
 --
 
-INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `Nom_Epreuve`, `Coef_Epreuve`) VALUES
-(5, 1, 'Interrogation CSI3 Ondes et Mécanique Quantique (partie Ondes)', 1);
+INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `Nom_Epreuve`, `Coef_Epreuve`, `Date_Epreuve`, `Evaluateur_Epreuve`) VALUES
+(5, 1, 'Interrogation CSI3 Ondes et Mécanique Quantique (partie Ondes)', 1, '0000-00-00', 'Xavier Wallart');
 
 -- --------------------------------------------------------
 
@@ -182,6 +201,7 @@ CREATE TABLE IF NOT EXISTS `etudiantnote` (
   `ID_Etudiant` varchar(55) NOT NULL,
   `Note_Finale` float NOT NULL,
   `Note_Prevue` float NOT NULL,
+  `Absence_Epreuve` int(1) NOT NULL COMMENT '0 = Pas d''absence // 1 = Absence excusée // 2 = Absence non excusee',
   PRIMARY KEY (`ID_Epreuve`,`ID_Etudiant`),
   KEY `ID_Epreuve` (`ID_Epreuve`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -190,11 +210,11 @@ CREATE TABLE IF NOT EXISTS `etudiantnote` (
 -- Contenu de la table `etudiantnote`
 --
 
-INSERT INTO `etudiantnote` (`ID_Epreuve`, `ID_Etudiant`, `Note_Finale`, `Note_Prevue`) VALUES
-(5, 'p59051', 6.3, 7),
-(5, 'p59060', 12.6, 10),
-(5, 'p59062', 11.9, 6),
-(5, 'p59080', 13.3, 9);
+INSERT INTO `etudiantnote` (`ID_Epreuve`, `ID_Etudiant`, `Note_Finale`, `Note_Prevue`, `Absence_Epreuve`) VALUES
+(5, 'p59051', 6.3, 7, 0),
+(5, 'p59060', 12.6, 10, 0),
+(5, 'p59062', 11.9, 6, 0),
+(5, 'p59080', 13.3, 9, 0);
 
 -- --------------------------------------------------------
 
@@ -210,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `evaluation` (
   `Coef_Eval` float NOT NULL,
   PRIMARY KEY (`ID_Eval`),
   KEY `ID_Cours` (`ID_Cours`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `evaluation`
