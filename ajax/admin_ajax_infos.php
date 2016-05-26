@@ -11,8 +11,8 @@ if (isset($_POST['idCursus'])) {
     $idCursus = $_POST['idCursus'];
     $temp = '';
     ?>
-    <div class="panel panel-default saisie_notes">
-        <div class="panel-heading">Choix du Cursus</div>
+    <div class="panel panel-default saisie_notes panel_competences">
+        <div class="panel-heading">Choix de la Compétence</div>
         <div class="panel-body">
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                 <?php

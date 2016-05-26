@@ -7,6 +7,7 @@ $("button").click(function() {
         datatype: 'html',
         data: 'idCursus=' + this.id.replace("cursus_",""),
         success: function(result){
-            $(".panel-saisie-notes").append(result);
+            $(".panel_competences").remove();
+            $(".panel_cursus").append(result);
     }});
 });

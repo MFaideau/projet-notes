@@ -5,7 +5,7 @@
 */
 ?>
 
-<div class="panel panel-default saisie_notes panel-saisie-notes">
+<div class="panel panel-default saisie_notes panel_cursus">
     <div class="panel-heading">Choix du Cursus</div>
     <div class="panel-body">
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
