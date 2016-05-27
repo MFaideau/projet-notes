@@ -17,8 +17,8 @@ class Etudiant
 
     function Etudiant($etudiantLine,$cursus,$utilisateur)
     {
-        $this->i->cursus=$cursus;
-        $thisd=$etudiantLine[0]["ID_Etudiant"];
+        $this->cursus=$cursus;
+        $this->id=$etudiantLine[0]["ID_Etudiant"];
         $this->utilisateur=$utilisateur;
     }
 

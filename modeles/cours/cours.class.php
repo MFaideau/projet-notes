@@ -7,6 +7,7 @@
  * Time: 14:30
  */
 include_once (__DIR__ . '../../../modeles/evaluation/evaluation.class.php');
+include_once (__DIR__ . '../../../modeles/cours/cours.php');
 class Cours
 {
     private $id;
