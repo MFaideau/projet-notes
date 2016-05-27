@@ -1,15 +1,24 @@
 <?php
 session_start();
 
-// TODO : Vérifier connecté & si c'est bien un admin !
 include_once __DIR__ . '../../modeles/sqlConnection.php';
+include_once __DIR__ . '../../modeles/authentification/utilisateur.class.php';
 include_once __DIR__ . '../../modeles/cursus/cursus.php';
+
+if(!isset($_SESSION['user'])) {
+    $utilisateur = unserialize($_SESSION['user']);
+    var_dump($utilisateur);
+    if($utilisateur->GetAutorite() != 1) {
+        die();
+    }
+    die();
+}
+
 $user = serialize($_SESSION['user']);
 
 if (isset($_POST['idCursus'])) {
     $idCursus = $_POST['idCursus'];
     $cursus = GetCursus(GetCursusList(),$idCursus);
-    $temp = '';
     ?>
     <div class="panel panel-default saisie_notes panel_competences">
         <div class="panel-heading">Choix de la Compétence</div>
