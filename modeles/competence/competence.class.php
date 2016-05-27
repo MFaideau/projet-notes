@@ -6,7 +6,7 @@
  * Date: 26/05/2016
  * Time: 13:47
  */
-include_once __DIR__ . '../../cours/cours.class.php';
+include_once(__DIR__ . '../../cours/cours.class.php');
 
 class Competence
 {
@@ -20,7 +20,6 @@ class Competence
         $this->nom=$competenceLine["Nom_Competence"];
         $this->coursList=$this->GetCoursFromDB();
     }
-
     public function GetCoursList()
     {
         return $this->coursList;
