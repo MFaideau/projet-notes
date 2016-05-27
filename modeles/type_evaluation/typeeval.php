@@ -7,7 +7,7 @@
  */
 include_once(__DIR__ . '../../epreuve/epreuve.class.php');
 
-function GetEpreuveFromTypeEval($typeEvalId){
+function GetEpreuveListFromTypeEval($typeEvalId){
     $list =array();
     global $bdd;
     $req = $bdd->prepare('SELECT epreuve.ID_Epreuve,epreuve.Nom_Epreuve,epreuve.Coef_Epreuve,epreuve.Date_Epreuve,epreuve.Evaluateur_Epreuve
