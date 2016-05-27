@@ -4,6 +4,7 @@ session_start();
 include_once __DIR__ . '../../modeles/sqlConnection.php';
 include_once __DIR__ . '../../modeles/authentification/utilisateur.class.php';
 include_once __DIR__ . '../../modeles/cursus/cursus.php';
+include_once __DIR__ . '../../modeles/type_evaluation/typeeval.php';
 
 if (!isset($_SESSION['user'])) { die(); }
 else {
@@ -71,6 +72,27 @@ if (isset($_POST['idCompetence'])) {
                         <div class="btn-group" role="group">
                             <button id="type_eval_<?php echo $typeEval->GetId(); ?>" type="button"
                                     class="btn btn-default"><?php echo html_entity_decode($typeEval->GetNom()); ?></button>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php }
+    if (isset($_POST['idTypeEval'])) {
+    $idTypeEval = $_POST['idTypeEval'];
+    $epreuveList = GetEpreuveListFromTypeEval($idTypeEval);
+    ?>
+    <div class="panel_epreuve">
+        <div class="panel panel-default saisie_notes">
+            <div class="panel-heading">Choix de l'Epreuve</div>
+            <div class="panel-body">
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <?php
+                    foreach ($epreuveList as $epreuve) { ?>
+                        <div class="btn-group" role="group">
+                            <button id="epreuve_<?php echo $epreuve->GetId(); ?>" type="button"
+                                    class="btn btn-default"><?php echo html_entity_decode($epreuve->GetNom()); ?></button>
                         </div>
                     <?php } ?>
                 </div>
