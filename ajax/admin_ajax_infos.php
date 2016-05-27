@@ -6,8 +6,9 @@ include_once __DIR__ . '../../modeles/authentification/utilisateur.class.php';
 include_once __DIR__ . '../../modeles/cursus/cursus.php';
 include_once __DIR__ . '../../modeles/type_evaluation/typeeval.php';
 
-if (!isset($_SESSION['user'])) { die(); }
-else {
+if (!isset($_SESSION['user'])) {
+    die();
+} else {
     $utilisateur = unserialize($_SESSION['user']);
     if ($utilisateur->GetAutorite() != 1) {
         die();
@@ -24,14 +25,14 @@ if (isset($_POST['idCursus'])) {
         <div class="panel panel-default saisie_notes">
             <div class="panel-heading">Choix de la Compétence</div>
             <div class="panel-body">
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <?php
-                    foreach ($cursus->GetCompetenceList() as $competence) { ?>
-                        <div class="btn-group" role="group">
+                <div class="btn-group" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <?php
+                        foreach ($cursus->GetCompetenceList() as $competence) { ?>
                             <button id="competence_<?php echo $competence->GetId(); ?>" type="button"
                                     class="btn btn-default"><?php echo html_entity_decode($competence->GetNom()); ?></button>
-                        </div>
-                    <?php } ?>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -45,41 +46,43 @@ if (isset($_POST['idCompetence'])) {
         <div class="panel panel-default saisie_notes">
             <div class="panel-heading">Choix du Cours</div>
             <div class="panel-body">
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <?php
-                    foreach ($cours as $current_cours) { ?>
-                        <div class="btn-group" role="group">
+                <div class="btn-group" role="group" aria-label="...">
+
+                    <div class="btn-group" role="group">
+                        <?php
+                        foreach ($cours as $current_cours) { ?>
                             <button id="cours_<?php echo $current_cours->GetId(); ?>" type="button"
                                     class="btn btn-default"><?php echo html_entity_decode($current_cours->GetNom()); ?></button>
-                        </div>
-                    <?php } ?>
+
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 <?php }
-    if (isset($_POST['idCours'])) {
-        $idCours = $_POST['idCours'];
-        $typeEvalList = GetTypeEvalListFromCours($idCours);
+if (isset($_POST['idCours'])) {
+    $idCours = $_POST['idCours'];
+    $typeEvalList = GetTypeEvalListFromCours($idCours);
     ?>
     <div class="panel_type_eval">
         <div class="panel panel-default saisie_notes">
             <div class="panel-heading">Choix du Type d'Evaluation</div>
             <div class="panel-body">
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <?php
-                    foreach ($typeEvalList as $typeEval) { ?>
-                        <div class="btn-group" role="group">
+                <div class="btn-group" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <?php
+                        foreach ($typeEvalList as $typeEval) { ?>
                             <button id="type_eval_<?php echo $typeEval->GetId(); ?>" type="button"
                                     class="btn btn-default"><?php echo html_entity_decode($typeEval->GetNom()); ?></button>
-                        </div>
-                    <?php } ?>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 <?php }
-    if (isset($_POST['idTypeEval'])) {
+if (isset($_POST['idTypeEval'])) {
     $idTypeEval = $_POST['idTypeEval'];
     $epreuveList = GetEpreuveListFromTypeEval($idTypeEval);
     ?>
@@ -87,17 +90,18 @@ if (isset($_POST['idCompetence'])) {
         <div class="panel panel-default saisie_notes">
             <div class="panel-heading">Choix de l'Epreuve</div>
             <div class="panel-body">
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <?php
-                    foreach ($epreuveList as $epreuve) { ?>
-                        <div class="btn-group" role="group">
+                <div class="btn-group" role="group" aria-label="...">
+
+                    <div class="btn-group" role="group">
+                        <?php
+                        foreach ($epreuveList as $epreuve) { ?>
                             <button id="epreuve_<?php echo $epreuve->GetId(); ?>" type="button"
                                     class="btn btn-default"><?php echo html_entity_decode($epreuve->GetNom()); ?></button>
-                        </div>
-                    <?php } ?>
+
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 <?php } ?>
-
