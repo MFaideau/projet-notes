@@ -7,24 +7,26 @@
  * Time: 13:47
  */
 include_once(__DIR__ . '../../cours/cours.class.php');
-
+include_once(__DIR__ . '../../competence/competence.php');
 class Competence
 {
     private $id;
     private $nom;
     private $coursList;
 
-    function Competence($competenceLine)
+    function Competence($competenceLine,$recursive)
     {
         $this->id=$competenceLine["ID_Competence"];
         $this->nom=$competenceLine["Nom_Competence"];
-        $this->coursList=$this->GetCoursFromDB();
+        if ($recursive ==true) {
+            $this->coursList=$this->GetCoursListFromDB();
+        }
     }
     public function GetCoursList()
     {
         return $this->coursList;
     }
-    public function GetCoursFromDB()
+    public function GetCoursListFromDB()
     {
         $list =array();
         global $bdd;
@@ -34,7 +36,7 @@ class Competence
         $req->execute();
         $coursList=$req->fetchAll();
         foreach($coursList as $cours) {
-            $list[] = new Cours($cours);
+            $list[] = new Cours($cours,true);
         }
         return $list;
     }
