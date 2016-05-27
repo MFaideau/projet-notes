@@ -6,7 +6,7 @@
  * Time: 11:10
  */
 
-function GetCoursList($idCompetence)
+function GetTypeEvalList($idCours)
 {
     $list =array();
     global $bdd;
