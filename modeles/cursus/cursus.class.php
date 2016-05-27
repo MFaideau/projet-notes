@@ -13,11 +13,13 @@ class Cursus
     private $nom;
     private $competenceList;
 
-    function Cursus($cursusLine)
+    function Cursus($cursusLine,$recursive)
     {
         $this->id=$cursusLine["ID_Cursus"];
         $this->nom=$cursusLine["Nom_Cursus"];
-        $this->competenceList = $this->GetCompetenceListFromDB();
+        if ($recursive ==true) {
+            $this->competenceList = $this->GetCompetenceListFromDB();
+        }
     }
     public function GetId()
     {
@@ -46,7 +48,7 @@ AND competencecursus.ID_Competence=competence.ID_Competence');
         $competenceList=$req->fetchAll();
         foreach($competenceList as $competence)
         {
-            $list[]=new Competence($competence);
+            $list[]=new Competence($competence,true);
         }
         return $list;
     }
