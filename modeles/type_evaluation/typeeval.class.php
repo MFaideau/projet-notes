@@ -21,4 +21,16 @@ class TypeEval
         //    $this->typeEvalList=GetTypeEvalFromDB();
         //}
     }
+    public function GetId()
+    {
+        return $this->id;
+    }
+    public function GetNom()
+    {
+        return $this->nom;
+    }
+    public function GetCoef()
+    {
+        return $this->coef;
+    }
 }
