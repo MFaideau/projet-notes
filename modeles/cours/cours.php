@@ -15,7 +15,6 @@ WHERE type_eval.ID_Eval=evaluation.ID_Eval AND evaluation.ID_Cours = :idCours');
     $req->bindParam(':idCours', $idCours, PDO::PARAM_INT);
     $req->execute();
     $typeEvalList=$req->fetchAll();
-    echo var_dump($typeEvalList);
     foreach($typeEvalList as $typeEval)
     {
         $list[]=new TypeEval($typeEval,false);

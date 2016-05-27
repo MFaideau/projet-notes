@@ -38,11 +38,16 @@ $user = unserialize($_SESSION['user']);
             <div class="col-lg-9 menu_rapide">
                 <div class="panel panel-default">
                     <div class="panel-body">
+                        <a href="accueil.php">
+                            <div class="col-md-2">
+                                <span class="glyphicon glyphicon-home"></span>
+                            </div>
+                        </a>
                         <a href="#Competences">
-                            <div class="col-md-6 bouton_competences">Gérer les compétences</div>
+                            <div class="col-md-5 bouton_competences">Gérer les compétences</div>
                         </a>
                         <a href="saisie_notes.php">
-                            <div class="col-md-6 bouton_notes">Saisie des notes</div>
+                            <div class="col-md-5 bouton_notes">Saisie des notes</div>
                         </a>
                     </div>
                 </div>

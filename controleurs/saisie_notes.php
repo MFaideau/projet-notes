@@ -8,7 +8,7 @@
 include_once('modeles/sqlConnection.php');
 include_once ('./modeles/authentification/utilisateur.class.php');
 
-if (isset($_SESSION['user'])) {
+if (!isset($_SESSION['user'])) {
     $utilisateur = unserialize($_SESSION['user']);
     // TODO : C'est 1 normalement, mais pour le test unitaire
     if ($utilisateur->GetAutorite() != 0) {
