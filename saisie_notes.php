@@ -1,9 +1,8 @@
 <?php
-/*
-* @ Auteur: B. Landais
-* @ Description : Une fois que le compte est connecté, on peut le rediriger vers la page d'accueil (celle-ci!).
-*/
-
+/**
+ * @Auteur : Baudouin Landais
+ * @Description : Permet de récuperer le fichier de notes avec l'épreuve correspondante.
+ */
 session_start();
 // Si le compte n'est pas connecté, on le redirige vers la page d'accueil
 if(!isset($_SESSION['user'])) {
@@ -12,6 +11,5 @@ if(!isset($_SESSION['user'])) {
 }
 
 include_once('modeles/sqlConnection.php');
-include_once("controleurs/accueil.php");
 
-?>
+include_once('controleurs/saisie_notes.php');

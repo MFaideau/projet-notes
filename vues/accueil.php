@@ -15,7 +15,6 @@
 </div>
 
 <!-- Page de données !-->
-
 <div class="row donnees">
     <div class="panel panel-default">
         <div class="panel-heading">Relevé de notes</div>

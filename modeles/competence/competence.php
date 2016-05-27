@@ -5,7 +5,7 @@
  * Date: 26/05/2016
  * Time: 13:54
  */
-include_once('competence.class.php');
+require_once __DIR__ . '../competence.class.php';
 
 function GetCompetenceList($cursusId)
 {
