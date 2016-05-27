@@ -6,6 +6,8 @@
  * Date: 25/05/2016
  * Time: 11:20
  */
+include_once __DIR__ . '../../etudiant/etudiant.php';
+
 class Utilisateur
 {
     private $mail;
@@ -24,6 +26,25 @@ class Utilisateur
     public function GetMail()
     {
         return $this->mail;
+    }
+    public function GetAutorite()
+    {
+        return $this->autorite;
+    }
+    public function GetNom()
+    {
+        return $this->nom;
+    }
+    public function GetPrenom()
+    {
+        return $this->prenom;
+    }
+    public function GetCursusTexte()
+    {
+        if ($this->autorite == 0) {
+            return GetEtudiant($this)->GetCursus()->GetNom();
+        }
+        return "Administrateur";
     }
 }
 ?>

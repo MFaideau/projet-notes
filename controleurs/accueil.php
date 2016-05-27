@@ -5,4 +5,4 @@
  */
 
 include_once ("vues/menu.php");
-// include_once ("vues/accueil.php");
+include_once ("vues/accueil.php");

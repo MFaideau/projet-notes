@@ -51,8 +51,9 @@
     width: 75%;
 }
 
-.donnees .panel-heading {
+.donnees .panel-heading, .saisie_notes .panel-heading {
     color: white;
     background-color: #b62224;
     font-weight: bold;
+    text-align: center;
 }

@@ -6,8 +6,8 @@
  * Date: 25/05/2016
  * Time: 15:08
  */
-include_once('modeles/cursus/cursus.php');
-include_once('modeles/authentification/authentification.php');
+include_once (__DIR__ . '../../../modeles/cursus/cursus.php');
+include_once (__DIR__ . '../../../modeles/authentification/authentification.php');
 
 class Etudiant
 {
@@ -25,5 +25,13 @@ class Etudiant
     public function GetId()
     {
         return $this->id;
+    }
+    public function GetCursus()
+    {
+        return $this->cursus;
+    }
+    public function GetUtilisateur()
+    {
+        return $this->utilisateur;
     }
 }
