@@ -9,16 +9,11 @@
     <div class="panel-heading">Choix du Cursus</div>
     <div class="panel-body">
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
-            <div class="btn-group" role="group">
-                <button id="cursus_1" type="button" class="btn btn-default">CSI3</button>
-            </div>
-            <div class="btn-group" role="group">
-                <button id="cursus_2" type="button" class="btn btn-default">CSI-U3</button>
-            </div>
-            <div class="btn-group" role="group">
-                <button id="cursus_3" type="button" class="btn btn-default">CIR3</button>
-            </div>
+            <?php foreach(GetCursusList() as $cursus) { ?>
+                <div class="btn-group" role="group">
+                    <button id="cursus_<?php echo $cursus->GetId(); ?>" type="button" class="btn btn-default"><?php echo $cursus->GetNom(); ?></button>
+                </div>
+            <?php } ?>
         </div>
     </div>
-
 </div>

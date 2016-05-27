@@ -15,9 +15,7 @@ function GetUser($mail)
     $req->execute();
     $users = $req->fetchAll();
     if (empty($users))
-    {
         return null;
-    }
     else{
         $newUser=new Utilisateur($users[0]);
         return $newUser;
