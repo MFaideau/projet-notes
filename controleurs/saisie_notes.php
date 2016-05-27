@@ -9,9 +9,12 @@ include_once('modeles/sqlConnection.php');
 include_once ('./modeles/authentification/utilisateur.class.php');
 
 if (!isset($_SESSION['user'])) {
+    header('Location: index.php');
+    die(); }
+else {
     $utilisateur = unserialize($_SESSION['user']);
     // TODO : C'est 1 normalement, mais pour le test unitaire
-    if ($utilisateur->GetAutorite() != 0) {
+    if ($utilisateur->GetAutorite() != 1) {
         header('Location: accueil.php');
         die();
     }

@@ -5,12 +5,12 @@ include_once __DIR__ . '../../modeles/sqlConnection.php';
 include_once __DIR__ . '../../modeles/authentification/utilisateur.class.php';
 include_once __DIR__ . '../../modeles/cursus/cursus.php';
 
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['user'])) { die(); }
+else {
     $utilisateur = unserialize($_SESSION['user']);
     if ($utilisateur->GetAutorite() != 1) {
         die();
     }
-    die();
 }
 
 $user = serialize($_SESSION['user']);
