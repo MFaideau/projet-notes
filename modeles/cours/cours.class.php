@@ -55,7 +55,6 @@ WHERE evaluation.ID_Eval = :idCours');
         $req->bindParam(':idCours', $this->id, PDO::PARAM_INT);
         $req->execute();
         $evalList=$req->fetchAll();
-        echo var_dump($evalList);
         foreach($evalList as $eval) {
             $list[] = new Evaluation($eval,true);
         }

@@ -1,6 +1,6 @@
 // TODO : Inclure ce fichier uniquement si on est connecté en ADMIN
 
-$("button").click(function() {
+$(".panel_cursus button").click(function() {
     $.ajax({
         url: './ajax/admin_ajax_infos.php',
         type: 'POST',
@@ -9,6 +9,21 @@ $("button").click(function() {
         success: function(result){
             $(".panel_competences").remove();
             $(".panel_cursus").append(result); },
+        error: function(result) {
+            alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
+        }
+    });
+});
+
+$(document).on("click",".panel_competences button",function(e){
+    $.ajax({
+        url: './ajax/admin_ajax_infos.php',
+        type: 'POST',
+        datatype: 'html',
+        data: 'idCompetence=' + this.id.replace("competence_",""),
+        success: function(result){
+            $(".panel_cours").remove();
+            $(".panel_competences").append(result); },
         error: function(result) {
             alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
         }

@@ -7,7 +7,6 @@ include_once __DIR__ . '../../modeles/cursus/cursus.php';
 
 if(!isset($_SESSION['user'])) {
     $utilisateur = unserialize($_SESSION['user']);
-    var_dump($utilisateur);
     if($utilisateur->GetAutorite() != 1) {
         die();
     }
@@ -27,10 +26,29 @@ if (isset($_POST['idCursus'])) {
                 <?php
                 foreach ($cursus->GetCompetenceList() as $competence) { ?>
                     <div class="btn-group" role="group">
-                        <button id="cursus_1" type="button" class="btn btn-default"><?php echo html_entity_decode($competence->GetNom()); ?></button>
+                        <button id="competence_<?php echo $competence->GetId(); ?>" type="button" class="btn btn-default"><?php echo html_entity_decode($competence->GetNom()); ?></button>
                     </div>
                 <?php } ?>
             </div>
         </div>
     </div>
+<?php }
+    if (isset($_POST['idCompetence'])) {
+        $idCompetence = $_POST['idCompetence'];
+        $cours = GetCoursListFromCompetence($idCompetence);
+        ?>
+        <div class="panel panel-default saisie_notes panel_cours">
+        <div class="panel-heading">Choix de la Compétence</div>
+        <div class="panel-body">
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                <?php
+                foreach ($cours as $current_cours) { ?>
+                    <div class="btn-group" role="group">
+                        <button id="cours_<?php echo $current_cours->GetId(); ?>" type="button" class="btn btn-default"><?php echo html_entity_decode($current_cours->GetNom()); ?></button>
+                    </div>
+                <?php } ?>
+        </div>
+        </div>
+        </div>
 <?php } ?>
+

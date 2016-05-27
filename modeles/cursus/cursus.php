@@ -17,7 +17,7 @@ function GetCursusList()
     $cursusList = array();
     foreach ($cursusArray as $cursus)
     {
-        $cursusList[] = new Cursus($cursus);
+        $cursusList[] = new Cursus($cursus,true);
     }
     return $cursusList;
 }
