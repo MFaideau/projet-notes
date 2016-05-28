@@ -11,7 +11,8 @@ $(".panel_cursus button").click(function() {
             $(".panel_cours").remove();
             $(".panel_type_eval").remove();
             $(".panel_epreuve").remove();
-            $(".panel_cursus").append(result); },
+            $(".panel_cursus").append(result);
+            $(".panel_upload_epreuve").remove(); },
         error: function(result) {
             alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
         }
@@ -28,6 +29,7 @@ $(document).on("click",".panel_competences button",function(e){
             $(".panel_cours").remove();
             $(".panel_type_eval").remove();
             $(".panel_epreuve").remove();
+            $(".panel_upload_epreuve").remove();
             $(result).insertAfter(".panel_competences"); },
         error: function(result) {
             alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
@@ -44,6 +46,7 @@ $(document).on("click",".panel_cours button", function(e) {
         success: function(result) {
             $(".panel_type_eval").remove();
             $(".panel_epreuve").remove();
+            $(".panel_upload_epreuve").remove();
             $(result).insertAfter($(".panel_cours"));
 //            $(".panel_cours").append(result);
         },
@@ -58,8 +61,23 @@ $(document).on("click",".panel_type_eval button", function(e) {
         data: 'idTypeEval=' + this.id.replace("type_eval_",""),
         success: function(result) {
             $(".panel_epreuve").remove();
+            $(".panel_upload_epreuve").remove();
             $(result).insertAfter($(".panel_type_eval"));
 //            $(".panel_cours").append(result);
         },
     });
+});
+
+$(document).on("click",".panel_epreuve button", function(e) {
+   $.ajax({
+       url: './ajax/admin_ajax_infos.php',
+       type: 'POST',
+       datatype: 'html',
+       data: 'idEpreuve=' + this.id.replace("epreuve_",""),
+       success: function(result) {
+           $(".panel_upload_epreuve").remove();
+           $(result).insertAfter($(".panel_epreuve"));
+//            $(".panel_cours").append(result);
+       },
+   });
 });
