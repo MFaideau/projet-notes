@@ -1,9 +1,3 @@
-<?php
-/*
- * @Auteur : bLandais
- * @Description : Vue pour le panneau d'insertion de notes
-*/ ?>
-
 <div class="panel_cursus">
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix du Cursus</div>
