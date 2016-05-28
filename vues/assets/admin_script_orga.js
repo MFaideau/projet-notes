@@ -79,3 +79,18 @@ $(document).on("click","button[id^=orga_epreuve]", function(e) {
         },
     });
 });
+
+$(function(){
+    $('#addCursus').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: './ajax/admin_ajax_orga.php', //this is the submit URL
+            type: 'POST', //or POST
+            data: "nomCursus=" + $("#nomCursus").val(),
+            success: function(data){
+                $("#addCursus").modal("hide");
+                $(data).insertAfter($("button[id^=orga_cursus_]").parent().last());
+            }
+        });
+    });
+});

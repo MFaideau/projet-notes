@@ -129,4 +129,11 @@ if (isset($_POST['idTypeEval'])) {
             </div>
         </div>
     </div>
-<?php } ?>
+<?php }
+
+if (isset($_POST['nomCursus'])) {
+    ?>
+        <button id="orga_cursus_<?php echo $_POST['nomCursus']; ?>" type="button"
+                class="btn btn-default"><?php echo $_POST['nomCursus']; ?></button>
+<?php }
+?>
