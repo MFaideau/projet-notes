@@ -1,8 +1,9 @@
 <?php
-/**
- * @Auteur : Baudouin Landais
- * @Description : Permet de récuperer le fichier de notes avec l'épreuve correspondante.
+/*
+ * @Auteur : bLandais
+ * @Description : Permet de supprimer ou de rajouter des cursus / compétences / cours / ...
  */
+
 session_start();
 // Si le compte n'est pas connecté, on le redirige vers la page d'accueil
 if(!isset($_SESSION['user'])) {
@@ -10,6 +11,6 @@ if(!isset($_SESSION['user'])) {
     die("Pas connecté");
 }
 
-include_once('modeles/sqlConnection.php');
+include_once('controleurs/organisation_etudes.php');
 
-include_once('controleurs/saisie_notes.php');
+?>

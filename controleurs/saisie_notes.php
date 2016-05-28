@@ -13,7 +13,6 @@ if (!isset($_SESSION['user'])) {
     die(); }
 else {
     $utilisateur = unserialize($_SESSION['user']);
-    // TODO : C'est 1 normalement, mais pour le test unitaire
     if ($utilisateur->GetAutorite() != 1) {
         header('Location: accueil.php');
         die();

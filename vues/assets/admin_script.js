@@ -1,6 +1,6 @@
 // TODO : Inclure ce fichier uniquement si on est connecté en ADMIN
 
-$(".panel_cursus button").click(function() {
+$(".panel_cursus .panel_body button").click(function() {
     $.ajax({
         url: './ajax/admin_ajax_infos.php',
         type: 'POST',
@@ -37,7 +37,7 @@ $(document).on("click",".panel_competences button",function(e){
     });
 });
 
-$(document).on("click",".panel_cours button", function(e) {
+$(document).on("click",".panel_cours .panel_body button", function(e) {
     $.ajax({
         url: './ajax/admin_ajax_infos.php',
         type: 'POST',
@@ -53,7 +53,7 @@ $(document).on("click",".panel_cours button", function(e) {
     });
 });
 
-$(document).on("click",".panel_type_eval button", function(e) {
+$(document).on("click",".panel_type_eval .panel_body button", function(e) {
     $.ajax({
         url: './ajax/admin_ajax_infos.php',
         type: 'POST',
@@ -68,7 +68,7 @@ $(document).on("click",".panel_type_eval button", function(e) {
     });
 });
 
-$(document).on("click",".panel_epreuve button", function(e) {
+$(document).on("click",".panel_epreuve .panel_body button", function(e) {
    $.ajax({
        url: './ajax/admin_ajax_infos.php',
        type: 'POST',

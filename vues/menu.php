@@ -43,8 +43,8 @@ $user = unserialize($_SESSION['user']);
                                 <span class="glyphicon glyphicon-home"></span>
                             </div>
                         </a>
-                        <a href="#Competences">
-                            <div class="col-md-5 bouton_competences">Gérer les compétences</div>
+                        <a href="organisation_etudes.php">
+                            <div class="col-md-5 bouton_competences">Organisation des études</div>
                         </a>
                         <a href="saisie_notes.php">
                             <div class="col-md-5 bouton_notes">Saisie des notes</div>
