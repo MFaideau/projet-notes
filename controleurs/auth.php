@@ -3,9 +3,10 @@
  * @Auteur : Baudouin Landais
  * @Desc : Système de connexion avec Google
  */
-include_once('./modeles/authentification/authentification.php');
+
 session_start();
 
+include_once('./modeles/authentification/authentification.php');
 require_once './gplus-lib/vendor/autoload.php';
 require_once 'credentials.php';
 
