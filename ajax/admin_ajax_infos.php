@@ -20,105 +20,35 @@ $user = serialize($_SESSION['user']);
 if (isset($_POST['idCursus'])) {
     $idCursus = $_POST['idCursus'];
     $cursus = GetCursus(GetCursusList(), $idCursus);
-    ?>
-    <div class="panel_competences">
-        <div class="panel panel-default saisie_notes">
-            <div class="panel-heading">Choix de la Compétence</div>
-            <div class="panel-body">
-                <div class="btn-group" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <?php
-                        foreach ($cursus->GetCompetenceList() as $competence) { ?>
-                            <button id="competence_<?php echo $competence->GetId(); ?>" type="button"
-                                    class="btn btn-default btn-competences"><?php echo html_entity_decode($competence->GetNom()); ?></button>
-                        <?php } ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php }
+    if (empty($cursus)) return;
+    else
+        include_once __DIR__ . '../../vues/admin/ajax/saisie/competences_bloc.php';
+}
 if (isset($_POST['idCompetence'])) {
     $idCompetence = $_POST['idCompetence'];
     $cours = GetCoursListFromCompetence($idCompetence);
-    ?>
-    <div class="panel_cours">
-        <div class="panel panel-default saisie_notes">
-            <div class="panel-heading">Choix du Cours</div>
-            <div class="panel-body">
-                <div class="btn-group" role="group" aria-label="...">
-
-                    <div class="btn-group" role="group">
-                        <?php
-                        foreach ($cours as $current_cours) { ?>
-                            <button id="cours_<?php echo $current_cours->GetId(); ?>" type="button"
-                                    class="btn btn-default"><?php echo html_entity_decode($current_cours->GetNom()); ?></button>
-
-                        <?php } ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php }
+    if (empty($cours)) return;
+    else
+        include_once __DIR__ . '../../vues/admin/ajax/saisie/cours_bloc.php';
+}
 if (isset($_POST['idCours'])) {
     $idCours = $_POST['idCours'];
     $typeEvalList = GetTypeEvalListFromCours($idCours);
-    ?>
-    <div class="panel_type_eval">
-        <div class="panel panel-default saisie_notes">
-            <div class="panel-heading">Choix du Type d'Evaluation</div>
-            <div class="panel-body">
-                <div class="btn-group" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <?php
-                        foreach ($typeEvalList as $typeEval) { ?>
-                            <button id="type_eval_<?php echo $typeEval->GetId(); ?>" type="button"
-                                    class="btn btn-default"><?php echo html_entity_decode($typeEval->GetNom()); ?></button>
-                        <?php } ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php }
+    if (empty($typeEvalList)) return;
+    else
+        include_once __DIR__ . '../../vues/admin/ajax/saisie/types_eval_bloc.php';
+}
 if (isset($_POST['idTypeEval'])) {
     $idTypeEval = $_POST['idTypeEval'];
     $epreuveList = GetEpreuveListFromTypeEval($idTypeEval);
-    ?>
-    <div class="panel_epreuve">
-        <div class="panel panel-default saisie_notes">
-            <div class="panel-heading">Choix de l'Epreuve</div>
-            <div class="panel-body">
-                <div class="btn-group" role="group" aria-label="...">
-
-                    <div class="btn-group" role="group">
-                        <?php
-                        foreach ($epreuveList as $epreuve) { ?>
-                            <button id="epreuve_<?php echo $epreuve->GetId(); ?>" type="button"
-                                    class="btn btn-default"><?php echo html_entity_decode($epreuve->GetNom()); ?></button>
-
-                        <?php } ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php }
+    if (empty($epreuveList)) return;
+    else
+        include_once __DIR__ . '../../vues/admin/ajax/saisie/epreuves_bloc.php';
+}
 if (isset($_POST['idEpreuve'])) {
-    $idUploadEval = $_POST['idEpreuve']; ?>
-    <div class="panel_upload_epreuve">
-        <div class="panel panel-default saisie_notes">
-            <div class="panel-heading">Importation de la liste de notes</div>
-            <div class="panel-body">
-                <div class="col-sm-6 col-sm-offset-3">
-                    <form method="post" action="saisie_notes.php" enctype="multipart/form-data">
-                        <input type="hidden" name="MAX_FILE_SIZE" value="1048576"/>
-                        <input type="file" name="fichier_notes" id="fichier_notes"/><br/>
-                        <input class="col-sm-6 col-sm-offset-3" type="submit" name="submit" value="Envoyer"/>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php } ?>
+    $idUploadEval = $_POST['idEpreuve'];
+    if (empty($idUploadEval)) return;
+    else
+        include_once __DIR__ . '../../vues/admin/ajax/saisie/upload_bloc.php';
+}
+?>
