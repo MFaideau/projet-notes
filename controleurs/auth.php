@@ -29,7 +29,12 @@ if (isset($_GET['code'])) {
 
 if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
     $client->setAccessToken($_SESSION['access_token']);
-    $me = $plus->people->get('me');
+    try {
+        $me = $plus->people->get('me');
+    }
+    catch(Exception $e) {
+        die($e->getMessage());
+    }
     $email = $me['emails'][0]['value'];
     $user = GetUser($email);
     if (!isset($user)) {
