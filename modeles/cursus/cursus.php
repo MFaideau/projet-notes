@@ -11,7 +11,7 @@ include_once('cursus.class.php');
 function GetCursusList()
 {
     global $bdd;
-    $req = $bdd->prepare('SELECT ID_Cursus, Nom_Cursus FROM Cursus');
+    $req = $bdd->prepare('SELECT ID_Cursus, Nom_Cursus FROM cursus');
     $req->execute();
     $cursusArray = $req->fetchAll();
     $cursusList = array();

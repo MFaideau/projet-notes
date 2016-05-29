@@ -20,6 +20,7 @@ $user = serialize($_SESSION['user']);
 if (isset($_POST['idCursus'])) {
     $idCursus = $_POST['idCursus'];
     $cursus = GetCursus(GetCursusList(), $idCursus);
+    if(empty($cursus)) return;
     ?>
     <div class="panel_competences">
         <div class="panel panel-default saisie_notes">
@@ -48,6 +49,7 @@ if (isset($_POST['idCursus'])) {
 if (isset($_POST['idCompetence'])) {
     $idCompetence = $_POST['idCompetence'];
     $cours = GetCoursListFromCompetence($idCompetence);
+    if(empty($cours)) return;
     ?>
     <div class="panel_cours">
         <div class="panel panel-default saisie_notes">
@@ -77,6 +79,7 @@ if (isset($_POST['idCompetence'])) {
 if (isset($_POST['idCours'])) {
     $idCours = $_POST['idCours'];
     $typeEvalList = GetTypeEvalListFromCours($idCours);
+    if(empty($typeEvalList)) return;
     ?>
     <div class="panel_type_eval">
         <div class="panel panel-default saisie_notes">
@@ -104,6 +107,7 @@ if (isset($_POST['idCours'])) {
 if (isset($_POST['idTypeEval'])) {
     $idTypeEval = $_POST['idTypeEval'];
     $epreuveList = GetEpreuveListFromTypeEval($idTypeEval);
+    if(empty($epreuveList)) return;
     ?>
     <div class="panel_epreuve">
         <div class="panel panel-default saisie_notes">
