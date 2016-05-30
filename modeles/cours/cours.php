@@ -48,13 +48,15 @@ function DeleteCours($id)
     return;
 }
 
-function ModifyCours($id,$newName)
+function ModifyCours($idCours,$nom,$ects,$semestre)
 {
     global $bdd;
-    $req = $bdd->prepare('UPDATE competence SET Nom_Competence=:nom WHERE ID_Competence = :id');
+    $req = $bdd->prepare('UPDATE cours SET Nom_Cours=:nom,Credits_Cours=:credits,Semestre_Cours=:semestre WHERE ID_Cours = :id');
     $req->execute(array(
-        'id' => $id,
-        'nom' => $newName,
+        'nom' => $nom,
+        'credits' => $ects,
+        'semestre' => $semestre,
+        'id' => $idCours,
     ));
     return;
 }
