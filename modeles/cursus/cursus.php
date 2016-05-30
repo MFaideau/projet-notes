@@ -40,6 +40,9 @@ function InsertCursus($nom,$annee)
         'nom' => $nom,
         'annee' => $annee,
     ));
-    return;
+    $req = $bdd->prepare('SELECT ID_Cursus FROM cursus ORDER BY ID_Cursus DESC LIMIT 1');
+    $req->execute();
+    $lastCursusID= $req->fetch();
+    return $lastCursusID[0];
 }
 

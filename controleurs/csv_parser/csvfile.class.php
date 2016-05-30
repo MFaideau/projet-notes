@@ -36,7 +36,11 @@ class CSVFile
     {
       foreach($this->header as $i => $prop)
       {
-          
+          if ($prop = $propName)
+          {
+              return $i;
+          }
       }
+        return -1;
     }
 }
