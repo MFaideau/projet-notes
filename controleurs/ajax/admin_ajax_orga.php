@@ -43,7 +43,7 @@ if (isset($_POST['idTypeEval'])) {
 // On gère la créations des nouveaux éléments des études (cursus / compétences / cours / ...)
 if ((isset($_POST['nomCursus'])) && isset($_POST['anneeCursus'])) {
     if ((!empty($_POST['nomCursus'])) && !empty($_POST['anneeCursus'])) {
-        InsertCursus($_POST['nomCursus'], $_POST['anneeCursus']);
+        $idCursusNew = InsertCursus($_POST['nomCursus'], $_POST['anneeCursus']);
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_cursus_bloc.php';
     }
 }
