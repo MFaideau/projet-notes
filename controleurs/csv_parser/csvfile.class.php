@@ -23,14 +23,20 @@ class CSVFile
             $header = explode(',',$headerLine);
         }
         $this->header=$header;
-        $elements = array();
+        $this->elements = array();
         foreach ($splittedLine as $i => $splitted)
         {
             if ($i > 0)
             {
                 $elements[] = explode($sep,$splitted);
             }
-
         }
+    }
+    public function GetIDFromProp($propName)
+    {
+      foreach($this->header as $i => $prop)
+      {
+          
+      }
     }
 }

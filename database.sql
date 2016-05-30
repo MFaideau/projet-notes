@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 26 Mai 2016 à 17:24
+-- Généré le :  Lun 30 Mai 2016 à 08:32
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -114,7 +114,7 @@ DROP TABLE IF EXISTS `cursus`;
 CREATE TABLE IF NOT EXISTS `cursus` (
   `ID_Cursus` int(5) NOT NULL AUTO_INCREMENT,
   `Nom_Cursus` varchar(55) NOT NULL,
-  `Cursus_Annee` year(4) NOT NULL COMMENT '"2015" pour l''année de septembre 2015 à juin 2016 par exemple',
+  `Annee_Cursus` year(4) NOT NULL COMMENT '"2015" pour l''année de septembre 2015 à juin 2016 par exemple',
   PRIMARY KEY (`ID_Cursus`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
@@ -122,10 +122,10 @@ CREATE TABLE IF NOT EXISTS `cursus` (
 -- Contenu de la table `cursus`
 --
 
-INSERT INTO `cursus` (`ID_Cursus`, `Nom_Cursus`, `Cursus_Annee`) VALUES
-(1, 'CSI3', 0000),
-(2, 'CSI-U3', 0000),
-(3, 'CIR3', 0000);
+INSERT INTO `cursus` (`ID_Cursus`, `Nom_Cursus`, `Annee_Cursus`) VALUES
+(1, 'CSI3', 2015),
+(2, 'CSI-U3', 2015),
+(3, 'CIR3', 2015);
 
 -- --------------------------------------------------------
 
@@ -284,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`Mail`, `Autorite`, `Nom`, `Prenom`) VALUES
-('antoine.goelzer@isen-lille.fr', 0, 'Goelzer', 'Antoine'),
+('antoine.goelzer@isen-lille.fr', 1, 'Goelzer', 'Antoine'),
 ('baudouin.landais@isen-lille.fr', 0, 'Landais', 'Baudouin'),
 ('joel.guillem@isen-lille.fr', 0, 'Guillem', 'Joël'),
 ('maxence.faideau@isen-lille.fr', 0, 'Faideau', 'Maxence');
