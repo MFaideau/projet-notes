@@ -38,6 +38,8 @@ $('.histo_commun').click(function() {
             $(".donnees_histo").remove();
             $(".donnees_tableaux").remove();
             $(".donnees_batons").remove();
+            $(result).insertAfter($(".visualisation").parent());
+            loadBar();
         }
     })
 })
