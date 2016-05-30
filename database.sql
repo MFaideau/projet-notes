@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 30 Mai 2016 à 08:32
+-- Généré le :  Lun 30 Mai 2016 à 09:48
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `absence` (
 DROP TABLE IF EXISTS `competence`;
 CREATE TABLE IF NOT EXISTS `competence` (
   `ID_Competence` int(5) NOT NULL AUTO_INCREMENT,
+  `ID_Cursus` int(5) NOT NULL,
   `Nom_Competence` varchar(55) NOT NULL,
   PRIMARY KEY (`ID_Competence`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -53,31 +54,9 @@ CREATE TABLE IF NOT EXISTS `competence` (
 -- Contenu de la table `competence`
 --
 
-INSERT INTO `competence` (`ID_Competence`, `Nom_Competence`) VALUES
-(1, 'Physique, Electronique, Nanotechnologies'),
-(2, 'Signaux & Systèmes');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `competencecursus`
---
-
-DROP TABLE IF EXISTS `competencecursus`;
-CREATE TABLE IF NOT EXISTS `competencecursus` (
-  `ID_Cursus` int(5) NOT NULL,
-  `ID_Competence` int(5) NOT NULL,
-  PRIMARY KEY (`ID_Cursus`,`ID_Competence`),
-  KEY `ID_Competence` (`ID_Competence`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `competencecursus`
---
-
-INSERT INTO `competencecursus` (`ID_Cursus`, `ID_Competence`) VALUES
-(1, 1),
-(1, 2);
+INSERT INTO `competence` (`ID_Competence`, `ID_Cursus`, `Nom_Competence`) VALUES
+(1, 1, 'Physique, Electronique, Nanotechnologies'),
+(2, 1, 'Signaux & Systèmes');
 
 -- --------------------------------------------------------
 
@@ -116,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `cursus` (
   `Nom_Cursus` varchar(55) NOT NULL,
   `Annee_Cursus` year(4) NOT NULL COMMENT '"2015" pour l''année de septembre 2015 à juin 2016 par exemple',
   PRIMARY KEY (`ID_Cursus`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `cursus`
