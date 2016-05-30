@@ -9,3 +9,8 @@ if(isset($_POST['button'])) {
         include_once __DIR__ . '../../../vues/ajax/histo_bloc.php';
     }
 }
+if(isset($_POST['button'])) {
+    if($_POST['button'] == "batons") {
+        include_once __DIR__ . '../../../vues/ajax/batons_bloc.php';
+    }
+}
