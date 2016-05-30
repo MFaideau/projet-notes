@@ -90,7 +90,7 @@
                 </div>
                 <div class="modal-body">
                     <fieldset class="form-group">
-                        <label for="labelCompetence">Nom du cours :</label>
+                        <label for="labelCours">Nom du cours :</label>
                         <input type="text" class="form-control" id="nomCours"
                                placeholder="Exemple : Mécanique Quantique">
                     </fieldset>
@@ -100,10 +100,10 @@
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelSemestreCours">Semestre :</label>
-                        <select class="selectpicker" name="semestreCours">
-                            <option>Semestre 1 et 2</option>
-                            <option>Semestre 1</option>
-                            <option>Semestre 2</option>
+                        <select class="selectpicker" name="semestreCours" id="semestreCours">
+                            <option value="0">Semestre 1 et 2</option>
+                            <option value="1">Semestre 1</option>
+                            <option value="2">Semestre 2</option>
                         </select>
                     </fieldset>
                 </div>

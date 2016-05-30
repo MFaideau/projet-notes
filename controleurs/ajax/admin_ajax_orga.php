@@ -17,7 +17,7 @@ if (isset($_POST['idCursus']) && empty($_POST['nomCompetence'])) {
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/competences_bloc.php';
 
 }
-if (isset($_POST['idCompetence'])) {
+if (isset($_POST['idCompetence']) && empty($_POST['nomCours'])) {
     $idCompetence = $_POST['idCompetence'];
     $cours = GetCoursListFromCompetence($idCompetence);
     if (!isset($cours)) return;
@@ -54,5 +54,12 @@ if ((!empty($_POST['nomCompetence'])) && !empty($_POST['idCursus'])) {
     $idCompetenceNew = InsertCompetence($_POST['nomCompetence'], $_POST['idCursus']);
     include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_competence_bloc.php';
 }
+
+
+if ((!empty($_POST['nomCours'])) && !empty($_POST['nbCreditsCours']) && !empty($_POST['semestreCours']) && !empty($_POST['idCompetence'])) {
+    $idCoursNew = InsertCours($_POST['nomCours'],$_POST['nbCreditsCours'],$_POST['semestreCours'],$_POST['idCompetence']);
+    include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_cours_bloc.php';
+}
+
 
 ?>
