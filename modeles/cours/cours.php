@@ -22,37 +22,41 @@ WHERE type_eval.ID_Eval=evaluation.ID_Eval AND evaluation.ID_Cours = :idCours');
     return $list;
 }
 
-function InsertCours($nom,$idCursus)
+function InsertCours($nom,$ects,$semestre,$idCompetence)
 {
     global $bdd;
-    $req = $bdd->prepare('INSERT INTO competence (Nom_Competence,ID_Cursus) VALUES (:nom,:idCursus)');
+    $req = $bdd->prepare('INSERT INTO cours (Nom_Cours,Credits_Cours,Semestre_Cours,ID_Competence) VALUES (:nom,:creditsCours,:semestreCours,:idCompetence)');
     $req->execute(array(
         'nom' => $nom,
-        'idCursus' => $idCursus,
+        'creditsCours' => $ects,
+        'semestreCours' => $semestre,
+        'idCompetence' => $idCompetence,
     ));
-    $req = $bdd->prepare('SELECT ID_Competence FROM competence ORDER BY ID_Competence DESC LIMIT 1');
+    $req = $bdd->prepare('SELECT ID_Cours FROM cours ORDER BY ID_Cours DESC LIMIT 1');
     $req->execute();
-    $lastCompetenceID= $req->fetch();
-    return $lastCompetenceID[0];
+    $lastCoursID= $req->fetch();
+    return $lastCoursID[0];
 }
 
 function DeleteCours($id)
 {
     global $bdd;
-    $req = $bdd->prepare('DELETE FROM competence WHERE ID_Competence = :idCompetence');
+    $req = $bdd->prepare('DELETE FROM cours WHERE ID_Cours = :idCours');
     $req->execute(array(
-        'idCompetence' => $id,
+        'idCours' => $id,
     ));
     return;
 }
 
-function ModifyCours($id,$newName)
+function ModifyCours($idCours,$nom,$ects,$semestre)
 {
     global $bdd;
-    $req = $bdd->prepare('UPDATE competence SET Nom_Competence=:nom WHERE ID_Competence = :id');
+    $req = $bdd->prepare('UPDATE cours SET Nom_Cours=:nom,Credits_Cours=:credits,Semestre_Cours=:semestre WHERE ID_Cours = :id');
     $req->execute(array(
-        'id' => $id,
-        'nom' => $newName,
+        'nom' => $nom,
+        'credits' => $ects,
+        'semestre' => $semestre,
+        'id' => $idCours,
     ));
     return;
 }
