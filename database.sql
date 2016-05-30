@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 24 Mai 2016 à 13:20
+-- Généré le :  Jeu 26 Mai 2016 à 17:24
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -19,6 +19,22 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `projet_notes`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `absence`
+--
+
+DROP TABLE IF EXISTS `absence`;
+CREATE TABLE IF NOT EXISTS `absence` (
+  `ID_Absence` int(5) NOT NULL AUTO_INCREMENT,
+  `ID_Etudiant` varchar(55) NOT NULL,
+  `Date_Absence` date NOT NULL,
+  `Nombre_Heures_Absence` float NOT NULL,
+  `Excusee` int(1) NOT NULL COMMENT '0 = Non excusée // 1 = Excusée',
+  PRIMARY KEY (`ID_Absence`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -75,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `cours` (
   `ID_Competence` int(5) NOT NULL,
   `Nom_Cours` varchar(55) NOT NULL,
   `Credits_Cours` float NOT NULL,
+  `Semestre_Cours` int(1) NOT NULL COMMENT '0 = 2 semestres ; 1 = Semestre 1 ; 2 = Semestre 2',
   PRIMARY KEY (`ID_Cours`),
   KEY `ID_Competence` (`ID_Competence`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -83,9 +100,9 @@ CREATE TABLE IF NOT EXISTS `cours` (
 -- Contenu de la table `cours`
 --
 
-INSERT INTO `cours` (`ID_Cours`, `ID_Competence`, `Nom_Cours`, `Credits_Cours`) VALUES
-(1, 1, 'Mécanique Quantique - Laser', 2.5),
-(2, 1, 'Physique des solides - Nanosciences', 2);
+INSERT INTO `cours` (`ID_Cours`, `ID_Competence`, `Nom_Cours`, `Credits_Cours`, `Semestre_Cours`) VALUES
+(1, 1, 'Mécanique Quantique - Laser', 2.5, 1),
+(2, 1, 'Physique des solides - Nanosciences', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -97,6 +114,7 @@ DROP TABLE IF EXISTS `cursus`;
 CREATE TABLE IF NOT EXISTS `cursus` (
   `ID_Cursus` int(5) NOT NULL AUTO_INCREMENT,
   `Nom_Cursus` varchar(55) NOT NULL,
+  `Cursus_Annee` year(4) NOT NULL COMMENT '"2015" pour l''année de septembre 2015 à juin 2016 par exemple',
   PRIMARY KEY (`ID_Cursus`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
@@ -104,10 +122,10 @@ CREATE TABLE IF NOT EXISTS `cursus` (
 -- Contenu de la table `cursus`
 --
 
-INSERT INTO `cursus` (`ID_Cursus`, `Nom_Cursus`) VALUES
-(1, 'CSI3'),
-(2, 'CSI-U3'),
-(3, 'CIR3');
+INSERT INTO `cursus` (`ID_Cursus`, `Nom_Cursus`, `Cursus_Annee`) VALUES
+(1, 'CSI3', 0000),
+(2, 'CSI-U3', 0000),
+(3, 'CIR3', 0000);
 
 -- --------------------------------------------------------
 
@@ -119,23 +137,33 @@ DROP TABLE IF EXISTS `epreuve`;
 CREATE TABLE IF NOT EXISTS `epreuve` (
   `ID_Epreuve` int(5) NOT NULL AUTO_INCREMENT,
   `ID_Type` int(5) NOT NULL,
-  `ID_Etudiant` varchar(55) NOT NULL,
-  `Note` float NOT NULL,
+  `Nom_Epreuve` varchar(255) NOT NULL,
   `Coef_Epreuve` float NOT NULL,
+  `Date_Epreuve` date NOT NULL,
+  `Evaluateur_Epreuve` varchar(255) NOT NULL,
   PRIMARY KEY (`ID_Epreuve`),
-  KEY `ID_Type` (`ID_Type`),
-  KEY `ID_Etudiant` (`ID_Etudiant`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  KEY `ID_Type` (`ID_Type`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `epreuve`
 --
 
-INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `ID_Etudiant`, `Note`, `Coef_Epreuve`) VALUES
-(1, 1, 'p59060', 12.6, 1),
-(2, 1, 'p59080', 13.3, 1),
-(3, 1, 'p59051', 6.3, 1),
-(4, 1, 'p59062', 11.9, 1);
+INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `Nom_Epreuve`, `Coef_Epreuve`, `Date_Epreuve`, `Evaluateur_Epreuve`) VALUES
+(5, 1, 'Interrogation CSI3 Ondes et Mécanique Quantique (partie Ondes)', 1, '0000-00-00', 'Xavier Wallart');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `epreuvesession`
+--
+
+DROP TABLE IF EXISTS `epreuvesession`;
+CREATE TABLE IF NOT EXISTS `epreuvesession` (
+  `ID_Epreuve_Session1` int(5) NOT NULL,
+  `ID_Epreuve_Session_2` int(5) NOT NULL,
+  PRIMARY KEY (`ID_Epreuve_Session1`,`ID_Epreuve_Session_2`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -164,6 +192,33 @@ INSERT INTO `etudiant` (`ID_Etudiant`, `ID_Cursus`, `Mail`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `etudiantnote`
+--
+
+DROP TABLE IF EXISTS `etudiantnote`;
+CREATE TABLE IF NOT EXISTS `etudiantnote` (
+  `ID_Epreuve` int(5) NOT NULL,
+  `ID_Etudiant` varchar(55) NOT NULL,
+  `Note_Finale` float NOT NULL,
+  `Note_Prevue` float NOT NULL,
+  `Absence_Epreuve` int(1) NOT NULL COMMENT '0 = Pas d''absence // 1 = Absence excusée // 2 = Absence non excusee',
+  PRIMARY KEY (`ID_Epreuve`,`ID_Etudiant`),
+  KEY `ID_Epreuve` (`ID_Epreuve`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `etudiantnote`
+--
+
+INSERT INTO `etudiantnote` (`ID_Epreuve`, `ID_Etudiant`, `Note_Finale`, `Note_Prevue`, `Absence_Epreuve`) VALUES
+(5, 'p59051', 6.3, 7, 0),
+(5, 'p59060', 12.6, 10, 0),
+(5, 'p59062', 11.9, 6, 0),
+(5, 'p59080', 13.3, 9, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `evaluation`
 --
 
@@ -175,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `evaluation` (
   `Coef_Eval` float NOT NULL,
   PRIMARY KEY (`ID_Eval`),
   KEY `ID_Cours` (`ID_Cours`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `evaluation`
