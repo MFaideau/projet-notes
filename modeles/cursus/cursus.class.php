@@ -45,9 +45,7 @@ class Cursus
         $list =array();
         global $bdd;
         $req = $bdd->prepare('SELECT competence.ID_Competence,competence.Nom_Competence 
-FROM competence,competencecursus 
-WHERE competencecursus.ID_Cursus=:idCursus 
-AND competencecursus.ID_Competence=competence.ID_Competence');
+FROM competence WHERE competence.ID_Cursus=:idCursus');
         $req->bindParam(':idCursus', $cursusId, PDO::PARAM_INT);
         $req->execute();
         $competenceList=$req->fetchAll();

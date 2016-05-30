@@ -46,3 +46,18 @@ function InsertCursus($nom,$annee)
     return $lastCursusID[0];
 }
 
+function DeleteCursus($id)
+{
+    global $bdd;
+    $req = $bdd->prepare('DELETE FROM cursus WHERE ID_Cursus = :idCursus');
+    $req->execute(array(
+        'idCursus' => $id,
+    ));
+}
+
+function RenameCursus($id,$newName)
+{
+    global $bdd;
+    $req = $bdd->prepare('UPDATE cursus SET column1=value, column2=value2,... WHERE some_column=some_value ');
+    
+}
