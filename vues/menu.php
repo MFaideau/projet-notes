@@ -15,6 +15,8 @@ $user = unserialize($_SESSION['user']);
     <link href="vues/assets/page_principale.css" rel="stylesheet"/>
     <script src="vues/assets/js/jquery-1.12.4.min.js"></script>
     <script src="vues/assets/js/bootstrap.js"></script>
+    <script src="vues/assets/js/chart.js"></script>
+    <script src="vues/assets/js/histo.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
