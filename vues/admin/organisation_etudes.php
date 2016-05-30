@@ -37,6 +37,10 @@
                         <label for="labelCursus">Nom du cursus :</label>
                         <input type="text" class="form-control" id="nomCursus" placeholder="Exemple : CSI3">
                     </fieldset>
+                    <fieldset class="form-group">
+                        <label for="labelAnnee">Nom du cursus :</label>
+                        <input type="text" class="form-control" id="anneeCursus" placeholder="Exemple : 2015 pour année 2015-2016">
+                    </fieldset>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>

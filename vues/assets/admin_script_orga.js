@@ -86,7 +86,7 @@ $(function(){
         $.ajax({
             url: './ajax/admin_ajax_orga.php', //this is the submit URL
             type: 'POST', //or POST
-            data: "nomCursus=" + $("#nomCursus").val(),
+            data: "nomCursus=" + $("#nomCursus").val() + "&anneeCursus=" + $("#anneeCursus").val(),
             success: function(data){
                 $("#addCursus").modal("hide");
                 $(data).insertAfter($("button[id^=orga_cursus_]").parent().last());

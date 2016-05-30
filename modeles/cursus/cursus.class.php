@@ -12,11 +12,13 @@ class Cursus
     private $id;
     private $nom;
     private $competenceList;
+    private $annee;
 
     function Cursus($cursusLine,$recursive)
     {
         $this->id=$cursusLine["ID_Cursus"];
         $this->nom=$cursusLine["Nom_Cursus"];
+        $this->annee=$cursusLine["Annee_Cursus"];
         if ($recursive ==true) {
             $this->competenceList = $this->GetCompetenceListFromDB();
         }
@@ -29,10 +31,13 @@ class Cursus
     {
         return $this->nom;
     }
-
     public function GetCompetenceList()
     {
         return $this->competenceList;
+    }
+    public function GetAnnee()
+    {
+        return $this->annee;
     }
     public function GetCompetenceListFromDB()
     {

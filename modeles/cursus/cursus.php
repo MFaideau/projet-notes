@@ -11,7 +11,7 @@ include_once('cursus.class.php');
 function GetCursusList()
 {
     global $bdd;
-    $req = $bdd->prepare('SELECT ID_Cursus, Nom_Cursus FROM cursus');
+    $req = $bdd->prepare('SELECT ID_Cursus, Nom_Cursus,Annee_Cursus FROM cursus');
     $req->execute();
     $cursusArray = $req->fetchAll();
     $cursusList = array();
@@ -32,3 +32,14 @@ function GetCursus($list,$id)
     }
     return null;
 }
+function InsertCursus($nom,$annee)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO cursus (Nom_Cursus,Annee_Cursus) VALUES (:nom,:annee)');
+    $req->execute(array(
+        'nom' => $nom,
+        'annee' => $annee,
+    ));
+    return;
+}
+
