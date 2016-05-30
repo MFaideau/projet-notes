@@ -1,6 +1,6 @@
 <!-- Selection entre les Tableaux et les Histogrammes !-->
 <div class="row">
-    <div class="col-md-2 col-md-offset-10 visualisation">
+    <div class="col-md-2.5 col-md-offset-9.5 visualisation">
         <div class="panel panel-default">
             <div class="panel-body ">
                 <a href="#tableau_notes" class="tableaux_logo">
@@ -8,6 +8,9 @@
                 </a>
                 <a href="#histogramme_notes" class="histo_logo">
                     <span class="glyphicon glyphicon-align-left icone"></span>
+                </a>
+                <a href="#histogramme_commun" class="histo_commun">
+                    <span class="glyphicon glyphicon-stats icone"></span>
                 </a>
             </div>
         </div>
@@ -83,23 +86,23 @@
             <tr>
                 <th scope="row">Informatique</th>
                 <td width="50%">
-<svg width="100%" height="16px">
-<defs>
-<linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
-<stop offset="0%" style="stop-color:red;" />
-<stop offset="50%" style="stop-color:yellow;" />
-<stop offset="100%" style="stop-color:green;" />
-</linearGradient>
-</defs>
+                    <svg width="100%" height="16px">
+                        <defs>
+                            <linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
+                                <stop offset="0%" style="stop-color:red;" />
+                                <stop offset="50%" style="stop-color:yellow;" />
+                                <stop offset="100%" style="stop-color:green;" />
+                            </linearGradient>
+                        </defs>
 
-<rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
-<g stroke="black">
-<line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
-<line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
-<line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
-<circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
-</g>
-</svg>
+                        <rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
+                        <g stroke="black">
+                            <line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
+                            <line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
+                            <line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
+                            <circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
+                        </g>
+                    </svg>
                 </td>
                 <td>16.5</td>
                 <td>15</td>
@@ -107,23 +110,23 @@
             <tr>
                 <th scope="row">Electronique</th>
                 <td width="50%">
-<svg width="100%" height="16px">
-<defs>
-<linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
-<stop offset="0%" style="stop-color:red;" />
-<stop offset="50%" style="stop-color:yellow;" />
-<stop offset="100%" style="stop-color:green;" />
-</linearGradient>
-</defs>
+                    <svg width="100%" height="16px">
+                        <defs>
+                            <linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
+                                <stop offset="0%" style="stop-color:red;" />
+                                <stop offset="50%" style="stop-color:yellow;" />
+                                <stop offset="100%" style="stop-color:green;" />
+                            </linearGradient>
+                        </defs>
 
-<rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
-<g stroke="black">
-<line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
-<line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
-<line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
-<circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
-</g>
-</svg>
+                        <rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
+                        <g stroke="black">
+                            <line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
+                            <line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
+                            <line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
+                            <circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
+                        </g>
+                    </svg>
                 </td>
                 <td>15.2</td>
                 <td>15.2</td>
@@ -131,23 +134,23 @@
             <tr>
                 <th scope="row">Management</th>
                 <td width="50%" class="histo_parent">
-<svg width="100%" height="16px">
-<defs>
-<linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
-<stop offset="0%" style="stop-color:red;" />
-<stop offset="50%" style="stop-color:yellow;" />
-<stop offset="100%" style="stop-color:green;" />
-</linearGradient>
-</defs>
+                    <svg width="100%" height="16px">
+                        <defs>
+                            <linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
+                                <stop offset="0%" style="stop-color:red;" />
+                                <stop offset="50%" style="stop-color:yellow;" />
+                                <stop offset="100%" style="stop-color:green;" />
+                            </linearGradient>
+                        </defs>
 
-<rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
-<g stroke="black">
-<line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
-<line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
-<line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
-<circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
-</g>
-</svg>
+                        <rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
+                        <g stroke="black">
+                            <line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
+                            <line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
+                            <line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
+                            <circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
+                        </g>
+                    </svg>
                 </td>
                 <td>17.1</td>
                 <td>13.3</td>
@@ -155,23 +158,23 @@
             <tr>
                 <th scope="row">Signaux</th>
                 <td width="50%">
-<svg width="100%" height="16px">
-<defs>
-<linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
-<stop offset="0%" style="stop-color:red;" />
-<stop offset="50%" style="stop-color:yellow;" />
-<stop offset="100%" style="stop-color:green;" />
-</linearGradient>
-</defs>
+                    <svg width="100%" height="16px">
+                        <defs>
+                            <linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
+                                <stop offset="0%" style="stop-color:red;" />
+                                <stop offset="50%" style="stop-color:yellow;" />
+                                <stop offset="100%" style="stop-color:green;" />
+                            </linearGradient>
+                        </defs>
 
-<rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
-<g stroke="black">
-<line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
-<line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
-<line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
-<circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
-</g>
-</svg>
+                        <rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
+                        <g stroke="black">
+                            <line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
+                            <line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
+                            <line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
+                            <circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
+                        </g>
+                    </svg>
                 </td>
                 <td>16</td>
                 <td>14.8</td>
@@ -181,23 +184,23 @@
             <tr>
                 <th>Total</th>
                 <th width="50%">
-<svg width="100%" height="16px">
-<defs>
-<linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
-<stop offset="0%" style="stop-color:red;" />
-<stop offset="50%" style="stop-color:yellow;" />
-<stop offset="100%" style="stop-color:green;" />
-</linearGradient>
-</defs>
+                    <svg width="100%" height="16px">
+                        <defs>
+                            <linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
+                                <stop offset="0%" style="stop-color:red;" />
+                                <stop offset="50%" style="stop-color:yellow;" />
+                                <stop offset="100%" style="stop-color:green;" />
+                            </linearGradient>
+                        </defs>
 
-<rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
-<g stroke="black">
-<line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
-<line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
-<line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
-<circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
-</g>
-</svg>
+                        <rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
+                        <g stroke="black">
+                            <line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
+                            <line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
+                            <line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
+                            <circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
+                        </g>
+                    </svg>
                 </th>
                 <th>16.2</th>
                 <th>13.5</th>

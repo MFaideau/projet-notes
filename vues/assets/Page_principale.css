@@ -21,6 +21,10 @@
     float: right;
 }
 
+.menu_rapide {
+    padding: 0;
+}
+
 .menu_rapide a {
     color: #b62224;
 }
