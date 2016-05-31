@@ -32,7 +32,7 @@ if (isset($_POST['idCours']) && empty($_POST['nomEval'])) {
     else
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/eval_bloc.php';
 }
-if (isset($_POST['idEval']) && empty($_POST['idCours'])) {
+if (isset($_POST['idEval']) && empty($_POST['idCours']) && empty($_POST['nomTypeEval'])) {
     $idEval = $_POST['idEval'];
     $typeEvalList = GetTypeEvalListFromEval($idEval);
     if (!isset($typeEvalList)) return;
@@ -47,6 +47,7 @@ if (isset($_POST['idTypeEval'])) {
     else
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/epreuves_bloc.php';
 }
+
 // On gère la créations des nouveaux éléments des études (cursus / compétences / cours / ...)
 if ((isset($_POST['nomCursus'])) && isset($_POST['anneeCursus'])) {
     if ((!empty($_POST['nomCursus'])) && !empty($_POST['anneeCursus'])) {
@@ -66,5 +67,12 @@ if (isset($_POST['idCours']) && isset($_POST['nomEval']) && isset($_POST['coefEv
     $idEvalNew = InsertEvaluation($_POST['nomEval'],$_POST['coefEval'], $_POST['idCours']);
     include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_eval_bloc.php';
 }
+if (isset($_POST['idEval']) && isset($_POST['nomTypeEval']) && isset($_POST['coefTypeEval'])) {
+    $idTypeEvalNew = InsertTypeEval($_POST['nomTypeEval'], $_POST['coefTypeEval'], $_POST['idEval'] );
+    echo var_dump($_POST);
+    include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_type_eval_bloc.php';
+}
+
+
 
 ?>

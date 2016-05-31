@@ -52,6 +52,7 @@ $(document).on("click","button[id^=orga_cours]", function(e) {
         success: function(result) {
             $(".panel_eval").remove();
             $(".panel_type_eval").remove();
+            $(".panel_eval").remove();
             $(".panel_epreuve").remove();
             $(".panel_upload_epreuve").remove();
             $(result).insertAfter($(".panel_cours"));
@@ -60,6 +61,7 @@ $(document).on("click","button[id^=orga_cours]", function(e) {
 });
 
 $(document).on("click","button[id^=orga_eval]", function(e) {
+    idEval = this.id.replace("orga_eval_","");
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
@@ -144,7 +146,6 @@ $(function() {
     });
 });
 
-
 $(function() {
     $('#addEval').on('submit', function(e){
         e.preventDefault();
@@ -156,6 +157,22 @@ $(function() {
                 $("#addEval").modal("hide");
                 // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
                 $(data).insertAfter($("button[id^=orga_eval_]").last());
+            }
+        });
+    });
+});
+
+$(function() {
+    $('#addTypeEval').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: './ajax/admin_ajax_orga.php',
+            type: 'POST',
+            data: 'idEval=' + idEval + '&nomTypeEval=' + $("#nomTypeEval").val() + '&coefTypeEval=' + $("#coefTypeEval").val(),
+            success: function (data) {
+                $("#addTypeEval").modal("hide");
+                // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
+                $(data).insertAfter($("button[id^=orga_type_eval_]").last());
             }
         });
     });
