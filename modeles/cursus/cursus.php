@@ -53,11 +53,17 @@ function DeleteCursus($id)
     $req->execute(array(
         'idCursus' => $id,
     ));
+    return;
 }
 
-function RenameCursus($id,$newName)
+function ModifyCursus($id,$newName,$annee)
 {
     global $bdd;
-    $req = $bdd->prepare('UPDATE cursus SET column1=value, column2=value2,... WHERE some_column=some_value ');
-    
+    $req = $bdd->prepare('UPDATE cursus SET Nom_Cursus=:nom, Annee_Cursus=:annee WHERE ID_Cursus = :id');
+    $req->execute(array(
+        'id' => $id,
+        'nom' => $newName,
+        'annee' => $annee,
+    ));
+    return;
 }
