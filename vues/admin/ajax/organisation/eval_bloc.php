@@ -1,8 +1,8 @@
-<div class="panel_cours">
+<div class="panel_eval">
     <div class="panel panel-default saisie_notes">
-        <div class="panel-heading">Choix du Cours
+        <div class="panel-heading">Choix de l'Evaluation
             <div class="add_button_etudes">
-                <a data-toggle="modal" data-target="#addCours">
+                <a data-toggle="modal" data-target="#addEval">
                     <i class="glyphicon glyphicon-plus"></i>
                 </a>
             </div>
@@ -12,7 +12,7 @@
                 <div class="btn-group" role="group">
                     <?php
                     foreach ($eval as $current_eval) { ?>
-                        <button id="orga_cours_<?php echo $current_eval->GetId(); ?>" type="button"
+                        <button id="orga_eval_<?php echo $current_eval->GetId(); ?>" type="button"
                                 class="btn btn-default"><?php echo html_entity_decode($current_eval->GetNom()); ?></button>
                     <?php } ?>
                 </div>

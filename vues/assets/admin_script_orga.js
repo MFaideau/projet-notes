@@ -11,6 +11,7 @@ $(document).on("click","button[id^=orga_cursus_]", function(e) {
         success: function(result){
             $(".panel_competences").remove();
             $(".panel_cours").remove();
+            $(".panel_eval").remove();
             $(".panel_type_eval").remove();
             $(".panel_epreuve").remove();
             $(".panel_upload_epreuve").remove();
@@ -32,6 +33,7 @@ $(document).on("click","button[id^=orga_competence_]",function(e){
             $(".panel_cours").remove();
             $(".panel_type_eval").remove();
             $(".panel_epreuve").remove();
+            $(".panel_eval").remove();
             $(".panel_upload_epreuve").remove();
             $(result).insertAfter(".panel_competences"); },
         error: function(result) {
@@ -48,10 +50,24 @@ $(document).on("click","button[id^=orga_cours]", function(e) {
         datatype: 'html',
         data: 'idCours=' + this.id.replace("orga_cours_",""),
         success: function(result) {
+            $(".panel_eval").remove();
             $(".panel_type_eval").remove();
             $(".panel_epreuve").remove();
             $(".panel_upload_epreuve").remove();
             $(result).insertAfter($(".panel_cours"));
+        },
+    });
+});
+
+$(document).on("click","button[id^=orga_eval]", function(e) {
+    $.ajax({
+        url: './ajax/admin_ajax_orga.php',
+        type: 'POST',
+        datatype: 'html',
+        data: 'idEval=' + this.id.replace("orga_eval_",""),
+        success: function(result) {
+            $(".panel_epreuve").remove();
+            $(result).insertAfter($(".panel_eval"));
         },
     });
 });
@@ -64,7 +80,6 @@ $(document).on("click","button[id^=orga_type_eval]", function(e) {
         data: 'idTypeEval=' + this.id.replace("orga_type_eval_",""),
         success: function(result) {
             $(".panel_epreuve").remove();
-            $(".panel_upload_epreuve").remove();
             $(result).insertAfter($(".panel_type_eval"));
         },
     });
@@ -77,7 +92,6 @@ $(document).on("click","button[id^=orga_epreuve]", function(e) {
         datatype: 'html',
         data: 'idEpreuve=' + this.id.replace("orga_epreuve_",""),
         success: function(result) {
-            $(".panel_upload_epreuve").remove();
             $(result).insertAfter($(".panel_epreuve"));
 //            $(".panel_cours").append(result);
         },
@@ -125,6 +139,23 @@ $(function() {
                 $("#addCours").modal("hide");
                 // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
                 $(data).insertAfter($("button[id^=orga_cours_]").last());
+            }
+        });
+    });
+});
+
+
+$(function() {
+    $('#addEval').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: './ajax/admin_ajax_orga.php',
+            type: 'POST',
+            data: 'idCours=' + idCours + '&nomEval=' + $("#nomEval").val() + '&coefEval=' + $("#coefEval").val(),
+            success: function (data) {
+                $("#addEval").modal("hide");
+                // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
+                $(data).insertAfter($("button[id^=orga_eval_]").last());
             }
         });
     });
