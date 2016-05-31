@@ -11,9 +11,9 @@
             <div class="btn-group" role="group" aria-label="...">
                 <div class="btn-group" role="group">
                     <?php
-                    foreach ($cours as $current_cours) { ?>
-                        <button id="orga_cours_<?php echo $current_cours->GetId(); ?>" type="button"
-                                class="btn btn-default"><?php echo html_entity_decode($current_cours->GetNom()); ?></button>
+                    foreach ($eval as $current_eval) { ?>
+                        <button id="orga_cours_<?php echo $current_eval->GetId(); ?>" type="button"
+                                class="btn btn-default"><?php echo html_entity_decode($current_eval->GetNom()); ?></button>
                     <?php } ?>
                 </div>
             </div>

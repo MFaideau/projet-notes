@@ -21,7 +21,6 @@
     </div>
 </div>
 
-
 <!-- Ajout d'un cursus !-->
 <div class="modal fade" id="addCursus" tabindex="-1" role="dialog" aria-labelledby="addCursus">
     <div class="modal-dialog" role="document">
@@ -105,6 +104,36 @@
                             <option value="1">Semestre 1</option>
                             <option value="2">Semestre 2</option>
                         </select>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Ajout de l'évaluation !-->
+<div class="modal fade" id="addEval" tabindex="-1" role="dialog" aria-labelledby="addEval">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="addEval">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Ajout d'une Evaluation</h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset class="form-group">
+                        <label for="labelEval">Nom de l'Evaluation :</label>
+                        <input type="text" class="form-control" id="nomEval"
+                               placeholder="Exemple : Théorie">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="labelCoefEval">Coefficient de l'Evaluation :</label>
+                        <input type="text" class="form-control" id="coefEval" placeholder="Exemple : 0.5 (pour 50%)">
                     </fieldset>
                 </div>
                 <div class="modal-footer">

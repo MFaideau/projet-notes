@@ -27,11 +27,18 @@ if (isset($_POST['idCompetence']) && empty($_POST['nomCours'])) {
 }
 if (isset($_POST['idCours'])) {
     $idCours = $_POST['idCours'];
-    $typeEvalList = GetTypeEvalListFromCours($idCours);
+    $evalList = ($idCours);
     if (!isset($typeEvalList)) return;
     else
+        include_once __DIR__ . '../../../vues/admin/ajax/organisation/eval_bloc.php';
+}
+if (isset($_POST['idEval']) && empty($_POST['idCours'])) {
+    $idEval = $_POST['idEval'];
+    $typeEvalList = ($idEval);
+    if (!isset($typeEvalList)) return;
+    else {
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/types_eval_bloc.php';
-
+    }
 }
 if (isset($_POST['idTypeEval'])) {
     $idTypeEval = $_POST['idTypeEval'];
@@ -39,9 +46,7 @@ if (isset($_POST['idTypeEval'])) {
     if (!isset($epreuveList)) return;
     else
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/epreuves_bloc.php';
-
 }
-
 // On gère la créations des nouveaux éléments des études (cursus / compétences / cours / ...)
 if ((isset($_POST['nomCursus'])) && isset($_POST['anneeCursus'])) {
     if ((!empty($_POST['nomCursus'])) && !empty($_POST['anneeCursus'])) {
@@ -49,17 +54,13 @@ if ((isset($_POST['nomCursus'])) && isset($_POST['anneeCursus'])) {
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_cursus_bloc.php';
     }
 }
-
 if ((!empty($_POST['nomCompetence'])) && !empty($_POST['idCursus'])) {
     $idCompetenceNew = InsertCompetence($_POST['nomCompetence'], $_POST['idCursus']);
     include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_competence_bloc.php';
 }
-
-
 if ((!empty($_POST['nomCours'])) && !empty($_POST['nbCreditsCours']) && !empty($_POST['semestreCours']) && !empty($_POST['idCompetence'])) {
     $idCoursNew = InsertCours($_POST['nomCours'],$_POST['nbCreditsCours'],$_POST['semestreCours'],$_POST['idCompetence']);
     include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_cours_bloc.php';
 }
-
 
 ?>
