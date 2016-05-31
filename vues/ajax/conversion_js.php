@@ -23,7 +23,4 @@ $varTab = array(
     20 => 20
 );
 ?>
-
-<script type="text/javascript">
-var tabTest = <?php echo json_encode($varTab); ?>;
-</script>
+<?php echo json_encode($varTab); ?>

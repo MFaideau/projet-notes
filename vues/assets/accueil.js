@@ -35,11 +35,18 @@ $('.histo_commun').click(function() {
         datatype: 'html',
         data: 'button=batons',
         success: function (result) {
-            $(".donnees_histo").remove();
-            $(".donnees_tableaux").remove();
-            $(".donnees_batons").remove();
-            $(result).insertAfter($(".visualisation").parent());
-            loadBar('[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]');
+            $.ajax({
+                url: './vues/ajax/conversion_js.php',
+                type: 'GET',
+                datatype: 'json',
+                success: function (resultDataHisto) {
+                    $(".donnees_tableaux").remove();
+                    $(".donnees_batons").remove();
+                    $(".donnees_histo").remove();
+                    $(result).insertAfter($(".visualisation").parent());
+                    loadBar(resultDataHisto);
+                }
+            });
         }
     });
 });
