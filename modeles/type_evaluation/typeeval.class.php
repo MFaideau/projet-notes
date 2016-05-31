@@ -35,7 +35,7 @@ class TypeEval
         $epreuveList=$req->fetchAll();
         foreach($epreuveList as $epreuve)
         {
-            $list[]=new Epreuve($epreuve,true);
+            $list[]=new Epreuve($epreuve);
         }
         return $list;
     }

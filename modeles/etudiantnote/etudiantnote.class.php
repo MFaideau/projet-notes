@@ -22,4 +22,12 @@ class EtudiantNote
         $this->notePrevue=$etudiantNoteLine["Note_Prevue"];
         $this->absence=$etudiantNoteLine["Asbence_Epreuve"];
     }
+    public function GetNoteFinale()
+    {
+        return $this->noteFinale;
+    }
+    public function GetAbsence()
+    {
+        return $this->absence;
+    }
 }

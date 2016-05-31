@@ -7,6 +7,7 @@
  * Time: 14:14
  */
 include_once (__DIR__ . '../../../modeles/epreuve/epreuve.php');
+include_once (__DIR__ . '../../../modeles/etudiantnote/etudiantnote.php');
 class epreuve
 {
     private $id;
@@ -15,18 +16,82 @@ class epreuve
     private $date;
     private $evaluateur;
 
-    function Epreuve($epreuveLine,$recursive)
+    function Epreuve($epreuveLine)
     {
         $this->id=$epreuveLine["ID_Epreuve"];
         $this->nom=$epreuveLine["Nom_Epreuve"];
         $this->coef=$epreuveLine["Coef_Epreuve"];
         $this->date=$epreuveLine["Date_Epreuve"];
         $this->evaluateur=$epreuveLine["Evaluateur_Epreuve"];
-        //if ($recursive ==true) {
-        //    $this->epreuves=GetEpreuvesFromDB();
-        //}
     }
 
+    public function GetMoyennePresents()
+    {
+        $etudiantNotes = GetEtudiantNotesFromEpreuve($this->id);
+        $count=0;
+        $somme = 0.0;
+        foreach($etudiantNotes as $etudiantNote)
+        {
+            if ($etudiantNote->GetAbsence() == 0) // Présent
+            {
+                $somme = $somme + $etudiantNote->GetNoteFinale();
+                $count++;
+            }
+        }
+        if (count ==0)
+        {
+            return -1;
+        }
+        else
+        {
+            return ($somme)/($count);
+        }
+    }
+    public function GetMoyenne()
+    {
+        $etudiantNotes = GetEtudiantNotesFromEpreuve($this->id);
+        $count=0;
+        $somme = 0.0;
+        foreach($etudiantNotes as $etudiantNote)
+        {
+            if ($etudiantNote->GetAbsence() != 1) // Présent ou absent non excusé
+            {
+                if ($etudiantNote->GetAbsence() == 0) // Présent
+                {
+                    $somme = $somme + $etudiantNote->GetNoteFinale();
+                }
+                $count++;
+            }
+        }
+        if (count ==0)
+        {
+            return -1;
+        }
+        else
+        {
+            return ($somme)/($count);
+        }
+    }
+    public function GetNoteEtudiant($idEtudiant)
+    {
+        $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant,$this->id);
+        if (!isset($etudiantNote))
+        { // Note pas encore entrée.
+            return -1;
+        }
+        elseif ($etudiantNote->GetAbsence() == 0)
+        {
+            return $etudiantNote->GetNoteFinale();
+        }
+        elseif ($etudiantNote->GetAbsence() == 1)
+        { // Malade, on ne comptera pas la note dans le calcul de la moyenne.
+            return -1;
+        }
+        elseif ($etudiantNote->GetAbsence() == 2)
+        { // A seché l'interro, ce sera zéro.
+            return 0;
+        }
+    }
     public function GetId()
     {
         return $this->id;
