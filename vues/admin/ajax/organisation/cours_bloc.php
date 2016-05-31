@@ -9,7 +9,6 @@
         </div>
         <div class="panel-body">
             <div class="btn-group" role="group" aria-label="...">
-
                 <div class="btn-group" role="group">
                     <?php
                     foreach ($cours as $current_cours) { ?>

@@ -21,3 +21,38 @@ function GetCoursListFromCompetence($idCompetence)
     }
     return $list;
 }
+
+function InsertCompetence($nom,$idCursus)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO competence (Nom_Competence,ID_Cursus) VALUES (:nom,:idCursus)');
+    $req->execute(array(
+        'nom' => $nom,
+        'idCursus' => $idCursus,
+    ));
+    $req = $bdd->prepare('SELECT ID_Competence FROM competence ORDER BY ID_Competence DESC LIMIT 1');
+    $req->execute();
+    $lastCompetenceID= $req->fetch();
+    return $lastCompetenceID[0];
+}
+
+function DeleteCompetence($id)
+{
+    global $bdd;
+    $req = $bdd->prepare('DELETE FROM competence WHERE ID_Competence = :idCompetence');
+    $req->execute(array(
+        'idCompetence' => $id,
+    ));
+    return;
+}
+
+function ModifyCompetence($id,$newName)
+{
+    global $bdd;
+    $req = $bdd->prepare('UPDATE competence SET Nom_Competence=:nom WHERE ID_Competence = :id');
+    $req->execute(array(
+        'id' => $id,
+        'nom' => $newName,
+    ));
+    return;
+}

@@ -38,8 +38,9 @@
                         <input type="text" class="form-control" id="nomCursus" placeholder="Exemple : CSI3">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelAnnee">Nom du cursus :</label>
-                        <input type="text" class="form-control" id="anneeCursus" placeholder="Exemple : 2015 pour année 2015-2016">
+                        <label for="labelAnnee">Année du cursus :</label>
+                        <input type="text" class="form-control" id="anneeCursus"
+                               placeholder="Exemple : 2015 pour année 2015-2016">
                     </fieldset>
                 </div>
                 <div class="modal-footer">
@@ -51,24 +52,28 @@
     </div>
 </div>
 
-
 <!-- Ajout d'une compétence !-->
 <div class="modal fade" id="addCompetence" tabindex="-1" role="dialog" aria-labelledby="addCompetence">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Ajout d'une compétence</h4>
-            </div>
-            <div class="modal-body">
-                Veuillez remplir le formulaire sur cette page
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary">Enregistrer</button>
-            </div>
+            <form id="addCompetence">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Ajout d'une compétence</h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset class="form-group">
+                        <label for="labelCompetence">Nom de la compétence :</label>
+                        <input type="text" class="form-control" id="nomCompetence"
+                               placeholder="Exemple : Physique, Electronique et Nanotechnologies">
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -77,19 +82,36 @@
 <div class="modal fade" id="addCours" tabindex="-1" role="dialog" aria-labelledby="addCours">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Ajout d'un cours</h4>
-            </div>
-            <div class="modal-body">
-                Veuillez remplir le formulaire sur cette page
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary">Enregistrer</button>
-            </div>
+            <form id="addCours">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Ajout d'un cours</h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset class="form-group">
+                        <label for="labelCours">Nom du cours :</label>
+                        <input type="text" class="form-control" id="nomCours"
+                               placeholder="Exemple : Mécanique Quantique">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="labelCreditsCours">Nombre de crédits ECTS :</label>
+                        <input type="text" class="form-control" id="nbCreditsCours" placeholder="Exemple : 2.5">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="labelSemestreCours">Semestre :</label>
+                        <select class="selectpicker" name="semestreCours" id="semestreCours">
+                            <option value="0">Semestre 1 et 2</option>
+                            <option value="1">Semestre 1</option>
+                            <option value="2">Semestre 2</option>
+                        </select>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -5,5 +5,6 @@
  */
 
 include_once ("vues/menu.php");
+include_once ("vues/menu_rapide.php");
 include_once ("vues/accueil.php");
 include_once ("vues/footer.php");
