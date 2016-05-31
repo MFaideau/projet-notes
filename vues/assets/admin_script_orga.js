@@ -76,6 +76,7 @@ $(document).on("click","button[id^=orga_eval]", function(e) {
 });
 
 $(document).on("click","button[id^=orga_type_eval]", function(e) {
+    idTypeEval = this.id.replace("orga_type_eval_","");
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
@@ -174,6 +175,22 @@ $(function() {
                 $("#addTypeEval").modal("hide");
                 // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
                 $(data).insertAfter($("button[id^=orga_type_eval_]").last());
+            }
+        });
+    });
+});
+
+$(function() {
+    $('#addEpreuve').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: './ajax/admin_ajax_orga.php',
+            type: 'POST',
+            data: 'idTypeEval=' + idTypeEval + '&nomEpreuve=' + $("#nomEpreuve").val() + '&coefEpreuve=' + $("#coefEpreuve").val(),
+            success: function (data) {
+                $("#addEpreuve").modal("hide");
+                // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
+                $(data).insertAfter($("button[id^=orga_epreuve_]").last());
             }
         });
     });

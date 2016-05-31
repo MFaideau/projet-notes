@@ -40,7 +40,7 @@ if (isset($_POST['idEval']) && empty($_POST['idCours']) && empty($_POST['nomType
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/types_eval_bloc.php';
     }
 }
-if (isset($_POST['idTypeEval'])) {
+if (isset($_POST['idTypeEval']) && empty($_POST['nomEpreuve'])) {
     $idTypeEval = $_POST['idTypeEval'];
     $epreuveList = GetEpreuveListFromTypeEval($idTypeEval);
     if (!isset($epreuveList)) return;
@@ -69,7 +69,6 @@ if (isset($_POST['idCours']) && isset($_POST['nomEval']) && isset($_POST['coefEv
 }
 if (isset($_POST['idEval']) && isset($_POST['nomTypeEval']) && isset($_POST['coefTypeEval'])) {
     $idTypeEvalNew = InsertTypeEval($_POST['nomTypeEval'], $_POST['coefTypeEval'], $_POST['idEval'] );
-    echo var_dump($_POST);
     include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_type_eval_bloc.php';
 }
 
