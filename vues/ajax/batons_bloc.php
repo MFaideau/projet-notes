@@ -1,5 +1,8 @@
 
 <!-- Histogramme en bâtons de données !-->
+<?php
+include_once (__DIR__ . '../../../vues/ajax/conversion_js.php');
+?>
 
 <div class="row donnees donnees_batons">
     <div class="panel panel-default">

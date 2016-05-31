@@ -1,6 +1,7 @@
 
 <!-- Histogramme de données !-->
 
+
 <div class="row donnees donnees_histo">
     <div class="panel panel-default">
         <div class="panel-heading">Graphe comparatoire</div>
