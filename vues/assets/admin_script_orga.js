@@ -68,6 +68,7 @@ $(document).on("click","button[id^=orga_eval]", function(e) {
         datatype: 'html',
         data: 'idEval=' + this.id.replace("orga_eval_",""),
         success: function(result) {
+            $(".panel_type_eval").remove();
             $(".panel_epreuve").remove();
             $(result).insertAfter($(".panel_eval"));
         },
