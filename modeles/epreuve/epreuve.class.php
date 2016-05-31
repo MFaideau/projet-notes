@@ -6,6 +6,7 @@
  * Date: 27/05/2016
  * Time: 14:14
  */
+include_once (__DIR__ . '../../../modeles/epreuve/epreuve.php');
 class epreuve
 {
     private $id;

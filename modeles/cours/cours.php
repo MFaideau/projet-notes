@@ -21,7 +21,20 @@ WHERE type_eval.ID_Eval=evaluation.ID_Eval AND evaluation.ID_Cours = :idCours');
     }
     return $list;
 }
-
+function GetEvalListFromCours($idCours)
+{
+    $list =array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT evaluation.ID_Eval,evaluation.Nom_Eval,evaluation.Coef_Eval FROM evaluation
+WHERE evaluation.ID_Eval = :idCours');
+    $req->bindParam(':idCours', $idCours, PDO::PARAM_INT);
+    $req->execute();
+    $evalList=$req->fetchAll();
+    foreach($evalList as $eval) {
+        $list[] = new Evaluation($eval,false);
+    }
+    return $list;
+}
 function InsertCours($nom,$ects,$semestre,$idCompetence)
 {
     global $bdd;

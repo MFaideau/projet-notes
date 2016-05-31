@@ -7,6 +7,7 @@
  * Time: 11:53
  */
 include_once (__DIR__ . '../../../modeles/epreuve/epreuve.class.php');
+include_once (__DIR__ . '../../../modeles/type_evaluation/typeeval.php');
 class TypeEval
 {
     private $id;
