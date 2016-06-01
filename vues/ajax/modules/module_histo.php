@@ -2,16 +2,17 @@
 
 function showHisto($moyenne, $note_etudiant, $ecart_type) {
 
-    $taille_rect = $note_etudiant*5;
+    $taille_rect = $note_etudiant/20;
+    $taille_rect_pourcent = $taille_rect*100;
     if ($taille_rect == 0) {
         $taille_couleur = 0;
     }
     else {
-        $taille_couleur = 10000/$taille_rect;
+        $taille_couleur = (1/$taille_rect)*100;
     }
-    $position_moyenne = $moyenne*5;
-    $position_e_t_high = $position_moyenne+($ecart_type/2)*5;
-    $position_e_t_low = $position_moyenne-($ecart_type/2)*5;
+    $position_moyenne = ($moyenne/20)*100;
+    $position_e_t_high = $position_moyenne+(($ecart_type/2)/20)*100;
+    $position_e_t_low = $position_moyenne-(($ecart_type/2)/20)*100;
     ?>
 
     <svg width="100%" height="16px">
@@ -23,7 +24,7 @@ function showHisto($moyenne, $note_etudiant, $ecart_type) {
             </linearGradient>
         </defs>
 
-        <rect x="1" y="1" width="<?php echo $taille_rect;?>%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
+        <rect x="1" y="1" width="<?php echo $taille_rect_pourcent;?>%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
         <g stroke="black">
             <line x1="<?php echo $position_e_t_low;?>%" y1="7.5" x2="<?php echo $position_e_t_high;?>%" y2="7.5" stroke-width="1" stroke="black"></line>
             <line x1="<?php echo $position_e_t_low;?>%" y1="4.5" x2="<?php echo $position_e_t_low;?>%" y2="10.5" stroke-width="1" stroke="black"></line>
