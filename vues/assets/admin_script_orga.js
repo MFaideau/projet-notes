@@ -171,6 +171,19 @@ $(document).on("click", "a[id^=removeEval]", function (e) {
     });
 });
 
+$(document).on("click", "a[id^=removeTypeEval]", function (e) {
+    e.preventDefault();
+    $.ajax({
+        url: './ajax/admin_ajax_orga.php', //this is the submit URL
+        type: 'POST', //or POST
+        data: "action=delete&idTypeEval=" + idTypeEval,
+        success: function () {
+            $("button[id^=orga_type_eval_" + idTypeEval + "]").remove();
+            $("button[id^=orga_eval_" + idEval + "]").trigger("click");
+        }
+    });
+});
+
 $(function () {
     $('#addCompetence').on('submit', function (e) {
         e.preventDefault();
