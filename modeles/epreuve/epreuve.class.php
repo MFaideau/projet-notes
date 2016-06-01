@@ -15,6 +15,7 @@ class epreuve
     private $coef;
     private $date;
     private $evaluateur;
+    private $idSubstition;
 
     function Epreuve($epreuveLine)
     {
@@ -23,8 +24,12 @@ class epreuve
         $this->coef=$epreuveLine["Coef_Epreuve"];
         $this->date=$epreuveLine["Date_Epreuve"];
         $this->evaluateur=$epreuveLine["Evaluateur_Epreuve"];
+        $this->idSubstition=$epreuveLine["ID_Epreuve_Substitution"];
     }
-
+    public function GetSecondeSessionID()
+    {
+        
+    }
     public function GetMoyennePresents()
     {
         $etudiantNotes = GetEtudiantNotesFromEpreuve($this->id);
@@ -38,7 +43,7 @@ class epreuve
                 $count++;
             }
         }
-        if (count ==0)
+        if ($count ==0)
         {
             return -1;
         }
@@ -63,7 +68,7 @@ class epreuve
                 $count++;
             }
         }
-        if (count ==0)
+        if ($count ==0)
         {
             return -1;
         }
@@ -73,7 +78,7 @@ class epreuve
         }
     }
     public function GetNoteEtudiant($idEtudiant)
-    {
+    { // RETOURNE LA NOTE (EN NUMERIQUE) ET NON L'OBJET
         $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant,$this->id);
         if (!isset($etudiantNote))
         { // Note pas encore entrée.
@@ -85,7 +90,22 @@ class epreuve
         }
         elseif ($etudiantNote->GetAbsence() == 1)
         { // Malade, on ne comptera pas la note dans le calcul de la moyenne.
-            return -1;
+            if ($this->idSubstition <= 0)
+            {
+                return -1;
+            }
+            else
+            {
+                $substituteEpreuve = GetEpreuveFromId($this->idSubstition);
+                if (isset($substituteEpreuve))
+                {
+                    return $substituteEpreuve->GetNoteEtudiant($idEtudiant);
+                }
+                else
+                {
+                    return -1;
+                }
+            }
         }
         elseif ($etudiantNote->GetAbsence() == 2)
         { // A seché l'interro, ce sera zéro.
@@ -111,5 +131,9 @@ class epreuve
     public function GetEvaluateur()
     {
         return $this->evaluateur;
+    }
+    public function GetIdSubstition()
+    {
+        return $this->idSubstition;
     }
 }

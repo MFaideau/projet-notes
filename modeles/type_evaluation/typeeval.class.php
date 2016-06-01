@@ -28,7 +28,7 @@ class TypeEval
     {
         $list =array();
         global $bdd;
-        $req = $bdd->prepare('SELECT epreuve.ID_Epreuve,epreuve.Nom_Epreuve,epreuve.Coef_Epreuve,epreuve.Date_Epreuve,epreuve.Evaluateur_Epreuve
+        $req = $bdd->prepare('SELECT epreuve.ID_Epreuve,epreuve.ID_Epreuve_Substitution,epreuve.Nom_Epreuve,epreuve.Coef_Epreuve,epreuve.Date_Epreuve,epreuve.Evaluateur_Epreuve
         FROM epreuve WHERE epreuve.ID_Type = :idType');
         $req->bindParam(':idType', $this->id, PDO::PARAM_INT);
         $req->execute();
@@ -50,5 +50,28 @@ class TypeEval
     public function GetCoef()
     {
         return $this->coef;
+    }
+    public function GetMoyenneEtudiant($idEtudiant)
+    {
+        $sommeCoef = 0.0;
+        $moyenne = 0.0;
+        foreach($this->epreuves as $epreuve)
+        {
+            $moyenneEpreuve = $epreuve->GetNoteEtudiant($idEtudiant);
+            $coefEpreuve = $epreuve->GetCoef();
+            if ($moyenneEpreuve != -1)
+            {
+                $moyenne=$moyenne + $moyenneEpreuve*$coefEpreuve;
+                $sommeCoef = $sommeCoef+$coefEpreuve;
+            }
+        }
+        if ($sommeCoef == 0)
+        {
+            return -1;
+        }
+        else
+        {
+            return $moyenne/$sommeCoef;
+        }
     }
 }
