@@ -1,6 +1,4 @@
-
 <!-- Histogramme de données !-->
-
 
 <div class="row donnees donnees_histo">
     <div class="panel panel-default">
@@ -18,23 +16,13 @@
             <tr>
                 <th scope="row">Informatique</th>
                 <td width="50%">
-                    <svg width="100%" height="16px">
-                        <defs>
-                            <linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
-                                <stop offset="0%" style="stop-color:red;" />
-                                <stop offset="50%" style="stop-color:yellow;" />
-                                <stop offset="100%" style="stop-color:green;" />
-                            </linearGradient>
-                        </defs>
-
-                        <rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
-                        <g stroke="black">
-                            <line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
-                            <line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
-                            <line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
-                            <circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
-                        </g>
-                    </svg>
+                    <?php
+                    $moyenne = rand(0, 20);
+                    $note_etudiant = rand(0, 20);
+                    $ecart_type = rand(1, 8);
+                    include_once('modules/module_histo.php');
+                    echo showHisto($moyenne, $note_etudiant, $ecart_type);
+                    ?>
                 </td>
                 <td>16.5</td>
                 <td>15</td>
@@ -42,23 +30,13 @@
             <tr>
                 <th scope="row">Electronique</th>
                 <td width="50%">
-                    <svg width="100%" height="16px">
-                        <defs>
-                            <linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
-                                <stop offset="0%" style="stop-color:red;" />
-                                <stop offset="50%" style="stop-color:yellow;" />
-                                <stop offset="100%" style="stop-color:green;" />
-                            </linearGradient>
-                        </defs>
-
-                        <rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
-                        <g stroke="black">
-                            <line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
-                            <line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
-                            <line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
-                            <circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
-                        </g>
-                    </svg>
+                    <?php
+                    $moyenne = rand(0, 20);
+                    $note_etudiant = rand(0, 20);
+                    $ecart_type = rand(1, 8);
+                    include_once('modules/module_histo.php');
+                    echo showHisto($moyenne, $note_etudiant, $ecart_type);
+                    ?>
                 </td>
                 <td>15.2</td>
                 <td>15.2</td>
@@ -66,23 +44,13 @@
             <tr>
                 <th scope="row">Management</th>
                 <td width="50%" class="histo_parent">
-                    <svg width="100%" height="16px">
-                        <defs>
-                            <linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
-                                <stop offset="0%" style="stop-color:red;" />
-                                <stop offset="50%" style="stop-color:yellow;" />
-                                <stop offset="100%" style="stop-color:green;" />
-                            </linearGradient>
-                        </defs>
-
-                        <rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
-                        <g stroke="black">
-                            <line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
-                            <line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
-                            <line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
-                            <circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
-                        </g>
-                    </svg>
+                    <?php
+                    $moyenne = rand(0, 20);
+                    $note_etudiant = rand(0, 20);
+                    $ecart_type = rand(1, 8);
+                    include_once('modules/module_histo.php');
+                    echo showHisto($moyenne, $note_etudiant, $ecart_type);
+                    ?>
                 </td>
                 <td>17.1</td>
                 <td>13.3</td>
@@ -90,23 +58,13 @@
             <tr>
                 <th scope="row">Signaux</th>
                 <td width="50%">
-                    <svg width="100%" height="16px">
-                        <defs>
-                            <linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
-                                <stop offset="0%" style="stop-color:red;" />
-                                <stop offset="50%" style="stop-color:yellow;" />
-                                <stop offset="100%" style="stop-color:green;" />
-                            </linearGradient>
-                        </defs>
-
-                        <rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
-                        <g stroke="black">
-                            <line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
-                            <line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
-                            <line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
-                            <circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
-                        </g>
-                    </svg>
+                    <?php
+                    $moyenne = rand(0, 20);
+                    $note_etudiant = rand(0, 20);
+                    $ecart_type = rand(1, 8);
+                    include_once('modules/module_histo.php');
+                    echo showHisto($moyenne, $note_etudiant, $ecart_type);
+                    ?>
                 </td>
                 <td>16</td>
                 <td>14.8</td>
@@ -116,23 +74,13 @@
             <tr>
                 <th>Total</th>
                 <th width="50%">
-                    <svg width="100%" height="16px">
-                        <defs>
-                            <linearGradient id="histo" x1="0%" y1="0%" x2="160%" y2="0%">
-                                <stop offset="0%" style="stop-color:red;" />
-                                <stop offset="50%" style="stop-color:yellow;" />
-                                <stop offset="100%" style="stop-color:green;" />
-                            </linearGradient>
-                        </defs>
-
-                        <rect x="1" y="1" width="70%" height="15" fill="url(#histo)" stroke="gray" stroke-width="1" />
-                        <g stroke="black">
-                            <line x1="40%" y1="7.5" x2="55%" y2="7.5" stroke-width="1" stroke="black"></line>
-                            <line x1="40%" y1="4.5" x2="40%" y2="10.5" stroke-width="1" stroke="black"></line>
-                            <line x1="55%" y1="4.5" x2="55%" y2="10.5" stroke-width="1" stroke="black"></line>
-                            <circle cx="50%" cy="7.5" r="2" stroke="black" stroke-width="3" fill="black"></circle>
-                        </g>
-                    </svg>
+                    <?php
+                    $moyenne = rand(0, 20);
+                    $note_etudiant = rand(0, 20);
+                    $ecart_type = rand(1, 8);
+                    include_once('modules/module_histo.php');
+                    echo showHisto($moyenne, $note_etudiant, $ecart_type);
+                    ?>
                 </th>
                 <th>16.2</th>
                 <th>13.5</th>

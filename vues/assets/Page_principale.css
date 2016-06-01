@@ -47,14 +47,6 @@
     color: #b62224;
 }
 
-.histo {
-    background: linear-gradient(to right, red, yellow, green);
-    background-size: auto 133%;
-    height: 15px;
-    border: 1px solid gray;
-    width: 75%;
-}
-
 .modal-header, .donnees .panel-heading, .saisie_notes .panel-heading {
     color: white;
     background-color: #b62224;

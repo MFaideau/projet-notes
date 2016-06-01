@@ -36,7 +36,7 @@ $('.histo_commun').click(function() {
         data: 'button=batons',
         success: function (result) {
             $.ajax({
-                url: './vues/ajax/conversion_js.php',
+                url: './vues/ajax/modules/conversion_js.php',
                 type: 'GET',
                 datatype: 'json',
                 success: function (resultDataHisto) {
