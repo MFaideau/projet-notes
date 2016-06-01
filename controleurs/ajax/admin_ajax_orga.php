@@ -9,22 +9,30 @@ if ($utilisateur->GetAutorite() != 1) {
 $user = serialize($_SESSION['user']);
 
 // S'il n'y a que l'idCursus qui est rempli, on crée un nouveau cursus
-if (isset($_POST['idCursus']) && empty($_POST['nomCompetence'])) {
+if (!isset($_POST['action']) && isset($_POST['idCursus']) && empty($_POST['nomCompetence'])) {
     $idCursus = $_POST['idCursus'];
     $cursus = GetCursus(GetCursusList(), $idCursus);
     if (!isset($cursus)) return;
     else
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/competences_bloc.php';
-
 }
+
+if(isset($_POST['action']) && isset($_POST['idCursus']) && empty($_POST['nomCompetence']))
+    if($_POST['action'] == "delete")
+        DeleteCursus($_POST['idCursus']);
+
 if (isset($_POST['idCompetence']) && empty($_POST['nomCours'])) {
     $idCompetence = $_POST['idCompetence'];
     $cours = GetCoursListFromCompetence($idCompetence);
     if (!isset($cours)) return;
-    else {
+    else
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/cours_bloc.php';
-    }
 }
+
+if(isset($_POST['action']) && isset($_POST['idCompetence']) && empty($_POST['nomCours']))
+    if($_POST['action'] == "delete")
+        DeleteCompetence($_POST['idCompetence']);
+
 if (isset($_POST['idCours']) && empty($_POST['nomEval'])) {
     $idCours = $_POST['idCours'];
     $eval = GetEvalListFromCours($idCours);
@@ -32,6 +40,11 @@ if (isset($_POST['idCours']) && empty($_POST['nomEval'])) {
     else
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/eval_bloc.php';
 }
+
+if(isset($_POST['action']) && isset($_POST['idCours']) && empty($_POST['nomTypeEval']))
+    if($_POST['action'] == "delete")
+        DeleteCours($_POST['idCours']);
+
 if (isset($_POST['idEval']) && empty($_POST['idCours']) && empty($_POST['nomTypeEval'])) {
     $idEval = $_POST['idEval'];
     $typeEvalList = GetTypeEvalListFromEval($idEval);
@@ -40,6 +53,11 @@ if (isset($_POST['idEval']) && empty($_POST['idCours']) && empty($_POST['nomType
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/types_eval_bloc.php';
     }
 }
+
+if(isset($_POST['action']) && isset($_POST['idEval']) && empty($_POST['idCours']) && empty($_POST['nomTypeEval']))
+    if($_POST['action'] == "delete")
+        DeleteEval($_POST['idEval']);
+
 if (isset($_POST['idTypeEval']) && empty($_POST['nomEpreuve'])) {
     $idTypeEval = $_POST['idTypeEval'];
     $epreuveList = GetEpreuveListFromTypeEval($idTypeEval);
@@ -71,7 +89,5 @@ if (isset($_POST['idEval']) && isset($_POST['nomTypeEval']) && isset($_POST['coe
     $idTypeEvalNew = InsertTypeEval($_POST['nomTypeEval'], $_POST['coefTypeEval'], $_POST['idEval'] );
     include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_type_eval_bloc.php';
 }
-
-
 
 ?>

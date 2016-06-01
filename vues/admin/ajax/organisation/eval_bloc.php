@@ -2,6 +2,12 @@
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix de l'Evaluation
             <div class="add_button_etudes">
+                <a id="removeEval">
+                    <i class="glyphicon glyphicon-remove-sign"></i>
+                </a>
+                <a data-toggle="modal" data-target="#modifyEval">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
                 <a data-toggle="modal" data-target="#addEval">
                     <i class="glyphicon glyphicon-plus"></i>
                 </a>
