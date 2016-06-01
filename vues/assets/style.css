@@ -63,3 +63,11 @@
     transition: background-color 0.15s ease-in-out;
     width: auto;
 }
+
+.donnees_histo .donnees_batons {
+    text-align: center;
+}
+
+.donnees_batons {
+    text-align: center;
+}
