@@ -64,10 +64,6 @@
     width: auto;
 }
 
-.donnees_histo .donnees_batons {
-    text-align: center;
-}
-
-.donnees_batons {
-    text-align: center;
+.button_show_histo {
+    cursor: pointer;
 }

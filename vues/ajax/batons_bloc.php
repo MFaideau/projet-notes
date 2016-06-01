@@ -1,4 +1,3 @@
-
 <!-- Histogramme en bâtons de données !-->
 
 <div class="row donnees donnees_histo">
@@ -22,8 +21,8 @@
                 <td>16.5</td>
                 <td>15</td>
                 <td>A</td>
-                <td>
-                    <a href="#histogramme_commun" class="histo_commun">
+                <td class="button_show_histo">
+                    <a data-toggle="modal" data-target="#showHisto1">
                         <span class="glyphicon glyphicon-stats icone"></span>
                     </a>
                 </td>
@@ -35,8 +34,8 @@
                 <td>16.5</td>
                 <td>15</td>
                 <td>A</td>
-                <td>
-                    <a href="#histogramme_commun" class="histo_commun">
+                <td class="button_show_histo">
+                    <a data-toggle="modal" data-target="#showHisto1">
                         <span class="glyphicon glyphicon-stats icone"></span>
                     </a>
                 </td>
@@ -47,8 +46,8 @@
                 <td>16.5</td>
                 <td>15</td>
                 <td>A</td>
-                <td>
-                    <a href="#histogramme_commun" class="histo_commun">
+                <td class="button_show_histo">
+                    <a data-toggle="modal" data-target="#showHisto1">
                         <span class="glyphicon glyphicon-stats icone"></span>
                     </a>
                 </td>
@@ -59,8 +58,8 @@
                 <td>16.5</td>
                 <td>15</td>
                 <td>A</td>
-                <td>
-                    <a href="#zoom_competence_1" class="histo_commun">
+                <td class="button_show_histo">
+                    <a data-toggle="modal" data-target="#showHisto1">
                         <span class="glyphicon glyphicon-stats icone"></span>
                     </a>
                 </td>
@@ -71,9 +70,36 @@
                 <td>16.5</td>
                 <td>15</td>
                 <td>A</td>
-                <td>
-                    <a href="#histogramme_commun" class="histo_commun">
+                <td class="button_show_histo">
+                    <a data-toggle="modal" data-target="#showHisto1">
                         <span class="glyphicon glyphicon-stats icone"></span>
                     </a>
                 </td>
             </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Fenêtres pour afficher les pop-ups des histogrammes !-->
+
+<div class="modal fade" id="showHisto1" tabindex="-1" role="dialog" aria-labelledby="showHisto">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Histogramme de la Promo</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row donnees donnees_batons">
+                    <canvas id="myChart" width="100%" height="40%"></canvas>
+                </div>
+            </div>
+            <?php include_once("modules/module_histo.php"); ?>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

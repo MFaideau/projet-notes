@@ -13,6 +13,7 @@ function showHisto($moyenne, $note_etudiant, $ecart_type) {
     $position_moyenne = ($moyenne/20)*100;
     $position_e_t_high = $position_moyenne+(($ecart_type/2)/20)*100;
     $position_e_t_low = $position_moyenne-(($ecart_type/2)/20)*100;
+
     ?>
 
     <svg width="100%" height="16px">
