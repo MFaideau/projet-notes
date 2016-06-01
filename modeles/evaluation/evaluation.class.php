@@ -6,6 +6,7 @@
  * Date: 27/05/2016
  * Time: 09:25
  */
+include_once (__DIR__ . '../../../modeles/evaluation/evaluation.php');
 include_once (__DIR__ . '../../../modeles/type_evaluation/typeeval.class.php');
 class Evaluation
 {

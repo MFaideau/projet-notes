@@ -17,6 +17,6 @@ function GetEtudiant($utilisateur)
     $req->execute();
     $etudiantLine = $req->fetchAll();
     $cursus = GetCursus(GetCursusList(),$etudiantLine[0]["ID_Cursus"]);
-    $etudiant = new Etudiant($etudiantLine,$cursus,$etudiantLine);
+    $etudiant = new Etudiant($etudiantLine,$cursus,$utilisateur);
     return $etudiant;
 }

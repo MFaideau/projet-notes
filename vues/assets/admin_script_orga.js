@@ -1,6 +1,8 @@
 // TODO : Inclure ce fichier uniquement si on est connecté en ADMIN
+var idCursus, idCompetence, idCours, idEval, idTypeEval, idEpreuve;
 
 $(document).on("click","button[id^=orga_cursus_]", function(e) {
+    idCursus = this.id.replace("orga_cursus_","");
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
@@ -20,6 +22,7 @@ $(document).on("click","button[id^=orga_cursus_]", function(e) {
 });
 
 $(document).on("click","button[id^=orga_competence_]",function(e){
+    idCompetence = this.id.replace("orga_competence_","");
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
@@ -38,6 +41,7 @@ $(document).on("click","button[id^=orga_competence_]",function(e){
 });
 
 $(document).on("click","button[id^=orga_cours]", function(e) {
+    idCours = this.id.replace("orga_cours_","");
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
@@ -90,6 +94,37 @@ $(function(){
             success: function(data){
                 $("#addCursus").modal("hide");
                 $(data).insertAfter($("button[id^=orga_cursus_]").parent().last());
+            }
+        });
+    });
+});
+
+$(function() {
+    $('#addCompetence').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: './ajax/admin_ajax_orga.php',
+            type: 'POST',
+            data: 'idCursus=' + idCursus + '&nomCompetence=' + $("#nomCompetence").val(),
+            success: function (data) {
+                $("#addCompetence").modal("hide");
+                $(data).insertAfter($("button[id^=orga_competence_]").last());
+            }
+        });
+    });
+});
+
+$(function() {
+    $('#addCours').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: './ajax/admin_ajax_orga.php',
+            type: 'POST',
+            data: 'idCompetence=' + idCompetence + '&nomCours=' + $("#nomCours").val() + '&nbCreditsCours=' + $("#nbCreditsCours").val() + '&semestreCours=' + $("select[id=semestreCours]").find(":selected").val(),
+            success: function (data) {
+                $("#addCours").modal("hide");
+                // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
+                $(data).insertAfter($("button[id^=orga_cours_]").last());
             }
         });
     });
