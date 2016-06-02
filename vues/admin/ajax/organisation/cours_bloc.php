@@ -2,7 +2,7 @@
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix du Cours
             <div class="add_button_etudes">
-                <a id="removeCours">
+                <a data-toggle="modal" data-target="#verifDeleteCours">
                     <i class="glyphicon glyphicon-remove-sign"></i>
                 </a>
                 <a data-toggle="modal" data-target="#modifyCompetence">

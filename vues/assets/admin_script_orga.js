@@ -99,7 +99,6 @@ $(document).on("click", "button[id^=orga_epreuve]", function (e) {
         data: 'idEpreuve=' + this.id.replace("orga_epreuve_", ""),
         success: function (result) {
             $(result).insertAfter($(".panel_epreuve"));
-//            $(".panel_cours").append(result);
         }
     });
 });
@@ -116,58 +115,6 @@ $(function () {
                 $(data).insertAfter($("button[id^=orga_cursus_]").parent().last());
             }
         });
-    });
-});
-
-
-/*// TODO : Gérer le cas où aucun bouton n'a été coché
- $(document).on("click", "a[id^=removeCursus]", function (e) {
- e.preventDefault();
- $.ajax({
- url: './ajax/admin_ajax_orga.php', //this is the submit URL
- type: 'POST', //or POST
- data: "action=delete&idCursus=" + idCursus,
- success: function (result) {
- $("button[id^=orga_cursus_" + idCursus + "]").remove();
- }
- });
- });*/
-//
-// $(document).on("click", "a[id^=removeCompetence]", function (e) {
-//     e.preventDefault();
-//     $.ajax({
-//         url: './ajax/admin_ajax_orga.php', //this is the submit URL
-//         type: 'POST', //or POST
-//         data: "action=delete&idCompetence=" + idCompetence,
-//         success: function () {
-//             $("button[id^=orga_competence_" + idCompetence + "]").remove();
-//         }
-//     });
-// });
-
-$(document).on("click", "a[id^=removeCours]", function (e) {
-    e.preventDefault();
-    $.ajax({
-        url: './ajax/admin_ajax_orga.php', //this is the submit URL
-        type: 'POST', //or POST
-        data: "action=delete&idCours=" + idCours,
-        success: function () {
-            $("button[id^=orga_cours_" + idCours + "]").remove();
-            $("button[id^=orga_competence_" + idCompetence + "]").trigger("click");
-        }
-    });
-});
-
-$(document).on("click", "a[id^=removeEval]", function (e) {
-    e.preventDefault();
-    $.ajax({
-        url: './ajax/admin_ajax_orga.php', //this is the submit URL
-        type: 'POST', //or POST
-        data: "action=delete&idEval=" + idEval,
-        success: function () {
-            $("button[id^=orga_eval_" + idEval + "]").remove();
-            $("button[id^=orga_cours_" + idCours + "]").trigger("click");
-        }
     });
 });
 
@@ -263,6 +210,8 @@ $(function () {
     });
 });
 
+// Partie qui vérifie que l'utilisateur veut vraiment supprimer son choix
+
 $(function () {
     $('#verifDeleteCursus').on('submit', function (e) {
         e.preventDefault();
@@ -273,6 +222,11 @@ $(function () {
             success: function (result) {
                 $("#verifDeleteCursus").modal("hide");
                 $("button[id^=orga_cursus_" + idCursus + "]").remove();
+                $(".panel_competences").remove();
+                $(".panel_cours").remove();
+                $(".panel_eval").remove();
+                $(".panel_type_eval").remove();
+                $(".panel_epreuve").remove();
             }
         });
     });
@@ -282,12 +236,52 @@ $(function () {
     $('#verifDeleteCompetences').on('submit', function (e) {
         e.preventDefault();
         $.ajax({
-            url: './ajax/admin_ajax_orga.php', //this is the submit URL
-            type: 'POST', //or POST
+            url: './ajax/admin_ajax_orga.php',
+            type: 'POST',
             data: "action=delete&idCompetence=" + idCompetence,
             success: function () {
                 $("#verifDeleteCompetences").modal("hide");
                 $("button[id^=orga_competence_" + idCompetence + "]").remove();
+                $(".panel_cours").remove();
+                $(".panel_type_eval").remove();
+                $(".panel_epreuve").remove();
+                $(".panel_eval").remove();
+            }
+        });
+    });
+});
+
+$(function () {
+    $('#verifDeleteCours').on('submit', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: './ajax/admin_ajax_orga.php',
+            type: 'POST', //or POST
+            data: "action=delete&idCours=" + idCours,
+            success: function () {
+                $("#verifDeleteCours").modal("hide");
+                $("button[id^=orga_cours_" + idCours + "]").remove();
+                $(".panel_eval").remove();
+                $(".panel_type_eval").remove();
+                $(".panel_epreuve").remove();
+            }
+        });
+    });
+});
+
+$(function () {
+    $('#verifDeleteEval').on('submit', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: './ajax/admin_ajax_orga.php',
+            type: 'POST', 
+            data: "action=delete&idEval=" + idEval,
+            success: function () {
+                $("#verifDeleteEval").modal("hide");
+                $("button[id^=orga_eval_" + idEval + "]").remove();
+                $(".panel_eval").remove();
+                $(".panel_type_eval").remove();
+                $(".panel_epreuve").remove();
             }
         });
     });
