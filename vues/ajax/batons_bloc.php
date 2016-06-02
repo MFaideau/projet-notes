@@ -23,7 +23,7 @@
                 <td>A</td>
                 <td class="button_show_histo">
                     <a data-toggle="modal" data-target="#showHisto1">
-                        <span class="glyphicon glyphicon-stats icone"></span>
+                        <span class="glyphicon glyphicon-stats icone histo_button"></span>
                     </a>
                 </td>
             </tr>
@@ -36,7 +36,7 @@
                 <td>A</td>
                 <td class="button_show_histo">
                     <a data-toggle="modal" data-target="#showHisto1">
-                        <span class="glyphicon glyphicon-stats icone"></span>
+                        <span class="glyphicon glyphicon-stats icone histo_button"></span>
                     </a>
                 </td>
             </tr>
@@ -48,7 +48,7 @@
                 <td>A</td>
                 <td class="button_show_histo">
                     <a data-toggle="modal" data-target="#showHisto1">
-                        <span class="glyphicon glyphicon-stats icone"></span>
+                        <span class="glyphicon glyphicon-stats icone histo_button"></span>
                     </a>
                 </td>
             </tr>
@@ -60,7 +60,7 @@
                 <td>A</td>
                 <td class="button_show_histo">
                     <a data-toggle="modal" data-target="#showHisto1">
-                        <span class="glyphicon glyphicon-stats icone"></span>
+                        <span class="glyphicon glyphicon-stats icone histo_button"></span>
                     </a>
                 </td>
             </tr>
@@ -72,7 +72,7 @@
                 <td>A</td>
                 <td class="button_show_histo">
                     <a data-toggle="modal" data-target="#showHisto1">
-                        <span class="glyphicon glyphicon-stats icone"></span>
+                        <span class="glyphicon glyphicon-stats icone histo_button"></span>
                     </a>
                 </td>
             </tr>

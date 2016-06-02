@@ -64,6 +64,10 @@
     width: auto;
 }
 
+.histo_button {
+    width: 100%;
+}
+
 .button_show_histo {
     cursor: pointer;
 }

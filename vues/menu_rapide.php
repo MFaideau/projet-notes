@@ -17,7 +17,7 @@ if ($user->GetAutorite() != 1) {
                 <a href="#histogramme_commun" class="histo_commun">
                     <span class="glyphicon glyphicon-stats icone"></span>
                 </a>
-                <a href="#absences_eleve" class="abs">
+                <a href="#absences" class="abs">
                     <span class="glyphicon glyphicon-exclamation-sign icone"></span>
                 </a>
             </div>

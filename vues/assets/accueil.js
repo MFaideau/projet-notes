@@ -8,6 +8,7 @@ $('.tableaux_logo').click(function() {
             $(".donnees_batons").remove();
             $(".donnees_histo").remove();
             $(".donnees_tableaux").remove();
+            $(".absences").remove();
             $(result).insertAfter($(".visualisation").parent());
         }
     });
@@ -23,6 +24,7 @@ $('.histo_logo').click(function() {
             $(".donnees_tableaux").remove();
             $(".donnees_batons").remove();
             $(".donnees_histo").remove();
+            $(".absences").remove();
             $(result).insertAfter($(".visualisation").parent());
         }
     });
@@ -43,10 +45,26 @@ $('.histo_commun').click(function() {
                     $(".donnees_tableaux").remove();
                     $(".donnees_batons").remove();
                     $(".donnees_histo").remove();
+                    $(".absences").remove();
                     $(result).insertAfter($(".visualisation").parent());
                     loadBar(resultDataHisto);
                 }
             });
+        }
+    });
+});
+
+$('.abs').click(function() {
+    $.ajax({
+        url: './absence.php',
+        type: 'GET',
+        datatype: 'html',
+        success: function (result) {
+            $(".donnees_tableaux").remove();
+            $(".donnees_batons").remove();
+            $(".donnees_histo").remove();
+            $(".absences").remove();
+            $(result).insertAfter($(".visualisation").parent());
         }
     });
 });
