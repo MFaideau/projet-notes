@@ -7,7 +7,7 @@
                 <?php
                 if ($user->GetAutorite() == 1) { ?>
                     <br />
-                <?php } else { ?>
+                <?php } ?>
             </div>
             <div class="row"><span><?php echo $user->GetCursusTexte(); ?></span></div>
             <div class="row">
@@ -18,4 +18,3 @@
         </div>
     </div>
 </div>
-<?php } ?>
