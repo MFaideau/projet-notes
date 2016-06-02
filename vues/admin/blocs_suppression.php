@@ -28,3 +28,26 @@
         </div>
     </div>
 </div>
+
+
+<!-- Fenêtre de confirmation pour la suppression des compétences !-->
+<div class="modal fade" id="verifDeleteCompetences" tabindex="-1" role="dialog" aria-labelledby="verifDeleteCompetences">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="verifDeleteCompetences">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Validation de la suppression</h4>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir supprimer la compétence ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                    <button type="submit" class="btn btn-primary">Oui</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -121,29 +121,29 @@ $(function () {
 
 
 /*// TODO : Gérer le cas où aucun bouton n'a été coché
-$(document).on("click", "a[id^=removeCursus]", function (e) {
-    e.preventDefault();
-    $.ajax({
-        url: './ajax/admin_ajax_orga.php', //this is the submit URL
-        type: 'POST', //or POST
-        data: "action=delete&idCursus=" + idCursus,
-        success: function (result) {
-            $("button[id^=orga_cursus_" + idCursus + "]").remove();
-        }
-    });
-});*/
-
-$(document).on("click", "a[id^=removeCompetence]", function (e) {
-    e.preventDefault();
-    $.ajax({
-        url: './ajax/admin_ajax_orga.php', //this is the submit URL
-        type: 'POST', //or POST
-        data: "action=delete&idCompetence=" + idCompetence,
-        success: function () {
-            $("button[id^=orga_competence_" + idCompetence + "]").remove();
-        }
-    });
-});
+ $(document).on("click", "a[id^=removeCursus]", function (e) {
+ e.preventDefault();
+ $.ajax({
+ url: './ajax/admin_ajax_orga.php', //this is the submit URL
+ type: 'POST', //or POST
+ data: "action=delete&idCursus=" + idCursus,
+ success: function (result) {
+ $("button[id^=orga_cursus_" + idCursus + "]").remove();
+ }
+ });
+ });*/
+//
+// $(document).on("click", "a[id^=removeCompetence]", function (e) {
+//     e.preventDefault();
+//     $.ajax({
+//         url: './ajax/admin_ajax_orga.php', //this is the submit URL
+//         type: 'POST', //or POST
+//         data: "action=delete&idCompetence=" + idCompetence,
+//         success: function () {
+//             $("button[id^=orga_competence_" + idCompetence + "]").remove();
+//         }
+//     });
+// });
 
 $(document).on("click", "a[id^=removeCours]", function (e) {
     e.preventDefault();
@@ -273,6 +273,21 @@ $(function () {
             success: function (result) {
                 $("#verifDeleteCursus").modal("hide");
                 $("button[id^=orga_cursus_" + idCursus + "]").remove();
+            }
+        });
+    });
+});
+
+$(function () {
+    $('#verifDeleteCompetences').on('submit', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: './ajax/admin_ajax_orga.php', //this is the submit URL
+            type: 'POST', //or POST
+            data: "action=delete&idCompetence=" + idCompetence,
+            success: function () {
+                $("#verifDeleteCompetences").modal("hide");
+                $("button[id^=orga_competence_" + idCompetence + "]").remove();
             }
         });
     });
