@@ -43,6 +43,17 @@ function DeleteTypeEval($id)
     $req->execute(array(
         'idType' => $id,
     ));
+    $req = $bdd->prepare('SELECT ID_Epreuve FROM epreuve WHERE ID_Type = :idType');
+    $req->bindParam(':idType', $id, PDO::PARAM_INT);
+    $req->execute();
+    $idEpreuves = $req->fetchAll();
+    if (!empty($idEpreuves))
+    {
+        foreach($idEpreuves as $idEpreuve)
+        {
+            DeleteEpreuve($idEpreuve[0]);
+        }
+    }
     return;
 }
 
@@ -57,3 +68,4 @@ function ModifyTypeEval($idTypeEval,$nom,$coef)
     ));
     return;
 }
+DeleteTypeEval(2);

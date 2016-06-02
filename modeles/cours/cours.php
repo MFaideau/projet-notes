@@ -58,6 +58,17 @@ function DeleteCours($id)
     $req->execute(array(
         'idCours' => $id,
     ));
+    $req = $bdd->prepare('SELECT ID_Eval FROM evaluation WHERE ID_Cours = :idCours');
+    $req->bindParam(':idCours', $id, PDO::PARAM_INT);
+    $req->execute();
+    $idEvals = $req->fetchAll();
+    if (!empty($idEvals))
+    {
+        foreach($idEvals as $idEval)
+        {
+            DeleteEval($idEval[0]);
+        }
+    }
     return;
 }
 
