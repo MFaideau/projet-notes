@@ -9,16 +9,16 @@ if ($user->GetAutorite() != 1) {
         <div class="panel panel-default">
             <div class="panel-body ">
                 <a href="#tableau_notes" class="tableaux_logo">
-                    <span class="glyphicon glyphicon-list-alt icone"></span>
+                    <span class="glyphicon glyphicon-list-alt icone" title="Relevé de notes"></span>
                 </a>
                 <a href="#histogramme_notes" class="histo_logo">
-                    <span class="glyphicon glyphicon-align-left icone"></span>
+                    <span class="glyphicon glyphicon-align-left icone" title="Histogramme Personnel"></span>
                 </a>
                 <a href="#histogramme_commun" class="histo_commun">
-                    <span class="glyphicon glyphicon-stats icone"></span>
+                    <span class="glyphicon glyphicon-stats icone" title="Histogramme Promo"></span>
                 </a>
                 <a href="#absences" class="abs">
-                    <span class="glyphicon glyphicon-exclamation-sign icone"></span>
+                    <span class="glyphicon glyphicon-exclamation-sign icone" title="Mes absences"></span>
                 </a>
             </div>
         </div>

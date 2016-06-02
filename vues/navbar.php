@@ -19,10 +19,10 @@
                     <div class="col-md-3 bouton_Eleve">Visualisation Eleve</div>
                 </a>
             <?php } else { ?>
-                <a href="releve_notes.php">
+                <a href="releve_onglet.php">
                     <div class="col-md-5 bouton_releve">Relevé de Notes</div>
                 </a>
-                <a href="simulateur.php">
+                <a href="simulateur_onglet.php">
                     <div class="col-md-5 bouton_simulateur">Simulateur de Notes</div>
                 </a>
             <?php } ?>
