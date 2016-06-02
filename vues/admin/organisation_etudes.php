@@ -193,13 +193,29 @@
                 </div>
                 <div class="modal-body">
                     <fieldset class="form-group">
-                        <label for="labelTypeEval">Nom de l'Epreuve :</label>
+                        <label for="labelNomEpreuve">Nom de l'Epreuve :</label>
                         <input type="text" class="form-control" id="nomEpreuve"
                                placeholder="Exemple : DS Base de Données">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelCoefTypeEval">Coefficient de l'Epreuve:</label>
+                        <label for="labelCoefEpreuve">Coefficient de l'Epreuve:</label>
                         <input type="text" class="form-control" id="coefEpreuve" placeholder="Exemple : 0.5 (pour 50%)">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="labelDateEpreuve">Date de l'épreuve:</label>
+                        <input type="text" class="form-control" id="dateEpreuve" placeholder="Exemple : 08/02/2016">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="labelEvaluation">Date de l'épreuve:</label>
+                        <input type="text" class="form-control" id="evaluateurEpreuve" placeholder="Exemple : Xavier Wallart">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session:</label>
+                        <select class="selectpicker" name="secondeSessions" id="secondeSessions">
+                            <option value="0">Aucune seconde session</option>
+                            <option value="1">Epreuve de démo 2 (codé en dur)</option>
+                            <option value="2">Epreuve de démo 3 (codé en dur)</option>
+                        </select>
                     </fieldset>
                 </div>
                 <div class="modal-footer">

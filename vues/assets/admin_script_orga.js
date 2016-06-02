@@ -127,7 +127,7 @@ $(document).on("click", "a[id^=removeCursus]", function (e) {
         url: './ajax/admin_ajax_orga.php', //this is the submit URL
         type: 'POST', //or POST
         data: "action=delete&idCursus=" + idCursus,
-        success: function () {
+        success: function (result) {
             $("button[id^=orga_cursus_" + idCursus + "]").remove();
         }
     });
