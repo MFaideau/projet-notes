@@ -12,7 +12,7 @@ $user = unserialize($_SESSION['user']);
     <title>Menu</title>
     <link href="vues/assets/bootstrap/bootstrap.css" rel="stylesheet"/>
     <link href="vues/assets/style.css" rel="stylesheet"/>
-    <link href="vues/assets/page_principale.css" rel="stylesheet"/>
+    <link href="vues/assets/Page_principale.css" rel="stylesheet"/>
     <script src="vues/assets/js/jquery-1.12.4.min.js"></script>
     <script src="vues/assets/js/bootstrap.js"></script>
     <script src="vues/assets/js/chart.js"></script>

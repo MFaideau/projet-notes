@@ -43,6 +43,10 @@
     text-decoration: none;
 }
 
+.visualisation a:hover {
+    text-decoration: none;
+}
+
 .icone, .identite a {
     color: #b62224;
 }

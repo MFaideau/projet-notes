@@ -66,9 +66,7 @@ function DeleteCursus($id)
     }
     return;
 }
-DeleteCursus(1);
-DeleteCursus(2);
-DeleteCursus(3);
+
 function ModifyCursus($id,$newName,$annee)
 {
     global $bdd;

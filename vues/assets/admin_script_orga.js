@@ -3,6 +3,9 @@ var idCursus, idCompetence, idCours, idEval, idTypeEval, idEpreuve;
 
 $(document).on("click", "button[id^=orga_cursus_]", function (e) {
     idCursus = this.id.replace("orga_cursus_", "");
+    // On place le nom du cursus choisit dans le formulaire de modification au cas où
+    $("#modifyCursus input[id=nomCursus]").val($(this).text());
+
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',

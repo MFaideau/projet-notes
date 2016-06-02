@@ -29,7 +29,7 @@
     </div>
 </div>
 
-<!-- Ajout d'une compétence !-->
+<!-- Modification d'une compétence !-->
 <div class="modal fade" id="modifyCompetence" tabindex="-1" role="dialog" aria-labelledby="modifyCompetence">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
