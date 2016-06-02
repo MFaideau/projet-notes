@@ -81,7 +81,6 @@
     </div>
 </div>
 
-
 <!-- Fenêtres pour afficher les pop-ups des histogrammes !-->
 
 <div class="modal fade" id="showHisto1" tabindex="-1" role="dialog" aria-labelledby="showHisto">
