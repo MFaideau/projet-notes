@@ -71,3 +71,7 @@
 .button_show_histo {
     cursor: pointer;
 }
+
+.identite {
+    padding-left: 0;
+}

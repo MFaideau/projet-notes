@@ -15,13 +15,11 @@
         </div>
         <div class="panel-body">
             <div class="btn-group" role="group" aria-label="...">
-                <div class="btn-group" role="group">
                     <?php
                     foreach ($eval as $current_eval) { ?>
                         <button id="orga_eval_<?php echo $current_eval->GetId(); ?>" type="button"
                                 class="btn btn-default"><?php echo html_entity_decode($current_eval->GetNom()); ?></button>
                     <?php } ?>
-                </div>
             </div>
         </div>
     </div>

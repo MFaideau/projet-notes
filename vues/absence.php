@@ -9,17 +9,17 @@
                 <th>Absences</th>
                 <th>Semaine</th>
                 <th>Mois</th>
-                <th>Smestre en cours</th>
+                <th>Semestre en cours</th>
                 <th>Total</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <th scope="row"></th>
-                <td>13</td>
-                <td>16</td>
-                <td>19</td>
-                <td>25</td>
+                <td>13H</td>
+                <td>16H</td>
+                <td>19H</td>
+                <td>25H</td>
             </tr>
             <tr>
             <tr>

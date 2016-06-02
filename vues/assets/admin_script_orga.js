@@ -54,7 +54,6 @@ $(document).on("click", "button[id^=orga_cours]", function (e) {
         success: function (result) {
             $(".panel_eval").remove();
             $(".panel_type_eval").remove();
-            $(".panel_eval").remove();
             $(".panel_epreuve").remove();
             $(".panel_upload_epreuve").remove();
             $(result).insertAfter($(".panel_cours"));
@@ -193,7 +192,14 @@ $(function () {
             data: 'idCursus=' + idCursus + '&nomCompetence=' + $("#nomCompetence").val(),
             success: function (data) {
                 $("#addCompetence").modal("hide");
-                $(data).insertAfter($("button[id^=orga_competence_]").last());
+                var btn_orga_competence = $("button[id^=orga_competence_]");
+                if (btn_orga_competence.length == 0) {
+                    $(data).insertAfter($(".panel_competences .panel-body .btn-group"));
+                }
+                // Sinon, on le met dans le contenu du panel (sans btn-group, il se rajoutera tout seul après refresh).
+                else {
+                    $(data).insertAfter((btn_orga_competence).last());
+                }
             }
         });
     });
@@ -208,8 +214,17 @@ $(function () {
             data: 'idCompetence=' + idCompetence + '&nomCours=' + $("#nomCours").val() + '&nbCreditsCours=' + $("#nbCreditsCours").val() + '&semestreCours=' + $("select[id=semestreCours]").find(":selected").val(),
             success: function (data) {
                 $("#addCours").modal("hide");
-                // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
-                $(data).insertAfter($("button[id^=orga_cours_]").last());
+                // S'il y a déjà au moins 1 bouton, il le met à la fin.
+                var btn_orga_cours = $("button[id^=orga_cours_]");
+                if (btn_orga_cours.length == 0) {
+                    alert("test1");
+                    $(data).insertAfter($(".panel_cours .panel-body .btn-group"));
+                }
+                // Sinon, on le met dans le contenu du panel (sans btn-group, il se rajoutera tout seul après refresh).
+                else {
+                    alert("test");
+                    $(data).insertAfter((btn_orga_cours).last());
+                }
             }
         });
     });
@@ -224,8 +239,14 @@ $(function () {
             data: 'idCours=' + idCours + '&nomEval=' + $("#nomEval").val() + '&coefEval=' + $("#coefEval").val(),
             success: function (data) {
                 $("#addEval").modal("hide");
-                // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
-                $(data).insertAfter($("button[id^=orga_eval_]").last());
+                var btn_orga_eval = $("button[id^=orga_eval_]");
+                if (btn_orga_eval.length == 0) {
+                    $(data).insertAfter($(".panel_eval .panel-body .btn-group"));
+                }
+                // Sinon, on le met dans le contenu du panel (sans btn-group, il se rajoutera tout seul après refresh).
+                else {
+                    $(data).insertAfter((btn_orga_eval).last());
+                }
             }
         });
     });
@@ -240,8 +261,14 @@ $(function () {
             data: 'idEval=' + idEval + '&nomTypeEval=' + $("#nomTypeEval").val() + '&coefTypeEval=' + $("#coefTypeEval").val(),
             success: function (data) {
                 $("#addTypeEval").modal("hide");
-                // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
-                $(data).insertAfter($("button[id^=orga_type_eval_]").last());
+                var btn_orga_type = $("button[id^=orga_type_eval_]");
+                if (btn_orga_type.length == 0) {
+                    $(data).insertAfter($(".panel_type_eval .panel-body .btn-group"));
+                }
+                // Sinon, on le met dans le contenu du panel (sans btn-group, il se rajoutera tout seul après refresh).
+                else {
+                    $(data).insertAfter((btn_orga_type).last());
+                }
             }
         });
     });
@@ -256,8 +283,14 @@ $(function () {
             data: 'idTypeEval=' + idTypeEval + '&nomEpreuve=' + $("#nomEpreuve").val() + '&coefEpreuve=' + $("#coefEpreuve").val(),
             success: function (data) {
                 $("#addEpreuve").modal("hide");
-                // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
-                $(data).insertAfter($("button[id^=orga_epreuve_]").last());
+                var btn_orga_epreuve = $("button[id^=orga_epreuve_]");
+                if (btn_orga_epreuve.length == 0) {
+                    $(data).insertAfter($(".panel_epreuve .panel-body .btn-group"));
+                }
+                // Sinon, on le met dans le contenu du panel (sans btn-group, il se rajoutera tout seul après refresh).
+                else {
+                    $(data).insertAfter((btn_orga_epreuve).last());
+                }
             }
         });
     });
