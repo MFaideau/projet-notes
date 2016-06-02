@@ -20,7 +20,7 @@ function showHisto($moyenne, $note_etudiant, $ecart_type) {
     return array([$taille_couleur,$taille_rect_pourcent,$position_moyenne,$position_e_t_low, $position_e_t_high]);
 }
 
-function getTabNotes($tab_notes) {
+function getStat($tab_notes) {
     $effectif = count($tab_notes);
     $somme = 0;
     $somme_carres = 0;
@@ -38,4 +38,4 @@ function getTabNotes($tab_notes) {
     $ecart_type = sqrt($variance);
     return array([$moyenne,$ecart_type,$note_max]);
 }
-    
+
