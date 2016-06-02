@@ -53,9 +53,22 @@ function DeleteCursus($id)
     $req->execute(array(
         'idCursus' => $id,
     ));
+    $req = $bdd->prepare('SELECT ID_Competence FROM competence WHERE ID_Cursus = :idCursus');
+    $req->bindParam(':idCursus', $id, PDO::PARAM_INT);
+    $req->execute();
+    $idCompetences = $req->fetchAll();
+    if (!empty($idCompetences))
+    {
+        foreach($idCompetences as $idCompetence)
+        {
+            DeleteCompetence($idCompetence[0]);
+        }
+    }
     return;
 }
-
+DeleteCursus(1);
+DeleteCursus(2);
+DeleteCursus(3);
 function ModifyCursus($id,$newName,$annee)
 {
     global $bdd;

@@ -34,14 +34,21 @@ function InsertEvaluation($nom,$coef,$idCours)
     $lastEvalID= $req->fetch();
     return $lastEvalID[0];
 }
-
-function DeleteEval($id)
-{
+function DeleteEval($id){
     global $bdd;
     $req = $bdd->prepare('DELETE FROM evaluation WHERE ID_Eval = :idEval');
     $req->execute(array(
         'idEval' => $id,
     ));
+    $req = $bdd->prepare('SELECT ID_Type FROM type_eval WHERE ID_Eval = :idEval');
+    $req->bindParam(':idEval', $id, PDO::PARAM_INT);
+    $req->execute();
+    $idTypes = $req->fetchAll();
+    if (!empty($idTypes)) {
+        foreach ($idTypes as $idType) {
+            DeleteTypeEval($idType[0]);
+        }
+    }
     return;
 }
 
