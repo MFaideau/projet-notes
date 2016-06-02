@@ -7,21 +7,6 @@
  */
 include_once (__DIR__ . '../../../modeles/etudiantnote/etudiantnote.class.php');
 
-function GetNotesFromEpreuve($idEpreuve)
-{    //Pas sûr que ça soit utile après tout...
-    global $bdd;
-    $req = $bdd->prepare('SELECT Note_Finale FROM etudiantnote WHERE etudiantnote.ID_Epreuve = :idEpreuve');
-    $req->bindParam(':idEpreuve', $idEpreuve, PDO::PARAM_INT);
-    $req->execute();
-    $notesDb = $req->fetchAll();
-    $notes =array();
-    foreach ($notesDb as $note)
-    {
-        $notes[] = $note;
-    }
-    return $notes;
-}
-
 function GetEtudiantNoteFromEtudiantEpreuve($idEtudiant,$idEpreuve)
 { // RETOURNE UN OBJET ETUDIANTNOTE
     global $bdd;

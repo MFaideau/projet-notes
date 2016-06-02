@@ -16,6 +16,7 @@ class epreuve
     private $date;
     private $evaluateur;
     private $idSubstition;
+    private $idSecondeSession;
 
     function Epreuve($epreuveLine)
     {
@@ -25,8 +26,18 @@ class epreuve
         $this->date=$epreuveLine["Date_Epreuve"];
         $this->evaluateur=$epreuveLine["Evaluateur_Epreuve"];
         $this->idSubstition=$epreuveLine["ID_Epreuve_Substitution"];
+        $this->idSecondeSession=0;
+        //On trouve l'ID de la seconde session
+        global $bdd;
+        $req = $bdd->prepare('SELECT ID_Epreuve_Session2 FROM epreuvesession WHERE ID_Epreuve_Session1=:s1');
+        $req->bindParam(':s1', $this->id, PDO::PARAM_INT);
+        $req->execute();
+        $idSecondeSession=$req->fetchAll();
+        if (!empty($idSecondeSession))
+        {
+            $this->idSecondeSession=$idSecondeSession[0][0];
+        }
     }
-  
     public function GetId()
     {
         return $this->id;
@@ -50,5 +61,9 @@ class epreuve
     public function GetIdSubstition()
     {
         return $this->idSubstition;
+    }
+    public function GetIdSecondeSession()
+    {
+        return $this->idSecondeSession;
     }
 }
