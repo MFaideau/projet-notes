@@ -21,5 +21,6 @@ include_once ('./vues/admin/organisation_etudes.php');
 // On importe les blocs "modals" pour gérer les études
 include_once ('./vues/admin/blocs_insertion.php');
 include_once ('./vues/admin/blocs_modification.php');
+include_once ('./vues/admin/blocs_suppression.php');
 
 include_once ('./vues/footer.php');

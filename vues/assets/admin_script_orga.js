@@ -120,7 +120,7 @@ $(function () {
 });
 
 
-// TODO : Gérer le cas où aucun bouton n'a été coché
+/*// TODO : Gérer le cas où aucun bouton n'a été coché
 $(document).on("click", "a[id^=removeCursus]", function (e) {
     e.preventDefault();
     $.ajax({
@@ -131,7 +131,7 @@ $(document).on("click", "a[id^=removeCursus]", function (e) {
             $("button[id^=orga_cursus_" + idCursus + "]").remove();
         }
     });
-});
+});*/
 
 $(document).on("click", "a[id^=removeCompetence]", function (e) {
     e.preventDefault();
@@ -258,6 +258,21 @@ $(function () {
                 $("#addEpreuve").modal("hide");
                 // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
                 $(data).insertAfter($("button[id^=orga_epreuve_]").last());
+            }
+        });
+    });
+});
+
+$(function () {
+    $('#verifDeleteCursus').on('submit', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: './ajax/admin_ajax_orga.php', //this is the submit URL
+            type: 'POST',
+            data: "action=delete&idCursus=" + idCursus,
+            success: function (result) {
+                $("#verifDeleteCursus").modal("hide");
+                $("button[id^=orga_cursus_" + idCursus + "]").remove();
             }
         });
     });
