@@ -63,3 +63,7 @@
     transition: background-color 0.15s ease-in-out;
     width: auto;
 }
+
+.button_show_histo {
+    cursor: pointer;
+}

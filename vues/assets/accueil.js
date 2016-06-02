@@ -35,11 +35,18 @@ $('.histo_commun').click(function() {
         datatype: 'html',
         data: 'button=batons',
         success: function (result) {
-            $(".donnees_histo").remove();
-            $(".donnees_tableaux").remove();
-            $(".donnees_batons").remove();
-            $(result).insertAfter($(".visualisation").parent());
-            loadBar();
+            $.ajax({
+                url: './vues/ajax/modules/conversion_js.php',
+                type: 'GET',
+                datatype: 'json',
+                success: function (resultDataHisto) {
+                    $(".donnees_tableaux").remove();
+                    $(".donnees_batons").remove();
+                    $(".donnees_histo").remove();
+                    $(result).insertAfter($(".visualisation").parent());
+                    loadBar(resultDataHisto);
+                }
+            });
         }
-    })
-})
+    });
+});
