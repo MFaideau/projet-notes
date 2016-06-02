@@ -1,15 +1,14 @@
-<div class="panel_competences">
+<div class="panel_eval">
     <div class="panel panel-default saisie_notes">
-        <div class="panel-heading">
-            Choix de la Compétence
+        <div class="panel-heading">Choix de l'Evaluation
             <div class="add_button_etudes">
-                <a id="removeCompetence">
+                <a id="removeEval">
                     <i class="glyphicon glyphicon-remove-sign"></i>
                 </a>
-                <a data-toggle="modal" data-target="#modifyCompetence">
+                <a data-toggle="modal" data-target="#modifyEval">
                     <i class="glyphicon glyphicon-edit"></i>
                 </a>
-                <a data-toggle="modal" data-target="#addCompetence">
+                <a data-toggle="modal" data-target="#addEval">
                     <i class="glyphicon glyphicon-plus"></i>
                 </a>
             </div>
@@ -18,9 +17,9 @@
             <div class="btn-group" role="group" aria-label="...">
                 <div class="btn-group" role="group">
                     <?php
-                    foreach ($cursus->GetCompetenceList() as $competence) { ?>
-                        <button id="orga_competence_<?php echo $competence->GetId(); ?>" type="button"
-                                class="btn btn-default btn-competences" role="button"><?php echo html_entity_decode($competence->GetNom()); ?></button>
+                    foreach ($eval as $current_eval) { ?>
+                        <button id="orga_eval_<?php echo $current_eval->GetId(); ?>" type="button"
+                                class="btn btn-default"><?php echo html_entity_decode($current_eval->GetNom()); ?></button>
                     <?php } ?>
                 </div>
             </div>

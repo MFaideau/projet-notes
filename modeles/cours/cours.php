@@ -26,7 +26,7 @@ function GetEvalListFromCours($idCours)
     $list =array();
     global $bdd;
     $req = $bdd->prepare('SELECT evaluation.ID_Eval,evaluation.Nom_Eval,evaluation.Coef_Eval FROM evaluation
-WHERE evaluation.ID_Eval = :idCours');
+WHERE evaluation.ID_Cours = :idCours');
     $req->bindParam(':idCours', $idCours, PDO::PARAM_INT);
     $req->execute();
     $evalList=$req->fetchAll();

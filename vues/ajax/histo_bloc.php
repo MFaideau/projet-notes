@@ -20,8 +20,8 @@
                     $moyenne = rand(0, 20);
                     $note_etudiant = rand(0, 20);
                     $ecart_type = rand(1, 8);
-                    include_once('modules/module_histo.php');
-                    echo showHisto($moyenne, $note_etudiant, $ecart_type);
+                    $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
+                    include('modules/module_histo.php');
                     ?>
                 </td>
                 <td>16.5</td>
@@ -34,8 +34,8 @@
                     $moyenne = rand(0, 20);
                     $note_etudiant = rand(0, 20);
                     $ecart_type = rand(1, 8);
-                    include_once('modules/module_histo.php');
-                    echo showHisto($moyenne, $note_etudiant, $ecart_type);
+                    $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
+                    include('modules/module_histo.php');
                     ?>
                 </td>
                 <td>15.2</td>
@@ -48,8 +48,8 @@
                     $moyenne = rand(0, 20);
                     $note_etudiant = rand(0, 20);
                     $ecart_type = rand(1, 8);
-                    include_once('modules/module_histo.php');
-                    echo showHisto($moyenne, $note_etudiant, $ecart_type);
+                    $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
+                    include('modules/module_histo.php');
                     ?>
                 </td>
                 <td>17.1</td>
@@ -62,8 +62,8 @@
                     $moyenne = rand(0, 20);
                     $note_etudiant = rand(0, 20);
                     $ecart_type = rand(1, 8);
-                    include_once('modules/module_histo.php');
-                    echo showHisto($moyenne, $note_etudiant, $ecart_type);
+                    $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
+                    include('modules/module_histo.php');
                     ?>
                 </td>
                 <td>16</td>
@@ -78,8 +78,8 @@
                     $moyenne = rand(0, 20);
                     $note_etudiant = rand(0, 20);
                     $ecart_type = rand(1, 8);
-                    include_once('modules/module_histo.php');
-                    echo showHisto($moyenne, $note_etudiant, $ecart_type);
+                    $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
+                    include('modules/module_histo.php');
                     ?>
                 </th>
                 <th>16.2</th>

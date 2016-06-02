@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 31 Mai 2016 à 11:22
+-- Généré le :  Jeu 02 Juin 2016 à 09:30
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -211,8 +211,8 @@ INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `Nom_Epreuve`, `Coef_Epreuve`, `
 DROP TABLE IF EXISTS `epreuvesession`;
 CREATE TABLE IF NOT EXISTS `epreuvesession` (
   `ID_Epreuve_Session1` int(5) NOT NULL,
-  `ID_Epreuve_Session_2` int(5) NOT NULL,
-  PRIMARY KEY (`ID_Epreuve_Session1`,`ID_Epreuve_Session_2`)
+  `ID_Epreuve_Session2` int(5) NOT NULL,
+  PRIMARY KEY (`ID_Epreuve_Session1`,`ID_Epreuve_Session2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
