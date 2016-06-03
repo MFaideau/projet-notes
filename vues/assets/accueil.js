@@ -9,6 +9,7 @@ $('.tableaux_logo').click(function() {
             $(".donnees_histo").remove();
             $(".donnees_tableaux").remove();
             $(".absences").remove();
+            $(".panel_choix_eleves").remove();
             $(result).insertAfter($(".visualisation").parent());
         }
     });
@@ -25,6 +26,7 @@ $('.histo_logo').click(function() {
             $(".donnees_batons").remove();
             $(".donnees_histo").remove();
             $(".absences").remove();
+            $(".panel_choix_eleves").remove();
             $(result).insertAfter($(".visualisation").parent());
         }
     });
@@ -46,6 +48,7 @@ $('.histo_commun').click(function() {
                     $(".donnees_batons").remove();
                     $(".donnees_histo").remove();
                     $(".absences").remove();
+                    $(".panel_choix_eleves").remove();
                     $(result).insertAfter($(".visualisation").parent());
                     loadBar(resultDataHisto);
                 }
@@ -64,6 +67,7 @@ $('.abs').click(function() {
             $(".donnees_batons").remove();
             $(".donnees_histo").remove();
             $(".absences").remove();
+            $(".panel_choix_eleves").remove();
             $(result).insertAfter($(".visualisation").parent());
         }
     });
