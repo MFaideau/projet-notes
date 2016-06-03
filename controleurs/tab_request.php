@@ -24,18 +24,22 @@ function getStat($tab_notes) {
     $effectif = count($tab_notes);
     $somme = 0;
     $somme_carres = 0;
-    $note_max = 0;
+    $note_max = $tab_notes[0];
+    $note_min = $tab_notes[0];
     for ($i=0;$i<$effectif;$i++) {
         $somme = $somme + $tab_notes[$i];
         $somme_carres = $somme_carres + pow($tab_notes[$i],2);
         if ($note_max < $tab_notes[$i]) {
             $note_max = $tab_notes[$i];
         }
+        if ($note_min > $tab_notes[$i]) {
+            $note_min = $tab_notes[$i];
+        }
     }
     $moyenne = $somme/$effectif;
     $moyenne_carres = $somme_carres/$effectif;
     $variance = $moyenne_carres - pow($moyenne,2);
     $ecart_type = sqrt($variance);
-    return array($moyenne,$ecart_type,$note_max);
+    return array($moyenne,$ecart_type,$note_min,$note_max);
 }
 

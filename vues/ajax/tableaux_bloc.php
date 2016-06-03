@@ -15,13 +15,13 @@
             <tbody>
             <tr>
                 <th scope="row">Informatique</th>
-                <td>12.2</td>
+                <td>13</td>
                 <td>15</td>
                 <td>A</td>
             </tr>
             <tr>
                 <th scope="row">Electronique</th>
-                <td>13.4</td>
+                <td>13</td>
                 <td>15</td>
                 <td>A</td>
             </tr>
@@ -33,7 +33,7 @@
             </tr>
             <tr>
                 <th scope="row">Signaux</th>
-                <td>15</td>
+                <td>13</td>
                 <td>15</td>
                 <td>A</td>
             </tr>
@@ -41,7 +41,7 @@
             <tfoot>
             <tr>
                 <th>Total</th>
-                <th>XX</th>
+                <th>13</th>
                 <th>60</th>
                 <th>A</th>
             </tr>
