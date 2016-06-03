@@ -75,3 +75,7 @@
 .liste_eleves th, .liste_eleves td {
     text-align: center;
 }
+
+.row {
+    margin-right: 0;
+}
