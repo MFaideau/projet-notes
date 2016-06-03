@@ -1,6 +1,7 @@
 <?php
 include_once (__DIR__ . '../../tab_request.php');
 include (__DIR__ . '../../../controleurs/controle_histo/tab_list.php');
+include_once (__DIR__ . '../../../controleurs/controle_histo/tab_moyennes.php');
 
 if(isset($_POST['button'])) {
     if($_POST['button'] == "tableaux") {

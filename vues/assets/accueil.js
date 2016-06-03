@@ -38,7 +38,7 @@ $('.histo_commun').click(function() {
         data: 'button=batons',
         success: function (result) {
             $.ajax({
-                url: './controleurs/controle_histo/conversion_js.php',
+                url: './conversion_js.php',
                 type: 'GET',
                 datatype: 'json',
                 success: function (resultDataHisto) {

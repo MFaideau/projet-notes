@@ -96,7 +96,6 @@
                     <canvas id="myChart" width="100%" height="40%"></canvas>
                 </div>
             </div>
-            <?php include_once("modules/module_histo.php"); ?>
             <div class="modal-footer">
             </div>
         </div>

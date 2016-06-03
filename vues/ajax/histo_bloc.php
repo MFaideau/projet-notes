@@ -17,56 +17,56 @@
                 <th scope="row">Informatique</th>
                 <td width="50%">
                     <?php
-                    $moyenne = rand(0, 20);
                     $note_etudiant = rand(0, 20);
-                    $ecart_type = rand(1, 8);
+                    $moyenne = $tab_histo_info[0];
+                    $ecart_type = $tab_histo_info[1];
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
                     include('modules/module_histo.php');
                     ?>
                 </td>
-                <td>16.5</td>
+                <td><?php echo $tab_histo_info[2]; ?></td>
                 <td>15</td>
             </tr>
             <tr>
                 <th scope="row">Electronique</th>
                 <td width="50%">
                     <?php
-                    $moyenne = rand(0, 20);
                     $note_etudiant = rand(0, 20);
-                    $ecart_type = rand(1, 8);
+                    $moyenne = $tab_histo_elec[0];
+                    $ecart_type = $tab_histo_elec[1];
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
                     include('modules/module_histo.php');
                     ?>
                 </td>
-                <td>15.2</td>
+                <td><?php echo $tab_histo_elec[2]; ?></td>
                 <td>15.2</td>
             </tr>
             <tr>
                 <th scope="row">Management</th>
                 <td width="50%" class="histo_parent">
                     <?php
-                    $moyenne = rand(0, 20);
                     $note_etudiant = rand(0, 20);
-                    $ecart_type = rand(1, 8);
+                    $moyenne = $tab_histo_manage[0];
+                    $ecart_type = $tab_histo_manage[1];
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
                     include('modules/module_histo.php');
                     ?>
                 </td>
-                <td>17.1</td>
+                <td><?php echo $tab_histo_manage[2]; ?></td>
                 <td>13.3</td>
             </tr>
             <tr>
                 <th scope="row">Signaux</th>
                 <td width="50%">
                     <?php
-                    $moyenne = rand(0, 20);
                     $note_etudiant = rand(0, 20);
-                    $ecart_type = rand(1, 8);
+                    $moyenne = $tab_histo_signaux[0];
+                    $ecart_type = $tab_histo_signaux[1];
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
                     include('modules/module_histo.php');
                     ?>
                 </td>
-                <td>16</td>
+                <td><?php echo $tab_histo_signaux[2]; ?></td>
                 <td>14.8</td>
             </tr>
             </tbody>
@@ -75,14 +75,14 @@
                 <th>Total</th>
                 <th width="50%">
                     <?php
-                    $moyenne = rand(0, 20);
                     $note_etudiant = rand(0, 20);
-                    $ecart_type = rand(1, 8);
+                    $moyenne = $tab_histo_total[0];
+                    $ecart_type = $tab_histo_total[1];
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
                     include('modules/module_histo.php');
                     ?>
                 </th>
-                <th>16.2</th>
+                <th><?php echo $tab_histo_total[2]; ?></th>
                 <th>13.5</th>
             </tr>
             </tfoot>

@@ -36,6 +36,6 @@ function getStat($tab_notes) {
     $moyenne_carres = $somme_carres/$effectif;
     $variance = $moyenne_carres - pow($moyenne,2);
     $ecart_type = sqrt($variance);
-    return array([$moyenne,$ecart_type,$note_max]);
+    return array($moyenne,$ecart_type,$note_max);
 }
 
