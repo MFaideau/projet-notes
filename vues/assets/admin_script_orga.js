@@ -282,8 +282,23 @@ $(function () {
             success: function () {
                 $("#verifDeleteEval").modal("hide");
                 $("button[id^=orga_eval_" + idEval + "]").remove();
-                $(".panel_eval").remove();
                 $(".panel_type_eval").remove();
+                $(".panel_epreuve").remove();
+            }
+        });
+    });
+});
+
+$(function () {
+    $('#verifDeleteTypeEval').on('submit', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: './ajax/admin_ajax_orga.php',
+            type: 'POST',
+            data: "action=delete&idTypeEval=" + idTypeEval,
+            success: function () {
+                $("#verifDeleteTypeEval").modal("hide");
+                $("button[id^=orga_type_eval_" + idTypeEval + "]").remove();
                 $(".panel_epreuve").remove();
             }
         });
