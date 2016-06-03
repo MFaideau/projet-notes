@@ -1,6 +1,6 @@
 <?php
 include_once (__DIR__ . '../../tab_request.php');
-include (__DIR__ . '../../../vues/ajax/modules/tab_list.php');
+include (__DIR__ . '../../../controleurs/controle_histo/tab_list.php');
 
 if(isset($_POST['button'])) {
     if($_POST['button'] == "tableaux") {
