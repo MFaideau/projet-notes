@@ -29,7 +29,6 @@
     </div>
 </div>
 
-
 <!-- Fenêtre de confirmation pour la suppression des compétences !-->
 <div class="modal fade" id="verifDeleteCompetences" tabindex="-1" role="dialog" aria-labelledby="verifDeleteCompetences">
     <div class="modal-dialog" role="document">
