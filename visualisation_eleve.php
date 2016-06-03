@@ -10,6 +10,6 @@ if(!isset($_SESSION['user'])) {
     die("Pas connecté");
 }
 
-include_once (__DIR__ . '../controleurs/visualisation_eleve.php');
+include_once (__DIR__ . '/controleurs/visualisation_eleve.php');
 
 ?>
