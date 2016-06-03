@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ISEN
- * Date: 26/05/2016
- * Time: 14:06
- */
+
 include_once('modeles/sqlConnection.php');
 include_once ('./modeles/authentification/utilisateur.class.php');
 
