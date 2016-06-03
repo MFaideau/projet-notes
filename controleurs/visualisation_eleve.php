@@ -10,10 +10,12 @@ include_once (__DIR__ . '../../vues/menu.php');
 
 if(isset($_GET['id'])) {
     $mail = $_GET['id'];
-
-    // Insertion du menu uniquement lorsque l'on est en mode "étudiant"
-	include_once (__DIR__ . '../../vues/menu_rapide.php');
-    include_once(__DIR__ . '../../controleurs/releve_onglet.php');
+    $user_vue = GetUser($mail);
+    if(isset($user_vue)) {
+	    // Insertion du menu uniquement lorsque l'on est en mode "étudiant"
+		include_once (__DIR__ . '../../vues/menu_rapide.php');
+   		include_once(__DIR__ . '../../controleurs/releve_onglet.php');
+	}
 }
 else {
     include_once(__DIR__ . '../../vues/visualisation_eleve.php');
