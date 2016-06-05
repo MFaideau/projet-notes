@@ -15,3 +15,10 @@ $(document).on("click", "button[id^=eleves_cursus_]", function (e) {
         }
     });
 });
+
+$(function () {
+    $('#ajoutEtudiant').on("click", function (e) {
+        e.preventDefault();
+        alert("Formulaire d'ajout");
+    });
+});

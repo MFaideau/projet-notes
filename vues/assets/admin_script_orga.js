@@ -4,13 +4,12 @@ var idCursus, idCompetence, idCours, idEval, idTypeEval, idEpreuve;
 $(document).on("click", "button[id^=orga_cursus_]", function (e) {
     idCursus = this.id.replace("orga_cursus_", "");
     // On place le nom du cursus choisit dans le formulaire de modification au cas où
-    $("#modifyCursus input[id=nomCursus]").val($(this).text());
 
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
         datatype: 'html',
-        data: 'idCursus=' + this.id.replace("orga_cursus_", ""),
+        data: 'idCursus=' + idCursus,
         success: function (result) {
             $(".panel_competences").remove();
             $(".panel_cours").remove();
@@ -19,6 +18,20 @@ $(document).on("click", "button[id^=orga_cursus_]", function (e) {
             $(".panel_epreuve").remove();
             $(".panel_upload_epreuve").remove();
             $(".panel_cursus").append(result);
+
+            // On récupère aussi des informations pour le bloc de modifications
+            $.ajax({
+                url: './ajax/admin_ajax_orga.php',
+                type: 'POST',
+                datatype: 'json',
+                data: 'idCursus=' + idCursus +"&action=infos",
+                success: function(result2) {
+                    var current_cursus = jQuery.parseJSON(result2);
+                    $("#modifyCursus input[id=idCursus]").val(idCursus);
+                    $("#modifyCursus input[id=nomCursus]").val(current_cursus.nom);
+                    $("#modifyCursus input[id=anneeCursus]").val(current_cursus.annee);
+                }
+            });
         },
         error: function (result) {
             alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
@@ -28,11 +41,12 @@ $(document).on("click", "button[id^=orga_cursus_]", function (e) {
 
 $(document).on("click", "button[id^=orga_competence_]", function (e) {
     idCompetence = this.id.replace("orga_competence_", "");
+    nomCompetence = this.innerText;
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
         datatype: 'html',
-        data: 'idCompetence=' + this.id.replace("orga_competence_", ""),
+        data: 'idCompetence=' + idCompetence,
         success: function (result) {
             $(".panel_cours").remove();
             $(".panel_type_eval").remove();
@@ -40,6 +54,10 @@ $(document).on("click", "button[id^=orga_competence_]", function (e) {
             $(".panel_eval").remove();
             $(".panel_upload_epreuve").remove();
             $(result).insertAfter(".panel_competences");
+
+            // On récupère aussi des informations pour le bloc de modifications
+            $("#modifyCompetence input[id=id_competence_modif]").val(idCompetence);
+            $("#modifyCompetence input[id=nomCompetence]").val(nomCompetence);
         },
         error: function (result) {
             alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
@@ -61,6 +79,20 @@ $(document).on("click", "button[id^=orga_cours]", function (e) {
             $(".panel_epreuve").remove();
             $(".panel_upload_epreuve").remove();
             $(result).insertAfter($(".panel_cours"));
+
+            // On récupère aussi des informations pour le bloc de modifications
+            $.ajax({
+                url: './ajax/admin_ajax_orga.php',
+                type: 'POST',
+                datatype: 'json',
+                data: 'idCours=' + idCours +"&action=infos",
+                success: function(result2) {
+                    var current_cours = jQuery.parseJSON(result2);
+                    $("#modifyCours input[id=nomCours]").val(current_cours.nom);
+                    $("#modifyCours input[id=nbCreditsCours]").val(current_cours.credits);
+                    $("#modifyCours #semestreCours option[value="+current_cours.semestre + "]").prop('selected',true);
+                }
+            });
         },
     });
 });

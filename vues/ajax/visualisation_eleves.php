@@ -15,14 +15,14 @@
                 <td><a data-name="nom" data-value="<?php echo $eleve->GetNom() . $eleve->GetPrenom(); ?>"
                        href="visualisation_eleve.php?id=<?php echo $eleve->GetMail(); ?>">
                         <?php echo $eleve->GetNom() . ' ' . $eleve->GetPrenom(); ?></a></td>
-                <td>Mark</td>
+                <td><?php echo rand(0,20); ?></td>
             </tr>
         <?php } ?>
         </tbody>
         <tfoot>
             <tr>
                 <td class="ajoutEtudiant" colspan="3"><span class="glyphicon glyphicon-plus-sign icone"></span>
-                <a href="#ajoutEtudiant">Ajouter un étudiant</a></td>
+                <a id="ajoutEtudiant">Ajouter un étudiant</a></td>
             </tr>
         </tfoot>
     </table>
