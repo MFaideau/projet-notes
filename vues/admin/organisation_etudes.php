@@ -3,10 +3,10 @@
         <div class="panel-heading">
             Choix du Cursus
             <div class="add_button_etudes">
-                <a id="removeCursus">
+                <a data-toggle="modal" data-target="#verifDeleteCursus">
                     <i class="glyphicon glyphicon-remove-sign"></i>
                 </a>
-                <a data-toggle="modal" data-target="#modifyCursusCursus">
+                <a data-toggle="modal" data-target="#modifyCursus">
                     <i class="glyphicon glyphicon-edit"></i>
                 </a>
                 <a data-toggle="modal" data-target="#addCursus">

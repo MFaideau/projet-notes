@@ -2,7 +2,7 @@
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix du Type d'Evaluation
             <div class="add_button_etudes">
-                <a id="removeTypeEval">
+                <a data-toggle="modal" data-target="#verifDeleteTypeEval">
                     <i class="glyphicon glyphicon-remove-sign"></i>
                 </a>
                 <a data-toggle="modal" data-target="#modifyTypeEval">

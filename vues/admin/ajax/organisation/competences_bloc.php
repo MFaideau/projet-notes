@@ -3,7 +3,7 @@
         <div class="panel-heading">
             Choix de la Compétence
             <div class="add_button_etudes">
-                <a id="removeCompetence">
+                <a data-toggle="modal" data-target="#verifDeleteCompetences">
                     <i class="glyphicon glyphicon-remove-sign"></i>
                 </a>
                 <a data-toggle="modal" data-target="#modifyCompetence">

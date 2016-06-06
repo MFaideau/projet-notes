@@ -17,6 +17,19 @@ if (!isset($_POST['action']) && isset($_POST['idCursus']) && empty($_POST['nomCo
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/competences_bloc.php';
 }
 
+// Pour le bloc des modifications des cursus
+if (isset($_POST['action']) && isset($_POST['idCursus'])) {
+    if($_POST['action'] == "infos") {
+        $idCursus = $_POST['idCursus'];
+        $cursus = GetCursus(GetCursusList(), $idCursus);
+        if (!isset($cursus)) return;
+        else {
+            echo json_encode($cursus);
+            return;
+        }
+    }
+}
+
 // TODO : Faire une fenêtre de validation lors de la suppression du cursus
 if (isset($_POST['action']) && isset($_POST['idCursus']) && empty($_POST['nomCompetence']))
     if ($_POST['action'] == "delete")
@@ -34,7 +47,8 @@ if (isset($_POST['action']) && isset($_POST['idCompetence']) && empty($_POST['no
     if ($_POST['action'] == "delete")
         DeleteCompetence($_POST['idCompetence']);
 
-if (isset($_POST['idCours']) && empty($_POST['nomEval'])) {
+// Retourne le bloc avec la liste des évaluations
+if (isset($_POST['idCours']) && empty($_POST['action']) && empty($_POST['nomEval'])) {
     $idCours = $_POST['idCours'];
     $eval = GetEvalListFromCours($idCours);
     if (!isset($eval)) return;
@@ -42,9 +56,14 @@ if (isset($_POST['idCours']) && empty($_POST['nomEval'])) {
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/eval_bloc.php';
 }
 
-if (isset($_POST['action']) && isset($_POST['idCours']) && empty($_POST['nomTypeEval']))
+if (isset($_POST['action']) && isset($_POST['idCours']) && empty($_POST['nomTypeEval'])) {
     if ($_POST['action'] == "delete")
         DeleteCours($_POST['idCours']);
+    if ($_POST['action'] == "infos") {
+        echo json_encode(GetCoursById($_POST['idCours']));
+        return;
+    }
+}
 
 if (isset($_POST['idEval']) && empty($_POST['idCours']) && empty($_POST['nomTypeEval'])) {
     $idEval = $_POST['idEval'];

@@ -72,6 +72,14 @@
     cursor: pointer;
 }
 
-.identite {
-    padding-left: 0;
+.liste_eleves th, .liste_eleves td {
+    text-align: center;
+}
+
+.row {
+    margin-right: 0;
+}
+
+.ajoutEtudiant {
+    text-align: center;
 }

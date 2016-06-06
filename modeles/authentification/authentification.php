@@ -21,3 +21,19 @@ function GetUser($mail)
         return $newUser;
     }
 }
+
+function GetUsersFromCursus($idCursus)
+{
+    $usersList = array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT utilisateur.Mail,Nom,Prenom,Autorite FROM utilisateur,etudiant WHERE utilisateur.Mail=etudiant.Mail
+AND etudiant.ID_Cursus=:idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->execute();
+    $users = $req->fetchAll();
+    foreach($users as $user)
+    {
+        $usersList[]=new Utilisateur($user);
+    }
+    return $usersList;
+}

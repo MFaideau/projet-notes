@@ -43,6 +43,17 @@ function DeleteCompetence($id)
     $req->execute(array(
         'idCompetence' => $id,
     ));
+    $req = $bdd->prepare('SELECT ID_Cours FROM cours WHERE ID_Competence = :idCompetence');
+    $req->bindParam(':idCompetence', $id, PDO::PARAM_INT);
+    $req->execute();
+    $idCourss = $req->fetchAll();
+    if (!empty($idCourss))
+    {
+        foreach($idCourss as $idCours)
+        {
+            DeleteCours($idCours[0]);
+        }
+    }
     return;
 }
 

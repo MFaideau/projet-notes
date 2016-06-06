@@ -9,10 +9,10 @@
 include_once(__DIR__ . '../../competence/competence.class.php');
 class Cursus
 {
-    private $id;
-    private $nom;
+    public $id;
+    public $nom;
     private $competenceList;
-    private $annee;
+    public $annee;
 
     function Cursus($cursusLine,$recursive)
     {
@@ -51,7 +51,7 @@ FROM competence WHERE competence.ID_Cursus=:idCursus');
         $competenceList=$req->fetchAll();
         foreach($competenceList as $competence)
         {
-            $list[]=new Competence($competence,true);
+            $list[]=new Competence($competence,false);
         }
         return $list;
     }
