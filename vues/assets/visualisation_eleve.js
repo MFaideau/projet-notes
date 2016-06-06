@@ -22,7 +22,18 @@ $(document).on("click", "button[id^=eleves_cursus_]", function (e) {
 $(function () {
     $('#addEtudiantForm').on("submit", function (e) {
         e.preventDefault();
-        $("#ajoutEtudiant").modal("hide");
-        alert("Formulaire d'ajout");
+        $("#addEtudiant").modal("hide");
+        $.ajax({
+            url: './ajax/visualisation_eleves.php',
+            type: 'POST',
+            datatype: 'html',
+            data: 'idEtudiant='+ $("#idEtudiant").val() + '&nom=' + $("#nomEtudiant").val() + "&prenom=" + $("#prenomEtudiant").val() + "&mail=" + $("#mailEtudiant").val() + "&idCursus=" + $("#id_cursus_add_etudiant").val(),
+            success: function (result) {
+                $("button[id=eleves_cursus_" + $("#id_cursus_add_etudiant").val() + "]").trigger("click");
+            },
+            error: function (result) {
+                alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
+            }
+        });
     });
 });
