@@ -10,3 +10,4 @@ include_once (__DIR__ . '../../vues/visualisation_eleve.php');
 
 // Insertion du footer pour les scripts JS (jQuery)
 include_once (__DIR__ . '../../vues/footer.php');
+

@@ -6,6 +6,8 @@ $varTab = array(
     30 => 5, 31 => 4, 32 => 4, 33 => 3, 34 => 3, 35 => 2, 36 => 2, 37 => 1, 38 => 1, 39 => 0, 40 => 0
 );
 
+
+
 $tab_info = array();
 $tab_elec = array();
 $tab_manage = array();
