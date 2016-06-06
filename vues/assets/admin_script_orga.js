@@ -273,7 +273,7 @@ $(function () {
         $.ajax({
             url: './ajax/admin_ajax_orga.php',
             type: 'POST',
-            data: 'idTypeEval=' + idTypeEval + '&nomEpreuve=' + $("#nomEpreuve").val() + '&coefEpreuve=' + $("#coefEpreuve").val() + '&dateEpreuve=' + $("#dateEpreuve").val() + '&evaluateurEpreuve=' + $("#evaluateurEpreuve").val() + '&idSecondeSession=' + $("#addEpreuve option:selected").val()+ '&idEpreuveSubstitution=' + 0,
+            data: 'idTypeEval=' + idTypeEval + '&nomEpreuve=' + $("#nomEpreuve").val() + '&coefEpreuve=' + $("#coefEpreuve").val() + '&dateEpreuve=' + $("#dateEpreuve").val() + '&evaluateurEpreuve=' + $("#evaluateurEpreuve").val() + '&idSecondeSession=' + $("#addEpreuve select[id=selectSecondeSession] option:selected").val()+ '&idEpreuveSubstitution=' + $("#addEpreuve select[id=selectSubstitution] option:selected").val(),
             success: function (data) {
                 $("#addEpreuve").modal("hide");
                 $("button[id^=orga_type_eval_" + idTypeEval + "]").trigger("click");

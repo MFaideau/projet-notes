@@ -186,7 +186,7 @@
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session:</label>
-                        <select class="selectpicker" name="secondeSessions" id="secondeSession">
+                        <select class="selectpicker" id="selectSecondeSession" name="secondeSessions" id="secondeSession">
                             <option value="0">Aucune seconde session</option>
                         </select>
                     </fieldset>

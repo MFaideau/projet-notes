@@ -51,4 +51,12 @@ function InsertUser($nom,$prenom,$mail,$autorite)
     return;
 }
 
-InsertUser('Halloy','Guillaume' ,'guillaume.halloy@isen.fr' ,0 );
+function DeleteUser($mail)
+{
+    global $bdd;
+    $req = $bdd->prepare('DELETE FROM utilisateur WHERE Mail = :mail');
+    $req->execute(array(
+        'mail' => $mail,
+    ));
+    return;
+}
