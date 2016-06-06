@@ -94,7 +94,8 @@ if (isset($_POST['idEval']) && isset($_POST['nomTypeEval']) && isset($_POST['coe
     include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_type_eval_bloc.php';
 }
 if (isset($_POST['idEpreuve']) && isset($_POST['nomEpreuve']) && isset($_POST['coefEpreuve']) && isset($_POST['dateEpreuve']) && isset($_POST[''])) {
-    
+    $idEpreuveNew = InsertEpreuve($_POST['nomEpreuve'],$_POST['coefEpreuve'],$_POST['dateEpreuve'],$_POST['evaluateurEpreuve'],$_POST['idEpreuveSubstitution'],$_POST['idSecondeSession'],$_POST['idTypeEval']);
+    include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_type_epreuve_bloc.php';
 }
 
 ?>

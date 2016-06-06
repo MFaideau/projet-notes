@@ -163,6 +163,7 @@
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Ajout d'une Epreuve</h4>
                 </div>
+
                 <div class="modal-body">
                     <fieldset class="form-group">
                         <label for="labelNomEpreuve">Nom de l'Epreuve :</label>
@@ -174,11 +175,14 @@
                         <input type="text" class="form-control" id="coefEpreuve" placeholder="Exemple : 0.5 (pour 50%)">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelDateEpreuve">Date de l'épreuve:</label>
-                        <input type="text" class="form-control" id="dateEpreuve" placeholder="Exemple : 08/02/2016">
+                        <label for="labelDateEpreuve">Date:</label>
+                            <div class="input-group input-append date" id="datePicker">
+                                <input type="text" class="form-control" name="date" data-fv-field="date">
+                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelEvaluation">Date de l'épreuve:</label>
+                        <label for="labelEvaluation">Evaluateur:</label>
                         <input type="text" class="form-control" id="evaluateurEpreuve" placeholder="Exemple : Xavier Wallart">
                     </fieldset>
                     <fieldset class="form-group">
