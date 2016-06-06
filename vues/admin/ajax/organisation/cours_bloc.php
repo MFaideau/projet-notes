@@ -5,7 +5,7 @@
                 <a data-toggle="modal" data-target="#verifDeleteCours">
                     <i class="glyphicon glyphicon-remove-sign"></i>
                 </a>
-                <a data-toggle="modal" data-target="#modifyCompetence">
+                <a data-toggle="modal" data-target="#modifyCours">
                     <i class="glyphicon glyphicon-edit"></i>
                 </a>
                 <a data-toggle="modal" data-target="#addCours">
