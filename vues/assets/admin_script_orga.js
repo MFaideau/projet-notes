@@ -174,14 +174,7 @@ $(function () {
             data: 'idCursus=' + idCursus + '&nomCompetence=' + $("#nomCompetence").val(),
             success: function (data) {
                 $("#addCompetence").modal("hide");
-                var btn_orga_competence = $("button[id^=orga_competence_]");
-                if (btn_orga_competence.length == 0) {
-                    $(data).insertAfter($(".panel_competences .panel-body .btn-group"));
-                }
-                // Sinon, on le met dans le contenu du panel (sans btn-group, il se rajoutera tout seul après refresh).
-                else {
-                    $(data).insertAfter((btn_orga_competence).last());
-                }
+                $("button[id^=orga_cursus_"+idCursus+"]").trigger("click");
             }
         });
     });
@@ -196,17 +189,7 @@ $(function () {
             data: 'idCompetence=' + idCompetence + '&nomCours=' + $("#nomCours").val() + '&nbCreditsCours=' + $("#nbCreditsCours").val() + '&semestreCours=' + $("select[id=semestreCours]").find(":selected").val(),
             success: function (data) {
                 $("#addCours").modal("hide");
-                // S'il y a déjà au moins 1 bouton, il le met à la fin.
-                var btn_orga_cours = $("button[id^=orga_cours_]");
-                if (btn_orga_cours.length == 0) {
-                    alert("test1");
-                    $(data).insertAfter($(".panel_cours .panel-body .btn-group"));
-                }
-                // Sinon, on le met dans le contenu du panel (sans btn-group, il se rajoutera tout seul après refresh).
-                else {
-                    alert("test");
-                    $(data).insertAfter((btn_orga_cours).last());
-                }
+                $("button[id^=orga_competence_" + idCompetence + "]").trigger("click");
             }
         });
     });
@@ -221,14 +204,7 @@ $(function () {
             data: 'idCours=' + idCours + '&nomEval=' + $("#nomEval").val() + '&coefEval=' + $("#coefEval").val(),
             success: function (data) {
                 $("#addEval").modal("hide");
-                var btn_orga_eval = $("button[id^=orga_eval_]");
-                if (btn_orga_eval.length == 0) {
-                    $(data).insertAfter($(".panel_eval .panel-body .btn-group"));
-                }
-                // Sinon, on le met dans le contenu du panel (sans btn-group, il se rajoutera tout seul après refresh).
-                else {
-                    $(data).insertAfter((btn_orga_eval).last());
-                }
+                $("button[id^=orga_cours_" + idCours + "]").trigger("click");
             }
         });
     });
@@ -243,14 +219,7 @@ $(function () {
             data: 'idEval=' + idEval + '&nomTypeEval=' + $("#nomTypeEval").val() + '&coefTypeEval=' + $("#coefTypeEval").val(),
             success: function (data) {
                 $("#addTypeEval").modal("hide");
-                var btn_orga_type = $("button[id^=orga_type_eval_]");
-                if (btn_orga_type.length == 0) {
-                    $(data).insertAfter($(".panel_type_eval .panel-body .btn-group"));
-                }
-                // Sinon, on le met dans le contenu du panel (sans btn-group, il se rajoutera tout seul après refresh).
-                else {
-                    $(data).insertAfter((btn_orga_type).last());
-                }
+                $("button[id^=orga_eval_" + idEval + "]").trigger("click");
             }
         });
     });
@@ -265,6 +234,7 @@ $(function () {
             data: 'idTypeEval=' + idTypeEval + '&nomEpreuve=' + $("#nomEpreuve").val() + '&coefEpreuve=' + $("#coefEpreuve").val(),
             success: function (data) {
                 $("#addEpreuve").modal("hide");
+                $("button[id^=orga_type_eval" + idTypeEval + "]").trigger("click");
                 var btn_orga_epreuve = $("button[id^=orga_epreuve_]");
                 if (btn_orga_epreuve.length == 0) {
                     $(data).insertAfter($(".panel_epreuve .panel-body .btn-group"));
