@@ -67,3 +67,10 @@
 .add_button_etudes i {
     color: white;
 }
+
+.bouton_simulateur_choix {
+    text-align: center;
+    font-size: 125%;
+    font-weight: bold;
+    color: #b62224;
+}
