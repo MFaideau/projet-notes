@@ -11,5 +11,10 @@ include_once ("vues/menu.php");
 if($user->GetAutorite() != 1) {
 	include_once ("vues/menu_rapide.php");
 }
-include_once ("vues/accueil.php");
+$cursus = GetEtudiant($user)->GetCursus();
+if (isset($cursus))
+{
+	$competenceList = GetCompetenceListFromCursus($cursus->GetId());
+	include_once ("vues/accueil.php");
+}
 include_once ("vues/footer.php");

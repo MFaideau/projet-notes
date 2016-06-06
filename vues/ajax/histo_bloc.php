@@ -14,66 +14,25 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">Informatique</th>
-                <td width="50%">
-                    <?php
-                    $note_etudiant = $tab_info[0];
-                    $moyenne = $tab_histo_info[0];
-                    $ecart_type = $tab_histo_info[1];
-                    $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
-                    include('modules/module_histo.php');
-                    ?>
-                </td>
-                <td><?php echo $tab_histo_info[2]; ?></td>
-                <td><?php echo $tab_histo_info[3]; ?></td>
-                <td><?php echo $note_etudiant; ?></td>
-            </tr>
-            <tr>
-                <th scope="row">Electronique</th>
-                <td width="50%">
-                    <?php
-                    $note_etudiant = $tab_elec[0];
-                    $moyenne = $tab_histo_elec[0];
-                    $ecart_type = $tab_histo_elec[1];
-                    $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
-                    include('modules/module_histo.php');
-                    ?>
-                </td>
-                <td><?php echo $tab_histo_elec[2]; ?></td>
-                <td><?php echo $tab_histo_elec[3]; ?></td>
-                <td><?php echo $note_etudiant; ?></td>
-            </tr>
-            <tr>
-                <th scope="row">Management</th>
-                <td width="50%" class="histo_parent">
-                    <?php
-                    $note_etudiant = $tab_manage[0];
-                    $moyenne = $tab_histo_manage[0];
-                    $ecart_type = $tab_histo_manage[1];
-                    $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
-                    include('modules/module_histo.php');
-                    ?>
-                </td>
-                <td><?php echo $tab_histo_manage[2]; ?></td>
-                <td><?php echo $tab_histo_manage[3]; ?></td>
-                <td><?php echo $note_etudiant; ?></td>
-            </tr>
-            <tr>
-                <th scope="row">Signaux</th>
-                <td width="50%">
-                    <?php
-                    $note_etudiant = $tab_signaux[0];
-                    $moyenne = $tab_histo_signaux[0];
-                    $ecart_type = $tab_histo_signaux[1];
-                    $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
-                    include('modules/module_histo.php');
-                    ?>
-                </td>
-                <td><?php echo $tab_histo_signaux[2]; ?></td>
-                <td><?php echo $tab_histo_signaux[3]; ?></td>
-                <td><?php echo $note_etudiant; ?></td>
-            </tr>
+            <?php
+            foreach($competenceList as $competence)
+            { ?>
+                <tr>
+                    <th scope="row"><?php echo $competence->GetNom(); ?></th>
+                    <td width="50%">
+                        <?php
+                        $note_etudiant = $tab_info[0];
+                        $moyenne = $tab_histo_info[0];
+                        $ecart_type = $tab_histo_info[1];
+                        $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
+                        include('modules/module_histo.php');
+                        ?>
+                    </td>
+                    <td><?php echo $tab_histo_info[2]; ?></td>
+                    <td><?php echo $tab_histo_info[3]; ?></td>
+                    <td><?php echo $note_etudiant; ?></td>
+                </tr>
+            <?php } ?>
             </tbody>
             <tfoot>
             <tr>

@@ -8,18 +8,4 @@ $varTab = array(
 
 
 
-$tab_info = array();
-$tab_elec = array();
-$tab_manage = array();
-$tab_signaux = array();
-$tab_total = array();
-
-for ($i=0;$i<50;$i++) {
-    $tab_info[] = rand(8,18);
-    $tab_elec[] = rand(2,11);
-    $tab_manage[] = rand(12,19);
-    $tab_signaux[] = rand(4,15);
-    $tab_total[] = rand(6,14);
-}
-
 ?>
