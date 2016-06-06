@@ -55,7 +55,7 @@ function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
     $notesEtudiant = array();
     $somme = 0;
     foreach ($listEpreuves as $i => $epreuves) {
-        $notesEtudiant[$i] = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuves->id);
+        $notesEtudiant[$i] = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuves->GetId())->GetNoteFinale();
         $somme = $somme + $notesEtudiant[$i];
     }
     $moyenne = $somme / count($notesEtudiant);
@@ -67,8 +67,8 @@ function GetMoyenneFromEval($idEval, $idEtudiant) {
     $notesEtudiant = array();
     $moyenne = 0;
     foreach ($listTypeEval as $i => $typeEval) {
-        $notesEtudiant[$i] = GetMoyenneFromTypeEval($typeEval, $idEtudiant);
-        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $typeEval->coef);
+        $notesEtudiant[$i] = GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant);
+        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $typeEval->GetCoef());
     }
     return $moyenne;
 }
@@ -78,8 +78,8 @@ function GetMoyenneFromCours($idCours, $idEtudiant) {
     $notesEtudiant = array();
     $moyenne = 0;
     foreach ($listEval as $i => $eval) {
-        $notesEtudiant[$i] = GetMoyenneFromEval($eval, $idEtudiant);
-        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $eval->coef);
+        $notesEtudiant[$i] = GetMoyenneFromEval($eval->GetId(), $idEtudiant);
+        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $eval->GetCoef());
     }
     return $moyenne;
 }
@@ -89,8 +89,8 @@ function GetMoyenneFromCompetence($idCompetence, $idEtudiant) {
     $notesEtudiant = array();
     $moyenne = 0;
     foreach ($listCours as $i => $cours) {
-        $notesEtudiant[$i] = GetMoyenneFromCours($cours, $idEtudiant);
-        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $cours->coef);
+        $notesEtudiant[$i] = GetMoyenneFromCours($cours->GetId(), $idEtudiant);
+        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $cours->GetCoef());
     }
     return $moyenne;
 }
@@ -98,12 +98,9 @@ function GetMoyenneFromCompetence($idCompetence, $idEtudiant) {
 function GetTabNotesEtudiantsFromEpreuve($idEpreuve) {
     $listEtudiants = GetEtudiantNotesFromEpreuve($idEpreuve);
     $notesEtudiants = array();
-    foreach ($listEtudiants as $i => $etudiants) {
-        if ($etudiants->absence==0) {
-            $notesEtudiants[$i] = $etudiants->noteFinale;
-        }
-        else {
-            $i = $i-1;
+    foreach ($listEtudiants as $i => $etudiantNote) {
+        if ($etudiantNote->GetAbsence()==0 || $etudiantNote->GetAbsence()==2) {
+            $notesEtudiants[] = $etudiantNote->noteFinale;
         }
     }
     return $notesEtudiants;
