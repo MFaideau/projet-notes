@@ -203,7 +203,7 @@ $(function () {
         $.ajax({
             url: './ajax/admin_ajax_orga.php',
             type: 'POST',
-            data: 'idTypeEval=' + idTypeEval + '&nomEpreuve=' + $("#nomEpreuve").val() + '&coefEpreuve=' + $("#coefEpreuve").val(),
+            data: 'idTypeEval=' + idTypeEval + '&nomEpreuve=' + $("#nomEpreuve").val() + '&coefEpreuve=' + $("#coefEpreuve").val() + '&dateEpreuve=' + $("#dateEpreuve").val(),
             success: function (data) {
                 $("#addEpreuve").modal("hide");
                 // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
