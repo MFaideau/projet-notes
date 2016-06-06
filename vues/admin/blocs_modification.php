@@ -4,6 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form id="modifyCursus">
+                <input type="hidden" id="idCursus" value="" />
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
@@ -34,6 +35,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form id="modifyCompetence">
+                <input type="hidden" id="id_competence_modif" value="" />
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
@@ -42,7 +44,7 @@
                 <div class="modal-body">
                     <fieldset class="form-group">
                         <label for="labelCompetence">Nom de la compétence :</label>
-                        <input type="text" class="form-control" id="modifyCompetence"
+                        <input type="text" class="form-control" id="nomCompetence"
                                placeholder="Exemple : Physique, Electronique et Nanotechnologies">
                     </fieldset>
                 </div>
@@ -55,11 +57,11 @@
     </div>
 </div>
 
-<!-- Ajout d'un cours !-->
+<!-- Modification d'un cours !-->
 <div class="modal fade" id="modifyCours" tabindex="-1" role="dialog" aria-labelledby="modifyCours">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="addCours">
+            <form id="modifyCours">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
