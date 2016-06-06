@@ -175,7 +175,7 @@ $(function () {
             data: 'idCursus=' + idCursus + '&nomCompetence=' + $("#nomCompetence").val(),
             success: function (data) {
                 $("#addCompetence").modal("hide");
-                $(data).insertAfter($("button[id^=orga_competence_]").last());
+                $("button[id^=orga_cursus_"+idCursus+"]").trigger("click");
             }
         });
     });
@@ -190,8 +190,7 @@ $(function () {
             data: 'idCompetence=' + idCompetence + '&nomCours=' + $("#nomCours").val() + '&nbCreditsCours=' + $("#nbCreditsCours").val() + '&semestreCours=' + $("select[id=semestreCours]").find(":selected").val(),
             success: function (data) {
                 $("#addCours").modal("hide");
-                // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
-                $(data).insertAfter($("button[id^=orga_cours_]").last());
+                $("button[id^=orga_competence_" + idCompetence + "]").trigger("click");
             }
         });
     });
@@ -206,8 +205,7 @@ $(function () {
             data: 'idCours=' + idCours + '&nomEval=' + $("#nomEval").val() + '&coefEval=' + $("#coefEval").val(),
             success: function (data) {
                 $("#addEval").modal("hide");
-                // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
-                $(data).insertAfter($("button[id^=orga_eval_]").last());
+                $("button[id^=orga_cours_" + idCours + "]").trigger("click");
             }
         });
     });
@@ -222,8 +220,7 @@ $(function () {
             data: 'idEval=' + idEval + '&nomTypeEval=' + $("#nomTypeEval").val() + '&coefTypeEval=' + $("#coefTypeEval").val(),
             success: function (data) {
                 $("#addTypeEval").modal("hide");
-                // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
-                $(data).insertAfter($("button[id^=orga_type_eval_]").last());
+                $("button[id^=orga_eval_" + idEval + "]").trigger("click");
             }
         });
     });
@@ -238,8 +235,7 @@ $(function () {
             data: 'idTypeEval=' + idTypeEval + '&nomEpreuve=' + $("#nomEpreuve").val() + '&coefEpreuve=' + $("#coefEpreuve").val(),
             success: function (data) {
                 $("#addEpreuve").modal("hide");
-                // TODO : Gérer le cas où il n'y a pas de cours déjà créé (donc pas de last)
-                $(data).insertAfter($("button[id^=orga_epreuve_]").last());
+                $("button[id^=orga_type_eval" + idTypeEval + "]").trigger("click");
             }
         });
     });

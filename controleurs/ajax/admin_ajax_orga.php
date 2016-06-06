@@ -97,16 +97,13 @@ if ((isset($_POST['nomCursus'])) && isset($_POST['anneeCursus'])) {
     }
 }
 if ((!empty($_POST['nomCompetence'])) && !empty($_POST['idCursus'])) {
-    $idCompetenceNew = InsertCompetence($_POST['nomCompetence'], $_POST['idCursus']);
-    include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_competence_bloc.php';
+    InsertCompetence($_POST['nomCompetence'], $_POST['idCursus']);
 }
 if ((isset($_POST['nomCours'])) && isset($_POST['nbCreditsCours']) && isset($_POST['semestreCours']) && isset($_POST['idCompetence'])) {
-    $idCoursNew = InsertCours($_POST['nomCours'], $_POST['nbCreditsCours'], $_POST['semestreCours'], $_POST['idCompetence']);
-    include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_cours_bloc.php';
+    InsertCours($_POST['nomCours'], $_POST['nbCreditsCours'], $_POST['semestreCours'], $_POST['idCompetence']);
 }
 if (isset($_POST['idCours']) && isset($_POST['nomEval']) && isset($_POST['coefEval'])) {
-    $idEvalNew = InsertEvaluation($_POST['nomEval'], $_POST['coefEval'], $_POST['idCours']);
-    include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_eval_bloc.php';
+    InsertEvaluation($_POST['nomEval'], $_POST['coefEval'], $_POST['idCours']);
 }
 if (isset($_POST['idEval']) && isset($_POST['nomTypeEval']) && isset($_POST['coefTypeEval'])) {
     $idTypeEvalNew = InsertTypeEval($_POST['nomTypeEval'], $_POST['coefTypeEval'], $_POST['idEval']);
