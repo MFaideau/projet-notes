@@ -9,7 +9,6 @@
                     foreach ($epreuveList as $epreuve) { ?>
                         <button id="epreuve_<?php echo $epreuve->GetId(); ?>" type="button"
                                 class="btn btn-default"><?php echo html_entity_decode($epreuve->GetNom()); ?></button>
-
                     <?php } ?>
                 </div>
             </div>

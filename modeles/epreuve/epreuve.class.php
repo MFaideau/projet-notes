@@ -10,8 +10,8 @@ include_once (__DIR__ . '../../../modeles/epreuve/epreuve.php');
 include_once (__DIR__ . '../../../modeles/etudiantnote/etudiantnote.php');
 class epreuve
 {
-    private $id;
-    private $nom;
+    public $id;
+    public $nom;
     private $coef;
     private $date;
     private $evaluateur;

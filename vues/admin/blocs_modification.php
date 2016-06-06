@@ -163,7 +163,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modificationd'une Epreuve</h4>
+                    <h4 class="modal-title" id="myModalLabel">Modification d'une Epreuve</h4>
                 </div>
                 <div class="modal-body">
                     <fieldset class="form-group">
@@ -187,8 +187,6 @@
                         <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session:</label>
                         <select class="selectpicker" name="secondeSessions" id="secondeSession">
                             <option value="0">Aucune seconde session</option>
-                            <option value="1">Epreuve de démo 1 (codé en dur)</option>
-                            <option value="2">Epreuve de démo 2 (codé en dur)</option>
                         </select>
                     </fieldset>
                 </div>
