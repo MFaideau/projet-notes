@@ -50,5 +50,3 @@ function InsertUser($nom,$prenom,$mail,$autorite)
     ));
     return;
 }
-
-InsertUser('Halloy','Guillaume' ,'guillaume.halloy@isen.fr' ,0 );

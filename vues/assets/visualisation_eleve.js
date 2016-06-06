@@ -10,7 +10,7 @@ $(document).on("click", "button[id^=eleves_cursus_]", function (e) {
             $(".panel_listing").remove();
             $(result).insertAfter($(".panel_choix_eleves"));
             $("input[id=id_cursus_add_etudiant]").val(idCursus);
-            $("#cursus_add_etudiant").append(nomCursus);
+            $("#cursus_add_etudiant").empty().append(nomCursus);
             jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
         },
         error: function (result) {
