@@ -37,3 +37,18 @@ AND etudiant.ID_Cursus=:idCursus');
     }
     return $usersList;
 }
+
+function InsertUser($nom,$prenom,$mail,$autorite)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO utilisateur (Mail,Nom,Prenom,Autorite) VALUES (:mail,:nom,:prenom,:autorite)');
+    $req->execute(array(
+        'mail' => $mail,
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'autorite' => $autorite,
+    ));
+    return;
+}
+
+InsertUser('Halloy','Guillaume' ,'guillaume.halloy@isen.fr' ,0 );

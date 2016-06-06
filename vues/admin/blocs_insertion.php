@@ -176,9 +176,9 @@
                     <fieldset class="form-group">
                         <label for="labelDateEpreuve">Date:</label>
                             <div class="input-group input-append date" id="datePicker">
-                                <input id="dateEpreuve" type="text" class="form-control" name="date" data-fv-field="date">
+                                <input id="dateEpreuve" type="text" class="form-control">
                                 <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                            </div>;
+                            </div>
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelEvaluation">Evaluateur:</label>
@@ -188,8 +188,6 @@
                         <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session:</label>
                         <select class="selectpicker" name="secondeSessions" id="secondeSession">
                             <option value="0">Aucune seconde session</option>
-                            <option value="1">Epreuve de démo 1 (codé en dur)</option>
-                            <option value="2">Epreuve de démo 2 (codé en dur)</option>
                         </select>
                     </fieldset>
                 </div>
