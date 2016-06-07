@@ -17,7 +17,7 @@ function GetCoursListFromCompetence($idCompetence)
     $req->execute();
     $coursList=$req->fetchAll();
     foreach($coursList as $cours) {
-        $list[] = new Cours($cours,false);
+        $list[] = new Cours($cours);
     }
     return $list;
 }

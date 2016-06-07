@@ -16,7 +16,7 @@ WHERE type_eval.ID_Eval=:idEval');
     $typeEvalList=$req->fetchAll();
     foreach($typeEvalList as $typeEval)
     {
-        $list[]=new TypeEval($typeEval,false);
+        $list[]=new TypeEval($typeEval);
     }
     return $list;
 }

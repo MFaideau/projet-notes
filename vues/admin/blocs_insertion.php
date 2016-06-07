@@ -175,7 +175,7 @@
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelDateEpreuve">Date:</label>
-                            <div class="input-group input-append date" id="datePicker">
+                            <div class="input-group input-append date" id="datePicker" style="z-index: 1100;">
                                 <input id="dateEpreuve" type="text" class="form-control">
                                 <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
@@ -193,7 +193,7 @@
                     <fieldset class="form-group">
                         <label for="labelSubstitution">Choix de l'épreuve qui prime en cas d'absence excusée :</label>
                         <select class="selectpicker" id="selectSubstitution" name="substitution">
-                            <option value="0">Aucune seconde session</option>
+                            <option value="0">Pas de note en cas d'absence</option>
                         </select>
                     </fieldset>
                 </div>

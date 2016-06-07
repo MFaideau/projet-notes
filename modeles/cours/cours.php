@@ -6,9 +6,26 @@
  * Time: 11:10
  */
 include_once(__DIR__ . '../../type_evaluation/typeeval.class.php');
-function GetTypeEvalListFromCours($idCours)
+function GetEpreuveListFromCours($idCours)
 {
     $list =array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Epreuve,ID_Epreuve_Substitution,ID_Epreuve_Session2,Nom_Epreuve,Coef_Epreuve,Date_Epreuve,Evaluateur_Epreuve
+        FROM epreuve,type_eval,evaluation WHERE epreuve.ID_Type = type_eval.ID_Type AND type_eval.ID_Eval = evaluation.ID_Eval
+        AND evaluation.ID_Cours = :idCours');
+    $req->bindParam(':idCours', $idCours, PDO::PARAM_INT);
+    $req->execute();
+    $epreuveList=$req->fetchAll();
+    foreach($epreuveList as $epreuve)
+    {
+        $list[]=new Epreuve($epreuve);
+    }
+    return $list;
+}
+
+function GetTypeEvalListFromCours($idCours)
+{
+    $list = array();
     global $bdd;
     $req = $bdd->prepare('SELECT type_eval.ID_Type,type_eval.Nom_Type,type_eval.Coef_Type_Eval FROM evaluation,type_eval
 WHERE type_eval.ID_Eval=evaluation.ID_Eval AND evaluation.ID_Cours = :idCours');
@@ -17,7 +34,7 @@ WHERE type_eval.ID_Eval=evaluation.ID_Eval AND evaluation.ID_Cours = :idCours');
     $typeEvalList=$req->fetchAll();
     foreach($typeEvalList as $typeEval)
     {
-        $list[]=new TypeEval($typeEval,false);
+        $list[]=new TypeEval($typeEval);
     }
     return $list;
 }
@@ -31,7 +48,7 @@ WHERE evaluation.ID_Cours = :idCours');
     $req->execute();
     $evalList=$req->fetchAll();
     foreach($evalList as $eval) {
-        $list[] = new Evaluation($eval,false);
+        $list[] = new Evaluation($eval);
     }
     return $list;
 }
@@ -90,5 +107,5 @@ function GetCoursById($idCours) {
     $req = $bdd->prepare('SELECT ID_Cours, Nom_Cours, Credits_Cours, Semestre_Cours FROM cours WHERE ID_Cours = :id');
     $req->bindParam(':id', $idCours, PDO::PARAM_INT);
     $req->execute();
-    return new Cours($req->fetchAll()[0],false);
+    return new Cours($req->fetchAll()[0]);
 }

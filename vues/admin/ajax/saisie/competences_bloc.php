@@ -5,7 +5,7 @@
             <div class="btn-group" role="group" aria-label="...">
                 <div class="btn-group" role="group">
                     <?php
-                    foreach ($cursus->GetCompetenceList() as $competence) { ?>
+                    foreach (GetCompetenceListFromCursus($cursus->GetId()) as $competence) { ?>
                         <button id="competence_<?php echo $competence->GetId(); ?>" type="button"
                                 class="btn btn-default btn-competences"><?php echo html_entity_decode($competence->GetNom()); ?></button>
                     <?php } ?>

@@ -49,6 +49,16 @@ if (isset($_POST['action']) && isset($_POST['idEpreuve'])) {
     }
 }
 
+if (isset($_POST['action']) && isset($_POST['idCours'])) {
+    if ($_POST['action'] == "substitution") {
+        $idCours = $_POST['idCours'];
+        $listEpreuves = GetEpreuveListFromCours($idCours);
+        if (isset($listEpreuves))
+            echo json_encode($listEpreuves);
+        return;
+    }
+}
+
 // TODO : Faire une fenêtre de validation lors de la suppression du cursus
 if (isset($_POST['action']) && isset($_POST['idCursus']) && empty($_POST['nomCompetence']))
     if ($_POST['action'] == "delete")
@@ -129,8 +139,7 @@ if (isset($_POST['idEval']) && isset($_POST['nomTypeEval']) && isset($_POST['coe
     $idTypeEvalNew = InsertTypeEval($_POST['nomTypeEval'], $_POST['coefTypeEval'], $_POST['idEval']);
 
 if (isset($_POST['nomEpreuve']) && isset($_POST['coefEpreuve']) && isset($_POST['dateEpreuve']) && isset($_POST['evaluateurEpreuve']) && isset($_POST['idEpreuveSubstitution']) && isset($_POST['idSecondeSession']) && isset($_POST['idTypeEval'])) {
-    echo var_dump($_POST);
-    $idEpreuveNew = InsertEpreuve($_POST['nomEpreuve'], $_POST['coefEpreuve'], $_POST['dateEpreuve'], $_POST['evaluateurEpreuve'], $_POST['idEpreuveSubstitution'], $_POST['idSecondeSession'], $_POST['idTypeEval']);
+    $idEpreuveNew = InsertEpreuve($_POST['nomEpreuve'], $_POST['coefEpreuve'], $_POST['dateEpreuve'],$_POST['evaluateurEpreuve'], $_POST['idEpreuveSubstitution'], $_POST['idSecondeSession'], $_POST['idTypeEval']);
   }
 
 ?>

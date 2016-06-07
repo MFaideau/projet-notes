@@ -130,8 +130,22 @@ $(document).on("click", "button[id^=orga_type_eval]", function (e) {
                     var current_type_eval = jQuery.parseJSON(result2);
                     $("#addEpreuve select[id=selectSecondeSession]").empty().append('<option value="0">Aucune seconde session</option>');
                     $.each(current_type_eval, function(index) {
-                        $("#addEpreuve #selectSecondeSession").append("<option value=" + current_type_eval[index].id + ">" +
+                        $("#addEpreuve select[id=selectSecondeSession]").append("<option value=" + current_type_eval[index].id + ">" +
                             current_type_eval[index].nom + "</option>");
+                    });
+                }
+            });
+            $.ajax({
+                url: './ajax/admin_ajax_orga.php',
+                type: 'POST',
+                datatype: 'json',
+                data: 'idCours=' + idCours +"&action=substitution",
+                success: function(result2) {
+                    var current_cours = jQuery.parseJSON(result2);
+                    $("#addEpreuve select[id=selectSubstitution]").empty().append('<option value="0">Pas de note en cas d\'absence</option>');
+                    $.each(current_cours, function(index) {
+                        $("#addEpreuve select[id=selectSubstitution]").append("<option value=" + current_cours[index].id + ">" +
+                            current_cours[index].nom + "</option>");
                     });
                 }
             });
@@ -158,7 +172,7 @@ $(document).on("click", "button[id^=orga_epreuve]", function (e) {
                     $("#modifyEpreuve select[id=selectSecondeSession]").empty().append('<option value="0">Aucune seconde session</option>');
                     $.each(current_type_eval, function(index) {
                         if(current_type_eval[index].id != idEpreuve) {
-                            $("#modifyEpreuve #selectSecondeSessionn").append("<option value=" + current_type_eval[index].id + ">" +
+                            $("#modifyEpreuve select[id=selectSecondeSession]").append("<option value=" + current_type_eval[index].id + ">" +
                                 current_type_eval[index].nom + "</option>");
                         }
                     });
@@ -168,10 +182,16 @@ $(document).on("click", "button[id^=orga_epreuve]", function (e) {
                 url: './ajax/admin_ajax_orga.php',
                 type: 'POST',
                 datatype: 'json',
-                data: 'idEpreuve=' + idEpreuve + "&action=infos",
+                data: 'idCours=' + idCours +"&action=substitution",
                 success: function(result2) {
-                    var current_epreuve= jQuery.parseJSON(result2);
-
+                    var current_cours = jQuery.parseJSON(result2);
+                    $("#modifyEpreuve select[id=selectSubstitution]").empty().append('<option value="0">Pas de note en cas d\'absence</option>');
+                    $.each(current_cours, function(index) {
+                        if(current_cours[index].id != idEpreuve) {
+                            $("#modifyEpreuve select[id=selectSubstitution]").append("<option value=" + current_cours[index].id + ">" +
+                                current_cours[index].nom + "</option>");
+                        }
+                    });
                 }
             });
         }
@@ -272,7 +292,7 @@ $(function () {
         $.ajax({
             url: './ajax/admin_ajax_orga.php',
             type: 'POST',
-            data: 'idTypeEval=' + idTypeEval + '&nomEpreuve=' + $("#nomEpreuve").val() + '&coefEpreuve=' + $("#coefEpreuve").val() + '&dateEpreuve=' + $("#dateEpreuve").val() + '&evaluateurEpreuve=' + $("#evaluateurEpreuve").val() + '&idSecondeSession=' + $("#addEpreuve select[id=selectSecondeSession] option:selected").val()+ '&idEpreuveSubstitution=' + $("#addEpreuve select[id=selectSubstitution] option:selected").val(),
+            data: 'idTypeEval=' + idTypeEval + '&nomEpreuve=' + $("#nomEpreuve").val() + '&coefEpreuve=' + $("#coefEpreuve").val() + '&dateEpreuve=' + $("#dateEpreuve").val() + '&evaluateurEpreuve=' + $("#evaluateurEpreuve").val() + '&idSecondeSession=' + $("#addEpreuve select[id=selectSecondeSession] option:selected").val() + '&idEpreuveSubstitution=' + $("#addEpreuve select[id=selectSubstitution] option:selected").val(),
             success: function (data) {
                 $("#addEpreuve").modal("hide");
                 $("button[id^=orga_type_eval_" + idTypeEval + "]").trigger("click");
