@@ -185,8 +185,14 @@
                         <input type="text" class="form-control" id="evaluateurEpreuve" placeholder="Exemple : Xavier Wallart">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session:</label>
-                        <select class="selectpicker" id="selectSecondeSession" name="secondeSessions" id="secondeSession">
+                        <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session :</label>
+                        <select class="selectpicker" id="selectSecondeSession" name="secondeSessions">
+                            <option value="0">Aucune seconde session</option>
+                        </select>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="labelSubstitution">Choix de l'épreuve qui prime en cas d'absence excusée :</label>
+                        <select class="selectpicker" id="selectSubstitution" name="substitution">
                             <option value="0">Aucune seconde session</option>
                         </select>
                     </fieldset>
