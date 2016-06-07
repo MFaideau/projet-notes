@@ -75,7 +75,6 @@ $(document).on("click", "button[id^=orga_cours]", function (e) {
         success: function (result) {
             $(".panel_eval").remove();
             $(".panel_type_eval").remove();
-            $(".panel_eval").remove();
             $(".panel_epreuve").remove();
             $(".panel_upload_epreuve").remove();
             $(result).insertAfter($(".panel_cours"));

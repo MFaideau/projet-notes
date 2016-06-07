@@ -8,82 +8,47 @@
             <tr>
                 <th>Compétences</th>
                 <th>Histogramme</th>
+                <th>Min</th>
                 <th>Max</th>
                 <th>Etudiant</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">Informatique</th>
-                <td width="50%">
-                    <?php
-                    $moyenne = rand(0, 20);
-                    $note_etudiant = rand(0, 20);
-                    $ecart_type = rand(1, 8);
-                    $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
-                    include('modules/module_histo.php');
-                    ?>
-                </td>
-                <td>16.5</td>
-                <td>15</td>
-            </tr>
-            <tr>
-                <th scope="row">Electronique</th>
-                <td width="50%">
-                    <?php
-                    $moyenne = rand(0, 20);
-                    $note_etudiant = rand(0, 20);
-                    $ecart_type = rand(1, 8);
-                    $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
-                    include('modules/module_histo.php');
-                    ?>
-                </td>
-                <td>15.2</td>
-                <td>15.2</td>
-            </tr>
-            <tr>
-                <th scope="row">Management</th>
-                <td width="50%" class="histo_parent">
-                    <?php
-                    $moyenne = rand(0, 20);
-                    $note_etudiant = rand(0, 20);
-                    $ecart_type = rand(1, 8);
-                    $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
-                    include('modules/module_histo.php');
-                    ?>
-                </td>
-                <td>17.1</td>
-                <td>13.3</td>
-            </tr>
-            <tr>
-                <th scope="row">Signaux</th>
-                <td width="50%">
-                    <?php
-                    $moyenne = rand(0, 20);
-                    $note_etudiant = rand(0, 20);
-                    $ecart_type = rand(1, 8);
-                    $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
-                    include('modules/module_histo.php');
-                    ?>
-                </td>
-                <td>16</td>
-                <td>14.8</td>
-            </tr>
+            <?php
+            foreach($competenceList as $competence)
+            { ?>
+                <tr>
+                    <th scope="row"><?php echo $competence->GetNom(); ?></th>
+                    <td width="50%">
+                        <?php
+                        $note_etudiant = $tab_info[0];
+                        $moyenne = $tab_histo_info[0];
+                        $ecart_type = $tab_histo_info[1];
+                        $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
+                        include('modules/module_histo.php');
+                        ?>
+                    </td>
+                    <td><?php echo $tab_histo_info[2]; ?></td>
+                    <td><?php echo $tab_histo_info[3]; ?></td>
+                    <td><?php echo $note_etudiant; ?></td>
+                </tr>
+            <?php } ?>
             </tbody>
             <tfoot>
             <tr>
                 <th>Total</th>
                 <th width="50%">
                     <?php
-                    $moyenne = rand(0, 20);
-                    $note_etudiant = rand(0, 20);
-                    $ecart_type = rand(1, 8);
+                    $note_etudiant = $tab_total[0];
+                    $moyenne = $tab_histo_total[0];
+                    $ecart_type = $tab_histo_total[1];
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
                     include('modules/module_histo.php');
                     ?>
                 </th>
-                <th>16.2</th>
-                <th>13.5</th>
+                <td><?php echo $tab_histo_total[2]; ?></td>
+                <th><?php echo $tab_histo_total[3]; ?></th>
+                <th><?php echo $note_etudiant; ?></th>
             </tr>
             </tfoot>
         </table>

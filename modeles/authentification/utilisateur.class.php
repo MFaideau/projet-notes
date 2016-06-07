@@ -44,6 +44,9 @@ class Utilisateur
         if ($this->autorite == 0) {
             return GetEtudiant($this)->GetCursus()->GetNom();
         }
+        else if ($this->autorite ==2) {
+            return "Visiteur";
+        }
         return "Administrateur";
     }
 }

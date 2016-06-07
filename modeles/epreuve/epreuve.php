@@ -6,7 +6,6 @@
  * Time: 08:49
  */
 function GetEpreuveFromId($epreuveId){
-    $list =array();
     global $bdd;
     $req = $bdd->prepare('SELECT ID_Epreuve,ID_Epreuve_Substitution,ID_Epreuve_Session2,Nom_Epreuve,Coef_Epreuve,Date_Epreuve,Evaluateur_Epreuve
         FROM epreuve WHERE epreuve.ID_Epreuve = :idEpreuve');
