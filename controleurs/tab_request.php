@@ -55,8 +55,16 @@ function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
     $notesEtudiant = array();
     $somme = 0;
     foreach ($listEpreuves as $i => $epreuves) {
-        $notesEtudiant[$i] = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuves->GetId())->GetNoteFinale();
-        $somme = $somme + $notesEtudiant[$i];
+        if (GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuves->GetId())->GetAbsence() == 1) {
+            $i = $i-1;
+        }
+        else {
+            $somme = $somme + $notesEtudiant[$i];
+            $notesEtudiant[$i] = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuves->GetId())->GetNoteFinale();
+        }
+    }
+    if (count($notesEtudiant) == 0) {
+        return -1;
     }
     $moyenne = $somme / count($notesEtudiant);
     return $moyenne;
@@ -106,30 +114,23 @@ function GetTabNotesEtudiantsFromEpreuve($idEpreuve) {
     return $notesEtudiants;
 }
 
-function GetTabNotesEtudiantsFromTypeEval($idTypeEval) {
-    $listEpreuves = GetEpreuveListFromTypeEval($idTypeEval);
-    $tab = array();
-    $taille_max = 0;
+function GetTabNotesEtudiantsFromTypeEval($idTypeEval, $idCursus) {
+    $listEtudiants = GetEtudiantList($idCursus);
     $notesEtudiants = array();
-    foreach ($listEpreuves as $i => $epreuves) {
-        $tab[$i] = GetTabNotesEtudiantsFromEpreuve($epreuves->id);
-        if ($taille_max < count($tab[$i])) {
-            $taille_max = count($tab[$i]);
-        }
+    foreach ($listEtudiants as $etudiant) {
+        $notesEtudiants[] = GetMoyenneFromTypeEval($idTypeEval, $etudiant->GetId());
     }
-    for ($j=0;$j<$taille_max;$j++) {
-
-    }
+    return $notesEtudiants;
 }
 
-function GetTabNotesEtudiantsFromEval($idEval) {
+function GetTabNotesEtudiantsFromEval($idEval, $idCursus) {
+    
+}
+
+function GetTabNotesEtudiantsFromCours($idCours, $idCursus) {
 
 }
 
-function GetTabNotesEtudiantsFromCours($idCours) {
-
-}
-
-function GetTabNotesEtudiantsFromCompetence($idCompetence) {
+function GetTabNotesEtudiantsFromCompetence($idCompetence, $idCursus) {
 
 }

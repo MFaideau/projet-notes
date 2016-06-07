@@ -1,3 +1,3 @@
 <?php
-    include_once('vues/tableaux_bloc.php');
+    include_once('vues/ajax/tableaux_bloc.php');
 ?>

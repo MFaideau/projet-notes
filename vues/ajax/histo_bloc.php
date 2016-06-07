@@ -21,7 +21,7 @@
                     <th scope="row"><?php echo $competence->GetNom(); ?></th>
                     <td width="50%">
                         <?php
-                        $note_etudiant = $tab_info[0];
+                        $note_etudiant = 0; //GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId())[0];
                         $moyenne = $tab_histo_info[0];
                         $ecart_type = $tab_histo_info[1];
                         $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
