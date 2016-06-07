@@ -27,7 +27,7 @@ $(document).on("click", "a[id^=simu_comp]", function (e) {
     });
 });
 
-$(document).on("click", "a[id^=simu_curs]", function (e) {
+$(document).on("click", "a[id^=simu_cours]", function (e) {
     var idCours = this.id.replace("simu_cours_","");
     $.ajax({
         url: './ajax/simulation.php',
@@ -35,9 +35,8 @@ $(document).on("click", "a[id^=simu_curs]", function (e) {
         datatype: 'html',
         data: 'idCours=' + idCours,
         success: function (result) {
-            $(".panel_simu_cours").remove();
             $(".panel_simu_epreuves").remove();
-            $(result).insertAfter($(".panel_simu_comp"));
+            $(result).insertAfter($(".panel_simu_cours"));
         }
     });
 });

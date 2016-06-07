@@ -1,7 +1,7 @@
 <!-- Simulateur Manuel !-->
 <div class="row donnees donnees_tableaux panel_simu_epreuves">
     <div class="panel panel-default">
-        <div class="panel-heading">Simulateur Manuel</div>
+        <div class="panel-heading">Simulation des épreuves</div>
         <table class="table">
             <thead>
             <tr>
@@ -13,41 +13,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Interro1</td>
-                <td><span id="note_1">NONE</span></td>
-                <td>NONE</td>
-                <td> <input id="number_1" type="number" value="10" min="0" max="20"/> </td>
-                <td><a href="#" id="note_simulee_1" <span class="glyphicon glyphicon-ok"> </span> </a></td>
-            </tr>
-            <tr>
-                <td>Interro2</td>
-                <td>NONE</td>
-                <td>NONE</td>
-                <td> <input type="number" value="10" min="0" max="20"/> </td>
-                <td><a> <span class="glyphicon glyphicon-ok"> </span> </a></td>
-            </tr>
-            <tr>
-                <td>DS</td>
-                <td>NONE</td>
-                <td>NONE</td>
-                <td> <input type="number" value="10"min="0" max="20"/> </td>
-                <td><a> <span class="glyphicon glyphicon-ok"> </span> </a></td>
-            </tr>
-            <tr>
-                <td>Partiel</td>
-                <td>NONE</td>
-                <td>NONE</td>
-                <td> <input type="number" value="10"min="0" max="20"/> </td>
-                <td><a> <span class="glyphicon glyphicon-ok"> </span> </a></td>
-            </tr>
-            <tr>
-                <td>Projet</td>
-                <td>NONE</td>
-                <td>NONE</td>
-                <td> <input type="number" value="10"min="0" max="20"/> </td>
-                <td><a> <span class="glyphicon glyphicon-ok"> </span> </a></td>
-            </tr>
+            <?php foreach($epreuvesList as $epreuve) { ?>
+                <tr>
+                    <td><?php echo $epreuve->GetNom(); ?></td>
+                    <td><span id="note_<?php echo $epreuve->GetId(); ?>">-</span></td>
+                    <td>-</td>
+                    <td> <input id="number_<?php echo $epreuve->GetId(); ?>" type="number" value="10" min="0" max="20"/> </td>
+                    <td><a id="note_simulee_<?php echo $epreuve->GetId(); ?>" <span class="glyphicon glyphicon-ok"> </span> </a></td>
+                </tr>
+            <?php } ?>
             </tbody>
         </table>
     </div>
