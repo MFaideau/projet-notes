@@ -3,7 +3,7 @@
         <div class="panel-body">
             <a href="accueil.php">
                 <div class="col-md-1">
-                    <span class="glyphicon glyphicon-home"></span>
+                    <span class="glyphicon glyphicon-home" title="Accueil"></span>
                 </div>
             </a>
             <?php
