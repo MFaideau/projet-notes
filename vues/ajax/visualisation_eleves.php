@@ -1,4 +1,4 @@
-<?php global $listEleves; ?>
+<?php global $listEleves; global $autorite; ?>
 <div class="panel_listing">
     <table class="table" data-toggle="table" data-sort-name="nom" data-sort-order="asc">
         <thead>
@@ -20,10 +20,12 @@
         <?php } ?>
         </tbody>
         <tfoot>
-            <tr>
-                <td class="ajoutEtudiant" colspan="3"><span class="glyphicon glyphicon-plus-sign icone"></span>
-                <a id="ajoutEtudiant">Ajouter un étudiant</a></td>
-            </tr>
+            <?php if($autorite == 1) { ?>
+                <tr>
+                    <td class="ajoutEtudiant" colspan="3"><span class="glyphicon glyphicon-plus-sign icone"></span>
+                    <a data-toggle="modal" data-target="#addEtudiant">Ajouter un étudiant</a></td>
+                </tr>
+            <?php } ?>
         </tfoot>
     </table>
 </div>
