@@ -8,6 +8,21 @@
 
 include_once('cursus.class.php');
 
+function GetCompetenceListFromCursus($idCursus)
+{
+    $list =array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT competence.ID_Competence,competence.Nom_Competence 
+FROM competence WHERE competence.ID_Cursus=:idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->execute();
+    $competenceList=$req->fetchAll();
+    foreach($competenceList as $competence)
+    {
+        $list[]=new Competence($competence,false);
+    }
+    return $list;
+}
 function GetCursusList()
 {
     global $bdd;

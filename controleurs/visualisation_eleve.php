@@ -23,3 +23,4 @@ else {
 
 // Insertion du footer pour les scripts JS (jQuery)
 include_once (__DIR__ . '../../vues/footer.php');
+
