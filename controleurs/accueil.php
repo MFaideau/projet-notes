@@ -14,7 +14,6 @@ if ($user->GetAutorite() == 0) {
 if ($user->Getautorite() == 0) {
     include_once("vues/accueil.php");
 } else {
-    $listEleves = GetElevestop10();
     include_once("vues/liste_favori.php");
 }
 include_once("vues/footer.php");

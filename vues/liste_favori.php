@@ -10,14 +10,6 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($listEleves as $eleve) { ?>
-            <tr>
-                <td><a data-name="nom" data-value="<?php echo $eleve->GetNom() . $eleve->GetPrenom(); ?>"
-                       href="visualisation_eleve.php?id=<?php echo $eleve->GetMail(); ?>">
-                        <?php echo $eleve->GetNom() . ' ' . $eleve->GetPrenom(); ?></a></td>
-                <td><?php echo rand(0,20); ?></td>
-            </tr>
-        <?php } ?>
         </tbody>
     </table>
 </div>
