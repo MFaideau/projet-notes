@@ -9,6 +9,7 @@ $('.tableaux_logo').click(function() {
             $(".donnees_histo").remove();
             $(".donnees_tableaux").remove();
             $(".absences").remove();
+            $(".panel_choix_eleves").remove();
             $(result).insertAfter($(".visualisation").parent());
         }
     });
@@ -25,6 +26,7 @@ $('.histo_logo').click(function() {
             $(".donnees_batons").remove();
             $(".donnees_histo").remove();
             $(".absences").remove();
+            $(".panel_choix_eleves").remove();
             $(result).insertAfter($(".visualisation").parent());
         }
     });
@@ -38,7 +40,7 @@ $('.histo_commun').click(function() {
         data: 'button=batons',
         success: function (result) {
             $.ajax({
-                url: './vues/ajax/modules/conversion_js.php',
+                url: './conversion_js.php',
                 type: 'GET',
                 datatype: 'json',
                 success: function (resultDataHisto) {
@@ -46,6 +48,7 @@ $('.histo_commun').click(function() {
                     $(".donnees_batons").remove();
                     $(".donnees_histo").remove();
                     $(".absences").remove();
+                    $(".panel_choix_eleves").remove();
                     $(result).insertAfter($(".visualisation").parent());
                     loadBar(resultDataHisto);
                 }
@@ -64,6 +67,23 @@ $('.abs').click(function() {
             $(".donnees_batons").remove();
             $(".donnees_histo").remove();
             $(".absences").remove();
+            $(".panel_choix_eleves").remove();
+            $(result).insertAfter($(".visualisation").parent());
+        }
+    });
+});
+
+
+//// =================== PARTIE SIMULATION ==============================
+
+$('.simulationmanuelle').click(function() {
+    $.ajax({
+        url: './simulation.php',
+        type: 'GET',
+        datatype: 'html',
+        success: function (result) {
+            $(".menu").remove();
+            $(".navbar").remove();
             $(result).insertAfter($(".visualisation").parent());
         }
     });

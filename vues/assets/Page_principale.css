@@ -43,11 +43,15 @@
     text-decoration: none;
 }
 
+.visualisation a:hover {
+    text-decoration: none;
+}
+
 .icone, .identite a {
     color: #b62224;
 }
 
-.modal-header, .donnees .panel-heading, .saisie_notes .panel-heading {
+.modal-header, .donnees .panel-heading, .saisie_notes .panel-heading, .choix_cursus_eleves .panel-heading {
     color: white;
     background-color: #b62224;
     font-weight: bold;
@@ -62,4 +66,11 @@
 
 .add_button_etudes i {
     color: white;
+}
+
+.bouton_simulateur_choix {
+    text-align: center;
+    font-size: 125%;
+    font-weight: bold;
+    color: #b62224;
 }

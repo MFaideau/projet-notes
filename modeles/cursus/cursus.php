@@ -8,6 +8,21 @@
 
 include_once('cursus.class.php');
 
+function GetCompetenceListFromCursus($idCursus)
+{
+    $list =array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT competence.ID_Competence,competence.Nom_Competence 
+FROM competence WHERE competence.ID_Cursus=:idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->execute();
+    $competenceList=$req->fetchAll();
+    foreach($competenceList as $competence)
+    {
+        $list[]=new Competence($competence,false);
+    }
+    return $list;
+}
 function GetCursusList()
 {
     global $bdd;
@@ -53,6 +68,17 @@ function DeleteCursus($id)
     $req->execute(array(
         'idCursus' => $id,
     ));
+    $req = $bdd->prepare('SELECT ID_Competence FROM competence WHERE ID_Cursus = :idCursus');
+    $req->bindParam(':idCursus', $id, PDO::PARAM_INT);
+    $req->execute();
+    $idCompetences = $req->fetchAll();
+    if (!empty($idCompetences))
+    {
+        foreach($idCompetences as $idCompetence)
+        {
+            DeleteCompetence($idCompetence[0]);
+        }
+    }
     return;
 }
 

@@ -21,3 +21,42 @@ function GetUser($mail)
         return $newUser;
     }
 }
+
+function GetUsersFromCursus($idCursus)
+{
+    $usersList = array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT utilisateur.Mail,Nom,Prenom,Autorite FROM utilisateur,etudiant WHERE utilisateur.Mail=etudiant.Mail
+AND etudiant.ID_Cursus=:idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->execute();
+    $users = $req->fetchAll();
+    foreach($users as $user)
+    {
+        $usersList[]=new Utilisateur($user);
+    }
+    return $usersList;
+}
+
+function InsertUser($nom,$prenom,$mail,$autorite)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO utilisateur (Mail,Nom,Prenom,Autorite) VALUES (:mail,:nom,:prenom,:autorite)');
+    $req->execute(array(
+        'mail' => $mail,
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'autorite' => $autorite,
+    ));
+    return;
+}
+
+function DeleteUser($mail)
+{
+    global $bdd;
+    $req = $bdd->prepare('DELETE FROM utilisateur WHERE Mail = :mail');
+    $req->execute(array(
+        'mail' => $mail,
+    ));
+    return;
+}

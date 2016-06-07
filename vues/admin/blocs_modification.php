@@ -1,13 +1,14 @@
 
-<!-- Ajout d'un cursus !-->
-<div class="modal fade" id="addCursus" tabindex="-1" role="dialog" aria-labelledby="addCursus">
+<!-- Modification d'un cursus !-->
+<div class="modal fade" id="modifyCursus" tabindex="-1" role="dialog" aria-labelledby="modifyCursus">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="addCursus">
+            <form id="modifyCursus">
+                <input type="hidden" id="idCursus" value="" />
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Ajout d'un cursus</h4>
+                    <h4 class="modal-title" id="myModalLabel">Modification d'un cursus</h4>
                 </div>
                 <div class="modal-body">
                     <fieldset class="form-group">
@@ -29,15 +30,16 @@
     </div>
 </div>
 
-<!-- Ajout d'une compétence !-->
-<div class="modal fade" id="addCompetence" tabindex="-1" role="dialog" aria-labelledby="addCompetence">
+<!-- Modification d'une compétence !-->
+<div class="modal fade" id="modifyCompetence" tabindex="-1" role="dialog" aria-labelledby="modifyCompetence">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="addCompetence">
+            <form id="modifyCompetence">
+                <input type="hidden" id="id_competence_modif" value="" />
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Ajout d'une compétence</h4>
+                    <h4 class="modal-title" id="myModalLabel">Modification d'une compétence</h4>
                 </div>
                 <div class="modal-body">
                     <fieldset class="form-group">
@@ -55,15 +57,15 @@
     </div>
 </div>
 
-<!-- Ajout d'un cours !-->
-<div class="modal fade" id="addCours" tabindex="-1" role="dialog" aria-labelledby="addCours">
+<!-- Modification d'un cours !-->
+<div class="modal fade" id="modifyCours" tabindex="-1" role="dialog" aria-labelledby="modifyCours">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="addCours">
+            <form id="modifyCours">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Ajout d'un cours</h4>
+                    <h4 class="modal-title" id="myModalLabel">Modification d'un cours</h4>
                 </div>
                 <div class="modal-body">
                     <fieldset class="form-group">
@@ -93,15 +95,15 @@
     </div>
 </div>
 
-<!-- Ajout de l'évaluation !-->
-<div class="modal fade" id="addEval" tabindex="-1" role="dialog" aria-labelledby="addEval">
+<!-- Modification de l'évaluation !-->
+<div class="modal fade" id="modifyEval" tabindex="-1" role="dialog" aria-labelledby="modifyEval">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="addEval">
+            <form id="modifyEval">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Ajout d'une Evaluation</h4>
+                    <h4 class="modal-title" id="myModalLabel">Modification d'une Evaluation</h4>
                 </div>
                 <div class="modal-body">
                     <fieldset class="form-group">
@@ -123,15 +125,15 @@
     </div>
 </div>
 
-<!-- Ajout d'un type d'évaluation !-->
-<div class="modal fade" id="addTypeEval" tabindex="-1" role="dialog" aria-labelledby="addTypeEval">
+<!-- Modification d'un type d'évaluation !-->
+<div class="modal fade" id="modifyTypeEval" tabindex="-1" role="dialog" aria-labelledby="modifyTypeEval">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="addTypeEval">
+            <form id="modifyTypeEval">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Ajout d'un Type Evaluation</h4>
+                    <h4 class="modal-title" id="myModalLabel">Modificationd'un Type Evaluation</h4>
                 </div>
                 <div class="modal-body">
                     <fieldset class="form-group">
@@ -153,15 +155,15 @@
     </div>
 </div>
 
-<!-- Ajout d'une épreuve !-->
-<div class="modal fade" id="addEpreuve" tabindex="-1" role="dialog" aria-labelledby="addEpreuve">
+<!-- Modification d'une épreuve !-->
+<div class="modal fade" id="modifyEpreuve" tabindex="-1" role="dialog" aria-labelledby="modifyEpreuve">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="addEpreuve">
+            <form id="modifyEpreuve">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Ajout d'une Epreuve</h4>
+                    <h4 class="modal-title" id="myModalLabel">Modification d'une Epreuve</h4>
                 </div>
                 <div class="modal-body">
                     <fieldset class="form-group">
@@ -174,25 +176,16 @@
                         <input type="text" class="form-control" id="coefEpreuve" placeholder="Exemple : 0.5 (pour 50%)">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelDateEpreuve">Date:</label>
-                            <div class="input-group input-append date" id="datePicker">
-                                <input id="dateEpreuve" type="text" class="form-control">
-                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                            </div>
+                        <label for="labelDateEpreuve">Date de l'épreuve:</label>
+                        <input type="text" class="form-control" id="dateEpreuve" placeholder="Exemple : 08/02/2016">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelEvaluation">Evaluateur:</label>
+                        <label for="labelEvaluation">Date de l'épreuve:</label>
                         <input type="text" class="form-control" id="evaluateurEpreuve" placeholder="Exemple : Xavier Wallart">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session :</label>
-                        <select class="selectpicker" id="selectSecondeSession" name="secondeSessions">
-                            <option value="0">Aucune seconde session</option>
-                        </select>
-                    </fieldset>
-                    <fieldset class="form-group">
-                        <label for="labelSubstitution">Choix de l'épreuve qui prime en cas d'absence excusée :</label>
-                        <select class="selectpicker" id="selectSubstitution" name="substitution">
+                        <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session:</label>
+                        <select class="selectpicker" name="secondeSessions" id="secondeSession">
                             <option value="0">Aucune seconde session</option>
                         </select>
                     </fieldset>

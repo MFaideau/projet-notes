@@ -3,7 +3,7 @@
         <div class="panel-heading">
             Choix de la Compétence
             <div class="add_button_etudes">
-                <a id="removeCompetence">
+                <a data-toggle="modal" data-target="#verifDeleteCompetences">
                     <i class="glyphicon glyphicon-remove-sign"></i>
                 </a>
                 <a data-toggle="modal" data-target="#modifyCompetence">
@@ -16,13 +16,11 @@
         </div>
         <div class="panel-body">
             <div class="btn-group" role="group" aria-label="...">
-                <div class="btn-group" role="group">
                     <?php
                     foreach ($cursus->GetCompetenceList() as $competence) { ?>
                         <button id="orga_competence_<?php echo $competence->GetId(); ?>" type="button"
                                 class="btn btn-default btn-competences" role="button"><?php echo html_entity_decode($competence->GetNom()); ?></button>
                     <?php } ?>
-                </div>
             </div>
         </div>
     </div>

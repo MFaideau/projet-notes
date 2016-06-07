@@ -11,9 +11,9 @@ include_once (__DIR__ . '../../../modeles/cours/cours.php');
 class Cours
 {
     private $id;
-    private $nom;
-    private $credits;
-    private $semestre;
+    public $nom;
+    public $credits;
+    public $semestre;
     private $evaluationList;
     
     function Cours($coursLine,$recursive)
@@ -51,7 +51,7 @@ class Cours
         $list =array();
         global $bdd;
         $req = $bdd->prepare('SELECT evaluation.ID_Eval,evaluation.Nom_Eval,evaluation.Coef_Eval FROM evaluation
-WHERE evaluation.ID_Eval = :idCours');
+WHERE evaluation.ID_Cours = :idCours');
         $req->bindParam(':idCours', $this->id, PDO::PARAM_INT);
         $req->execute();
         $evalList=$req->fetchAll();
