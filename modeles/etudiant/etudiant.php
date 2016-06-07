@@ -20,3 +20,15 @@ function GetEtudiant($utilisateur)
     $etudiant = new Etudiant($etudiantLine,$cursus,$utilisateur);
     return $etudiant;
 }
+function InsertEtudiant($idCursus,$idEtudiant,$nom,$prenom,$mail)
+{
+    // Insère l'étudiant dans les utilisateurs également
+    InsertUser($nom, $prenom, $mail,0);
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO etudiant (ID_Etudiant,ID_Cursus,Mail) VALUES (:idEtudiant,:idCursus,:mail)');
+    $req->execute(array(
+        'mail' => $mail,
+        'idEtudiant' => $idEtudiant,
+        'idCursus' => $idCursus,
+    ));
+}

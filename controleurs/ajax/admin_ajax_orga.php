@@ -19,7 +19,7 @@ if (!isset($_POST['action']) && isset($_POST['idCursus']) && empty($_POST['nomCo
 
 // Pour le bloc des modifications des cursus
 if (isset($_POST['action']) && isset($_POST['idCursus'])) {
-    if($_POST['action'] == "infos") {
+    if ($_POST['action'] == "infos") {
         $idCursus = $_POST['idCursus'];
         $cursus = GetCursus(GetCursusList(), $idCursus);
         if (!isset($cursus)) return;
@@ -27,6 +27,25 @@ if (isset($_POST['action']) && isset($_POST['idCursus'])) {
             echo json_encode($cursus);
             return;
         }
+    }
+}
+
+if (isset($_POST['action']) && isset($_POST['idTypeEval'])) {
+    if ($_POST['action'] == "infos") {
+        $idTypeEval = $_POST['idTypeEval'];
+        $listEpreuves = GetEpreuveListFromTypeEval($idTypeEval);
+        if (isset($listEpreuves))
+            echo json_encode($listEpreuves);
+        return;
+    }
+}
+if (isset($_POST['action']) && isset($_POST['idEpreuve'])) {
+    if ($_POST['action'] == "infos") {
+        $idEpreuve = $_POST['idEpreuve'];
+        $epreuve = GetEpreuveFromId($idEpreuve);
+        if (isset($epreuve))
+            echo json_encode($epreuve);
+        return;
     }
 }
 
@@ -85,6 +104,7 @@ if (isset($_POST['idTypeEval']) && empty($_POST['nomEpreuve'])) {
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/epreuves_bloc.php';
 }
 
+
 if (isset($_POST['action']) && isset($_POST['idTypeEval']) && empty($_POST['nomEpreuve']))
     if ($_POST['action'] == "delete")
         DeleteTypeEval($_POST['idTypeEval']);
@@ -105,13 +125,12 @@ if ((isset($_POST['nomCours'])) && isset($_POST['nbCreditsCours']) && isset($_PO
 if (isset($_POST['idCours']) && isset($_POST['nomEval']) && isset($_POST['coefEval'])) {
     InsertEvaluation($_POST['nomEval'], $_POST['coefEval'], $_POST['idCours']);
 }
-if (isset($_POST['idEval']) && isset($_POST['nomTypeEval']) && isset($_POST['coefTypeEval'])) {
+if (isset($_POST['idEval']) && isset($_POST['nomTypeEval']) && isset($_POST['coefTypeEval']))
     $idTypeEvalNew = InsertTypeEval($_POST['nomTypeEval'], $_POST['coefTypeEval'], $_POST['idEval']);
-    include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_type_eval_bloc.php';
-}
-if (isset($_POST['idEpreuve']) && isset($_POST['nomEpreuve']) && isset($_POST['coefEpreuve']) && isset($_POST['dateEpreuve']) && isset($_POST[''])) {
-    $idEpreuveNew = InsertEpreuve($_POST['nomEpreuve'],$_POST['coefEpreuve'],$_POST['dateEpreuve'],$_POST['evaluateurEpreuve'],$_POST['idEpreuveSubstitution'],$_POST['idSecondeSession'],$_POST['idTypeEval']);
-    include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_type_epreuve_bloc.php';
-}
+
+if (isset($_POST['nomEpreuve']) && isset($_POST['coefEpreuve']) && isset($_POST['dateEpreuve']) && isset($_POST['evaluateurEpreuve']) && isset($_POST['idEpreuveSubstitution']) && isset($_POST['idSecondeSession']) && isset($_POST['idTypeEval'])) {
+    echo var_dump($_POST);
+    $idEpreuveNew = InsertEpreuve($_POST['nomEpreuve'], $_POST['coefEpreuve'], $_POST['dateEpreuve'], $_POST['evaluateurEpreuve'], $_POST['idEpreuveSubstitution'], $_POST['idSecondeSession'], $_POST['idTypeEval']);
+  }
 
 ?>

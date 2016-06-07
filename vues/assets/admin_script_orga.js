@@ -75,7 +75,6 @@ $(document).on("click", "button[id^=orga_cours]", function (e) {
         success: function (result) {
             $(".panel_eval").remove();
             $(".panel_type_eval").remove();
-            $(".panel_eval").remove();
             $(".panel_epreuve").remove();
             $(".panel_upload_epreuve").remove();
             $(result).insertAfter($(".panel_cours"));
@@ -122,18 +121,59 @@ $(document).on("click", "button[id^=orga_type_eval]", function (e) {
         success: function (result) {
             $(".panel_epreuve").remove();
             $(result).insertAfter($(".panel_type_eval"));
+            $.ajax({
+                url: './ajax/admin_ajax_orga.php',
+                type: 'POST',
+                datatype: 'json',
+                data: 'idTypeEval=' + idTypeEval +"&action=infos",
+                success: function(result2) {
+                    var current_type_eval = jQuery.parseJSON(result2);
+                    $("#addEpreuve select[id=selectSecondeSession]").empty().append('<option value="0">Aucune seconde session</option>');
+                    $.each(current_type_eval, function(index) {
+                        $("#addEpreuve #selectSecondeSession").append("<option value=" + current_type_eval[index].id + ">" +
+                            current_type_eval[index].nom + "</option>");
+                    });
+                }
+            });
         },
     });
 });
 
 $(document).on("click", "button[id^=orga_epreuve]", function (e) {
+    var idEpreuve = this.id.replace("orga_epreuve_", "");
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
         datatype: 'html',
-        data: 'idEpreuve=' + this.id.replace("orga_epreuve_", ""),
+        data: 'idEpreuve=' + idEpreuve,
         success: function (result) {
             $(result).insertAfter($(".panel_epreuve"));
+            $.ajax({
+                url: './ajax/admin_ajax_orga.php',
+                type: 'POST',
+                datatype: 'json',
+                data: 'idTypeEval=' + idTypeEval +"&action=infos",
+                success: function(result2) {
+                    var current_type_eval = jQuery.parseJSON(result2);
+                    $("#modifyEpreuve select[id=selectSecondeSession]").empty().append('<option value="0">Aucune seconde session</option>');
+                    $.each(current_type_eval, function(index) {
+                        if(current_type_eval[index].id != idEpreuve) {
+                            $("#modifyEpreuve #selectSecondeSessionn").append("<option value=" + current_type_eval[index].id + ">" +
+                                current_type_eval[index].nom + "</option>");
+                        }
+                    });
+                }
+            });
+            $.ajax({
+                url: './ajax/admin_ajax_orga.php',
+                type: 'POST',
+                datatype: 'json',
+                data: 'idEpreuve=' + idEpreuve + "&action=infos",
+                success: function(result2) {
+                    var current_epreuve= jQuery.parseJSON(result2);
+
+                }
+            });
         }
     });
 });
@@ -232,10 +272,10 @@ $(function () {
         $.ajax({
             url: './ajax/admin_ajax_orga.php',
             type: 'POST',
-            data: 'idTypeEval=' + idTypeEval + '&nomEpreuve=' + $("#nomEpreuve").val() + '&coefEpreuve=' + $("#coefEpreuve").val(),
+            data: 'idTypeEval=' + idTypeEval + '&nomEpreuve=' + $("#nomEpreuve").val() + '&coefEpreuve=' + $("#coefEpreuve").val() + '&dateEpreuve=' + $("#dateEpreuve").val() + '&evaluateurEpreuve=' + $("#evaluateurEpreuve").val() + '&idSecondeSession=' + $("#addEpreuve select[id=selectSecondeSession] option:selected").val()+ '&idEpreuveSubstitution=' + $("#addEpreuve select[id=selectSubstitution] option:selected").val(),
             success: function (data) {
                 $("#addEpreuve").modal("hide");
-                $("button[id^=orga_type_eval" + idTypeEval + "]").trigger("click");
+                $("button[id^=orga_type_eval_" + idTypeEval + "]").trigger("click");
             }
         });
     });

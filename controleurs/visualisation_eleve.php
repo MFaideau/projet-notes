@@ -7,7 +7,6 @@ $user = unserialize($_SESSION['user']);
 include_once (__DIR__ . '../../vues/menu.php');
 
 // Insertion de la partie contenu de la visualisation
-
 if(isset($_GET['id'])) {
     $mail = $_GET['id'];
     $user_vue = GetUser($mail);
@@ -18,7 +17,8 @@ if(isset($_GET['id'])) {
 	}
 }
 else {
-    include_once(__DIR__ . '../../vues/visualisation_eleve.php');
+    if ($user->GetAutorite() != 0)
+        include_once(__DIR__ . '../../vues/visualisation_eleve.php');
 }
 
 // Insertion du footer pour les scripts JS (jQuery)
