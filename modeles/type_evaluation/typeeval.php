@@ -9,7 +9,7 @@
 function GetEpreuveListFromTypeEval($typeEvalId){
     $list =array();
     global $bdd;
-    $req = $bdd->prepare('SELECT epreuve.ID_Epreuve,epreuve.ID_Epreuve_Substitution,epreuve.Nom_Epreuve,epreuve.Coef_Epreuve,epreuve.Date_Epreuve,epreuve.Evaluateur_Epreuve
+    $req = $bdd->prepare('SELECT ID_Epreuve,ID_Epreuve_Substitution,ID_Epreuve_Session2,Nom_Epreuve,Coef_Epreuve,Date_Epreuve,Evaluateur_Epreuve
         FROM epreuve WHERE epreuve.ID_Type = :idType');
     $req->bindParam(':idType', $typeEvalId, PDO::PARAM_INT);
     $req->execute();
@@ -68,4 +68,3 @@ function ModifyTypeEval($idTypeEval,$nom,$coef)
     ));
     return;
 }
-DeleteTypeEval(2);

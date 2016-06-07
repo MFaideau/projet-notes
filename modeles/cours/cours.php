@@ -17,7 +17,7 @@ WHERE type_eval.ID_Eval=evaluation.ID_Eval AND evaluation.ID_Cours = :idCours');
     $typeEvalList=$req->fetchAll();
     foreach($typeEvalList as $typeEval)
     {
-        $list[]=new TypeEval($typeEval,false);
+        $list[]=new TypeEval($typeEval);
     }
     return $list;
 }
@@ -31,7 +31,7 @@ WHERE evaluation.ID_Cours = :idCours');
     $req->execute();
     $evalList=$req->fetchAll();
     foreach($evalList as $eval) {
-        $list[] = new Evaluation($eval,false);
+        $list[] = new Evaluation($eval);
     }
     return $list;
 }
@@ -90,5 +90,5 @@ function GetCoursById($idCours) {
     $req = $bdd->prepare('SELECT ID_Cours, Nom_Cours, Credits_Cours, Semestre_Cours FROM cours WHERE ID_Cours = :id');
     $req->bindParam(':id', $idCours, PDO::PARAM_INT);
     $req->execute();
-    return new Cours($req->fetchAll()[0],false);
+    return new Cours($req->fetchAll()[0]);
 }
