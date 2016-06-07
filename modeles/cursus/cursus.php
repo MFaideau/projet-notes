@@ -8,7 +8,7 @@
 
 include_once('cursus.class.php');
 
-function GetCompetenceListFromCursus($idCursus)
+ function GetCompetenceListFromCursus($idCursus)
 {
     $list =array();
     global $bdd;
@@ -19,10 +19,11 @@ FROM competence WHERE competence.ID_Cursus=:idCursus');
     $competenceList=$req->fetchAll();
     foreach($competenceList as $competence)
     {
-        $list[]=new Competence($competence,false);
+        $list[]=new Competence($competence);
     }
     return $list;
 }
+
 function GetCursusList()
 {
     global $bdd;
@@ -32,7 +33,7 @@ function GetCursusList()
     $cursusList = array();
     foreach ($cursusArray as $cursus)
     {
-        $cursusList[] = new Cursus($cursus,true);
+        $cursusList[] = new Cursus($cursus);
     }
     return $cursusList;
 }
