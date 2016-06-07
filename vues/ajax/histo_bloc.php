@@ -21,15 +21,16 @@
                     <th scope="row"><?php echo $competence->GetNom(); ?></th>
                     <td width="50%">
                         <?php
-                        $note_etudiant = 0; //GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId())[0];
-                        $moyenne = $tab_histo_info[0];
-                        $ecart_type = $tab_histo_info[1];
+                        $note_etudiant = GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId());
+                        $tab_histo = getStat(GetTabNotesEtudiantsFromCompetence($competence->GetId()));
+                        $moyenne = $tab_histo[0];
+                        $ecart_type = $tab_histo[1];
                         $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
                         include('modules/module_histo.php');
                         ?>
                     </td>
-                    <td><?php echo $tab_histo_info[2]; ?></td>
-                    <td><?php echo $tab_histo_info[3]; ?></td>
+                    <td><?php echo $tab_histo[2]; ?></td>
+                    <td><?php echo $tab_histo[3]; ?></td>
                     <td><?php echo $note_etudiant; ?></td>
                 </tr>
             <?php } ?>
