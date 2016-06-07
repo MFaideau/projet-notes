@@ -129,8 +129,7 @@ if (isset($_POST['idEval']) && isset($_POST['nomTypeEval']) && isset($_POST['coe
     $idTypeEvalNew = InsertTypeEval($_POST['nomTypeEval'], $_POST['coefTypeEval'], $_POST['idEval']);
 
 if (isset($_POST['nomEpreuve']) && isset($_POST['coefEpreuve']) && isset($_POST['dateEpreuve']) && isset($_POST['evaluateurEpreuve']) && isset($_POST['idEpreuveSubstitution']) && isset($_POST['idSecondeSession']) && isset($_POST['idTypeEval'])) {
-    echo var_dump($_POST);
-    $idEpreuveNew = InsertEpreuve($_POST['nomEpreuve'], $_POST['coefEpreuve'], $_POST['dateEpreuve'], $_POST['evaluateurEpreuve'], $_POST['idEpreuveSubstitution'], $_POST['idSecondeSession'], $_POST['idTypeEval']);
+    $idEpreuveNew = InsertEpreuve($_POST['nomEpreuve'], $_POST['coefEpreuve'], $_POST['dateEpreuve'],$_POST['evaluateurEpreuve'], $_POST['idEpreuveSubstitution'], $_POST['idSecondeSession'], $_POST['idTypeEval']);
   }
 
 ?>

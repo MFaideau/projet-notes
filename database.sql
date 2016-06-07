@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 02 Juin 2016 à 09:30
+-- Généré le :  Mar 07 Juin 2016 à 07:21
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -187,33 +187,27 @@ DROP TABLE IF EXISTS `epreuve`;
 CREATE TABLE IF NOT EXISTS `epreuve` (
   `ID_Epreuve` int(5) NOT NULL AUTO_INCREMENT,
   `ID_Type` int(5) NOT NULL,
+  `ID_Epreuve_Session2` int(5) NOT NULL,
+  `ID_Epreuve_Substitution` int(11) NOT NULL,
   `Nom_Epreuve` varchar(255) NOT NULL,
   `Coef_Epreuve` float NOT NULL,
   `Date_Epreuve` date NOT NULL,
   `Evaluateur_Epreuve` varchar(255) NOT NULL,
   PRIMARY KEY (`ID_Epreuve`),
   KEY `ID_Type` (`ID_Type`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `epreuve`
 --
 
-INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `Nom_Epreuve`, `Coef_Epreuve`, `Date_Epreuve`, `Evaluateur_Epreuve`) VALUES
-(5, 1, 'Interrogation CSI3 Ondes et Mécanique Quantique (partie Ondes)', 1, '0000-00-00', 'Xavier Wallart');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `epreuvesession`
---
-
-DROP TABLE IF EXISTS `epreuvesession`;
-CREATE TABLE IF NOT EXISTS `epreuvesession` (
-  `ID_Epreuve_Session1` int(5) NOT NULL,
-  `ID_Epreuve_Session2` int(5) NOT NULL,
-  PRIMARY KEY (`ID_Epreuve_Session1`,`ID_Epreuve_Session2`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `ID_Epreuve_Session2`, `ID_Epreuve_Substitution`, `Nom_Epreuve`, `Coef_Epreuve`, `Date_Epreuve`, `Evaluateur_Epreuve`) VALUES
+(6, 5, 0, 0, 'BLABLABLABLA', 3, '2016-06-02', 'Monsieur Carette'),
+(7, 5, 0, 0, 'Partiel', 0.3, '2015-03-30', 'David Boulinguez'),
+(8, 5, 7, 0, 'Partiel', 0.3, '2015-03-30', 'David Boulinguez'),
+(9, 128, 0, 0, 'Partiel', 0.3, '2043-07-31', 'Bruno Stefanelli'),
+(13, 5, 0, 0, 'Partiel', 0.3, '2015-03-30', 'Bonjour'),
+(14, 5, 0, 0, 're', 0.3, '2015-03-30', 'Bonjour');
 
 -- --------------------------------------------------------
 
@@ -287,7 +281,6 @@ CREATE TABLE IF NOT EXISTS `evaluation` (
 --
 
 INSERT INTO `evaluation` (`ID_Eval`, `ID_Cours`, `Nom_Eval`, `Coef_Eval`) VALUES
-(1, 1, 'Théorie', 1),
 (2, 2, 'Théorie', 1),
 (3, 4, 'Théorie', 0.6),
 (4, 4, 'Pratique', 0.4),
@@ -381,17 +374,13 @@ CREATE TABLE IF NOT EXISTS `type_eval` (
   `Coef_Type_Eval` float NOT NULL,
   PRIMARY KEY (`ID_Type`),
   KEY `ID_Eval` (`ID_Eval`)
-) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `type_eval`
 --
 
 INSERT INTO `type_eval` (`ID_Type`, `ID_Eval`, `Nom_Type`, `Coef_Type_Eval`) VALUES
-(1, 1, 'Interrogation', 0.2),
-(2, 1, 'DS', 0.3),
-(3, 1, 'Partiel', 0.5),
-(4, 2, 'Interrogation', 0.2),
 (5, 3, 'Interrogation', 0.2),
 (6, 6, 'Interrogation', 0.2),
 (7, 8, 'Interrogation', 0.2),
@@ -406,7 +395,6 @@ INSERT INTO `type_eval` (`ID_Type`, `ID_Eval`, `Nom_Type`, `Coef_Type_Eval`) VAL
 (16, 70, 'Interrogation', 0.2),
 (17, 74, 'Interrogation', 0.2),
 (18, 76, 'Interrogation', 0.2),
-(19, 2, 'DS', 0.3),
 (20, 3, 'DS', 0.3),
 (21, 6, 'DS', 0.3),
 (22, 12, 'DS', 0.3),
@@ -424,7 +412,6 @@ INSERT INTO `type_eval` (`ID_Type`, `ID_Eval`, `Nom_Type`, `Coef_Type_Eval`) VAL
 (34, 34, 'DS', 1),
 (35, 36, 'DS', 1),
 (36, 38, 'DS', 1),
-(37, 2, 'Partiel', 0.5),
 (38, 3, 'Partiel', 0.5),
 (39, 6, 'Partiel', 0.5),
 (40, 8, 'Partiel', 0.8),
@@ -512,7 +499,10 @@ INSERT INTO `type_eval` (`ID_Type`, `ID_Eval`, `Nom_Type`, `Coef_Type_Eval`) VAL
 (122, 35, 'Projet', 1),
 (123, 37, 'Partiel', 0.33),
 (124, 37, 'Projet', 0.67),
-(125, 39, 'Evaluation', 1);
+(125, 39, 'Evaluation', 1),
+(126, 2, 'Partiel', 0.5),
+(127, 3, 'Partiouille', 3),
+(128, 3, 'Partiouille 2', 3);
 
 -- --------------------------------------------------------
 

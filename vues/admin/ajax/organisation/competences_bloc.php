@@ -18,7 +18,7 @@
             <div class="btn-group" role="group" aria-label="...">
                 <div class="btn-group" role="group">
                     <?php
-                    foreach ($cursus->GetCompetenceList() as $competence) { ?>
+                    foreach (GetCompetenceListFromCursus($cursus->GetId()) as $competence) { ?>
                         <button id="orga_competence_<?php echo $competence->GetId(); ?>" type="button"
                                 class="btn btn-default btn-competences" role="button"><?php echo html_entity_decode($competence->GetNom()); ?></button>
                     <?php } ?>
