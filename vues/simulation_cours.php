@@ -14,7 +14,7 @@
             <tbody>
             <?php foreach($coursList as $cours) { ?>
                 <tr>
-                    <td><a href="#" id=""><?php echo $cours->GetNom(); ?></a></td>
+                    <td><a href="#" id="simu_cours_<?php echo $cours->GetId(); ?>"><?php echo $cours->GetNom(); ?></a></td>
                     <td><?php echo "20"; ?></td>
                     <td><?php echo $cours->GetSemestre(); ?></td>
                     <td><?php echo $cours->GetCredits(); ?></td>
