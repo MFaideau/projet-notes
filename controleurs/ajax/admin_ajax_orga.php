@@ -49,6 +49,16 @@ if (isset($_POST['action']) && isset($_POST['idEpreuve'])) {
     }
 }
 
+if (isset($_POST['action']) && isset($_POST['idCours'])) {
+    if ($_POST['action'] == "substitution") {
+        $idCours = $_POST['idCours'];
+        $listEpreuves = GetEpreuveListFromCours($idCours);
+        if (isset($listEpreuves))
+            echo json_encode($listEpreuves);
+        return;
+    }
+}
+
 // TODO : Faire une fenêtre de validation lors de la suppression du cursus
 if (isset($_POST['action']) && isset($_POST['idCursus']) && empty($_POST['nomCompetence']))
     if ($_POST['action'] == "delete")
