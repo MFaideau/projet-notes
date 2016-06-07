@@ -6,6 +6,23 @@
  * Time: 11:10
  */
 include_once(__DIR__ . '../../type_evaluation/typeeval.class.php');
+function GetEpreuveListFromCours($idCours)
+{
+    $list =array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Epreuve,ID_Epreuve_Substitution,ID_Epreuve_Session2,Nom_Epreuve,Coef_Epreuve,Date_Epreuve,Evaluateur_Epreuve
+        FROM epreuve,type_eval,evaluation WHERE epreuve.ID_Type = type_eval.ID_Type AND type_eval.ID_Eval = evaluation.ID_Eval
+        AND evaluation.ID_Cours = :idCours');
+    $req->bindParam(':idCours', $idCours, PDO::PARAM_INT);
+    $req->execute();
+    $epreuveList=$req->fetchAll();
+    foreach($epreuveList as $epreuve)
+    {
+        $list[]=new Epreuve($epreuve);
+    }
+    return $list;
+}
+
 function GetTypeEvalListFromCours($idCours)
 {
     $list =array();
