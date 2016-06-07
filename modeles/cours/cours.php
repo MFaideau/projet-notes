@@ -84,3 +84,11 @@ function ModifyCours($idCours,$nom,$ects,$semestre)
     ));
     return;
 }
+
+function GetCoursById($idCours) {
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Cours, Nom_Cours, Credits_Cours, Semestre_Cours FROM cours WHERE ID_Cours = :id');
+    $req->bindParam(':id', $idCours, PDO::PARAM_INT);
+    $req->execute();
+    return new Cours($req->fetchAll()[0],false);
+}

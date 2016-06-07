@@ -11,9 +11,9 @@ include_once (__DIR__ . '../../../modeles/cours/cours.php');
 class Cours
 {
     private $id;
-    private $nom;
-    private $credits;
-    private $semestre;
+    public $nom;
+    public $credits;
+    public $semestre;
     private $evaluationList;
     
     function Cours($coursLine,$recursive)

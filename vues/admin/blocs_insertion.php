@@ -174,19 +174,26 @@
                         <input type="text" class="form-control" id="coefEpreuve" placeholder="Exemple : 0.5 (pour 50%)">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelDateEpreuve">Date de l'épreuve:</label>
-                        <input type="text" class="form-control" id="dateEpreuve" placeholder="Exemple : 08/02/2016">
+                        <label for="labelDateEpreuve">Date:</label>
+                            <div class="input-group input-append date" id="datePicker">
+                                <input id="dateEpreuve" type="text" class="form-control">
+                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelEvaluation">Date de l'épreuve:</label>
+                        <label for="labelEvaluation">Evaluateur:</label>
                         <input type="text" class="form-control" id="evaluateurEpreuve" placeholder="Exemple : Xavier Wallart">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session:</label>
-                        <select class="selectpicker" name="secondeSessions" id="secondeSession">
+                        <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session :</label>
+                        <select class="selectpicker" id="selectSecondeSession" name="secondeSessions">
                             <option value="0">Aucune seconde session</option>
-                            <option value="1">Epreuve de démo 1 (codé en dur)</option>
-                            <option value="2">Epreuve de démo 2 (codé en dur)</option>
+                        </select>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="labelSubstitution">Choix de l'épreuve qui prime en cas d'absence excusée :</label>
+                        <select class="selectpicker" id="selectSubstitution" name="substitution">
+                            <option value="0">Aucune seconde session</option>
                         </select>
                     </fieldset>
                 </div>

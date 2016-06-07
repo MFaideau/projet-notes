@@ -1,13 +1,24 @@
 <!-- Selection entre les Tableaux et les Histogrammes !-->
-<?php 
-if ($user->GetAutorite() != 1) {
-?>
-
 
 <div class="row">
-    <div class="col-md-2.5 col-md-offset-9.5 visualisation">
+    <?php
+        if ($user->GetAutorite() == 1) { ?>
+    <div class="col-md-8">
+        <div class="alert alert-warning" role="alert">Vue en cours : <strong><?php echo $user_vue->GetNom() . ' ' . $user_vue->GetPrenom(); ?></strong>.</div>
+    </div>        
+    <?php 
+        }
+    ?>
+    <div class="col-md-2.5 visualisation">
         <div class="panel panel-default">
             <div class="panel-body ">
+                <?php
+                if ($user->GetAutorite() == 1) {
+                    ?>
+                    <a href="visualisation_eleve.php">
+                        <span class="glyphicon glyphicon-circle-arrow-left icone" title="Revenir à la page d'administration"></span>
+                    </a>
+                <?php } ?>
                 <a href="#tableau_notes" class="tableaux_logo">
                     <span class="glyphicon glyphicon-list-alt icone" title="Relevé de notes"></span>
                 </a>
@@ -24,5 +35,3 @@ if ($user->GetAutorite() != 1) {
         </div>
     </div>
 </div>
-
-<?php } ?> 

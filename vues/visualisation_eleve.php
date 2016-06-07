@@ -1,4 +1,4 @@
-<div class="panel_cursus">
+<div class="panel_choix_eleves">
     <div class="panel panel-default choix_cursus_eleves">
         <div class="panel-heading">Choix du Cursus</div>
         <div class="panel-body">
