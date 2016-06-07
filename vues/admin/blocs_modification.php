@@ -185,8 +185,14 @@
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session:</label>
-                        <select class="selectpicker" name="secondeSessions" id="secondeSession">
+                        <select class="selectpicker" name="secondeSessions" id="selectSecondeSession">
                             <option value="0">Aucune seconde session</option>
+                        </select>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="labelSubstitution">Choix de l'épreuve qui prime en cas d'absence excusée :</label>
+                        <select class="selectpicker" id="selectSubstitution" name="substitution">
+                            <option value="0">Pas de note en cas d'absence</option>
                         </select>
                     </fieldset>
                 </div>
