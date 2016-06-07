@@ -9,7 +9,14 @@ if (!isset($_SESSION['user'])) {
 else {
     $user = unserialize($_SESSION['user']);
     include_once(__DIR__ . '../../vues/menu.php');
-    include_once(__DIR__ . '../../vues/simulation.php');
+    
+    // On récupère d'abord la liste des compétences par défaut (de l'étudiant)
+    $cursus = GetEtudiant($user)->GetCursus();
+    if (isset($cursus)) {
+        $competenceList = GetCompetenceListFromCursus($cursus->GetId());
+        include_once(__DIR__ . '../../vues/simulation_competences.php');
+    }
+
     include_once(__DIR__ . '../../vues/footer.php');
 }
 

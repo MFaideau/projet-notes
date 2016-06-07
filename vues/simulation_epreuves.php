@@ -1,6 +1,4 @@
 <!-- Simulateur Manuel !-->
-
-
 <div class="row donnees donnees_tableaux">
     <div class="panel panel-default">
         <div class="panel-heading">Simulateur Manuel</div>
@@ -50,8 +48,6 @@
                 <td> <input type="number" value="10"min="0" max="20"/> </td>
                 <td><span class="glyphicon glyphicon-ok"></span></td>
             </tr>
-            <tr>
-            <tr>
             </tbody>
         </table>
     </div>
