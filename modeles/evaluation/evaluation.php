@@ -6,6 +6,20 @@
  * Time: 08:12
  */
 include_once (__DIR__ . '../../../modeles/type_evaluation/typeeval.class.php');
+
+function GetEvalFromId($evalId){
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Eval,Nom_Eval,Coef_Eval
+        FROM evaluation WHERE evaluation.ID_Eval = :idEval');
+    $req->bindParam(':idEval', $evalId, PDO::PARAM_INT);
+    $req->execute();
+    $evalList=$req->fetchAll();
+    if (count($evalList) > 0)
+        return new Evaluation($evalList[0]);
+    else
+        return null;
+}
+
 function GetTypeEvalListFromEval($evalId){
     $list =array();
     global $bdd;

@@ -11,8 +11,8 @@ include_once (__DIR__ . '../../../modeles/type_evaluation/typeeval.php');
 class TypeEval
 {
     private $id;
-    private $nom;
-    private $coef;
+    public $nom;
+    public $coef;
 
     function TypeEval($typeEvalLine)
     {

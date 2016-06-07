@@ -107,6 +107,19 @@ $(document).on("click", "button[id^=orga_eval]", function (e) {
             $(".panel_type_eval").remove();
             $(".panel_epreuve").remove();
             $(result).insertAfter($(".panel_eval"));
+            // On récupère aussi des informations pour le bloc de modifications
+            $.ajax({
+                url: './ajax/admin_ajax_orga.php',
+                type: 'POST',
+                datatype: 'json',
+                data: 'idEval=' + idEval +"&action=infos",
+                success: function(result2) {
+                    var current_eval = jQuery.parseJSON(result2);
+
+                    $("#modifyEval input[id=nomEval]").val(current_eval.nom);
+                    $("#modifyEval input[id=coefEval]").val(current_eval.coef);
+                }
+            });
         },
     });
 });
@@ -126,6 +139,17 @@ $(document).on("click", "button[id^=orga_type_eval]", function (e) {
                 type: 'POST',
                 datatype: 'json',
                 data: 'idTypeEval=' + idTypeEval +"&action=infos",
+                success: function(result2) {
+                    var current_eval = jQuery.parseJSON(result2);
+                    $("#modifyTypeEval input[id=nomTypeEval]").val(current_eval.nom);
+                    $("#modifyTypeEval input[id=coefTypeEval]").val(current_eval.coef);
+                }
+            });
+            $.ajax({
+                url: './ajax/admin_ajax_orga.php',
+                type: 'POST',
+                datatype: 'json',
+                data: 'idTypeEval=' + idTypeEval +"&action=secondesession",
                 success: function(result2) {
                     var current_type_eval = jQuery.parseJSON(result2);
                     $("#addEpreuve select[id=selectSecondeSession]").empty().append('<option value="0">Aucune seconde session</option>');
@@ -166,7 +190,7 @@ $(document).on("click", "button[id^=orga_epreuve]", function (e) {
                 url: './ajax/admin_ajax_orga.php',
                 type: 'POST',
                 datatype: 'json',
-                data: 'idTypeEval=' + idTypeEval +"&action=infos",
+                data: 'idTypeEval=' + idTypeEval +"&action=secondesesion",
                 success: function(result2) {
                     var current_type_eval = jQuery.parseJSON(result2);
                     $("#modifyEpreuve select[id=selectSecondeSession]").empty().append('<option value="0">Aucune seconde session</option>');
