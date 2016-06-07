@@ -18,7 +18,17 @@
                 <a href="visualisation_eleve.php">
                     <div class="col-md-3 bouton_Eleve">Visualisation Eleve</div>
                 </a>
-            <?php } else { ?>
+            <?php } else
+                if ($user->GetAutorite() == 2) {
+                    ?>
+                    <a href="saisie_notes.php">
+                        <div class="col-md-5 bouton_notes">Saisie des notes</div>
+                    </a>
+                    <a href="visualisation_eleve.php">
+                        <div class="col-md-5 bouton_Eleve">Visualisation Eleve</div>
+                    </a>
+            <?php } else {
+                    ?>
                 <a href="releve_onglet.php">
                     <div class="col-md-5 bouton_releve">Relevé de Notes</div>
                 </a>
