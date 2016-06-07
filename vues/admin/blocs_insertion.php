@@ -163,7 +163,6 @@
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Ajout d'une Epreuve</h4>
                 </div>
-
                 <div class="modal-body">
                     <fieldset class="form-group">
                         <label for="labelNomEpreuve">Nom de l'Epreuve :</label>
@@ -177,7 +176,7 @@
                     <fieldset class="form-group">
                         <label for="labelDateEpreuve">Date:</label>
                             <div class="input-group input-append date" id="datePicker">
-                                <input type="text" class="form-control" name="date" data-fv-field="date">
+                                <input id="dateEpreuve" type="text" class="form-control">
                                 <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                     </fieldset>
@@ -186,11 +185,15 @@
                         <input type="text" class="form-control" id="evaluateurEpreuve" placeholder="Exemple : Xavier Wallart">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session:</label>
-                        <select class="selectpicker" name="secondeSessions" id="secondeSession">
+                        <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session :</label>
+                        <select class="selectpicker" id="selectSecondeSession" name="secondeSessions">
                             <option value="0">Aucune seconde session</option>
-                            <option value="1">Epreuve de démo 1 (codé en dur)</option>
-                            <option value="2">Epreuve de démo 2 (codé en dur)</option>
+                        </select>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="labelSubstitution">Choix de l'épreuve qui prime en cas d'absence excusée :</label>
+                        <select class="selectpicker" id="selectSubstitution" name="substitution">
+                            <option value="0">Aucune seconde session</option>
                         </select>
                     </fieldset>
                 </div>
