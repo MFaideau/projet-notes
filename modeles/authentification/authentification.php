@@ -50,3 +50,13 @@ function InsertUser($nom,$prenom,$mail,$autorite)
     ));
     return;
 }
+
+function DeleteUser($mail)
+{
+    global $bdd;
+    $req = $bdd->prepare('DELETE FROM utilisateur WHERE Mail = :mail');
+    $req->execute(array(
+        'mail' => $mail,
+    ));
+    return;
+}

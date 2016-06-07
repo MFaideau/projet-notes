@@ -72,3 +72,19 @@ $('.abs').click(function() {
         }
     });
 });
+
+
+//// =================== PARTIE SIMULATION ==============================
+
+$('.simulationmanuelle').click(function() {
+    $.ajax({
+        url: './simulation.php',
+        type: 'GET',
+        datatype: 'html',
+        success: function (result) {
+            $(".menu").remove();
+            $(".navbar").remove();
+            $(result).insertAfter($(".visualisation").parent());
+        }
+    });
+});
