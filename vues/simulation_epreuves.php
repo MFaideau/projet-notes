@@ -1,5 +1,5 @@
 <!-- Simulateur Manuel !-->
-<div class="row donnees donnees_tableaux">
+<div class="row donnees donnees_tableaux panel_simu_epreuves">
     <div class="panel panel-default">
         <div class="panel-heading">Simulateur Manuel</div>
         <table class="table">

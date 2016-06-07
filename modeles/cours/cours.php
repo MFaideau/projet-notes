@@ -8,7 +8,7 @@
 include_once(__DIR__ . '../../type_evaluation/typeeval.class.php');
 function GetTypeEvalListFromCours($idCours)
 {
-    $list =array();
+    $list = array();
     global $bdd;
     $req = $bdd->prepare('SELECT type_eval.ID_Type,type_eval.Nom_Type,type_eval.Coef_Type_Eval FROM evaluation,type_eval
 WHERE type_eval.ID_Eval=evaluation.ID_Eval AND evaluation.ID_Cours = :idCours');

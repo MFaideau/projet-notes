@@ -12,3 +12,18 @@ $(document).on("click", "a[id^=simu_comp]", function (e) {
         }
     });
 });
+
+$(document).on("click", "a[id^=simu_curs]", function (e) {
+    var idCours = this.id.replace("simu_cours_","");
+    $.ajax({
+        url: './ajax/simulation.php',
+        type: 'POST',
+        datatype: 'html',
+        data: 'idCours=' + idCours,
+        success: function (result) {
+            $(".panel_simu_cours").remove();
+            $(".panel_simu_epreuves").remove();
+            $(result).insertAfter($(".panel_simu_comp"));
+        }
+    });
+});
