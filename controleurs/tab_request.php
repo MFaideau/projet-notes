@@ -121,3 +121,15 @@ function GetTabNotesEtudiantsFromTypeEval($idTypeEval) {
 
     }
 }
+
+function GetTabNotesEtudiantsFromEval($idEval) {
+
+}
+
+function GetTabNotesEtudiantsFromCours($idCours) {
+
+}
+
+function GetTabNotesEtudiantsFromCompetence($idCompetence) {
+
+}

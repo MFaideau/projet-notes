@@ -6,6 +6,18 @@ $varTab = array(
     30 => 5, 31 => 4, 32 => 4, 33 => 3, 34 => 3, 35 => 2, 36 => 2, 37 => 1, 38 => 1, 39 => 0, 40 => 0
 );
 
+$tab_info = array();
+$tab_elec = array();
+$tab_manage = array();
+$tab_signaux = array();
+$tab_total = array();
 
+for ($i=0;$i<50;$i++) {
+    $tab_info[$i] = rand(8,19);
+    $tab_elec[$i] = rand(2,14);
+    $tab_manage[$i] = rand(12,18);
+    $tab_signaux[$i] = rand(6,15);
+    $tab_total[$i] = rand(6,14);
+}
 
 ?>
