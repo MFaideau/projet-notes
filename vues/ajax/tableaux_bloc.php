@@ -16,7 +16,14 @@
             <?php foreach ($competenceList as $competence) { ?>
                 <tr>
                     <th scope="row"><a id="releve_comp_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></th>
-                    <td>13</td>
+                    <td>
+                        <?php
+                        $note_etudiant = GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId());
+                        $tab_histo = GetStat(GetTabNotesEtudiantsFromCompetence($competence->GetId()));
+                        $moyenne = $tab_histo[0];
+                        echo $moyenne;
+                        ?>
+                    </td>
                     <td><?php echo $competence->GetCredits(); ?></td>
                     <td>A</td>
                 </tr>

@@ -4,7 +4,7 @@
  * @Desc: Requête pour remplir les tableaux et histogrammes de notes
  */
 
-$listEtudiantsFromCursus = GetEtudiantsListFromCursus(GetEtudiant($user)->GetCursus());
+$listEtudiantsFromCursus = GetEtudiantListFromCursus(GetEtudiant($user)->GetCursus());
 
 function showHisto($moyenne, $note_etudiant, $ecart_type) {
     $taille_rect = $note_etudiant / 20;
@@ -20,7 +20,7 @@ function showHisto($moyenne, $note_etudiant, $ecart_type) {
     return array([$taille_couleur,$taille_rect_pourcent,$position_moyenne,$position_e_t_low, $position_e_t_high]);
 }
 
-function getStat($tab_notes) {
+function GetStat($tab_notes) {
     $effectif = count($tab_notes);
     if ($effectif==0) {
         return -1;
@@ -77,8 +77,13 @@ function GetMoyenneFromEval($idEval, $idEtudiant) {
     $notesEtudiant = array();
     $moyenne = 0;
     foreach ($listTypeEval as $i => $typeEval) {
-        $notesEtudiant[$i] = GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant);
-        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $typeEval->GetCoef());
+        if (GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant) == -1) {
+            $i = $i-1;
+        }
+        else {
+            $notesEtudiant[$i] = GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant);
+            $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $typeEval->GetCoef());
+        }
     }
     return $moyenne;
 }
@@ -113,6 +118,7 @@ function GetMoyenneFromCursus($idCursus, $idEtudiant) {
         $notesEtudiant[$i] = GetMoyenneFromCompetence($competence->GetId(), $idEtudiant);
         $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $competence->GetCredits());
     }
+    return $moyenne;
 }
 
 function GetTabNotesEtudiantsFromEpreuve($idEpreuve) {
@@ -162,6 +168,15 @@ function GetTabNotesEtudiantsFromCompetence($idCompetence) {
     return $notesEtudiants;
 }
 
+function GetTabNotesEtudiantsFromCursus($idCursus) {
+    $notesEtudiants = array();
+    global $listEtudiantsFromCursus;
+    foreach ($listEtudiantsFromCursus as $etudiant) {
+        $notesEtudiants[] = GetMoyenneFromCursus($idCursus, $etudiant->GetId());
+    }
+    return $notesEtudiants;
+}
+
 function GetVarTabHistoBatons($tabNotes) {
     $tabCompteurNotes = array();
     $compteur = 0;
@@ -169,30 +184,10 @@ function GetVarTabHistoBatons($tabNotes) {
         for ($j=0;$j<count($tabNotes);$j++) {
             if (($tabNotes[$j] >= $i/2) && ($tabNotes[$j] < ($i+1)/2)) {
                 $compteur++;
-                $tabCompteurNotes[$i] = $compteur;
             }
+            $tabCompteurNotes[$i] = $compteur;
         }
         $compteur = 0;
     }
     return $tabCompteurNotes;
 }
-
-$tab_info = array();
-$tab_elec = array();
-$tab_manage = array();
-$tab_signaux = array();
-$tab_total = array();
-
-for ($i=0;$i<50;$i++) {
-    $tab_info[$i] = rand(8,19);
-    $tab_elec[$i] = rand(2,14);
-    $tab_manage[$i] = rand(12,18);
-    $tab_signaux[$i] = rand(6,15);
-    $tab_total[$i] = rand(6,14);
-}
-
-$tabTest = array(
-    0 => 12, 1 => 14, 2 => 8, 3 => 6, 4 => 6, 5 => 6, 6 => 6, 7 => 6
-);
-
-echo GetVarTabHistoBatons($tabTest);

@@ -16,12 +16,24 @@
             </tr>
             </thead>
             <tbody>
+            <?php
+            foreach($competenceList as $competence)
+            { ?>
             <tr>
-                <th scope="row">Informatique</th>
-                <td>13</td>
-                <td><?php echo $tab_histo_info[2]; ?></td>
-                <td><?php echo $tab_histo_info[3]; ?></td>
-                <td><?php echo $tab_info[0]; ?></td>
+                <th scope="row"><?php echo $competence->GetNom(); ?></th>
+                <td><?php echo $competence->GetCredits(); ?></td>
+                <td>
+                    <?php
+                    $note_etudiant = GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId());
+                    $tab_histo = GetStat(GetTabNotesEtudiantsFromCompetence($competence->GetId()));
+                    $moyenne = $tab_histo[0];
+                    $min = $tab_histo[2];
+                    $max = $tab_histo[3];
+                    echo $min;
+                    ?>
+                </td>
+                <td><?php echo $max; ?></td>
+                <td><?php echo $moyenne; ?></td>
                 <td>A</td>
                 <td class="button_show_histo">
                     <a data-toggle="modal" data-target="#showHisto1">
@@ -29,59 +41,7 @@
                     </a>
                 </td>
             </tr>
-            <tr>
-            <tr>
-                <th scope="row">Electronique</th>
-                <td>13</td>
-                <td><?php echo $tab_histo_elec[2]; ?></td>
-                <td><?php echo $tab_histo_elec[3]; ?></td>
-                <td><?php echo $tab_elec[0]; ?></td>
-                <td>A</td>
-                <td class="button_show_histo">
-                    <a data-toggle="modal" data-target="#showHisto1">
-                        <span class="glyphicon glyphicon-stats icone histo_button"></span>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Management</th>
-                <td>13</td>
-                <td><?php echo $tab_histo_manage[2]; ?></td>
-                <td><?php echo $tab_histo_manage[3]; ?></td>
-                <td><?php echo $tab_manage[0]; ?></td>
-                <td>A</td>
-                <td class="button_show_histo">
-                    <a data-toggle="modal" data-target="#showHisto1">
-                        <span class="glyphicon glyphicon-stats icone histo_button"></span>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Signaux</th>
-                <td>13</td>
-                <td><?php echo $tab_histo_signaux[2]; ?></td>
-                <td><?php echo $tab_histo_signaux[3]; ?></td>
-                <td><?php echo $tab_signaux[0]; ?></td>
-                <td>A</td>
-                <td class="button_show_histo">
-                    <a data-toggle="modal" data-target="#showHisto1">
-                        <span class="glyphicon glyphicon-stats icone histo_button"></span>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Total</th>
-                <td>13</td>
-                <td><?php echo $tab_histo_total[2]; ?></td>
-                <td><?php echo $tab_histo_total[3]; ?></td>
-                <td><?php echo $tab_total[0]; ?></td>
-                <td>A</td>
-                <td class="button_show_histo">
-                    <a data-toggle="modal" data-target="#showHisto1">
-                        <span class="glyphicon glyphicon-stats icone histo_button"></span>
-                    </a>
-                </td>
-            </tr>
+            <?php } ?>
             </tbody>
         </table>
     </div>
