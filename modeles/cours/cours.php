@@ -6,6 +6,23 @@
  * Time: 11:10
  */
 include_once(__DIR__ . '../../type_evaluation/typeeval.class.php');
+include_once(__DIR__ . '../../competence/competence.php');
+function GetCompetenceFromCours($idCours)
+{
+    $list =array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT competence.ID_Competence,competence.Nom_Competence 
+FROM competence,cours WHERE competence.ID_Competence=cours.ID_Competence
+AND cours.ID_Cours = :idCours');
+    $req->bindParam(':idCours', $idCours, PDO::PARAM_INT);
+    $req->execute();
+    $competence=$req->fetchAll();
+    if (empty($competence))
+        return null;
+    else
+        return new Competence($competence[0]);
+}
+
 function GetEpreuveListFromCours($idCours)
 {
     $list =array();

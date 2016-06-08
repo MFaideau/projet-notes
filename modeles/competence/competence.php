@@ -7,6 +7,20 @@
  */
 include_once(__DIR__ . '../../cours/cours.class.php');
 
+function GetCompetenceById($idCompetence)
+{
+    $list =array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT competence.ID_Competence,competence.Nom_Competence 
+FROM competence WHERE competence.ID_Competence=:idCompetence');
+    $req->bindParam(':idCompetence', $idCompetence, PDO::PARAM_INT);
+    $req->execute();
+    $competenceList=$req->fetchAll();
+    if (empty($competenceList))
+        return null;
+    else
+        return new Competence($competenceList[0]);
+}
 function GetCoursListFromCompetence($idCompetence)
 {
     $list =array();

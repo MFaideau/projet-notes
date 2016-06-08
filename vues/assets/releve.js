@@ -6,7 +6,8 @@ $(document).on("click", "a[id^=releve_comp_]", function (e) {
         datatype: 'html',
         data: 'idCompetence=' + idCompetence,
         success: function (result) {
-            $(result).insertAfter($(".donnees_tableaux"));
+            $(result).insertAfter($(".visualisation").parent());
+            $(".donnees_tableaux_epreuves").remove();
             $(".donnees_tableaux").remove();
         }
     });

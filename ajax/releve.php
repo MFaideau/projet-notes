@@ -21,5 +21,6 @@ if(isset($_POST['idCompetence'])) {
 if(isset($_POST['idCours'])) {
     $epreuvesList =GetEpreuveListFromCours($_POST['idCours']);
     $credits_cours = GetCoursById($_POST['idCours'])->GetCredits();
+    $competence = GetCompetenceFromCours($_POST['idCours']);
     include_once __DIR__ . '../../vues/ajax/navigation/tableaux_epreuves_bloc.php';
 }

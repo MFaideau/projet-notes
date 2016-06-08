@@ -2,8 +2,8 @@
 
 <div class="row donnees donnees_tableaux_epreuves">
     <div class="panel panel-default">
-        <a id="releve_cours_<?php echo $_POST['idCours']; ?>"><span class="glyphicon glyphicon-arrow-left">Retour</span></a>
-        <div class="panel-heading">Relevé de notes - Choix du cours</div>
+        <div class="panel-heading"><a href="#" id="releve_comp_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-arrow-left retour_prec_releve"></span></a>
+            Relevé de notes - Choix du cours</div>
         <table class="table">
             <thead>
             <tr>
