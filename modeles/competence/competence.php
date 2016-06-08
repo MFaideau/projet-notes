@@ -11,7 +11,7 @@ function GetCoursListFromCompetence($idCompetence)
 {
     $list =array();
     global $bdd;
-    $req = $bdd->prepare('SELECT cours.ID_Cours,cours.Nom_Cours,cours.Credits_Cours,cours.Semestre_Cours
+    $req = $bdd->prepare('SELECT cours.ID_Cours,cours.Nom_Cours,cours.Credits_Cours,cours.Semestre_Cours 
         FROM cours WHERE cours.ID_Competence=:idCompetence');
     $req->bindParam(':idCompetence', $idCompetence, PDO::PARAM_INT);
     $req->execute();

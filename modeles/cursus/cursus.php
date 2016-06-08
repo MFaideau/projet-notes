@@ -94,3 +94,11 @@ function ModifyCursus($id,$newName,$annee)
     ));
     return;
 }
+
+function GetCreditsFromCursus($idCursus) {
+    global $bdd;
+    $req = $bdd->prepare('SELECT SUM(cours.Credits_Cours) FROM cours,competence,cursus WHERE cours.ID_Cours = competence.ID_Competence AND cursus.ID_Cursus =:idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->execute();
+    return $req->fetch()[0];
+}

@@ -13,7 +13,7 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($competencesList as $competence) { ?>
+            <?php foreach ($competenceList as $competence) { ?>
                 <tr>
                     <th scope="row"><?php echo $competence->GetNom(); ?></th>
                     <td>13</td>
@@ -26,7 +26,7 @@
             <tr>
                 <th>Total</th>
                 <th>13</th>
-                <th>60</th>
+                <th><?php echo $cursus->GetCredits(); ?></th>
                 <th>A</th>
             </tr>
             </tfoot>

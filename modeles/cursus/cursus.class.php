@@ -12,13 +12,20 @@ class Cursus
     public $id;
     public $nom;
     public $annee;
+    public $credits;
 
     function Cursus($cursusLine)
     {
         $this->id=$cursusLine["ID_Cursus"];
         $this->nom=$cursusLine["Nom_Cursus"];
         $this->annee=$cursusLine["Annee_Cursus"];
+        $this->credits = GetCreditsFromCursus($this->id);
     }
+
+    public function GetCredits() {
+        return $this->credits;
+    }
+
     public function GetId()
     {
         return $this->id;
