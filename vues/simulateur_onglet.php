@@ -1,5 +1,5 @@
 <!-- Page du simulateur !-->
-
+<?php // TODO : A nettoyer ?>
 <div class="row donnees donnees_tableaux" xmlns="http://www.w3.org/1999/html">
     <div class="panel panel-default">
         <div class="panel-heading">Simulateurs</div>

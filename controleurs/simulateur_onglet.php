@@ -1,5 +1,5 @@
 <?php
-
+// TODO : A nettoyer
 include_once('modeles/sqlConnection.php');
 include_once ('./modeles/authentification/utilisateur.class.php');
 

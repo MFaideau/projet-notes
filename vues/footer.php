@@ -6,6 +6,7 @@
 <?php } ?>
 <script src="vues/assets/accueil.js"></script>
 <script src="vues/assets/simulation.js"></script>
+<script src="vues/assets/releve.js"></script>
 <script src="vues/assets/js/datepicker.js"></script>
 </div>
 </body>
