@@ -13,30 +13,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">Informatique</th>
-                <td>13</td>
-                <td>15</td>
-                <td>A</td>
-            </tr>
-            <tr>
-                <th scope="row">Electronique</th>
-                <td>13</td>
-                <td>15</td>
-                <td>A</td>
-            </tr>
-            <tr>
-                <th scope="row">Management</th>
-                <td>13</td>
-                <td>15</td>
-                <td>A</td>
-            </tr>
-            <tr>
-                <th scope="row">Signaux</th>
-                <td>13</td>
-                <td>15</td>
-                <td>A</td>
-            </tr>
+            <?php foreach ($competencesList as $competence) { ?>
+                <tr>
+                    <th scope="row"><?php echo $competence->GetNom(); ?></th>
+                    <td>13</td>
+                    <td><?php echo $competence->GetCredits(); ?></td>
+                    <td>A</td>
+                </tr>
+            <?php } ?>
             </tbody>
             <tfoot>
             <tr>

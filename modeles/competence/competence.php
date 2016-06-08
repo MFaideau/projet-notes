@@ -22,6 +22,15 @@ function GetCoursListFromCompetence($idCompetence)
     return $list;
 }
 
+function GetCreditsFromCompetence($idCompetence) {
+    global $bdd;
+    $req = $bdd->prepare('SELECT SUM(cours.Credits_Cours) FROM cours WHERE cours.ID_Competence=:idCompetence');
+    $req->bindParam(':idCompetence', $idCompetence, PDO::PARAM_INT);
+    $req->execute();
+    $totalCredits = $req->fetch()[0];
+    return $totalCredits;
+}
+
 function InsertCompetence($nom,$idCursus)
 {
     global $bdd;
