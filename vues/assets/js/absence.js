@@ -26,20 +26,29 @@ function loadAbsenceChart() {
             }
         ]
     };
+    Chart.defaults.global.legend.display = false;
     var myChart = new Chart(ctx, {
         type: 'line',
         data: donnees,
+        responsive: true,
         options: {
             title: {
                 display: true,
-                text: 'Diagramme de notes'
+                text: 'Evolution des absences'
             },
-            xAxes: [{
-                display: true,
-                label: 'linear',
-                position: 'bottom'
-            }],
             scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Nombres d'heures"
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Semaines"
+                    }
+                }],
                 ticks: {
                     beginAtZero:true
                     }
