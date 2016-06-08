@@ -25,6 +25,7 @@ $('.histo_logo').click(function() {
         success: function (result) {
             $(".donnees_tableaux").remove();
             $(".donnees_tableaux_cours").remove();
+            $(".donnees_tableaux_epreuves").remove();
             $(".donnees_batons").remove();
             $(".donnees_histo").remove();
             $(".absences").remove();
@@ -48,6 +49,7 @@ $('.histo_commun').click(function() {
                 success: function (resultDataHisto) {
                     $(".donnees_tableaux").remove();
                     $(".donnees_tableaux_cours").remove();
+                    $(".donnees_tableaux_epreuves").remove();
                     $(".donnees_batons").remove();
                     $(".donnees_histo").remove();
                     $(".absences").remove();
@@ -66,6 +68,7 @@ $('.abs').click(function() {
         type: 'GET',
         datatype: 'html',
         success: function (result) {
+            $(".donnees_tableaux_epreuves").remove();
             $(".donnees_tableaux_cours").remove();
             $(".donnees_tableaux").remove();
             $(".donnees_batons").remove();
