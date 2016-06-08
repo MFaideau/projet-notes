@@ -13,36 +13,20 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">Informatique</th>
-                <td>13</td>
-                <td>15</td>
-                <td>A</td>
-            </tr>
-            <tr>
-                <th scope="row">Electronique</th>
-                <td>13</td>
-                <td>15</td>
-                <td>A</td>
-            </tr>
-            <tr>
-                <th scope="row">Management</th>
-                <td>13</td>
-                <td>15</td>
-                <td>A</td>
-            </tr>
-            <tr>
-                <th scope="row">Signaux</th>
-                <td>13</td>
-                <td>15</td>
-                <td>A</td>
-            </tr>
+            <?php foreach ($competenceList as $competence) { ?>
+                <tr>
+                    <th scope="row"><a id="releve_comp_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></th>
+                    <td>13</td>
+                    <td><?php echo $competence->GetCredits(); ?></td>
+                    <td>A</td>
+                </tr>
+            <?php } ?>
             </tbody>
             <tfoot>
             <tr>
                 <th>Total</th>
                 <th>13</th>
-                <th>60</th>
+                <th><?php echo $cursus->GetCredits(); ?></th>
                 <th>A</th>
             </tr>
             </tfoot>

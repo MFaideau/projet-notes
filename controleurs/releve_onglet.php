@@ -11,6 +11,11 @@ else {
     $user = unserialize($_SESSION['user']);
     include_once(__DIR__ . '../../vues/menu.php');
     include_once(__DIR__ . '../../vues/menu_rapide.php');
-    include_once(__DIR__ . '../../vues/ajax/tableaux_bloc.php');
+
+    $cursus = GetEtudiant($user)->GetCursus();
+    if (isset($cursus)) {
+        $competenceList = GetCompetenceListFromCursus($cursus->GetId());
+        include_once(__DIR__ . '../../vues/ajax/tableaux_bloc.php');
+    }
     include_once(__DIR__ . '../../vues/footer.php');
 }

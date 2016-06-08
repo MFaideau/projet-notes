@@ -12,18 +12,26 @@ class Competence
 {
     private $id;
     private $nom;
+    private $credits;
 
     function Competence($competenceLine)
     {
         $this->id=$competenceLine["ID_Competence"];
         $this->nom=$competenceLine["Nom_Competence"];
+        $this->credits = GetCreditsFromCompetence($this->id);
     }
+
     public function GetId()
     {
         return $this->id;
     }
+
     public function GetNom()
     {
         return $this->nom;
+    }
+
+    public function GetCredits() {
+        return $this->credits;
     }
 }
