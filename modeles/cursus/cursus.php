@@ -8,7 +8,23 @@
 
 include_once('cursus.class.php');
 
- function GetCompetenceListFromCursus($idCursus)
+function GetEtudiantListFromCursus($cursus)
+{
+    $idCursus =$cursus->GetId();
+    $list = array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Etudiant,ID_Cursus FROM etudiant WHERE ID_Cursus=:idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->execute();
+    $etudiantLines = $req->fetchAll();
+    foreach($etudiantLines as $etudiantLine)
+    {
+        $list[] = new Etudiant($etudiantLine,$cursus,null);
+    }
+    return $list;
+}
+
+function GetCompetenceListFromCursus($idCursus)
 {
     $list =array();
     global $bdd;
