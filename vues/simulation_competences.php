@@ -13,7 +13,7 @@
             <tbody>
             <?php foreach ($competenceList as $competence) { ?>
                 <tr>
-                    <td><a href="#" id="simu_comp_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></td>
+                    <td><a id="simu_comp_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></td>
                     <td><?php echo "20"; ?></td>
                     <td><?php echo "12"; ?></td>
                 </tr>
