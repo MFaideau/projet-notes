@@ -1,5 +1,6 @@
 <!-- Absences de l'élève !-->
 
+
 <div class="row donnees absences">
         <div class="panel panel-default">
             <div class="panel-heading">Absences</div>
@@ -22,7 +23,8 @@
                 <td>25H</td>
             </tr>
             <tr>
-            <tr>
+               <td colspan="5"> <canvas id="absgraph" width="100%" height="40%"></canvas> </td>
+            </tr>
             </tbody>
             </table>
         </div>

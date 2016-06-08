@@ -69,6 +69,7 @@ $('.abs').click(function() {
             $(".absences").remove();
             $(".panel_choix_eleves").remove();
             $(result).insertAfter($(".visualisation").parent());
+            loadAbsenceChart();
         }
     });
 });
