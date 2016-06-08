@@ -5,6 +5,9 @@ $('.tableaux_logo').click(function() {
         datatype: 'html',
         data: 'button=tableaux',
         success: function(result) {
+            $(".donnees_tableaux").remove();
+            $(".donnees_tableaux_cours").remove();
+            $(".donnees_tableaux_epreuves").remove();
             $(".donnees_batons").remove();
             $(".donnees_histo").remove();
             $(".donnees_tableaux").remove();
