@@ -40,7 +40,8 @@
                 <th>Total</th>
                 <th width="50%">
                     <?php
-                    $note_etudiant = $tab_total[0];
+                    $note_etudiant = GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId());
+                    $tab_histo_total = getStat(GetTabNotesEtudiantsFromCursus(GetEtudiant($user)->GetCursus()->GetId()));
                     $moyenne = $tab_histo_total[0];
                     $ecart_type = $tab_histo_total[1];
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);

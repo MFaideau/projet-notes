@@ -105,6 +105,12 @@ function GetMoyenneFromCompetence($idCompetence, $idEtudiant) {
     return $moyenne;
 }
 
+function GetMoyenneFromCursus($idCursus, $idEtudiant) {
+    $listCompetence = GetCompetenceListFromCursus($idCursus);
+    $notesEtudiant = array();
+    $moyenne = 0;
+}
+
 function GetTabNotesEtudiantsFromEpreuve($idEpreuve) {
     $listEtudiants = GetEtudiantNotesFromEpreuve($idEpreuve);
     $notesEtudiants = array();
@@ -152,3 +158,36 @@ function GetTabNotesEtudiantsFromCompetence($idCompetence) {
     return $notesEtudiants;
 }
 
+function GetVarTabHistoBatons($tabNotes) {
+    $tabCompteurNotes = array();
+    $compteur = 0;
+    for ($i=0;$i<=40;$i++) {
+        for ($j=0;$j<count($tabNotes);$j++) {
+            if (($tabNotes[$j] >= $i/2) && ($tabNotes[$j] < ($i+1)/2)) {
+                $compteur++;
+                $tabCompteurNotes[$i] = $compteur;
+            }
+        }
+        $compteur = 0;
+    }
+}
+
+$tab_info = array();
+$tab_elec = array();
+$tab_manage = array();
+$tab_signaux = array();
+$tab_total = array();
+
+for ($i=0;$i<50;$i++) {
+    $tab_info[$i] = rand(8,19);
+    $tab_elec[$i] = rand(2,14);
+    $tab_manage[$i] = rand(12,18);
+    $tab_signaux[$i] = rand(6,15);
+    $tab_total[$i] = rand(6,14);
+}
+
+$tabTest = array(
+    0 => 12, 1 => 14, 2 => 8, 3 => 6, 4 => 6, 5 => 6, 6 => 6, 7 => 6
+);
+
+echo GetVarTabHistoBatons($tabTest);
