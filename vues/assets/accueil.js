@@ -40,7 +40,7 @@ $('.histo_commun').click(function() {
         data: 'button=batons',
         success: function (result) {
             $.ajax({
-                url: './conversion_js.php',
+                url: './ajax/conversion_js.php',
                 type: 'GET',
                 datatype: 'json',
                 success: function (resultDataHisto) {

@@ -109,6 +109,10 @@ function GetMoyenneFromCursus($idCursus, $idEtudiant) {
     $listCompetence = GetCompetenceListFromCursus($idCursus);
     $notesEtudiant = array();
     $moyenne = 0;
+    foreach ($listCompetence as $i => $competence) {
+        $notesEtudiant[$i] = GetMoyenneFromCompetence($competence->GetId(), $idEtudiant);
+        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $competence->GetCredits());
+    }
 }
 
 function GetTabNotesEtudiantsFromEpreuve($idEpreuve) {
@@ -170,6 +174,7 @@ function GetVarTabHistoBatons($tabNotes) {
         }
         $compteur = 0;
     }
+    return $tabCompteurNotes;
 }
 
 $tab_info = array();
