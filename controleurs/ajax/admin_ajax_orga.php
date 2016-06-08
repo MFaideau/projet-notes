@@ -29,13 +29,30 @@ if (isset($_POST['action']) && isset($_POST['idCursus'])) {
         }
     }
 }
-
-if (isset($_POST['action']) && isset($_POST['idTypeEval'])) {
+if (isset($_POST['action']) && isset($_POST['idEval'])) {
     if ($_POST['action'] == "infos") {
+        $idEval = $_POST['idEval'];
+        $eval = GetEvalFromId($idEval);
+        if (isset($eval))
+            echo json_encode($eval);
+        return;
+    }
+}
+if (isset($_POST['action']) && isset($_POST['idTypeEval'])) {
+    if ($_POST['action'] == "secondesession") {
         $idTypeEval = $_POST['idTypeEval'];
         $listEpreuves = GetEpreuveListFromTypeEval($idTypeEval);
         if (isset($listEpreuves))
             echo json_encode($listEpreuves);
+        return;
+    }
+}
+if (isset($_POST['action']) && isset($_POST['idTypeEval'])) {
+    if ($_POST['action'] == "infos") {
+        $idTypeEval = $_POST['idTypeEval'];
+        $typeEval = GetTypeEvalFromId($idTypeEval);
+        if (isset($typeEval))
+            echo json_encode($typeEval);
         return;
     }
 }
@@ -48,7 +65,6 @@ if (isset($_POST['action']) && isset($_POST['idEpreuve'])) {
         return;
     }
 }
-
 if (isset($_POST['action']) && isset($_POST['idCours'])) {
     if ($_POST['action'] == "substitution") {
         $idCours = $_POST['idCours'];

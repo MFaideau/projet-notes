@@ -108,8 +108,7 @@
                 <div class="modal-body">
                     <fieldset class="form-group">
                         <label for="labelEval">Nom de l'Evaluation :</label>
-                        <input type="text" class="form-control" id="nomEval"
-                               placeholder="Exemple : Théorie">
+                        <input type="text" class="form-control" id="nomEval" placeholder="Exemple : Théorie">
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelCoefEval">Coefficient de l'Evaluation :</label>

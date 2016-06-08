@@ -6,6 +6,18 @@
  * Time: 14:34
  */
 
+function GetTypeEvalFromId($typeEvalId){
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Type,Nom_Type,Coef_Type_Eval
+        FROM type_eval WHERE ID_Type = :idType');
+    $req->bindParam(':idType', $typeEvalId, PDO::PARAM_INT);
+    $req->execute();
+    $typeEvalList=$req->fetchAll();
+    if (count($typeEvalList) > 0)
+        return new TypeEval($typeEvalList[0]);
+    else
+        return null;
+}
 function GetEpreuveListFromTypeEval($typeEvalId){
     $list =array();
     global $bdd;
@@ -20,7 +32,6 @@ function GetEpreuveListFromTypeEval($typeEvalId){
     }
     return $list;
 }
-
 function InsertTypeEval($nom,$coef,$idEval)
 {
     global $bdd;
