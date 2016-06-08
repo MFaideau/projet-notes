@@ -4,7 +4,7 @@
  * @Desc: Requête pour remplir les tableaux et histogrammes de notes
  */
 
-$listEtudiantsFromCursus = GetEtudiantsListFromCursus();
+$listEtudiantsFromCursus = GetEtudiantsListFromCursus(GetEtudiant($user)->GetCursus());
 
 function showHisto($moyenne, $note_etudiant, $ecart_type) {
     $taille_rect = $note_etudiant / 20;
@@ -100,7 +100,7 @@ function GetMoyenneFromCompetence($idCompetence, $idEtudiant) {
     $moyenne = 0;
     foreach ($listCours as $i => $cours) {
         $notesEtudiant[$i] = GetMoyenneFromCours($cours->GetId(), $idEtudiant);
-        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $cours->GetCoef());
+        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $cours->GetCredits());
     }
     return $moyenne;
 }
