@@ -32,7 +32,14 @@
             <tfoot>
             <tr>
                 <th>Total</th>
-                <th>13</th>
+                <th>
+                    <?php
+                    $note_etudiant = GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId());
+                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCursus(GetEtudiant($user)->GetCursus()->GetId()));
+                    $moyenne = $tab_histo_total[0];
+                    echo $moyenne;
+                    ?>
+                </th>
                 <th><?php echo $cursus->GetCredits(); ?></th>
                 <th>A</th>
             </tr>
