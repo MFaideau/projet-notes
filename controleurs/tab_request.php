@@ -56,13 +56,16 @@ function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
     $listEpreuves = GetEpreuveListFromTypeEval($idTypeEval);
     $notesEtudiant = array();
     $somme = 0;
-    foreach ($listEpreuves as $i => $epreuves) {
-        if (GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuves->GetId())->GetAbsence() == 1) {
-            $i = $i-1;
-        }
-        else {
-            $somme = $somme + $notesEtudiant[$i];
-            $notesEtudiant[$i] = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuves->GetId())->GetNoteFinale();
+    foreach ($listEpreuves as $i => $epreuve) {
+        $studentnote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
+        if (isset($studentnote)) {
+            if ($studentnote->GetAbsence() == 1) {
+                $i = $i-1;
+            }
+            else {
+                $somme = $somme + $notesEtudiant[$i];
+                $notesEtudiant[$i] = $studentnote->GetNoteFinale();
+            }
         }
     }
     if (count($notesEtudiant) == 0) {
@@ -77,11 +80,12 @@ function GetMoyenneFromEval($idEval, $idEtudiant) {
     $notesEtudiant = array();
     $moyenne = 0;
     foreach ($listTypeEval as $i => $typeEval) {
-        if (GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant) == -1) {
+        $studentnote = GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant);
+        if ($studentnote == -1) {
             $i = $i-1;
         }
         else {
-            $notesEtudiant[$i] = GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant);
+            $notesEtudiant[$i] = $studentnote;
             $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $typeEval->GetCoef());
         }
     }
