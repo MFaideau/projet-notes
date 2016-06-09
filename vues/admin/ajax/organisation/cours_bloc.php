@@ -2,12 +2,14 @@
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix du Cours
             <div class="add_button_etudes">
-                <a data-toggle="modal" data-target="#verifDeleteCours">
-                    <i class="glyphicon glyphicon-remove-sign"></i>
-                </a>
-                <a data-toggle="modal" data-target="#modifyCours">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </a>
+                <span id="coursEdition">
+                    <a data-toggle="modal" data-target="#verifDeleteCours">
+                        <i class="glyphicon glyphicon-remove-sign"></i>
+                    </a>
+                    <a data-toggle="modal" data-target="#modifyCours">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                </span>
                 <a data-toggle="modal" data-target="#addCours">
                     <i class="glyphicon glyphicon-plus"></i>
                 </a>

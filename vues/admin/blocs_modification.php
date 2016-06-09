@@ -103,15 +103,15 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modification d'une Evaluation</h4>
+                    <h4 class="modal-title" id="myModalLabel">Modification d'une évaluation</h4>
                 </div>
                 <div class="modal-body">
                     <fieldset class="form-group">
-                        <label for="labelEval">Nom de l'Evaluation :</label>
+                        <label for="labelEval">Nom de l'évaluation :</label>
                         <input type="text" class="form-control" id="nomEval" placeholder="Exemple : Théorie">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelCoefEval">Coefficient de l'Evaluation :</label>
+                        <label for="labelCoefEval">Coefficient de l'évaluation :</label>
                         <input type="text" class="form-control" id="coefEval" placeholder="Exemple : 0.5 (pour 50%)">
                     </fieldset>
                 </div>
@@ -132,16 +132,16 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modificationd'un Type Evaluation</h4>
+                    <h4 class="modal-title" id="myModalLabel">Modification d'un type d'évaluation</h4>
                 </div>
                 <div class="modal-body">
                     <fieldset class="form-group">
-                        <label for="labelTypeEval">Nom de l'Evaluation :</label>
+                        <label for="labelTypeEval">Nom du type d'évaluation :</label>
                         <input type="text" class="form-control" id="nomTypeEval"
                                placeholder="Exemple : Partiel">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelCoefTypeEval">Coefficient de l'Evaluation :</label>
+                        <label for="labelCoefTypeEval">Coefficient du type d'évaluation :</label>
                         <input type="text" class="form-control" id="coefTypeEval" placeholder="Exemple : 0.5 (pour 50%)">
                     </fieldset>
                 </div>
@@ -162,34 +162,37 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modification d'une Epreuve</h4>
+                    <h4 class="modal-title" id="myModalLabel">Modification d'une épreuve</h4>
                 </div>
                 <div class="modal-body">
                     <fieldset class="form-group">
-                        <label for="labelNomEpreuve">Nom de l'Epreuve :</label>
+                        <label for="labelNomEpreuve">Nom de l'épreuve :</label>
                         <input type="text" class="form-control" id="nomEpreuve"
                                placeholder="Exemple : DS Base de Données">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelCoefEpreuve">Coefficient de l'Epreuve:</label>
+                        <label for="labelCoefEpreuve">Coefficient de l'épreuve :</label>
                         <input type="text" class="form-control" id="coefEpreuve" placeholder="Exemple : 0.5 (pour 50%)">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelDateEpreuve">Date de l'épreuve:</label>
-                        <input type="text" class="form-control" id="dateEpreuve" placeholder="Exemple : 08/02/2016">
+                        <label for="labelDateEpreuve">Date de l'épreuve :</label>
+                        <div class="input-group input-append date" id="datePicker2">
+                            <input id="dateEpreuve" type="text" class="form-control">
+                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelEvaluation">Date de l'épreuve:</label>
+                        <label for="labelEvaluation">Évaluateur(s) de l'épreuve :</label>
                         <input type="text" class="form-control" id="evaluateurEpreuve" placeholder="Exemple : Xavier Wallart">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelSecondeSession">Choix de l'épreuve correspondant à la seconde session:</label>
+                        <label for="labelSecondeSession">Épreuve correspondant à la seconde session :</label>
                         <select class="selectpicker" name="secondeSessions" id="selectSecondeSession">
                             <option value="0">Aucune seconde session</option>
                         </select>
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="labelSubstitution">Choix de l'épreuve qui prime en cas d'absence excusée :</label>
+                        <label for="labelSubstitution">Épreuve qui prime en cas d'absence excusée :</label>
                         <select class="selectpicker" id="selectSubstitution" name="substitution">
                             <option value="0">Pas de note en cas d'absence</option>
                         </select>

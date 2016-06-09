@@ -2,12 +2,14 @@
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix de l'Epreuve
             <div class="add_button_etudes">
-                <a id="removeEpreuve">
+                <span id="epreuveEdition">
+                <a data-toggle="modal" data-target="#verifDeleteEpreuve">
                     <i class="glyphicon glyphicon-remove-sign"></i>
                 </a>
                 <a data-toggle="modal" data-target="#modifyEpreuve">
                     <i class="glyphicon glyphicon-edit"></i>
                 </a>
+                </span>
                 <a data-toggle="modal" data-target="#addEpreuve">
                     <i class="glyphicon glyphicon-plus"></i>
                 </a>
