@@ -43,6 +43,30 @@
             </tr>
             <?php } ?>
             </tbody>
+            <tfoot>
+            <tr>
+                <th scope="row">Total</th>
+                <td><?php echo $cursus->GetCredits(); ?></td>
+                <td>
+                    <?php
+                    $note_etudiant = GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId());
+                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCursus(GetEtudiant($user)->GetCursus()->GetId()));
+                    $moyenne = $tab_histo_total[0];
+                    $min = $tab_histo_total[2];
+                    $max = $tab_histo_total[3];
+                    echo $min;
+                    ?>
+                </td>
+                <td><?php echo $max; ?></td>
+                <td><?php echo $moyenne; ?></td>
+                <td>A</td>
+                <td class="button_show_histo">
+                    <a data-toggle="modal" data-target="#showHisto1">
+                        <span class="glyphicon glyphicon-stats icone histo_button"></span>
+                    </a>
+                </td>
+            </tr>
+            </tfoot>
         </table>
     </div>
 </div>

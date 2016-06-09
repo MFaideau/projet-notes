@@ -37,7 +37,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <td scope="row">Total</td>
+                <th scope="row">Total</th>
                 <td width="50%">
                     <?php
                     $note_etudiant = GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId());
