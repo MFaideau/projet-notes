@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 07 Juin 2016 à 07:21
+-- Généré le :  Jeu 09 Juin 2016 à 15:13
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -70,6 +70,19 @@ INSERT INTO `competence` (`ID_Competence`, `ID_Cursus`, `Nom_Competence`) VALUES
 (13, 3, 'Informatique'),
 (14, 3, 'Projet'),
 (15, 3, 'Management et Développement Personnel');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `consultation`
+--
+
+DROP TABLE IF EXISTS `consultation`;
+CREATE TABLE IF NOT EXISTS `consultation` (
+  `ID_Etudiant` int(5) NOT NULL,
+  `Mail_Consultant` varchar(55) NOT NULL,
+  `Nombre_Vues_Etudiant` int(5) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -166,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `cursus` (
   `Nom_Cursus` varchar(55) NOT NULL,
   `Annee_Cursus` year(4) NOT NULL COMMENT '"2015" pour l''année de septembre 2015 à juin 2016 par exemple',
   PRIMARY KEY (`ID_Cursus`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `cursus`
@@ -195,19 +208,15 @@ CREATE TABLE IF NOT EXISTS `epreuve` (
   `Evaluateur_Epreuve` varchar(255) NOT NULL,
   PRIMARY KEY (`ID_Epreuve`),
   KEY `ID_Type` (`ID_Type`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `epreuve`
 --
 
 INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `ID_Epreuve_Session2`, `ID_Epreuve_Substitution`, `Nom_Epreuve`, `Coef_Epreuve`, `Date_Epreuve`, `Evaluateur_Epreuve`) VALUES
-(6, 5, 0, 0, 'BLABLABLABLA', 3, '2016-06-02', 'Monsieur Carette'),
-(7, 5, 0, 0, 'Partiel', 0.3, '2015-03-30', 'David Boulinguez'),
-(8, 5, 7, 0, 'Partiel', 0.3, '2015-03-30', 'David Boulinguez'),
-(9, 128, 0, 0, 'Partiel', 0.3, '2043-07-31', 'Bruno Stefanelli'),
-(13, 5, 0, 0, 'Partiel', 0.3, '2015-03-30', 'Bonjour'),
-(14, 5, 0, 0, 're', 0.3, '2015-03-30', 'Bonjour');
+(17, 126, 0, 0, 'Interrogation', 1, '2016-04-07', 'Xavier Wallart'),
+(19, 46, 0, 0, 'rrééééé', 3, '2016-06-14', 'Monsieur Carette');
 
 -- --------------------------------------------------------
 
@@ -228,6 +237,7 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
 --
 
 INSERT INTO `etudiant` (`ID_Etudiant`, `ID_Cursus`, `Mail`) VALUES
+('121341411', 2, 'chicken'),
 ('p59051', 1, 'maxence.faideau@isen-lille.fr'),
 ('p59060', 1, 'antoine.goelzer@isen-lille.fr'),
 ('p59062', 1, 'joel.guillem@isen-lille.fr'),
@@ -242,23 +252,13 @@ INSERT INTO `etudiant` (`ID_Etudiant`, `ID_Cursus`, `Mail`) VALUES
 DROP TABLE IF EXISTS `etudiantnote`;
 CREATE TABLE IF NOT EXISTS `etudiantnote` (
   `ID_Epreuve` int(5) NOT NULL,
-  `ID_Etudiant` varchar(55) NOT NULL,
+  `ID_Etudiant` int(5) NOT NULL,
   `Note_Finale` float NOT NULL,
   `Note_Prevue` float NOT NULL,
   `Absence_Epreuve` int(1) NOT NULL COMMENT '0 = Pas d''absence // 1 = Absence excusée // 2 = Absence non excusee',
   PRIMARY KEY (`ID_Epreuve`,`ID_Etudiant`),
   KEY `ID_Epreuve` (`ID_Epreuve`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `etudiantnote`
---
-
-INSERT INTO `etudiantnote` (`ID_Epreuve`, `ID_Etudiant`, `Note_Finale`, `Note_Prevue`, `Absence_Epreuve`) VALUES
-(5, 'p59051', 6.3, 7, 0),
-(5, 'p59060', 12.6, 10, 0),
-(5, 'p59062', 11.9, 6, 0),
-(5, 'p59080', 13.3, 9, 0);
 
 -- --------------------------------------------------------
 
@@ -381,7 +381,6 @@ CREATE TABLE IF NOT EXISTS `type_eval` (
 --
 
 INSERT INTO `type_eval` (`ID_Type`, `ID_Eval`, `Nom_Type`, `Coef_Type_Eval`) VALUES
-(5, 3, 'Interrogation', 0.2),
 (6, 6, 'Interrogation', 0.2),
 (7, 8, 'Interrogation', 0.2),
 (8, 12, 'Interrogation', 0.2),
@@ -395,7 +394,6 @@ INSERT INTO `type_eval` (`ID_Type`, `ID_Eval`, `Nom_Type`, `Coef_Type_Eval`) VAL
 (16, 70, 'Interrogation', 0.2),
 (17, 74, 'Interrogation', 0.2),
 (18, 76, 'Interrogation', 0.2),
-(20, 3, 'DS', 0.3),
 (21, 6, 'DS', 0.3),
 (22, 12, 'DS', 0.3),
 (23, 14, 'DS', 0.5),
@@ -500,9 +498,7 @@ INSERT INTO `type_eval` (`ID_Type`, `ID_Eval`, `Nom_Type`, `Coef_Type_Eval`) VAL
 (123, 37, 'Partiel', 0.33),
 (124, 37, 'Projet', 0.67),
 (125, 39, 'Evaluation', 1),
-(126, 2, 'Partiel', 0.5),
-(127, 3, 'Partiouille', 3),
-(128, 3, 'Partiouille 2', 3);
+(126, 2, 'Partiel', 0.5);
 
 -- --------------------------------------------------------
 
@@ -526,6 +522,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 INSERT INTO `utilisateur` (`Mail`, `Autorite`, `Nom`, `Prenom`) VALUES
 ('antoine.goelzer@isen-lille.fr', 1, 'Goelzer', 'Antoine'),
 ('baudouin.landais@isen-lille.fr', 0, 'Landais', 'Baudouin'),
+('chicken', 0, 'Halloy', 'Guillaume'),
 ('joel.guillem@isen-lille.fr', 0, 'Guillem', 'Joël'),
 ('maxence.faideau@isen-lille.fr', 1, 'Faideau', 'Maxence');
 
