@@ -5,6 +5,7 @@
             <div class="col-sm-6 col-sm-offset-3">
                 <form method="post" action="saisie_notes.php" enctype="multipart/form-data">
                     <input type="hidden" name="MAX_FILE_SIZE" value="1048576"/>
+                    <input type="hidden" name="idEpreuveUpload" id="idEpreuveUpload" value="" />
                     <input type="file" name="fichier_notes" id="fichier_notes"/><br/>
                     <input class="col-sm-6 col-sm-offset-3" type="submit" name="submit" value="Envoyer"/>
                 </form>
