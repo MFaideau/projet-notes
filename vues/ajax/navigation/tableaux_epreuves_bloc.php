@@ -1,26 +1,24 @@
 <!-- Page de données !-->
 
-<div class="row donnees donnees_tableaux_cours">
+<div class="row donnees donnees_tableaux_epreuves">
     <div class="panel panel-default">
-        <div class="panel-heading "><a href="releve_onglet.php"><span class="glyphicon glyphicon-arrow-left retour_prec_releve"></span></a>
-            Relevé de notes - Choix du cours
-        </div>
+        <div class="panel-heading"><a href="#" id="releve_comp_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-arrow-left retour_prec_releve"></span></a>
+            Relevé de notes - Choix du cours</div>
         <table class="table">
             <thead>
             <tr>
                 <th>Cours</th>
                 <th>Moyenne</th>
-                <th>ECTS</th>
+                <th>Coefficient</th>
                 <th>Grades</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($coursList as $cours) { ?>
+            <?php foreach($epreuvesList as $epreuve) { ?>
                 <tr>
-                    <th scope="row"><a
-                            id="releve_cours_<?php echo $cours->GetId(); ?>"><?php echo $cours->GetNom(); ?></a></th>
+                    <th scope="row"><a id="releve_cours_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a></th>
                     <td><?php echo "10"; ?></td>
-                    <td><?php echo $cours->GetCredits(); ?></td>
+                    <td><?php echo $epreuve->GetCoef(); ?></td>
                     <td>A</td>
                 </tr>
             <?php } ?>
@@ -29,7 +27,7 @@
             <tr>
                 <th>Total</th>
                 <th>13</th>
-                <th><?php echo $credits_competence; ?></th>
+                <th><?php echo $credits_cours; ?></th>
                 <th>A</th>
             </tr>
             </tfoot>

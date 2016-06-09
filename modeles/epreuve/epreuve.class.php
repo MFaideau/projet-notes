@@ -12,11 +12,11 @@ class epreuve
 {
     public $id;
     public $nom;
-    private $coef;
-    private $date;
-    private $evaluateur;
-    private $idSubstition;
-    private $idSecondeSession;
+    public $coef;
+    public $date;
+    public $evaluateur;
+    public $idSubstition;
+    public $idSecondeSession;
 
     function Epreuve($epreuveLine)
     {

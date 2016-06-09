@@ -58,6 +58,11 @@
     text-align: center;
 }
 
+.retour_prec_releve {
+    color: white;
+    float: left;
+}
+
 .add_button_etudes {
     float: right;
     cursor: pointer;

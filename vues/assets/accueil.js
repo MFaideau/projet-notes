@@ -5,11 +5,15 @@ $('.tableaux_logo').click(function() {
         datatype: 'html',
         data: 'button=tableaux',
         success: function(result) {
+            $(".donnees_tableaux").remove();
+            $(".donnees_tableaux_cours").remove();
+            $(".donnees_tableaux_epreuves").remove();
             $(".donnees_batons").remove();
             $(".donnees_histo").remove();
             $(".donnees_tableaux").remove();
             $(".absences").remove();
             $(".panel_choix_eleves").remove();
+            $(".donnees_tableaux_cours").remove();
             $(result).insertAfter($(".visualisation").parent());
         }
     });
@@ -23,6 +27,8 @@ $('.histo_logo').click(function() {
         data: 'button=histog',
         success: function (result) {
             $(".donnees_tableaux").remove();
+            $(".donnees_tableaux_cours").remove();
+            $(".donnees_tableaux_epreuves").remove();
             $(".donnees_batons").remove();
             $(".donnees_histo").remove();
             $(".absences").remove();
@@ -45,6 +51,8 @@ $('.histo_commun').click(function() {
                 datatype: 'json',
                 success: function (resultDataHisto) {
                     $(".donnees_tableaux").remove();
+                    $(".donnees_tableaux_cours").remove();
+                    $(".donnees_tableaux_epreuves").remove();
                     $(".donnees_batons").remove();
                     $(".donnees_histo").remove();
                     $(".absences").remove();
@@ -63,12 +71,15 @@ $('.abs').click(function() {
         type: 'GET',
         datatype: 'html',
         success: function (result) {
+            $(".donnees_tableaux_epreuves").remove();
+            $(".donnees_tableaux_cours").remove();
             $(".donnees_tableaux").remove();
             $(".donnees_batons").remove();
             $(".donnees_histo").remove();
             $(".absences").remove();
             $(".panel_choix_eleves").remove();
             $(result).insertAfter($(".visualisation").parent());
+            loadAbsenceChart();
         }
     });
 });
