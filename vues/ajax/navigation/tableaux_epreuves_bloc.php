@@ -3,7 +3,7 @@
 <div class="row donnees donnees_tableaux_epreuves">
     <div class="panel panel-default">
         <div class="panel-heading"><a href="#" id="releve_comp_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-arrow-left retour_prec_releve"></span></a>
-            Relevé de notes - Choix du cours</div>
+            Relevé de notes - Détail des Notes</div>
         <table class="table">
             <thead>
             <tr>
@@ -16,7 +16,7 @@
             <tbody>
             <?php foreach($epreuvesList as $epreuve) { ?>
                 <tr>
-                    <th scope="row"><a id="releve_cours_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a></th>
+                    <th <?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a></th>
                     <td><?php echo "10"; ?></td>
                     <td><?php echo $epreuve->GetCoef(); ?></td>
                     <td>A</td>

@@ -1,12 +1,13 @@
 <!-- Histogramme de données !-->
 
-<div class="row donnees donnees_histo">
+<div class="row donnees donnees_histo_epreuves">
     <div class="panel panel-default">
-        <div class="panel-heading">Graphe comparatoire</div>
+        <div class="panel-heading"><a href="#" id="histo_comp_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-arrow-left retour_prec_histo"></span></a>
+            Histogramme Perso - Détail des Notes</div>
         <table class="table">
             <thead>
             <tr>
-                <th>Compétences</th>
+                <th>Cours</th>
                 <th>Histogramme</th>
                 <th>Min</th>
                 <th>Max</th>
@@ -14,11 +15,10 @@
             </tr>
             </thead>
             <tbody>
-            <?php
-            foreach($competenceList as $competence)
-            { ?>
+            <?php foreach($epreuvesList as $epreuve) { ?>
+                { ?>
                 <tr>
-                    <th scope="row"><a class="lien_tableau" id="hist_comp_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></th>
+                    <th scope="row"><a class="lien_tableau" id="hist_cours_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a></th>
                     <td width="50%">
                         <?php
                         $note_etudiant = $tab_info[0];

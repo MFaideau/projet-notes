@@ -63,6 +63,11 @@
     float: left;
 }
 
+.retour_prec_histo{
+    color:white;
+    float:left;
+}
+
 .add_button_etudes {
     float: right;
     cursor: pointer;
