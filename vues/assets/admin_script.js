@@ -62,20 +62,22 @@ $(document).on("click","button[id^=type_eval]", function(e) {
             $(".panel_epreuve").remove();
             $(".panel_upload_epreuve").remove();
             $(result).insertAfter($(".panel_type_eval"));
-        },
+        }
     });
 });
 
 $(document).on("click","button[id^=epreuve]", function(e) {
+    var idEpreuve =this.id.replace("epreuve_","");
    $.ajax({
        url: './ajax/admin_ajax_infos.php',
        type: 'POST',
        datatype: 'html',
-       data: 'idEpreuve=' + this.id.replace("epreuve_",""),
+       data: 'idEpreuve=' + idEpreuve,
        success: function(result) {
            $(".panel_upload_epreuve").remove();
            $(result).insertAfter($(".panel_epreuve"));
+           $("#idEpreuveUpload").val(idEpreuve);
 //            $(".panel_cours").append(result);
-       },
+       }
    });
 });
