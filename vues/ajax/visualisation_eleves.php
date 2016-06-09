@@ -11,7 +11,7 @@
         <tbody>
         <?php foreach ($listEleves as $eleve) { ?>
             <tr>
-                <td width="2%"><a href="#deleteEtudiant"><span class="glyphicon glyphicon-minus-sign icone"></span></a></td>
+                <td width="2%"><a id="deleteEtudiant_<?php echo $eleve->GetMail(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a></td>
                 <td><a data-name="nom" data-value="<?php echo $eleve->GetNom() . $eleve->GetPrenom(); ?>"
                        href="visualisation_eleve.php?id=<?php echo $eleve->GetMail(); ?>">
                         <?php echo $eleve->GetNom() . ' ' . $eleve->GetPrenom(); ?></a></td>

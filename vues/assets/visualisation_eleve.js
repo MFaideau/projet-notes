@@ -19,6 +19,22 @@ $(document).on("click", "button[id^=eleves_cursus_]", function (e) {
     });
 });
 
+$(document).on("click", "a[id^=deleteEtudiant_]", function (e) {
+    var mail = this.id.replace("deleteEtudiant_","");
+    $.ajax({
+        url: './ajax/visualisation_eleves.php',
+        type: 'POST',
+        datatype: 'html',
+        data: 'action=delete&mail=' + mail,
+        success: function (result) {
+            // TODO : faire l'affichage dynamique
+        },
+        error: function (result) {
+            alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
+        }
+    });
+});
+
 $(function () {
     $('#addEtudiantForm').on("submit", function (e) {
         e.preventDefault();
