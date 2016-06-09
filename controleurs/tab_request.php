@@ -63,8 +63,8 @@ function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
                 $i = $i-1;
             }
             else {
-                $somme = $somme + $notesEtudiant[$i];
                 $notesEtudiant[$i] = $studentnote->GetNoteFinale();
+                $somme = $somme + $notesEtudiant[$i];
             }
         }
     }
@@ -79,29 +79,44 @@ function GetMoyenneFromEval($idEval, $idEtudiant) {
     $listTypeEval = GetTypeEvalListFromEval($idEval);
     $notesEtudiant = array();
     $moyenne = 0;
+    $sommecoef = 0;
     foreach ($listTypeEval as $i => $typeEval) {
         $studentnote = GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant);
-        if ($studentnote == -1) {
-            $i = $i-1;
+        $coefTypeEval = $typeEval->GetCoef();
+        if (isset($studentnote)) {
+            if ($studentnote == -1) {
+                $i = $i-1;
+            }
+            else {
+                $notesEtudiant[$i] = $studentnote;
+                $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $coefTypeEval);
+            }
         }
-        else {
-            $notesEtudiant[$i] = $studentnote;
-            $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $typeEval->GetCoef());
-        }
+        $sommecoef = $sommecoef + $coefTypeEval;
     }
-    return $moyenne;
+    if ($sommecoef == 0) {
+        return 0;
+    }
+    return $moyenne/$sommecoef;
 }
 
 function GetMoyenneFromCours($idCours, $idEtudiant) {
     $listEval = GetEvalListFromCours($idCours);
     $notesEtudiant = array();
     $moyenne = 0;
+    $sommecoef = 0;
     foreach ($listEval as $i => $eval) {
         $notesEtudiant[$i] = GetMoyenneFromEval($eval->GetId(), $idEtudiant);
-        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $eval->GetCoef());
+        $coefEval = $eval->GetCoef();
+        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $coefEval);
+        $sommecoef = $sommecoef + $coefEval;
     }
-    return $moyenne;
+    if ($sommecoef == 0) {
+        return 0;
+    }
+    return $moyenne/$sommecoef;
 }
+echo GetMoyenneFromCours(1, 93088);
 
 function GetMoyenneFromCompetence($idCompetence, $idEtudiant) {
     $listCours = GetCoursListFromCompetence($idCompetence);
@@ -111,8 +126,15 @@ function GetMoyenneFromCompetence($idCompetence, $idEtudiant) {
         $notesEtudiant[$i] = GetMoyenneFromCours($cours->GetId(), $idEtudiant);
         $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $cours->GetCredits());
     }
-    return $moyenne;
+    $creditscompetence = GetCompetenceById($idCompetence)->GetCredits();
+    if ($creditscompetence == 0) {
+        return -1;
+    }
+    else {
+        return $moyenne;
+    }
 }
+echo 'DEBUG' . GetMoyenneFromCompetence(1, 93088);
 
 function GetMoyenneFromCursus($idCursus, $idEtudiant) {
     $listCompetence = GetCompetenceListFromCursus($idCursus);
@@ -122,7 +144,8 @@ function GetMoyenneFromCursus($idCursus, $idEtudiant) {
         $notesEtudiant[$i] = GetMoyenneFromCompetence($competence->GetId(), $idEtudiant);
         $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $competence->GetCredits());
     }
-    return $moyenne;
+    $creditscursus = GetCreditsFromCursus($idCursus);
+    return $moyenne/$creditscursus;
 }
 
 function GetTabNotesEtudiantsFromEpreuve($idEpreuve) {
