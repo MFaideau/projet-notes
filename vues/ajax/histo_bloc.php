@@ -37,8 +37,8 @@
             </tbody>
             <tfoot>
             <tr>
-                <th scope="row">Total</th>
-                <th width="50%">
+                <td scope="row">Total</td>
+                <td width="50%">
                     <?php
                     $note_etudiant = GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId());
                     $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCursus(GetEtudiant($user)->GetCursus()->GetId()));
@@ -47,8 +47,8 @@
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
                     include('modules/module_histo.php');
                     ?>
-                </th>
-                <td><?php echo $tab_histo_total[2]; ?></td>
+                </td>
+                <td><strong><?php echo $tab_histo_total[2]; ?></strong></td>
                 <th><?php echo $tab_histo_total[3]; ?></th>
                 <th><?php echo $note_etudiant; ?></th>
             </tr>
