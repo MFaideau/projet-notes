@@ -8,6 +8,7 @@ if (!isset($_SESSION['user'])) {
     die(); }
 else {
     $user = unserialize($_SESSION['user']);
+    include_once ('./controleurs/tab_request.php');
     include_once(__DIR__ . '../../vues/menu.php');
     
     // On récupère d'abord la liste des compétences par défaut (de l'étudiant)

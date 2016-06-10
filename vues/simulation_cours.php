@@ -15,7 +15,7 @@
             <?php foreach($coursList as $cours) { ?>
                 <tr>
                     <td><a id="simu_cours_<?php echo $cours->GetId(); ?>"><?php echo $cours->GetNom(); ?></a></td>
-                    <td><?php echo "20"; ?></td>
+                    <td><?php echo GetMoyenneFromCours($cours->GetId(), GetEtudiant($user)->GetId()); ?></td>
                     <td><?php echo $cours->GetSemestre(); ?></td>
                     <td><?php echo $cours->GetCredits(); ?></td>
                 </tr>
