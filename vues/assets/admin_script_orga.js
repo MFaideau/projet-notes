@@ -17,6 +17,7 @@ $(document).on("click", "button[id^=orga_cursus_]", function (e) {
             $(".panel_epreuve").remove();
             $(".panel_upload_epreuve").remove();
             $(".panel_cursus").append(result);
+            $("#cursusEdition").show();
             $("#competenceEdition").hide();
             // On récupère aussi des informations pour le bloc de modifications
             $.ajax({
