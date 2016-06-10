@@ -23,7 +23,6 @@ WHERE etudiantnote.ID_Etudiant = :idEtudiant AND etudiantnote.ID_Epreuve = :idEp
         return null;
     }
 }
-
 function GetEtudiantNotesFromEtudiant($idEtudiant)
 {
     // RETOURNE UNE LISTE D'OBJETS ETUDIANTNOTE
