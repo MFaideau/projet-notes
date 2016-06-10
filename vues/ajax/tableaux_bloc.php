@@ -18,7 +18,7 @@
                     <th scope="row"><a id="releve_comp_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></th>
                     <td>
                         <?php
-                        $note_etudiant = GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId());
+                        $note_etudiant = round(GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId()),2);
                         echo $note_etudiant;
                         ?>
                     </td>
@@ -32,7 +32,7 @@
                 <th>Total</th>
                 <th>
                     <?php
-                    $note_etudiant = GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId());
+                    $note_etudiant = round(GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId()),2);
                     echo $note_etudiant;
                     ?>
                 </th>
