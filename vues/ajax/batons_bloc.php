@@ -26,13 +26,13 @@
                     <?php
                     $note_etudiant = GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId());
                     $tab_histo = GetStat(GetTabNotesEtudiantsFromCompetence($competence->GetId()));
-                    $min = $tab_histo[2];
-                    $max = $tab_histo[3];
+                    $min = round($tab_histo[2],2);
+                    $max = round($tab_histo[3],2);
                     echo $min;
                     ?>
                 </td>
                 <td><?php echo $max; ?></td>
-                <td><?php echo $note_etudiant; ?></td>
+                <td><?php echo round($note_etudiant,2); ?></td>
                 <td>A</td>
                 <td class="button_show_histo">
                     <a data-toggle="modal" data-target="#showHisto1">
@@ -56,7 +56,7 @@
                     ?>
                 </td>
                 <td><?php echo $max; ?></td>
-                <td><?php echo $note_etudiant; ?></td>
+                <td><?php echo round($note_etudiant,2); ?></td>
                 <td>A</td>
                 <td class="button_show_histo">
                     <a data-toggle="modal" data-target="#showHisto1">
