@@ -11,4 +11,6 @@ if (!isset($_SESSION['user'])) {
     die();
 }
 
+$user = unserialize($_SESSION['user']);
+
 include_once __DIR__ . './../controleurs/histogramme.php';
