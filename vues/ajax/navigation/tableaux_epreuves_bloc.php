@@ -16,8 +16,8 @@
             <tbody>
             <?php foreach($epreuvesList as $epreuve) { ?>
                 <tr>
-                    <th <?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a></th>
-                    <td><?php echo "10"; ?></td>
+                    <th id="releve_epreuve_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a></th>
+                    <td><?php echo GetEtudiantNoteFromEtudiantEpreuve(GetEtudiant($user)->GetId(), $epreuve->GetId())->GetNoteFinale(); ?></td>
                     <td><?php echo $epreuve->GetCoef(); ?></td>
                     <td>A</td>
                 </tr>

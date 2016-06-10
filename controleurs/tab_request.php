@@ -116,7 +116,6 @@ function GetMoyenneFromCours($idCours, $idEtudiant) {
     }
     return $moyenne/$sommecoef;
 }
-echo GetMoyenneFromCours(1, 93088);
 
 function GetMoyenneFromCompetence($idCompetence, $idEtudiant) {
     $listCours = GetCoursListFromCompetence($idCompetence);
@@ -136,8 +135,6 @@ function GetMoyenneFromCompetence($idCompetence, $idEtudiant) {
         return $moyenne/$sommecredits;
     }
 }
-
-echo 'DEBUG' . GetMoyenneFromCompetence(1, 93088);
 
 function GetMoyenneFromCursus($idCursus, $idEtudiant) {
     $listCompetence = GetCompetenceListFromCursus($idCursus);

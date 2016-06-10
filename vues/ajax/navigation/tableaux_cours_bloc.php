@@ -19,7 +19,7 @@
                 <tr>
                     <th scope="row"><a class="lien_tableau"
                             id="releve_cours_<?php echo $cours->GetId(); ?>"><?php echo $cours->GetNom(); ?></a></th>
-                    <td><?php echo "10"; ?></td>
+                    <td><?php echo GetMoyenneFromCours($cours->GetId(), $idEtudiant); ?></td>
                     <td><?php echo $cours->GetCredits(); ?></td>
                     <td>A</td>
                 </tr>
