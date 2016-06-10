@@ -10,6 +10,5 @@ include_once __DIR__ . '../../modeles/type_evaluation/typeeval.php';
 if (!isset($_SESSION['user'])) {
     die();
 }
-$user = unserialize($_SESSION['user']);
-include_once __DIR__ . './../controleurs/tab_request.php';
-include_once __DIR__ . './../controleurs/ajax/accueil.php';
+
+include_once __DIR__ . './../controleurs/histogramme.php';

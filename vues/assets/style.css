@@ -86,3 +86,7 @@
 .identite {
     padding-left: 0;
 }
+.lien_tableau, .lien_tableau:hover {
+    cursor: pointer;
+    color: #b62224;
+}

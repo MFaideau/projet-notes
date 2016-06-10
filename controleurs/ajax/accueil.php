@@ -1,10 +1,10 @@
 <?php
-include_once (__DIR__ . '../../tab_request.php');
-include (__DIR__ . '../../../controleurs/controle_histo/tab_list.php');
-include_once (__DIR__ . '../../../controleurs/controle_histo/tab_moyennes.php');
-include_once (__DIR__ . '../../../modeles/authentification/utilisateur.class.php');
 
 $user = unserialize($_SESSION['user']);
+
+include_once (__DIR__ . '../../../modeles/authentification/utilisateur.class.php');
+include_once __DIR__ . '../../../controleurs/tab_request.php';
+
 $cursus = GetEtudiant($user)->GetCursus();
 $competenceList = GetCompetenceListFromCursus($cursus->GetId());
 
