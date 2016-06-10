@@ -1,5 +1,5 @@
 </div>
-<?php if($user->GetAutorite() == 1) { ?>
+<?php if($user->GetAutorite() != 0) { ?>
 <script src="vues/assets/admin_script.js"></script>
 <script src="vues/assets/admin_script_orga.js"></script>
 <script src="vues/assets/visualisation_eleve.js"></script>
