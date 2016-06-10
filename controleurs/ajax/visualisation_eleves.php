@@ -1,7 +1,7 @@
 <?php
 
 $utilisateur = unserialize($_SESSION['user']);
-if ($utilisateur->GetAutorite() != 1) {
+if ($utilisateur->GetAutorite() == 0) {
     die();
 }
 

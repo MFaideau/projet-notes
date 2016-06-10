@@ -8,7 +8,7 @@ if (!isset($_SESSION['user'])) {
     die();
 } else {
     $user = unserialize($_SESSION['user']);
-    if ($user->GetAutorite() != 1) {
+    if ($user->GetAutorite() == 0) {
         header('Location: accueil.php');
         die();
     }
