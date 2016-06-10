@@ -29,9 +29,9 @@
                         include('modules/module_histo.php');
                         ?>
                     </td>
-                    <td><?php echo $tab_histo[2]; ?></td>
-                    <td><?php echo $tab_histo[3]; ?></td>
-                    <td><?php echo $note_etudiant; ?></td>
+                    <td><?php echo round($tab_histo[2],2); ?></td>
+                    <td><?php echo round($tab_histo[3],2); ?></td>
+                    <td><?php echo round($note_etudiant,2); ?></td>
                 </tr>
             <?php } ?>
             </tbody>
