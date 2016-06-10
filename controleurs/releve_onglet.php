@@ -9,6 +9,8 @@ if (!isset($_SESSION['user'])) {
     die(); }
 else {
     $user = unserialize($_SESSION['user']);
+
+    include_once __DIR__ . '../../controleurs/tab_request.php';
     include_once(__DIR__ . '../../vues/menu.php');
     include_once(__DIR__ . '../../vues/menu_rapide.php');
 
