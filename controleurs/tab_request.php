@@ -122,18 +122,21 @@ function GetMoyenneFromCompetence($idCompetence, $idEtudiant) {
     $listCours = GetCoursListFromCompetence($idCompetence);
     $notesEtudiant = array();
     $moyenne = 0;
+    $sommecredits = 0;
     foreach ($listCours as $i => $cours) {
         $notesEtudiant[$i] = GetMoyenneFromCours($cours->GetId(), $idEtudiant);
-        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $cours->GetCredits());
+        $creditscours = $cours->GetCredits();
+        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $creditscours);
+        $sommecredits = $sommecredits + $creditscours;
     }
-    $creditscompetence = GetCompetenceById($idCompetence)->GetCredits();
-    if ($creditscompetence == 0) {
-        return -1;
+    if ($sommecredits == 0) {
+        return 0;
     }
     else {
-        return $moyenne;
+        return $moyenne/$sommecredits;
     }
 }
+
 echo 'DEBUG' . GetMoyenneFromCompetence(1, 93088);
 
 function GetMoyenneFromCursus($idCursus, $idEtudiant) {
