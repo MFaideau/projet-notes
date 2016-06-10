@@ -19,9 +19,7 @@
                     <td>
                         <?php
                         $note_etudiant = GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId());
-                        $tab_histo = GetStat(GetTabNotesEtudiantsFromCompetence($competence->GetId()));
-                        $moyenne = $tab_histo[0];
-                        echo $moyenne;
+                        echo $note_etudiant;
                         ?>
                     </td>
                     <td><?php echo $competence->GetCredits(); ?></td>
@@ -35,9 +33,7 @@
                 <th>
                     <?php
                     $note_etudiant = GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId());
-                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCursus(GetEtudiant($user)->GetCursus()->GetId()));
-                    $moyenne = $tab_histo_total[0];
-                    echo $moyenne;
+                    echo $note_etudiant;
                     ?>
                 </th>
                 <th><?php echo $cursus->GetCredits(); ?></th>

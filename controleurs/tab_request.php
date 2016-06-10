@@ -91,11 +91,11 @@ function GetMoyenneFromEval($idEval, $idEtudiant) {
                 $notesEtudiant[$i] = $studentnote;
                 $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $coefTypeEval);
             }
+            $sommecoef = $sommecoef + $coefTypeEval;
         }
-        $sommecoef = $sommecoef + $coefTypeEval;
     }
     if ($sommecoef == 0) {
-        return 0;
+        return -1;
     }
     return $moyenne/$sommecoef;
 }
@@ -106,17 +106,24 @@ function GetMoyenneFromCours($idCours, $idEtudiant) {
     $moyenne = 0;
     $sommecoef = 0;
     foreach ($listEval as $i => $eval) {
-        $notesEtudiant[$i] = GetMoyenneFromEval($eval->GetId(), $idEtudiant);
+        $studentnote = GetMoyenneFromEval($eval->GetId(), $idEtudiant);
         $coefEval = $eval->GetCoef();
-        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $coefEval);
-        $sommecoef = $sommecoef + $coefEval;
+        if (isset($studentnote)) {
+            if ($studentnote == -1) {
+                $i = $i-1;
+            }
+            else {
+                $notesEtudiant[$i] = $studentnote;
+                $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $coefEval);
+            }
+            $sommecoef = $sommecoef + $coefEval;
+        }
     }
     if ($sommecoef == 0) {
-        return 0;
+        return -1;
     }
     return $moyenne/$sommecoef;
 }
-echo GetMoyenneFromCours(1, 93088);
 
 function GetMoyenneFromCompetence($idCompetence, $idEtudiant) {
     $listCours = GetCoursListFromCompetence($idCompetence);
@@ -124,20 +131,26 @@ function GetMoyenneFromCompetence($idCompetence, $idEtudiant) {
     $moyenne = 0;
     $sommecredits = 0;
     foreach ($listCours as $i => $cours) {
-        $notesEtudiant[$i] = GetMoyenneFromCours($cours->GetId(), $idEtudiant);
+        $studentnote = GetMoyenneFromCours($cours->GetId(), $idEtudiant);
         $creditscours = $cours->GetCredits();
-        $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $creditscours);
-        $sommecredits = $sommecredits + $creditscours;
+        if (isset($studentnote)) {
+            if ($studentnote == -1) {
+                $i = $i-1;
+            }
+            else {
+                $notesEtudiant[$i] = $studentnote;
+                $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $creditscours);
+            }
+            $sommecredits = $sommecredits + $creditscours;
+        }
     }
     if ($sommecredits == 0) {
-        return 0;
+        return -1;
     }
     else {
         return $moyenne/$sommecredits;
     }
 }
-
-echo 'DEBUG' . GetMoyenneFromCompetence(1, 93088);
 
 function GetMoyenneFromCursus($idCursus, $idEtudiant) {
     $listCompetence = GetCompetenceListFromCursus($idCursus);
