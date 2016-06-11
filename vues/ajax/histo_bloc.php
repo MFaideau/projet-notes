@@ -21,7 +21,7 @@
                     <th scope="row"><a class="lien_tableau" id="hist_comp_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></th>
                     <td width="50%">
                         <?php
-                        $note_etudiant = GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId());
+                        $note_etudiant = GetMoyenneFromCompetence($competence->GetId(), $etudiant->GetId());
                         $tab_histo = GetStat(GetTabNotesEtudiantsFromCompetence($competence->GetId()));
                         $moyenne = $tab_histo[0];
                         $ecart_type = $tab_histo[1];
@@ -40,8 +40,8 @@
                 <th scope="row">Total</th>
                 <td width="50%">
                     <?php
-                    $note_etudiant = GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId());
-                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCursus(GetEtudiant($user)->GetCursus()->GetId()));
+                    $note_etudiant = GetMoyenneFromCursus($cursus->GetId(), $etudiant->GetId());
+                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCursus($cursus->GetId()));
                     $moyenne = $tab_histo_total[0];
                     $ecart_type = $tab_histo_total[1];
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
