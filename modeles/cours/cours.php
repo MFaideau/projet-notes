@@ -9,7 +9,6 @@ include_once(__DIR__ . '../../type_evaluation/typeeval.class.php');
 include_once(__DIR__ . '../../competence/competence.php');
 function GetCompetenceFromCours($idCours)
 {
-    $list =array();
     global $bdd;
     $req = $bdd->prepare('SELECT competence.ID_Competence,competence.Nom_Competence 
 FROM competence,cours WHERE competence.ID_Competence=cours.ID_Competence

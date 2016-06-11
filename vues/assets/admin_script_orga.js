@@ -186,6 +186,7 @@ $(document).on("click", "button[id^=orga_type_eval]", function (e) {
 
 $(document).on("click", "button[id^=orga_epreuve]", function (e) {
     idEpreuve = this.id.replace("orga_epreuve_", "");
+    var modifyEpreuveDiv = $("#modifyEpreuve");
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
@@ -201,10 +202,10 @@ $(document).on("click", "button[id^=orga_epreuve]", function (e) {
                 data: 'idTypeEval=' + idTypeEval +"&action=secondesession",
                 success: function(result2) {
                     var current_type_eval = jQuery.parseJSON(result2);
-                    $("#modifyEpreuve select[id=selectSecondeSession]").empty().append('<option value="0">Aucune seconde session</option>');
+                    modifyEpreuveDiv.find("select[id=selectSecondeSession]").empty().append('<option value="0">Aucune seconde session</option>');
                         $.each(current_type_eval, function(index) {
                             if(current_type_eval[index].id != idEpreuve) {
-                                $("#modifyEpreuve select[id=selectSecondeSession]").append("<option value=" + current_type_eval[index].id + ">" +
+                                modifyEpreuveDiv.find("select[id=selectSecondeSession]").append("<option value=" + current_type_eval[index].id + ">" +
                                     current_type_eval[index].nom + "</option>");
                             }
                     });
@@ -217,10 +218,10 @@ $(document).on("click", "button[id^=orga_epreuve]", function (e) {
                 data: 'idCours=' + idCours +"&action=substitution",
                 success: function(result2) {
                     var current_cours = jQuery.parseJSON(result2);
-                    $("#modifyEpreuve select[id=selectSubstitution]").empty().append('<option value="0">Pas de note en cas d\'absence</option>');
+                    modifyEpreuveDiv.find("select[id=selectSubstitution]").empty().append('<option value="0">Pas de note en cas d\'absence</option>');
                     $.each(current_cours, function(index) {
                         if(current_cours[index].id != idEpreuve) {
-                            $("#modifyEpreuve select[id=selectSubstitution]").append("<option value=" + current_cours[index].id + ">" +
+                            modifyEpreuveDiv.find("select[id=selectSubstitution]").append("<option value=" + current_cours[index].id + ">" +
                                 current_cours[index].nom + "</option>");
                         }
                     });
@@ -233,12 +234,11 @@ $(document).on("click", "button[id^=orga_epreuve]", function (e) {
                 data: 'idEpreuve=' + idEpreuve +"&action=infos",
                 success: function(result2) {
                     var current_epreuve = jQuery.parseJSON(result2);
-                    $("#modifyEpreuve input[id=nomEpreuve]").val(current_epreuve.nom);
-                    $("#modifyEpreuve input[id=coefEpreuve]").val(current_epreuve.coef);
-                    $("#modifyEpreuve input[id=dateEpreuve]").val(current_epreuve.date);
-                    $("#modifyEpreuve input[id=evaluateurEpreuve]").val(current_epreuve.evaluateur);
-                    $("#modifyEpreuve #selectSecondeSession option[value="+current_epreuve.idSecondeSession + "]").prop('selected',true);
-                    $("#modifyEpreuve #selectSubstitution option[value="+current_epreuve.idSubstition + "]").prop('selected',true);
+                    modifyEpreuveDiv.find("input[id=nomEpreuve]").val(current_epreuve.nom);
+                    modifyEpreuveDiv.find("input[id=coefEpreuve]").val(current_epreuve.coef);
+                    modifyEpreuveDiv.find("input[id=dateEpreuve]").val(current_epreuve.date);
+                    modifyEpreuveDiv.find("input[id=evaluateurEpreuve]").val(current_epreuve.evaluateur); modifyEpreuveDiv.find("#selectSecondeSession option[value="+current_epreuve.idSecondeSession + "]").prop('selected',true);
+                    modifyEpreuveDiv.find("#selectSubstitution option[value="+current_epreuve.idSubstition + "]").prop('selected',true);
                 }
             });
         }

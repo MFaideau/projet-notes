@@ -9,7 +9,6 @@ include_once(__DIR__ . '../../cours/cours.class.php');
 
 function GetCompetenceById($idCompetence)
 {
-    $list =array();
     global $bdd;
     $req = $bdd->prepare('SELECT competence.ID_Competence,competence.Nom_Competence 
 FROM competence WHERE competence.ID_Competence=:idCompetence');

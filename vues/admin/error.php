@@ -3,6 +3,7 @@
 
 const ERREUR_EXTENSION = 1;
 const ERREUR_DELIMITER = 2; //Ni la virgule, ni le point virgule n'ont permis de lire le fichier CSV.
+const ERREUR_ACCESS = 3;
 
 if (isset($erreur_upload)) {
     if ($erreur_upload == ERREUR_EXTENSION) {
@@ -17,7 +18,7 @@ if (isset($erreur_upload)) {
             </div>
         </div><?php
     }
-    elseif ($erreur_upload == ERREUR_DELIMITER) {
+    elseif ($erreur_upload == ERREUR_DELIMITER || $erreur_upload == ERREUR_ACCESS) {
         ?>
         <div class="row">
             <div class="col-md-12  message_erreur">

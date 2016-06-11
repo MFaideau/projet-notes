@@ -64,4 +64,7 @@ function AjouterNotes($idEpreuve, $delimiter)
         fclose($handle);
         return true;
     }
+    $erreur_upload = 3;
+    include_once('./vues/admin/error.php');
+    return false;
 }
