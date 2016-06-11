@@ -1,10 +1,10 @@
-$('.tableaux_logo').click(function() {
+$('.tableaux_logo').click(function () {
     $.ajax({
         url: './ajax/accueil.php',
         type: 'POST',
         datatype: 'html',
         data: 'button=tableaux',
-        success: function(result) {
+        success: function (result) {
             $(".donnees_tableaux").remove();
             $(".donnees_tableaux_cours").remove();
             $(".donnees_tableaux_epreuves").remove();
@@ -19,7 +19,7 @@ $('.tableaux_logo').click(function() {
     });
 });
 
-$('.histo_logo').click(function() {
+$('.histo_logo').click(function () {
     $.ajax({
         url: './ajax/accueil.php',
         type: 'POST',
@@ -33,12 +33,14 @@ $('.histo_logo').click(function() {
             $(".donnees_histo").remove();
             $(".absences").remove();
             $(".panel_choix_eleves").remove();
+            $(".donnees_histo_cours").remove();
+            $(".donnees_histo_epreuves").remove();
             $(result).insertAfter($(".visualisation").parent());
         }
     });
 });
 
-$('.histo_commun').click(function() {
+$('.histo_commun').click(function () {
     $.ajax({
         url: './ajax/accueil.php',
         type: 'POST',
@@ -54,9 +56,11 @@ $('.histo_commun').click(function() {
                     $(".donnees_tableaux_cours").remove();
                     $(".donnees_tableaux_epreuves").remove();
                     $(".donnees_batons").remove();
-                    $(".donnees_histo").remove();
-                    $(".absences").remove();
                     $(".panel_choix_eleves").remove();
+                    $(".donnees_histo").remove();
+                    $(".donnees_histo_cours").remove();
+                    $(".donnees_histo_epreuves").remove();
+                    $(".absences").remove();
                     $(result).insertAfter($(".visualisation").parent());
                     loadBar(resultDataHisto);
                 }
@@ -65,7 +69,7 @@ $('.histo_commun').click(function() {
     });
 });
 
-$('.abs').click(function() {
+$('.abs').click(function () {
     $.ajax({
         url: './absence.php',
         type: 'GET',
@@ -87,7 +91,7 @@ $('.abs').click(function() {
 
 //// =================== PARTIE SIMULATION ==============================
 
-$('.simulationmanuelle').click(function() {
+$('.simulationmanuelle').click(function () {
     $.ajax({
         url: './simulation.php',
         type: 'GET',

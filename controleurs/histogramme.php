@@ -1,10 +1,11 @@
 <?php
 
+// Les fonctions utilisées pour le calcul des moyennes se trouve dans ce fichier.
 include_once 'tab_request.php';
 
-$tabTest = array(
-    0 => 12, 1 => 14, 2 => 8, 3 => 6, 4 => 6, 5 => 6, 6 => 6, 7 => 6
-);
+// TODO : Adapter pour chaque compétence
+$idCompetence = 1;
+$tabTest = GetTabNotesEtudiantsFromCompetence($idCompetence);
 $varTab = GetVarTabHistoBatons($tabTest);
 
 echo json_encode($varTab);

@@ -11,7 +11,7 @@ class EtudiantNote
     private $idEtudiant;
     private $idEpreuve;
     private $notePrevue;
-    private $noteFinale;
+    public $noteFinale;
     private $absence;
 
     function EtudiantNote($etudiantNoteLine)

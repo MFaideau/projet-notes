@@ -15,7 +15,7 @@
             <tbody>
             <?php foreach ($competenceList as $competence) { ?>
                 <tr>
-                    <th class="lien_tableau" scope="row"><a id="releve_comp_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></th>
+                    <th class="lien_tableau" scope="row"><a class="lien_tableau" id="releve_comp_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></th>
                     <td>
                         <?php
                         $note_etudiant = round(GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId()),2);

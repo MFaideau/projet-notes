@@ -12,6 +12,13 @@ if (!isset($_SESSION['user'])) {
     die();
 }
 
+$user = unserialize($_SESSION['user']);
+
+// TODO : faire un tri dans le dossier ajax et le mettre dans le controlleur
+
+include_once __DIR__ . '../../controleurs/tab_request.php';
+include_once __DIR__ . '../../modeles/etudiantnote/etudiantnote.php';
+
 if(isset($_POST['idCompetence'])) {
     $credits_competence = GetCreditsFromCompetence($_POST['idCompetence']);
     $coursList = GetCoursListFromCompetence($_POST['idCompetence']);

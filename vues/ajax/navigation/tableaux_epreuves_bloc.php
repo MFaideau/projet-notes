@@ -2,7 +2,7 @@
 
 <div class="row donnees donnees_tableaux_epreuves">
     <div class="panel panel-default">
-        <div class="panel-heading"><a href="#" id="releve_comp_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-arrow-left retour_prec_releve"></span></a>
+        <div class="panel-heading"><a href="#" class="lien_tableau" id="releve_comp_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-arrow-left retour_prec_releve"></span></a>
             Relevé de notes - Détail des Notes</div>
         <table class="table">
             <thead>

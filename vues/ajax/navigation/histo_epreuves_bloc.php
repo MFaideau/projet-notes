@@ -16,21 +16,21 @@
             </thead>
             <tbody>
             <?php foreach($epreuvesList as $epreuve) { ?>
-                { ?>
                 <tr>
-                    <th scope="row"><a class="lien_tableau" id="hist_cours_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a></th>
+                    <th scope="row"><a class="lien_tableau"><?php echo $epreuve->GetNom(); ?></a></th>
                     <td width="50%">
                         <?php
-                        $note_etudiant = $tab_info[0];
-                        $moyenne = $tab_histo_info[0];
-                        $ecart_type = $tab_histo_info[1];
+                        $note_etudiant = GetEtudiantNoteFromEtudiantEpreuve(GetEtudiant($user)->GetId(),$epreuve->GetId())->GetNoteFinale();
+                        $tab_histo = GetStat(GetTabNotesEtudiantsFromEpreuve($epreuve->GetId()));
+                        $moyenne = $tab_histo[0];
+                        $ecart_type = $tab_histo[1];
                         $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
-                        include('modules/module_histo.php');
+                        include(__DIR__ . '../../modules/module_histo.php');
                         ?>
                     </td>
-                    <td><?php echo $tab_histo_info[2]; ?></td>
-                    <td><?php echo $tab_histo_info[3]; ?></td>
-                    <td><?php echo $note_etudiant; ?></td>
+                    <td><?php echo round($tab_histo[2],2); ?></td>
+                    <td><?php echo round($tab_histo[3],2); ?></td>
+                    <td><?php echo round($note_etudiant,2); ?></td>
                 </tr>
             <?php } ?>
             </tbody>
@@ -39,16 +39,17 @@
                 <th>Total</th>
                 <th width="50%">
                     <?php
-                    $note_etudiant = $tab_total[0];
+                    $note_etudiant =  GetEtudiantNoteFromEtudiantEpreuve(GetEtudiant($user)->GetId(),$epreuve->GetId())->GetNoteFinale();
+                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromEpreuve($epreuve->GetId()));
                     $moyenne = $tab_histo_total[0];
                     $ecart_type = $tab_histo_total[1];
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
-                    include('modules/module_histo.php');
+                    include(__DIR__ . '../../modules/module_histo.php');
                     ?>
                 </th>
-                <td><?php echo $tab_histo_total[2]; ?></td>
-                <th><?php echo $tab_histo_total[3]; ?></th>
-                <th><?php echo $note_etudiant; ?></th>
+                <td><strong><?php echo round($tab_histo_total[2],2); ?></strong></td>
+                <th><?php echo round($tab_histo_total[3],2); ?></th>
+                <th><?php echo round($note_etudiant,2); ?></th>
             </tr>
             </tfoot>
         </table>
