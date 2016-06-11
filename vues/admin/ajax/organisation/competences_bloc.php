@@ -16,15 +16,21 @@
                 </a>
             </div>
         </div>
-        <div class="panel-body">
-            <div class="btn-group" role="group" aria-label="...">
+        <div class="panel_listing">
+            <table id="tableOrgaCompetence" class="table" data-toggle="table">
+                <thead>
+                <th>Nom</th>
+                </thead>
+                <tbody>
                 <?php
                 foreach (GetCompetenceListFromCursus($cursus->GetId()) as $competence) { ?>
-                    <button id="orga_competence_<?php echo $competence->GetId(); ?>" type="button"
-                            class="btn btn-default btn-competences"
-                            role="button"><?php echo html_entity_decode($competence->GetNom()); ?></button>
-                <?php } ?>
-            </div>
+                    <tr>
+                        <td><a id="orga_competence_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom();?></a></td>
+                    <tr/>
+                <?php }?>
+                </tbody>
+            </table>
         </div>
     </div>
+
 </div>

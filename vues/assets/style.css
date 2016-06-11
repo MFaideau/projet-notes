@@ -90,3 +90,21 @@
     cursor: pointer;
     color: #b62224;
 }
+#tableOrgaCursus td{
+    line-height: 10px;
+}
+#tableOrgaCompetence td{
+    line-height: 10px;
+}
+#tableOrgaCours td{
+    line-height: 10px;
+}
+#tableOrgaEval td{
+    line-height: 10px;
+}
+#tableOrgaTypeEval td{
+    line-height: 10px;
+}
+#tableOrgaEpreuve td{
+    line-height: 10px;
+}

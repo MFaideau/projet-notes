@@ -15,14 +15,22 @@
                 </a>
             </div>
         </div>
-        <div class="panel-body">
-            <div class="btn-group" role="group" aria-label="...">
-                    <?php
-                    foreach ($eval as $current_eval) { ?>
-                        <button id="orga_eval_<?php echo $current_eval->GetId(); ?>" type="button"
-                                class="btn btn-default"><?php echo html_entity_decode($current_eval->GetNom()); ?></button>
-                    <?php } ?>
-            </div>
+        <div class="panel_listing">
+            <table id="tableOrgaEval" class="table" data-toggle="table">
+                <thead>
+                <th>Nom</th>
+                <th>Coefficient</th>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($eval as $current_eval) { ?>
+                    <tr>
+                        <td><a id="orga_eval_<?php echo $current_eval->GetId(); ?>"><?php echo $current_eval->GetNom(); ?></a></td>
+                        <td><?php echo $current_eval->GetCoef(); ?>
+                    <tr/>
+                <?php } ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

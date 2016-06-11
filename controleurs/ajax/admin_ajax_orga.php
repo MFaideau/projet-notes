@@ -141,7 +141,7 @@ if (isset($_POST['action']) && isset($_POST['idEpreuve']))
 if (isset($_POST['action']) && (isset($_POST['nomCursus'])) && isset($_POST['anneeCursus'])) {
     if ($_POST['action'] == "add")
         $idCursusNew = InsertCursus($_POST['nomCursus'], $_POST['anneeCursus']);
-    include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_cursus_bloc.php';
+        include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_cursus_bloc.php';
 }
 if (isset($_POST['action']) && (isset($_POST['nomCompetence'])) && isset($_POST['idCursus'])) {
     if ($_POST['action'] == "add")

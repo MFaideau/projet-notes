@@ -16,15 +16,21 @@
                 </a>
             </div>
         </div>
-        <div class="panel-body panel_cursus_choix">
-            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="panel_listing">
+            <table id="tableOrgaCursus" class="table" data-toggle="table">
+                <thead>
+                    <th data-field="nom">Nom</th>
+                    <th data-field="annee">Année</th>
+                </thead>
+                <tbody>
                 <?php foreach (GetCursusList() as $cursus) { ?>
-                    <div class="btn-group" role="group">
-                        <button id="orga_cursus_<?php echo $cursus->GetId(); ?>" type="button"
-                                class="btn btn-default"><?php echo $cursus->GetNom(); ?></button>
-                    </div>
+                    <tr>
+                        <td><a id="orga_cursus_<?php echo $cursus->GetId(); ?>"><?php echo $cursus->GetNom(); ?></a></td>
+                        <td><?php echo $cursus->GetAnnee(); ?></td>
+                    </tr>
                 <?php } ?>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

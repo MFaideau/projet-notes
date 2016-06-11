@@ -1,4 +1,4 @@
-<div class="btn-group" role="group">
-    <button id="orga_cursus_<?php echo $idCursusNew; ?>" type="button"
-            class="btn btn-default"><?php echo $_POST['nomCursus']; ?></button>
-</div>
+<tr>
+    <td><a id="orga_cursus_<?php echo $idCursusNew; ?>"><?php echo $_POST['nomCursus']; ?></a></td>
+    <td><?php echo $_POST['anneeCursus']; ?></td>
+</tr>
