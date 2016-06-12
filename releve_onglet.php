@@ -7,4 +7,4 @@ if(!isset($_SESSION['user'])) {
     die("Pas connecté");
 }
 
-include_once (__DIR__ . '../controleurs/releve_onglet.php');
+include_once (__DIR__ . '/controleurs/releve_onglet.php');
