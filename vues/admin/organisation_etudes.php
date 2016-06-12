@@ -26,7 +26,7 @@
                 <?php foreach (GetCursusList() as $cursus) { ?>
                     <tr>
                         <td><a id="orga_cursus_<?php echo $cursus->GetId(); ?>"><?php echo $cursus->GetNom(); ?></a></td>
-                        <td><?php echo $cursus->GetAnnee(); ?></td>
+                        <td id="orga_cursus_annee_<?php echo $cursus->GetId(); ?>"><?php echo $cursus->GetAnnee(); ?></td>
                     </tr>
                 <?php } ?>
                 </tbody>

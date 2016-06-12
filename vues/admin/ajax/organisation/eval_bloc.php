@@ -26,7 +26,7 @@
                 foreach ($eval as $current_eval) { ?>
                     <tr>
                         <td><a id="orga_eval_<?php echo $current_eval->GetId(); ?>"><?php echo $current_eval->GetNom(); ?></a></td>
-                        <td><?php echo $current_eval->GetCoef(); ?>
+                        <td id="orga_eval_coef_<?php echo $current_eval->GetId(); ?>"><?php echo $current_eval->GetCoef(); ?>
                     <tr/>
                 <?php } ?>
                 </tbody>

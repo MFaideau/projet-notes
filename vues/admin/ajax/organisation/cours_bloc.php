@@ -27,7 +27,8 @@
                 foreach ($cours as $current_cours) { ?>
                 <tr>
                     <td><a id="orga_cours_<?php echo $current_cours->GetId(); ?>"><?php echo $current_cours->GetNom(); ?></a></td>
-                    <td><?php echo $current_cours->GetCredits(); ?></td><td>
+                    <td id="orga_cours_credits_<?php echo $current_cours->GetId(); ?>"><?php echo $current_cours->GetCredits(); ?></td>
+                    <td id="orga_cours_semestre_<?php echo $current_cours->GetId(); ?>">
                     <?php
                         $semestre=$current_cours->GetSemestre();
                         if ($semestre == 0)

@@ -28,9 +28,9 @@
                 foreach ($epreuveList as $epreuve) { ?>
                 <tr>
                     <td><a id="orga_epreuve_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a></td>
-                    <td><?php echo $epreuve->GetCoef(); ?></td>
-                    <td><?php echo $epreuve->GetDate(); ?></td>
-                    <td><?php echo $epreuve->GetEvaluateur(); ?></td>
+                    <td id="orga_epreuve_coef_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetCoef(); ?></td>
+                    <td id="orga_epreuve_date_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetDate(); ?></td>
+                    <td id="orga_epreuve_evaluateur_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetEvaluateur(); ?></td>
                 </tr>
                         <?php } ?>
                 </tbody>

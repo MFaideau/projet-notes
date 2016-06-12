@@ -466,6 +466,7 @@ $(function () {
             success: function () {
                 $("#modifyCursus").modal("hide");
                 $("#orga_cursus_" + idCursus).text(newNomCursus);
+                $("#orga_cursus_annee_" + idCursus).text(newAnneeCursus);
             }
         });
     });
@@ -499,6 +500,8 @@ $(function () {
             success: function () {
                 $("#modifyCours").modal("hide");
                 $("#orga_cours_" + idCours).text(newNomCours);
+                $("#orga_cours_credits_" + idCours).text(newCreditsCours);
+                $("#orga_cours_semestre_" + idCours).text(newSemestreCours);
             }
         });
     });
@@ -515,6 +518,7 @@ $(function () {
             success: function () {
                 $("#modifyEval").modal("hide");
                 $("#orga_eval_" + idEval).text(newNomEval);
+                $("#orga_eval_coef_" + idEval).text(newCoefEval);
             }
         });
     });
@@ -531,6 +535,7 @@ $(function () {
             success: function () {
                 $("#modifyTypeEval").modal("hide");
                 $("#orga_type_eval_" + idTypeEval).text(newNomTypeEval);
+                $("#orga_type_eval_coef_" + idTypeEval).text(newCoefTypeEval);
             }
         });
     });
@@ -551,6 +556,9 @@ $(function () {
             success: function () {
                 $("#modifyEpreuve").modal("hide");
                 $("#orga_epreuve_" + idEpreuve).text(newNomEpreuve);
+                $("#orga_epreuve_coef_" + idEpreuve).text(newCoefEpreuve);
+                $("#orga_epreuve_date_" + idEpreuve).text(newDateEpreuve);
+                $("#orga_epreuve_evaluateur_" + idEpreuve).text(newEvaluateurEpreuve);
             }
         });
     });

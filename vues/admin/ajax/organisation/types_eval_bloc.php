@@ -26,7 +26,7 @@
                 foreach ($typeEvalList as $typeEval) { ?>
                 <tr>
                     <td><a id="orga_type_eval_<?php echo $typeEval->GetId(); ?>"><?php echo $typeEval->GetNom(); ?></a></td>
-                    <td><?php echo $typeEval->GetCoef(); ?></td>
+                    <td id="orga_type_eval_coef_<?php echo $typeEval->GetId(); ?>"><?php echo $typeEval->GetCoef(); ?></td>
                 </tr>
                 <?php } ?>
                 </tbody>
