@@ -2,7 +2,7 @@
 
 <div class="row donnees donnees_tableaux_cours">
     <div class="panel panel-default">
-        <div class="panel-heading "><a href="releve_onglet.php"><span class="glyphicon glyphicon-arrow-left retour_prec_releve"></span></a>
+        <div class="panel-heading "><a onclick="location.reload();" href="#"><span class="glyphicon glyphicon-arrow-left retour_prec_releve"></span></a>
             Relevé de notes - Choix du cours
         </div>
         <table class="table">
