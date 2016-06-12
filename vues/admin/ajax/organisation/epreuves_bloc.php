@@ -15,14 +15,26 @@
                 </a>
             </div>
         </div>
-        <div class="panel-body">
-            <div class="btn-group" role="group" aria-label="...">
-                    <?php
-                    foreach ($epreuveList as $epreuve) { ?>
-                        <button id="orga_epreuve_<?php echo $epreuve->GetId(); ?>" type="button"
-                                class="btn btn-default"><?php echo html_entity_decode($epreuve->GetNom()); ?></button>
-                    <?php } ?>
-            </div>
+        <div class="panel_listing">
+            <table id="tableOrgaEpreuve" class="table" data-toggle="table">
+                <thead>
+                <th>Nom</th>
+                <th>Coefficient</th>
+                <th>Date</th>
+                <th>Evaluateur</th>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($epreuveList as $epreuve) { ?>
+                <tr>
+                    <td><a id="orga_epreuve_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a></td>
+                    <td><?php echo $epreuve->GetCoef(); ?></td>
+                    <td><?php echo $epreuve->GetDate(); ?></td>
+                    <td><?php echo $epreuve->GetEvaluateur(); ?></td>
+                </tr>
+                        <?php } ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

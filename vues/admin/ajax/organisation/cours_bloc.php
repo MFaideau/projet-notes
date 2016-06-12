@@ -15,14 +15,32 @@
                 </a>
             </div>
         </div>
-        <div class="panel-body">
-            <div class="btn-group" role="group" aria-label="...">
+        <div class="panel_listing">
+            <table id="tableOrgaCours" class="table" data-toggle="table">
+                <thead>
+                <th>Nom</th>
+                <th>Crédits ECTS</th>
+                <th>Semestre(s)</th>
+                </thead>
+                <tbody>
                 <?php
                 foreach ($cours as $current_cours) { ?>
-                    <button id="orga_cours_<?php echo $current_cours->GetId(); ?>" type="button"
-                            class="btn btn-default"><?php echo html_entity_decode($current_cours->GetNom()); ?></button>
+                <tr>
+                    <td><a id="orga_cours_<?php echo $current_cours->GetId(); ?>"><?php echo $current_cours->GetNom(); ?></a></td>
+                    <td><?php echo $current_cours->GetCredits(); ?></td><td>
+                    <?php
+                        $semestre=$current_cours->GetSemestre();
+                        if ($semestre == 0)
+                            echo "Semestres 1 et 2";
+                        elseif ($semestre == 1)
+                            echo "Semestre 1";
+                        elseif ($semestre == 2)
+                            echo "Semestre 2"; ?>
+                    </td>
+                <tr/>
                 <?php } ?>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
