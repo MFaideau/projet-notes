@@ -1,45 +1,52 @@
 <!-- Page de données !-->
-
 <div class="row donnees donnees_tableaux">
     <div class="panel panel-default">
         <div class="panel-heading">Relevé de notes</div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Compétences</th>
-                <th>Moyenne</th>
-                <th>ECTS</th>
-                <th>Grades</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($competenceList as $competence) { ?>
+        <div class="panel_listing">
+            <table class="table" data-toggle="table">
+                <thead>
                 <tr>
-                    <th class="lien_tableau" scope="row"><a class="lien_tableau" id="releve_comp_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></th>
-                    <td>
-                        <?php
-                        $note_etudiant = round(GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId()),2);
-                        echo $note_etudiant;
-                        ?>
-                    </td>
-                    <td><?php echo $competence->GetCredits(); ?></td>
-                    <td>A</td>
+                    <th>Compétences</th>
+                    <th>Moyenne</th>
+                    <th>ECTS</th>
+                    <th>Grades</th>
                 </tr>
-            <?php } ?>
-            </tbody>
-            <tfoot>
-            <tr>
-                <th>Total</th>
-                <th>
-                    <?php
-                    $note_etudiant = round(GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId()),2);
-                    echo $note_etudiant;
+                </thead>
+                <tbody>
+                <?php foreach ($competenceList as $competence) { ?>
+                    <tr>
+                        <td class="lien_tableau" scope="row"><a class="lien_tableau"
+                                                                id="releve_comp_<?php echo $competence->GetId(); ?>"><b><?php echo $competence->GetNom(); ?></b></a>
+                        </td>
+                        <td>
+                            <?php
+                            $note_etudiant = round(GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId()), 2);
+                            echo $note_etudiant;
+                            ?>
+                        </td>
+                        <td><?php echo $competence->GetCredits(); ?></td>
+                        <td>A</td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+                <?php
+                if (!empty($competenceList)) {
                     ?>
-                </th>
-                <th><?php echo $cursus->GetCredits(); ?></th>
-                <th>A</th>
-            </tr>
-            </tfoot>
-        </table>
+                    <tfoot>
+                    <tr>
+                        <td><b>Total</b></td>
+                        <td><b>
+                            <?php
+                            $note_etudiant = round(GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId()), 2);
+                            echo $note_etudiant;
+                            ?>
+                            </b></td>
+                        <td><b><?php echo $cursus->GetCredits(); ?></b></td>
+                        <td><b>A</b></td>
+                    </tr>
+                    </tfoot>
+                <?php } ?>
+            </table>
+        </div>
     </div>
 </div>

@@ -10,6 +10,8 @@ $('.tableaux_logo').click(function () {
             $(".donnees_tableaux_epreuves").remove();
             $(".donnees_batons").remove();
             $(".donnees_histo").remove();
+            $(".donnees_histo_cours").remove();
+            $(".donnees_histo_epreuves").remove();
             $(".donnees_tableaux").remove();
             $(".absences").remove();
             $(".panel_choix_eleves").remove();
@@ -17,6 +19,7 @@ $('.tableaux_logo').click(function () {
             $(".donnees_histo_com_cours").remove();
             $(".donnees_histo_com_epreuves").remove();
             $(result).insertAfter($(".visualisation").parent());
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
         }
     });
 });
@@ -33,6 +36,8 @@ $('.histo_logo').click(function () {
             $(".donnees_tableaux_epreuves").remove();
             $(".donnees_batons").remove();
             $(".donnees_histo").remove();
+            $(".donnees_histo_cours").remove();
+            $(".donnees_histo_epreuves").remove();
             $(".absences").remove();
             $(".panel_choix_eleves").remove();
             $(".donnees_histo_cours").remove();
@@ -40,6 +45,7 @@ $('.histo_logo').click(function () {
             $(".donnees_histo_com_cours").remove();
             $(".donnees_histo_com_epreuves").remove();
             $(result).insertAfter($(".visualisation").parent());
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
         }
     });
 });
@@ -68,6 +74,7 @@ $('.histo_commun').click(function () {
                     $(".donnees_histo_com_epreuves").remove();
                     $(".absences").remove();
                     $(result).insertAfter($(".visualisation").parent());
+                    jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
                     loadBar(resultDataHisto);
                 }
             });
@@ -91,6 +98,7 @@ $('.abs').click(function () {
             $(".donnees_histo_com_cours").remove();
             $(".donnees_histo_com_epreuves").remove();
             $(result).insertAfter($(".visualisation").parent());
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
             loadAbsenceChart();
         }
     });

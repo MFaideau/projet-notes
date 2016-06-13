@@ -3,7 +3,7 @@
 <div class="row donnees donnees_histo">
     <div class="panel panel-default">
         <div class="panel-heading">Histogramme Personnel</div>
-        <table class="table">
+        <table class="table" data-toggle="table">
             <thead>
             <tr>
                 <th>Compétences</th>
@@ -18,7 +18,7 @@
             foreach($competenceList as $competence)
             { ?>
                 <tr>
-                    <th scope="row"><a class="lien_tableau" id="hist_comp_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></th>
+                    <td scope="row"><a class="lien_tableau" id="hist_comp_<?php echo $competence->GetId(); ?>"><b><?php echo $competence->GetNom(); ?></b></a></td>
                     <td width="50%">
                         <?php
                         $note_etudiant = GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId());
@@ -37,7 +37,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <th scope="row">Total</th>
+                <td scope="row"><b>Total</b></td>
                 <td width="50%">
                     <?php
                     $note_etudiant = GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId());
@@ -48,9 +48,9 @@
                     include('modules/module_histo.php');
                     ?>
                 </td>
-                <td><strong><?php echo round($tab_histo_total[2],2); ?></strong></td>
-                <th><?php echo round($tab_histo_total[3],2); ?></th>
-                <th><?php echo round($note_etudiant,2); ?></th>
+                <td><b><?php echo round($tab_histo_total[2],2); ?></b></td>
+                <td><b><?php echo round($tab_histo_total[3],2); ?></b></td>
+                <td><b><?php echo round($note_etudiant,2); ?></b></td>
             </tr>
             </tfoot>
         </table>
