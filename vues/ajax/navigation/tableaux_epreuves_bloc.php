@@ -33,7 +33,12 @@
                     <tfoot>
                     <tr>
                         <td><b>Total</b></td>
-                        <td><b>13</b></td>
+                        <td><b>
+                            <?php
+                            $note_etudiant = round(GetEtudiantNoteFromEtudiantEpreuve(GetEtudiant($user)->GetId(), $epreuve->GetId())->GetNoteFinale(),2);
+                            echo $note_etudiant;
+                            ?>
+                            </b></td>
                         <td><b><?php echo $credits_cours; ?></b></td>
                         <td><b>A</b></td>
                     </tr>
