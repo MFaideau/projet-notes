@@ -8,6 +8,7 @@
 <script src="vues/assets/simulation.js"></script>
 <script src="vues/assets/releve.js"></script>
 <script src="vues/assets/histo_solo.js"></script>
+<script src="vues/assets/histo_commun.js"></script>
 <script src="vues/assets/js/datepicker.js"></script>
 <script src="vues/assets/js/absence.js"></script>
 </div>

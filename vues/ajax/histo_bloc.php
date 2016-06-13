@@ -2,7 +2,7 @@
 
 <div class="row donnees donnees_histo">
     <div class="panel panel-default">
-        <div class="panel-heading">Graphe comparatoire</div>
+        <div class="panel-heading">Histogramme Personnel</div>
         <table class="table">
             <thead>
             <tr>
