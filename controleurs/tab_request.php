@@ -59,8 +59,13 @@ function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
     foreach ($listEpreuves as $i => $epreuve) {
         $studentnote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
         if (isset($studentnote)) {
-            if ($studentnote->GetAbsence() == 1) {
+            $absence=$studentnote->GetAbsence();
+            if ($absence == 1) {
                 $i = $i-1;
+            }
+            elseif ($absence == 2) {
+                $notesEtudiant[$i] = 0;
+                $somme = $somme + $notesEtudiant[$i];
             }
             else {
                 $notesEtudiant[$i] = $studentnote->GetNoteFinale();

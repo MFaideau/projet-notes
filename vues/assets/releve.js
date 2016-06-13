@@ -7,6 +7,7 @@ $(document).on("click", "a[id^=releve_comp_]", function (e) {
         data: 'idCompetence=' + idCompetence,
         success: function (result) {
             $(result).insertAfter($(".visualisation").parent());
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
             $(".donnees_tableaux_epreuves").remove();
             $(".donnees_tableaux").remove();
         }
@@ -22,6 +23,7 @@ $(document).on("click", "a[id^=releve_cours_]", function (e) {
         data: 'idCours=' + idCours,
         success: function (result) {
             $(result).insertAfter($(".visualisation").parent());
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
             $(".donnees_tableaux").remove();
             $(".donnees_tableaux_cours").remove();
         }
