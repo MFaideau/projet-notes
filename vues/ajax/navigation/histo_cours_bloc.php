@@ -41,7 +41,7 @@
                 <th width="50%">
                     <?php
                     $note_etudiant = GetMoyenneFromCompetence(GetCompetenceFromCours($cours->GetId())->GetId(), GetEtudiant($user)->GetId());
-                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCursus(GetEtudiant($user)->GetCursus()->GetId()));
+                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCompetence(GetCompetenceFromCours($cours->GetId())->GetId()));
                     $moyenne = $tab_histo_total[0];
                     $ecart_type = $tab_histo_total[1];
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
