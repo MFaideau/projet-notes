@@ -11,12 +11,13 @@
         </thead>
         <tbody>
         <?php foreach ($topConsult as $eleve) {
-            $etudiant = GetUserFromEtudiant($eleve->GetId()); ?>
+            $etudiant = GetUserFromEtudiant($eleve->GetId());
+            if(isset($etudiant)) { ?>
             <tr>
                 <td><?php echo $etudiant->GetNom() . ' ' . $etudiant->GetPrenom(); ?></td>
                 <td><?php echo round(GetMoyenneFromCursus(GetEtudiant($etudiant)->GetCursus()->GetId(), $eleve->GetId()),2); ?></td>
             </tr>
-        <?php } ?>
+        <?php } } ?>
         </tbody>
     </table>
 </div>
