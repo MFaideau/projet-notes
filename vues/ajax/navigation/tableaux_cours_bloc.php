@@ -5,40 +5,52 @@
         <div class="panel-heading "><a onclick="location.reload();" href="#"><span class="glyphicon glyphicon-arrow-left retour_prec_releve"></span></a>
             Relevé de notes - Choix du cours
         </div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Cours</th>
-                <th>Moyenne</th>
-                <th>ECTS</th>
-                <th>Grades</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($coursList as $cours) { ?>
+        <div class="panel_listing">
+            <table class="table" data-toggle="table">
+                <thead>
                 <tr>
-                    <th scope="row"><a class="lien_tableau"
-                            id="releve_cours_<?php echo $cours->GetId(); ?>"><?php echo $cours->GetNom(); ?></a></th>
-                    <td><?php
-                        $moyenne = GetMoyenneFromCours($cours->GetId(), $idEtudiant);
-                        if($moyenne == -1)
-                            echo "-";
-                        else
-                            echo $moyenne;
-                        ?></td>
-                    <td><?php echo $cours->GetCredits(); ?></td>
-                    <td>A</td>
+                    <th>Cours</th>
+                    <th>Moyenne</th>
+                    <th>ECTS</th>
+                    <th>Grades</th>
                 </tr>
-            <?php } ?>
-            </tbody>
-            <tfoot>
-            <tr>
-                <th>Total</th>
-                <th>13</th>
-                <th><?php echo $credits_competence; ?></th>
-                <th>A</th>
-            </tr>
-            </tfoot>
-        </table>
+                </thead>
+                <tbody>
+                <?php foreach ($coursList as $cours) { ?>
+                    <tr>
+                        <td scope="row"><a class="lien_tableau"
+                                           id="releve_cours_<?php echo $cours->GetId(); ?>"><b><?php echo $cours->GetNom(); ?></b></a>
+                        </td>
+                        <td><?php
+                            $moyenne = GetMoyenneFromCours($cours->GetId(), $idEtudiant);
+                            if ($moyenne == -1)
+                                echo "-";
+                            else
+                                echo $moyenne;
+                            ?></td>
+                        <td><?php echo $cours->GetCredits(); ?></td>
+                        <td>A</td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+                <?php
+                if (!empty($coursList)) {
+                    ?>
+                    <tfoot>
+                    <tr>
+                        <td><b>Total</b></td>
+                        <td><b>
+                            <?php
+                            $note_etudiant = round(GetMoyenneFromCompetence(GetCompetenceFromCours($cours->GetId())->GetId(), GetEtudiant($user)->GetId()),2);
+                            echo $note_etudiant;
+                            ?>
+                            </b></td>
+                        <td><b><?php echo $credits_competence; ?></b></td>
+                        <td><b>A</b></td>
+                    </tr>
+                    </tfoot>
+                <?php } ?>
+            </table>
+        </div>
     </div>
 </div>
