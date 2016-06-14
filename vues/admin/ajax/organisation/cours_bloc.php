@@ -2,14 +2,6 @@
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix du Cours
             <div class="add_button_etudes">
-                <span id="coursEdition">
-                    <a data-toggle="modal" data-target="#verifDeleteCours">
-                        <i class="glyphicon glyphicon-remove-sign"></i>
-                    </a>
-                    <a data-toggle="modal" data-target="#modifyCours">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>
-                </span>
                 <a data-toggle="modal" data-target="#addCours">
                     <i class="glyphicon glyphicon-plus"></i>
                 </a>
@@ -25,8 +17,19 @@
                 <tbody>
                 <?php
                 foreach ($cours as $current_cours) { ?>
-                <tr>
-                    <td><a id="orga_cours_<?php echo $current_cours->GetId(); ?>"><?php echo $current_cours->GetNom(); ?></a></td>
+                <tr id="orga_tr_cours_<?php echo $current_cours->GetId(); ?>">
+                    <td>
+                        <span class="orgaEdition">
+                                <a data-toggle="modal" data-target="#verifDeleteCours" id="orga_delete_cours_<?php echo $current_cours->GetId(); ?>">
+                                    <span class="glyphicon glyphicon-minus-sign icone"></span>
+                                </a>
+                                <a data-toggle="modal" data-target="#modifyCours" id="orga_modify_cours_<?php echo $current_cours->GetId(); ?>">
+                                    <span class="glyphicon glyphicon-edit icone"></span>
+                                </a>
+                        </span>
+                        <a id="orga_cours_<?php echo $current_cours->GetId(); ?>"><?php echo $current_cours->GetNom(); ?>
+                        </a>
+                    </td>
                     <td id="orga_cours_credits_<?php echo $current_cours->GetId(); ?>"><?php echo $current_cours->GetCredits(); ?></td>
                     <td id="orga_cours_semestre_<?php echo $current_cours->GetId(); ?>">
                     <?php
@@ -38,7 +41,7 @@
                         elseif ($semestre == 2)
                             echo "Semestre 2"; ?>
                     </td>
-                <tr/>
+                </tr>
                 <?php } ?>
                 </tbody>
             </table>

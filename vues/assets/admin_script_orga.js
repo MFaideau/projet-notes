@@ -16,22 +16,8 @@ $(document).on("click", "a[id^=orga_cursus_]", function (e) {
             $(".panel_type_eval").remove();
             $(".panel_epreuve").remove();
             $(".panel_upload_epreuve").remove();
-            $(".panel_cursus").append(result);
-            $("#cursusEdition").show();
-            $("#competenceEdition").hide();
-            // On récupère aussi des informations pour le bloc de modifications
-            $.ajax({
-                url: './ajax/admin_ajax_orga.php',
-                type: 'POST',
-                datatype: 'json',
-                data: 'idCursus=' + idCursus +"&action=infos",
-                success: function(result2) {
-                    var current_cursus = jQuery.parseJSON(result2);
-                    $("#modifyCursus input[id=idCursus]").val(idCursus);
-                    $("#modifyCursus input[id=nomCursus]").val(current_cursus.nom);
-                    $("#modifyCursus input[id=anneeCursus]").val(current_cursus.annee);
-                }
-            });
+            $(result).insertAfter(".panel_cursus");
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
         },
         error: function (result) {
             alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
@@ -53,12 +39,8 @@ $(document).on("click", "a[id^=orga_competence_]", function (e) {
             $(".panel_epreuve").remove();
             $(".panel_eval").remove();
             $(".panel_upload_epreuve").remove();
-            $("#competenceEdition").show();
             $(result).insertAfter(".panel_competences");
-            $("#coursEdition").hide();
-            // On récupère aussi des informations pour le bloc de modifications
-            $("#modifyCompetence input[id=id_competence_modif]").val(idCompetence);
-            $("#modifyCompetence input[id=nomCompetence]").val(nomCompetence);
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
         },
         error: function (result) {
             alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
@@ -78,23 +60,8 @@ $(document).on("click", "a[id^=orga_cours]", function (e) {
             $(".panel_type_eval").remove();
             $(".panel_epreuve").remove();
             $(".panel_upload_epreuve").remove();
-            $("#coursEdition").show();
             $(result).insertAfter($(".panel_cours"));
-            $("#evalEdition").hide();
-
-            // On récupère aussi des informations pour le bloc de modifications
-            $.ajax({
-                url: './ajax/admin_ajax_orga.php',
-                type: 'POST',
-                datatype: 'json',
-                data: 'idCours=' + idCours +"&action=infos",
-                success: function(result2) {
-                    var current_cours = jQuery.parseJSON(result2);
-                    $("#modifyCours input[id=nomCours]").val(current_cours.nom);
-                    $("#modifyCours input[id=nbCreditsCours]").val(current_cours.credits);
-                    $("#modifyCours #semestreCours option[value="+current_cours.semestre + "]").prop('selected',true);
-                }
-            });
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
         },
     });
 });
@@ -109,22 +76,8 @@ $(document).on("click", "a[id^=orga_eval]", function (e) {
         success: function (result) {
             $(".panel_type_eval").remove();
             $(".panel_epreuve").remove();
-            $("#evalEdition").show();
             $(result).insertAfter($(".panel_eval"));
-            $("#typeEvalEdition").hide();
-            // On récupère aussi des informations pour le bloc de modifications
-            $.ajax({
-                url: './ajax/admin_ajax_orga.php',
-                type: 'POST',
-                datatype: 'json',
-                data: 'idEval=' + idEval +"&action=infos",
-                success: function(result2) {
-                    var current_eval = jQuery.parseJSON(result2);
-
-                    $("#modifyEval input[id=nomEval]").val(current_eval.nom);
-                    $("#modifyEval input[id=coefEval]").val(current_eval.coef);
-                }
-            });
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
         },
     });
 });
@@ -138,20 +91,8 @@ $(document).on("click", "a[id^=orga_type_eval]", function (e) {
         data: 'idTypeEval=' + this.id.replace("orga_type_eval_", ""),
         success: function (result) {
             $(".panel_epreuve").remove();
-            $("#typeEvalEdition").show();
             $(result).insertAfter($(".panel_type_eval"));
-            $("#epreuveEdition").hide();
-            $.ajax({
-                url: './ajax/admin_ajax_orga.php',
-                type: 'POST',
-                datatype: 'json',
-                data: 'idTypeEval=' + idTypeEval +"&action=infos",
-                success: function(result2) {
-                    var current_eval = jQuery.parseJSON(result2);
-                    $("#modifyTypeEval input[id=nomTypeEval]").val(current_eval.nom);
-                    $("#modifyTypeEval input[id=coefTypeEval]").val(current_eval.coef);
-                }
-            });
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
             $.ajax({
                 url: './ajax/admin_ajax_orga.php',
                 type: 'POST',
@@ -193,8 +134,8 @@ $(document).on("click", "a[id^=orga_epreuve]", function (e) {
         datatype: 'html',
         data: 'idEpreuve=' + idEpreuve,
         success: function (result) {
-            $("#epreuveEdition").show();
             $(result).insertAfter($(".panel_epreuve"));
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
             $.ajax({
                 url: './ajax/admin_ajax_orga.php',
                 type: 'POST',
@@ -225,20 +166,6 @@ $(document).on("click", "a[id^=orga_epreuve]", function (e) {
                                 current_cours[index].nom + "</option>");
                         }
                     });
-                }
-            });
-            $.ajax({
-                url: './ajax/admin_ajax_orga.php',
-                type: 'POST',
-                datatype: 'json',
-                data: 'idEpreuve=' + idEpreuve +"&action=infos",
-                success: function(result2) {
-                    var current_epreuve = jQuery.parseJSON(result2);
-                    modifyEpreuveDiv.find("input[id=nomEpreuve]").val(current_epreuve.nom);
-                    modifyEpreuveDiv.find("input[id=coefEpreuve]").val(current_epreuve.coef);
-                    modifyEpreuveDiv.find("input[id=dateEpreuve]").val(current_epreuve.date);
-                    modifyEpreuveDiv.find("input[id=evaluateurEpreuve]").val(current_epreuve.evaluateur); modifyEpreuveDiv.find("#selectSecondeSession option[value="+current_epreuve.idSecondeSession + "]").prop('selected',true);
-                    modifyEpreuveDiv.find("#selectSubstitution option[value="+current_epreuve.idSubstition + "]").prop('selected',true);
                 }
             });
         }
@@ -359,7 +286,7 @@ $(function () {
             data: "action=delete&idCursus=" + idCursus,
             success: function (result) {
                 $("#verifDeleteCursus").modal("hide");
-                $("a[id^=orga_cursus_" + idCursus + "]").remove();
+                $("tr[id^=orga_tr_cursus_" + idCursus + "]").remove();
                 $(".panel_competences").remove();
                 $(".panel_cours").remove();
                 $(".panel_eval").remove();
@@ -379,7 +306,7 @@ $(function () {
             data: "action=delete&idCompetence=" + idCompetence,
             success: function () {
                 $("#verifDeleteCompetences").modal("hide");
-                $("a[id^=orga_competence_" + idCompetence + "]").remove();
+                $("tr[id^=orga_tr_competence_" + idCompetence + "]").remove();
                 $(".panel_cours").remove();
                 $(".panel_type_eval").remove();
                 $(".panel_epreuve").remove();
@@ -398,7 +325,7 @@ $(function () {
             data: "action=delete&idCours=" + idCours,
             success: function () {
                 $("#verifDeleteCours").modal("hide");
-                $("a[id^=orga_cours_" + idCours + "]").remove();
+                $("tr[id^=orga_tr_cours_" + idCours + "]").remove();
                 $(".panel_eval").remove();
                 $(".panel_type_eval").remove();
                 $(".panel_epreuve").remove();
@@ -416,7 +343,7 @@ $(function () {
             data: "action=delete&idEval=" + idEval,
             success: function () {
                 $("#verifDeleteEval").modal("hide");
-                $("a[id^=orga_eval_" + idEval + "]").remove();
+                $("tr[id^=orga_tr_eval_" + idEval + "]").remove();
                 $(".panel_type_eval").remove();
                 $(".panel_epreuve").remove();
             }
@@ -433,7 +360,7 @@ $(function () {
             data: "action=delete&idTypeEval=" + idTypeEval,
             success: function () {
                 $("#verifDeleteTypeEval").modal("hide");
-                $("a[id^=orga_type_eval_" + idTypeEval + "]").remove();
+                $("tr[id^=orga_tr_type_eval_" + idTypeEval + "]").remove();
                 $(".panel_epreuve").remove();
             }
         });
@@ -445,15 +372,15 @@ $(function () {
         $.ajax({
             url: './ajax/admin_ajax_orga.php',
             type: 'POST',
-            data: "action=delete&idTypeEval=" + idTypeEval,
+            data: "action=delete&idEpreuve=" + idEpreuve,
             success: function () {
                 $("#verifDeleteEpreuve").modal("hide");
-                $("a[id^=orga_epreuve_" + idEpreuve + "]").remove();
-                $(".panel_epreuve").remove();
+                $("tr[id^=orga_tr_epreuve_" + idEpreuve + "]").remove();
             }
         });
     });
 });
+
 $(function () {
     $('#modifyCursus').on('submit', function (e) {
         var newNomCursus = $("#modifyCursus input[id=nomCursus]").val();
@@ -562,4 +489,129 @@ $(function () {
             }
         });
     });
+});
+// ==========================================================
+// MODIFICATION
+// ==========================================================
+$(document).on("click", "a[id^=orga_modify_cursus_]", function (e) {
+    idCursus = this.id.replace("orga_modify_cursus_", "");
+    // On récupère aussi des informations pour le bloc de modifications
+    $.ajax({
+        url: './ajax/admin_ajax_orga.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'idCursus=' + idCursus + "&action=infos",
+        success: function (result2) {
+            var current_cursus = jQuery.parseJSON(result2);
+            $("#modifyCursus input[id=idCursus]").val(idCursus);
+            $("#modifyCursus input[id=nomCursus]").val(current_cursus.nom);
+            $("#modifyCursus input[id=anneeCursus]").val(current_cursus.annee);
+        }
+    });
+});
+$(document).on("click", "a[id^=orga_delete_cursus_]", function (e) {
+    idCursus = this.id.replace("orga_delete_cursus_", "");
+});
+
+$(document).on("click", "a[id^=orga_modify_competence_]", function (e) {
+    idCompetence = this.id.replace("orga_modify_competence_", "");
+    // On récupère aussi des informations pour le bloc de modifications
+    $.ajax({
+        url: './ajax/admin_ajax_orga.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'idCompetence=' + idCompetence + "&action=infos",
+        success: function (result2) {
+            var current_competence = jQuery.parseJSON(result2);
+            $("#modifyCompetence input[id=id_competence_modif]").val(idCompetence);
+            $("#modifyCompetence input[id=nomCompetence]").val(current_competence.nom);
+        }
+    });
+});
+$(document).on("click", "a[id^=orga_delete_competence_]", function (e) {
+    idCompetence = this.id.replace("orga_delete_competence_", "");
+});
+
+
+$(document).on("click", "a[id^=orga_modify_cours_]", function (e) {
+    idCours = this.id.replace("orga_modify_cours_", "");
+    // On récupère aussi des informations pour le bloc de modifications
+    $.ajax({
+        url: './ajax/admin_ajax_orga.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'idCours=' + idCours + "&action=infos",
+        success: function (result2) {
+            var current_cours = jQuery.parseJSON(result2);
+            $("#modifyCours input[id=nomCours]").val(current_cours.nom);
+            $("#modifyCours input[id=nbCreditsCours]").val(current_cours.credits);
+            $("#modifyCours #semestreCours option[value=" + current_cours.semestre + "]").prop('selected', true);
+        }
+    });
+});
+$(document).on("click", "a[id^=orga_delete_cours_]", function (e) {
+    idCours = this.id.replace("orga_delete_cours_", "");
+});
+
+$(document).on("click", "a[id^=orga_modify_eval_]", function (e) {
+    idEval = this.id.replace("orga_modify_eval_", "");
+    // On récupère aussi des informations pour le bloc de modifications
+    // On récupère aussi des informations pour le bloc de modifications
+    $.ajax({
+        url: './ajax/admin_ajax_orga.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'idEval=' + idEval +"&action=infos",
+        success: function(result2) {
+            var current_eval = jQuery.parseJSON(result2);
+
+            $("#modifyEval input[id=nomEval]").val(current_eval.nom);
+            $("#modifyEval input[id=coefEval]").val(current_eval.coef);
+        }
+    });
+});
+$(document).on("click", "a[id^=orga_delete_eval_]", function (e) {
+    idEval = this.id.replace("orga_delete_eval_", "");
+});
+
+$(document).on("click", "a[id^=orga_modify_type_eval_]", function (e) {
+    idTypeEval = this.id.replace("orga_modify_type_eval_", "");
+    // On récupère aussi des informations pour le bloc de modifications
+    $.ajax({
+        url: './ajax/admin_ajax_orga.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'idTypeEval=' + idTypeEval +"&action=infos",
+        success: function(result2) {
+            var current_eval = jQuery.parseJSON(result2);
+            $("#modifyTypeEval input[id=nomTypeEval]").val(current_eval.nom);
+            $("#modifyTypeEval input[id=coefTypeEval]").val(current_eval.coef);
+        }
+    });
+});
+$(document).on("click", "a[id^=orga_delete_type_eval_]", function (e) {
+    idTypeEval = this.id.replace("orga_delete_type_eval_", "");
+});
+
+$(document).on("click", "a[id^=orga_modify_epreuve_]", function (e) {
+    idEpreuve = this.id.replace("orga_modify_epreuve_", "");
+    var modifyEpreuveDiv = $("#modifyEpreuve");
+    // On récupère aussi des informations pour le bloc de modifications
+    $.ajax({
+        url: './ajax/admin_ajax_orga.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'idEpreuve=' + idEpreuve +"&action=infos",
+        success: function(result2) {
+            var current_epreuve = jQuery.parseJSON(result2);
+            modifyEpreuveDiv.find("input[id=nomEpreuve]").val(current_epreuve.nom);
+            modifyEpreuveDiv.find("input[id=coefEpreuve]").val(current_epreuve.coef);
+            modifyEpreuveDiv.find("input[id=dateEpreuve]").val(current_epreuve.date);
+            modifyEpreuveDiv.find("input[id=evaluateurEpreuve]").val(current_epreuve.evaluateur); modifyEpreuveDiv.find("#selectSecondeSession option[value="+current_epreuve.idSecondeSession + "]").prop('selected',true);
+            modifyEpreuveDiv.find("#selectSubstitution option[value="+current_epreuve.idSubstition + "]").prop('selected',true);
+        }
+    });
+});
+$(document).on("click", "a[id^=orga_delete_epreuve_]", function (e) {
+    idEpreuve = this.id.replace("orga_delete_epreuve_", "");
 });

@@ -29,6 +29,15 @@ if (isset($_POST['action']) && isset($_POST['idCursus'])) {
         }
     }
 }
+if (isset($_POST['action']) && isset($_POST['idCompetence'])) {
+    if ($_POST['action'] == "infos") {
+        $idCompetence = $_POST['idCompetence'];
+        $competence = GetCompetenceById($idCompetence);
+        if (isset($competence))
+            echo json_encode($competence);
+        return;
+    }
+}
 if (isset($_POST['action']) && isset($_POST['idEval'])) {
     if ($_POST['action'] == "infos") {
         $idEval = $_POST['idEval'];

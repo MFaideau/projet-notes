@@ -2,14 +2,6 @@
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix de l'Evaluation
             <div class="add_button_etudes">
-                <span id="evalEdition">
-                <a data-toggle="modal" data-target="#verifDeleteEval">
-                    <i class="glyphicon glyphicon-remove-sign"></i>
-                </a>
-                <a data-toggle="modal" data-target="#modifyEval">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </a>
-                </span>
                 <a data-toggle="modal" data-target="#addEval">
                     <i class="glyphicon glyphicon-plus"></i>
                 </a>
@@ -24,10 +16,16 @@
                 <tbody>
                 <?php
                 foreach ($eval as $current_eval) { ?>
-                    <tr>
-                        <td><a id="orga_eval_<?php echo $current_eval->GetId(); ?>"><?php echo $current_eval->GetNom(); ?></a></td>
+                    <tr id="orga_tr_eval_<?php echo $current_eval->GetId(); ?>">
+                        <td>
+                            <span class="orgaEdition">
+                                <a data-toggle="modal" data-target="#verifDeleteEval" id="orga_delete_eval_<?php echo $current_eval->GetId(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
+                                <a data-toggle="modal" data-target="#modifyEval" id="orga_modify_eval_<?php echo $current_eval->GetId(); ?>"><span class="glyphicon glyphicon-edit icone"></span></a>
+                            </span>
+                            <a id="orga_eval_<?php echo $current_eval->GetId(); ?>"><?php echo $current_eval->GetNom(); ?></a>
+                        </td>
                         <td id="orga_eval_coef_<?php echo $current_eval->GetId(); ?>"><?php echo $current_eval->GetCoef(); ?>
-                    <tr/>
+                    </tr>
                 <?php } ?>
                 </tbody>
             </table>

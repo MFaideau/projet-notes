@@ -2,14 +2,6 @@
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix de l'Epreuve
             <div class="add_button_etudes">
-                <span id="epreuveEdition">
-                <a data-toggle="modal" data-target="#verifDeleteEpreuve">
-                    <i class="glyphicon glyphicon-remove-sign"></i>
-                </a>
-                <a data-toggle="modal" data-target="#modifyEpreuve">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </a>
-                </span>
                 <a data-toggle="modal" data-target="#addEpreuve">
                     <i class="glyphicon glyphicon-plus"></i>
                 </a>
@@ -26,8 +18,14 @@
                 <tbody>
                 <?php
                 foreach ($epreuveList as $epreuve) { ?>
-                <tr>
-                    <td><a id="orga_epreuve_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a></td>
+                <tr id="orga_tr_epreuve_<?php echo $epreuve->GetId(); ?>">
+                    <td>
+                         <span class="orgaEdition">
+                             <a data-toggle="modal" data-target="#verifDeleteEpreuve" id="orga_delete_epreuve_<?php echo $epreuve->GetId(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
+                             <a data-toggle="modal" data-target="#modifyEpreuve" id="orga_modify_epreuve_<?php echo $epreuve->GetId(); ?>"><span class="glyphicon glyphicon-edit icone"></span></a>
+                         </span>
+                        <a id="orga_epreuve_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a>
+                    </td>
                     <td id="orga_epreuve_coef_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetCoef(); ?></td>
                     <td id="orga_epreuve_date_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetDate(); ?></td>
                     <td id="orga_epreuve_evaluateur_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetEvaluateur(); ?></td>

@@ -108,3 +108,9 @@
 #tableOrgaEpreuve td{
     line-height: 10px;
 }
+.orgaEdition {
+    padding-right: 1%;
+}
+.link {
+    cursor: pointer;
+}

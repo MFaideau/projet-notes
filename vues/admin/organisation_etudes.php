@@ -3,14 +3,6 @@
         <div class="panel-heading">
             Choix du Cursus
             <div class="add_button_etudes">
-                <span id="cursusEdition" style="display: none;">
-                <a data-toggle="modal" data-target="#verifDeleteCursus">
-                    <i class="glyphicon glyphicon-remove-sign"></i>
-                </a>
-                <a data-toggle="modal" data-target="#modifyCursus">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </a>
-                </span>
                 <a data-toggle="modal" data-target="#addCursus">
                     <i class="glyphicon glyphicon-plus"></i>
                 </a>
@@ -24,8 +16,14 @@
                 </thead>
                 <tbody>
                 <?php foreach (GetCursusList() as $cursus) { ?>
-                    <tr>
-                        <td><a id="orga_cursus_<?php echo $cursus->GetId(); ?>"><?php echo $cursus->GetNom(); ?></a></td>
+                    <tr id="orga_tr_cursus_<?php echo $cursus->GetId(); ?>">
+                        <td>
+                            <span class="orgaEdition">
+                                <a data-toggle="modal" data-target="#verifDeleteCursus" id="orga_delete_cursus_<?php echo $cursus->GetId(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
+                                <a data-toggle="modal" data-target="#modifyCursus" id="orga_modify_cursus_<?php echo $cursus->GetId(); ?>"><span class="glyphicon glyphicon-edit icone"></span></a>
+                            </span>
+                            <a id="orga_cursus_<?php echo $cursus->GetId(); ?>"><?php echo $cursus->GetNom(); ?></a>
+                        </td>
                         <td id="orga_cursus_annee_<?php echo $cursus->GetId(); ?>"><?php echo $cursus->GetAnnee(); ?></td>
                     </tr>
                 <?php } ?>
