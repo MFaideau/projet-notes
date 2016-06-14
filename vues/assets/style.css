@@ -90,6 +90,11 @@
     cursor: pointer;
     color: #b62224;
 }
+
+.bloc_note_simu {
+    text-align: right;
+    border: none;
+}
 #tableOrgaCursus td{
     line-height: 10px;
 }
