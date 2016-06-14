@@ -7,6 +7,20 @@
  */
 include_once('utilisateur.class.php');
 
+function GetAdmins()
+{
+    $usersList = array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT Mail,Nom,Prenom,Autorite FROM utilisateur WHERE autorite > 0');
+    $req->execute();
+    $users = $req->fetchAll();
+    foreach($users as $user)
+    {
+        $usersList[] = new Utilisateur($user);
+    }
+    return $usersList;
+}
+
 function GetUser($mail)
 {
     global $bdd;
