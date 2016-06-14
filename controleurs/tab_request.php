@@ -63,8 +63,9 @@ function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
             if ($absence == 1) { // absence justifiée à une épreuve
                 $idEpreuveSubstitution = $epreuve->GetIdSubstitution();
                 if ($idEpreuveSubstitution > 0) {  // test s'il y a une épreuve de substitution
-                    $epreuveSubstitution = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuveSubstitution);
-                    $absenceSubstitution = $epreuveSubstitution->GetAbsence();
+                    $epreuveSubstitution = GetEpreuveFromId($idEpreuveSubstitution);
+                    $studentnoteSubstitution = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuveSubstitution);
+                    $absenceSubstitution = $studentnoteSubstitution->GetAbsence();
                     if ($absenceSubstitution == 1) { // absence justifiée à l'épreuve de substitution
                         $idSecondeEpreuveSubstitution = $epreuveSubstitution->GetIdSubstitution();
                         if ($idSecondeEpreuveSubstitution > 0) { //test s'il y a une seconde épreuve de substitution
