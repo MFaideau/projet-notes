@@ -8,8 +8,7 @@
         </div>
         <table class="table" data-toggle="table">
             <?php
-            echo var_dump($epreuveList);
-            if (empty($epreuveList)) {
+            if (empty($epreuvesList)) {
             } else { ?>
                 <thead>
                 <tr>
