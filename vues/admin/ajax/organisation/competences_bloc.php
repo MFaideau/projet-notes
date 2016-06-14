@@ -3,28 +3,32 @@
         <div class="panel-heading">
             Choix de la Compétence
             <div class="add_button_etudes">
-                <span id="competenceEdition">
-                    <a data-toggle="modal" data-target="#verifDeleteCompetences">
-                        <i class="glyphicon glyphicon-remove-sign"></i>
-                    </a>
-                    <a data-toggle="modal" data-target="#modifyCompetence">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>
-                </span>
                 <a data-toggle="modal" data-target="#addCompetence">
                     <i class="glyphicon glyphicon-plus"></i>
                 </a>
             </div>
         </div>
-        <div class="panel-body">
-            <div class="btn-group" role="group" aria-label="...">
+        <div class="panel_listing">
+            <table id="tableOrgaCompetence" class="table" data-toggle="table">
+                <thead>
+                <th>Nom</th>
+                </thead>
+                <tbody>
                 <?php
                 foreach (GetCompetenceListFromCursus($cursus->GetId()) as $competence) { ?>
-                    <button id="orga_competence_<?php echo $competence->GetId(); ?>" type="button"
-                            class="btn btn-default btn-competences"
-                            role="button"><?php echo html_entity_decode($competence->GetNom()); ?></button>
+                    <tr id="orga_tr_competence_<?php echo $competence->GetId(); ?>">
+                        <td>
+                            <span class="orgaEdition">
+                                <a class="link" data-toggle="modal" data-target="#verifDeleteCompetences" id="orga_delete_competence_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
+                                <a data-toggle="modal" data-target="#modifyCompetence" id="orga_modify_competence_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-edit icone"></span></a>
+                            </span>
+                            <a id="orga_competence_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a>
+                        </td>
+                    </tr>
                 <?php } ?>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
+
 </div>
