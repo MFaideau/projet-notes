@@ -12,8 +12,8 @@ if(isset($_GET['id'])) {
     $user_vue = GetUser($mail);
     if(isset($user_vue)) {
 	    // Insertion du menu uniquement lorsque l'on est en mode "étudiant"
-		include_once (__DIR__ . '../../vues/menu_rapide.php');
-   		include_once(__DIR__ . '../../controleurs/releve_onglet.php');
+		include_once (__DIR__ . '/../vues/menu_rapide.php');
+   		include_once(__DIR__ . '/releve_onglet.php');
 	}
 }
 else {

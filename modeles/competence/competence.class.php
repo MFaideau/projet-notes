@@ -11,7 +11,7 @@ include_once(__DIR__ . '../../competence/competence.php');
 class Competence
 {
     private $id;
-    private $nom;
+    public $nom;
     private $credits;
 
     function Competence($competenceLine)

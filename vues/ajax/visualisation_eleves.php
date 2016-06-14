@@ -15,7 +15,7 @@ global $autorite; ?>
         <?php foreach ($listEleves as $eleve) { ?>
             <tr>
                 <?php if($autorite == 1) { ?>
-                <td width="2%"><a href="#deleteEtudiant"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
+                <td><a href="#deleteEtudiant"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
                     <?php } ?>
                 </td>
                 <td><a data-name="nom" data-value="<?php echo $eleve->GetNom() . $eleve->GetPrenom(); ?>"
