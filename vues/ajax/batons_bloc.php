@@ -24,8 +24,9 @@
                 <td><?php echo $competence->GetCredits(); ?></td>
                 <td>
                     <?php
-                    $note_etudiant = GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId());
-                    $tab_histo = GetStat(GetTabNotesEtudiantsFromCompetence($competence->GetId()));
+                    $idCompetence = $competence->GetId();
+                    $note_etudiant = GetMoyenneFromCompetence($idCompetence, GetEtudiant($user)->GetId());
+                    $tab_histo = GetStat(GetTabNotesEtudiantsFromCompetence($idCompetence));
                     $min = round($tab_histo[2],2);
                     $max = round($tab_histo[3],2);
                     echo $min;
@@ -35,7 +36,7 @@
                 <td><?php echo round($note_etudiant,2); ?></td>
                 <td>A</td>
                 <td class="button_show_histo">
-                    <a id="histo_batons_<?php echo $competence->GetNom(); ?>" data-toggle="modal" data-target="#showHisto1">
+                    <a id="histo_batons_comp_<?php echo $idCompetence; ?>">
                         <span class="glyphicon glyphicon-stats icone histo_button"></span>
                     </a>
                 </td>
@@ -59,7 +60,7 @@
                 <td><?php echo round($note_etudiant,2); ?></td>
                 <td>A</td>
                 <td class="button_show_histo">
-                    <a id="histo_batons_generale" data-toggle="modal" data-target="#showHisto1">
+                    <a id="histo_moyenne_ge_batons_cursus_<?php echo $cursus->GetId(); ?>">
                         <span class="glyphicon glyphicon-stats icone histo_button"></span>
                     </a>
                 </td>

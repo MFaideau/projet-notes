@@ -16,14 +16,17 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($coursList as $cours) { ?>
+            <?php foreach ($epreuvesList as $epreuve) { ?>
                 <tr>
-                    <th scope="row"><a class="lien_tableau" id="hist_com_epreuves_<?php echo $cours->GetId(); ?>"><?php echo $cours->GetNom(); ?></a></th>
-                    <td><?php echo round($tab_histo[2],2); ?></td>
+                    <th scope="row"><a class="lien_tableau" id="hist_com_epreuves_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a></th>
+                    <td><?php
+                        $idEpreuve = $epreuve->GetId();
+                        $note_etudiant = round(GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuve)->GetNoteFinale(),2);
+                        echo round($tab_histo[2],2); ?></td>
                     <td><?php echo round($tab_histo[3],2); ?></td>
                     <td><?php echo round($note_etudiant,2); ?></td>
                     <td class="button_show_histo">
-                        <a data-toggle="modal" data-target="#showHisto1">
+                        <a id="">
                             <span class="glyphicon glyphicon-stats icone histo_button"></span>
                         </a>
                     </td>
