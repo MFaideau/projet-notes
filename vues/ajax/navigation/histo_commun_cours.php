@@ -47,7 +47,7 @@
                 echo $min;
                 ?>
                </td>
-                <th>TODO <?php echo round($tab_histo_total[2],2); ?></th>
+                <th><?php echo round($tab_histo_total[2],2); ?></th>
                 <th><?php echo round($note_etudiant,2); ?></th>
                 <td class="button_show_histo">
                     <a data-toggle="modal" data-target="#showHisto1">

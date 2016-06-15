@@ -142,3 +142,8 @@
     font-style: italic;
 }
 
+
+.bloc_note_simu {
+    text-align: right;
+    border: none;
+}
