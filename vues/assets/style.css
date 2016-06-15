@@ -114,3 +114,8 @@
 .link {
     cursor: pointer;
 }
+
+.bloc_note_simu {
+    text-align: right;
+    border: none;
+}

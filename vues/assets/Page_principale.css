@@ -51,11 +51,18 @@
     color: #b62224;
 }
 
-.modal-header, .donnees .panel-heading, .saisie_notes .panel-heading, .choix_cursus_eleves .panel-heading {
+.modal-header,.donnees .panel-heading, .saisie_notes .panel-heading, .choix_cursus_eleves .panel-heading {
     color: white;
     background-color: #b62224;
     font-weight: bold;
     text-align: center;
+}
+
+.simu_header {
+    color: white;
+    background-color: #b62224;
+    font-weight: bold;
+    text-align: left;
 }
 
 .retour_prec_releve {

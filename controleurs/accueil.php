@@ -5,6 +5,7 @@
  */
 
 include_once('./modeles/authentification/utilisateur.class.php');
+include_once('./modeles/consultation/consultation.php');
 $user = unserialize($_SESSION['user']);
 
 include_once("vues/menu.php");
@@ -19,6 +20,7 @@ if ($user->Getautorite() == 0) {
     }
 } 
 else {
+    $listTop = GetTopConsultations($user->GetMail(), 10);
     include_once("vues/liste_favori.php");
 }
 

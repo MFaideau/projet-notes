@@ -10,6 +10,9 @@
         </tr>
         </thead>
         <tbody>
+            <?php foreach ($listTop as $eleve) { ?>
+                <b></b>
+            <?php } ?>
         </tbody>
     </table>
 </div>

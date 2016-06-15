@@ -14,10 +14,14 @@ else {
     // On récupère d'abord la liste des compétences par défaut (de l'étudiant)
     $cursus = GetEtudiant($user)->GetCursus();
     if (isset($cursus)) {
-        $competenceList = GetCompetenceListFromCursus($cursus->GetId());
-        include_once(__DIR__ . '../../vues/simulation_competences.php');
+        if (isset($_GET['idCompetence'])) {
+            $coursList = GetCoursListFromCompetence($_GET['idCompetence']);
+            include_once(__DIR__ . '../../vues/simulateur_onglet.php');
+        } else {
+            $competences = GetCompetenceListFromCursus($cursus->GetId());
+            include_once(__DIR__ . '../../vues/simulation_competences.php');
+        }
     }
 
     include_once(__DIR__ . '../../vues/footer.php');
 }
-
