@@ -65,6 +65,21 @@ function InsertUser($nom,$prenom,$mail,$autorite)
     return;
 }
 
+function ModifyUser($mailOrigine,$nom,$prenom,$mail,$autorite)
+{
+    global $bdd;
+    $req = $bdd->prepare('UPDATE utilisateur SET Mail=:mail,Nom=:nom,Prenom=:prenom,Autorite=:autorite
+WHERE Mail=:mailOrigine');
+    $req->execute(array(
+        'mail' => $mail,
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'autorite' => $autorite,
+        'mailOrigine' => $mailOrigine,
+    ));
+    return;
+}
+
 function DeleteUser($mail)
 {
     global $bdd;
