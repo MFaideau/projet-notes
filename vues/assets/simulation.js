@@ -13,35 +13,28 @@ $(document).on("click", "a[id^=simu_comp_id_]", function (e) {
     if($("tr[class^=simu_cours_comp_" + idCompetence + ']').is(":hidden"))
         $("tr[class^=simu_cours_comp_"+ idCompetence + "_id_]").show();
     else
-        $("tr[class^=simu_cours_comp_" + idCompetence + "_id_]").hide();
+        $("tr[class^=simu_cours_]").hide();
+        $("tr[class^=simu_cours_" + idCours + "_type_eval_").hide();
+        $("tr[class^=simu_type_eval_"+ idTypeEval + "_epreuve_]").hide();
 });
 
 // Pour le déroulé du cours
 $(document).on("click", "a[id^=simu_cours_]", function (e) {
-    idCours = this.id.replace("simu_cours_","");
-
-    if($("tr[class^=simu_cours_" + idCours + "_id_]").is(":hidden"))
-        $("tr[class^=simu_cours_"+ idCours + "_id_]").show();
-    else
-        $("tr[class^=simu_cours_" + idCours + "_id_").hide();
+    idCours = this.id.replace("simu_cours_", "");
+    if ($("tr[class^=simu_cours_" + idCours + "_type_eval_]").is(":hidden")) {
+        $("tr[class^=simu_cours_" + idCours + "_type_eval_]").show();
+    }
+    else {
+        $("tr[class^=simu_cours_" + idCours + "_type_eval_").hide();
+        $("tr[class^=simu_type_eval_"+ idTypeEval + "_epreuve_]").hide();
+    }
 });
 
 // Pour le déroulé du type eval
-$(document).on("click", "a[id^=simu_cours_comp_" + idCompetence + "_id_]", function (e) {
-    idTypeEval = this.id.replace("simu_cours_comp_" + idCompetence + "_id_","");
-    alert(idTypeEval);
-    if($("tr[class^=simu_cours_comp_" + idCompetence + ']').is(":hidden"))
-        $("tr[class^=simu_cours_comp_"+ idCompetence + "_id_]").show();
+$(document).on("click", "a[id^=simu_type_eval_]", function (e) {
+    idTypeEval = this.id.replace("simu_type_eval_","");
+    if($("tr[class^=simu_type_eval_"+ idTypeEval + "_epreuve_]").is(":hidden"))
+        $("tr[class^=simu_type_eval_"+ idTypeEval + "_epreuve_]").show();
     else
-        $("tr[class^=simu_cours_comp_" + idCompetence + "_id_]").hide();
-});
-
-// Pour le déroulé de l'épreuve
-$(document).on("click", "a[id^=simu_cours_comp_" + idCompetence + "_id_]", function (e) {
-    idEpreuve = this.id.replace("simu_cours_comp_" + idCompetence + "_id_","");
-    alert(idCours);
-    if($("tr[class^=simu_cours_comp_" + idCompetence + ']').is(":hidden"))
-        $("tr[class^=simu_cours_comp_"+ idCompetence + "_id_]").show();
-    else
-        $("tr[class^=simu_cours_comp_" + idCompetence + "_id_]").hide();
+        $("tr[class^=simu_type_eval_"+ idTypeEval + "_epreuve_]").hide();
 });

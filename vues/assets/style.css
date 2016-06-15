@@ -135,6 +135,7 @@
 
 #nom_type_eval {
     padding-left: 35px;
+    cursor: pointer;
 }
 
 #nom_epreuve {
