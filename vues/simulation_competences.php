@@ -1,9 +1,11 @@
 <!-- Page de données !-->
 <div class="row donnees donnees_tableaux">
     <div class="panel panel-default">
-        <div class="panel-heading">Relevé de notes</div>
+        <div class="panel-heading">
+            <a href="javascript:impressionReleve();"><span class="glyphicon glyphicon glyphicon-print retour_prec_histo"></span></a>
+            Relevé de notes</div>
         <div class="panel_listing">
-            <table class="table" data-toggle="table">
+            <table class="table">
                 <thead>
                 <tr>
                     <th>Libellé</th>

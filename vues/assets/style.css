@@ -1,5 +1,5 @@
-@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css");
-
+/*@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css");
+*/
 .container {
     margin: auto;
     margin-top: 10%;
@@ -148,3 +148,8 @@
     text-align: right;
     border: none;
 }
+
+@media print {
+    tr {
+        -webkit-print-color-adjust: exact !important;
+    }}
