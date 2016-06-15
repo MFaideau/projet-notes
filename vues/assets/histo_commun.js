@@ -27,3 +27,4 @@ $(document).on("click", "a[id^=hist_com_cours_]", function (e) {
         }
     });
 });
+

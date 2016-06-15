@@ -35,7 +35,7 @@
                 <td><?php echo round($note_etudiant,2); ?></td>
                 <td>A</td>
                 <td class="button_show_histo">
-                    <a data-toggle="modal" data-target="#showHisto1">
+                    <a id="histo_batons_<?php echo $competence->GetNom(); ?>" data-toggle="modal" data-target="#showHisto1">
                         <span class="glyphicon glyphicon-stats icone histo_button"></span>
                     </a>
                 </td>
@@ -44,7 +44,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <th scope="row">Total</th>
+                <th scope="row">Moyenne Gé.</th>
                 <td><?php echo $cursus->GetCredits(); ?></td>
                 <td>
                     <?php
@@ -59,7 +59,7 @@
                 <td><?php echo round($note_etudiant,2); ?></td>
                 <td>A</td>
                 <td class="button_show_histo">
-                    <a data-toggle="modal" data-target="#showHisto1">
+                    <a id="histo_batons_generale" data-toggle="modal" data-target="#showHisto1">
                         <span class="glyphicon glyphicon-stats icone histo_button"></span>
                     </a>
                 </td>

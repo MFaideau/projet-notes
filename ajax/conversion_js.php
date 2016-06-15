@@ -12,5 +12,4 @@ if (!isset($_SESSION['user'])) {
 }
 
 $user = unserialize($_SESSION['user']);
-
-include_once __DIR__ . './../controleurs/histogramme.php';
+include_once __DIR__ . './../controleurs/ajax/histogramme.php';
