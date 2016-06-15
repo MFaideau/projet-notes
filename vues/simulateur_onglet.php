@@ -5,7 +5,7 @@
     </div>
     <table class="table" data-toggle="table">
         <?php
-        foreach ($coursList as $cours) { ?>
+        foreach ( $coursList as $cours ) { ?>
             <tr align="center">
                 <td class="simu_header"><?php echo $cours->GetNom(); ?></td>
             </tr>
@@ -28,7 +28,7 @@
                                                 <td><b><?php echo $epreuve->GetNom(); ?></b></td>
                                                 <td class="bloc_note_simu"><input type="number"
                                                                                   name="note_<?php echo $epreuve->GetId(); ?>"
-                                                                                  min="0" max="20"/></td>
+                                                                                  min="0" max="20" /></td>
                                             </tr>
                                         <?php } ?>
                                     </table>

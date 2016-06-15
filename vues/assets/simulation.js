@@ -1,42 +1,47 @@
-$(document).on("click","a[id^=note_simulee_]", function(e) {
-    var idEpreuve = this.id.replace("note_simulee_","");
-    var note = $("input[id^=number_" + idEpreuve + "]").val();
-    $.ajax({
-        url: './ajax/simulation.php',
-        type: 'POST',
-        datatype: 'html',
-        data: 'idEpreuve=' + idEpreuve + '&note=' + note,
-        success: function(result) {
-            $("span[id=note_" + idEpreuve + "]").html(note);
-        }
-    });
+var idCompetence, idCours, idTypeEval, idEpreuve;
+
+$(document).ready(function() {
+    $("tr[class^=simu_cours_comp_]").hide();
+    $("td[id^=nom_comp_]").parent().hide();
+    $("td[id^=nom_type_eval]").parent().hide();
+    $("td[id^=nom_epreuve]").parent().hide();
 });
 
-$(document).on("click", "a[id^=simu_comp]", function (e) {
-    var idCompetence = this.id.replace("simu_comp_","");
-    $.ajax({
-        url: './ajax/simulation.php',
-        type: 'POST',
-        datatype: 'html',
-        data: 'idCompetence=' + idCompetence,
-        success: function (result) {
-            $(".panel_simu_cours").remove();
-            $(".panel_simu_epreuves").remove();
-            $(result).insertAfter($(".panel_simu_comp"));
-        }
-    });
+// Pour le déroulé de la compétence
+$(document).on("click", "a[id^=simu_comp_id_]", function (e) {
+    idCompetence = this.id.replace("simu_comp_id_","");
+    if($("tr[class^=simu_cours_comp_" + idCompetence + ']').is(":hidden"))
+        $("tr[class^=simu_cours_comp_"+ idCompetence + "_id_]").show();
+    else
+        $("tr[class^=simu_cours_comp_" + idCompetence + "_id_]").hide();
 });
 
-$(document).on("click", "a[id^=simu_cours]", function (e) {
-    var idCours = this.id.replace("simu_cours_","");
-    $.ajax({
-        url: './ajax/simulation.php',
-        type: 'POST',
-        datatype: 'html',
-        data: 'idCours=' + idCours,
-        success: function (result) {
-            $(".panel_simu_epreuves").remove();
-            $(result).insertAfter($(".panel_simu_cours"));
-        }
-    });
+// Pour le déroulé du cours
+$(document).on("click", "a[id^=simu_cours_]", function (e) {
+    idCours = this.id.replace("simu_cours_","");
+
+    if($("tr[class^=simu_cours_" + idCours + "_id_]").is(":hidden"))
+        $("tr[class^=simu_cours_"+ idCours + "_id_]").show();
+    else
+        $("tr[class^=simu_cours_" + idCours + "_id_").hide();
+});
+
+// Pour le déroulé du type eval
+$(document).on("click", "a[id^=simu_cours_comp_" + idCompetence + "_id_]", function (e) {
+    idTypeEval = this.id.replace("simu_cours_comp_" + idCompetence + "_id_","");
+    alert(idTypeEval);
+    if($("tr[class^=simu_cours_comp_" + idCompetence + ']').is(":hidden"))
+        $("tr[class^=simu_cours_comp_"+ idCompetence + "_id_]").show();
+    else
+        $("tr[class^=simu_cours_comp_" + idCompetence + "_id_]").hide();
+});
+
+// Pour le déroulé de l'épreuve
+$(document).on("click", "a[id^=simu_cours_comp_" + idCompetence + "_id_]", function (e) {
+    idEpreuve = this.id.replace("simu_cours_comp_" + idCompetence + "_id_","");
+    alert(idCours);
+    if($("tr[class^=simu_cours_comp_" + idCompetence + ']').is(":hidden"))
+        $("tr[class^=simu_cours_comp_"+ idCompetence + "_id_]").show();
+    else
+        $("tr[class^=simu_cours_comp_" + idCompetence + "_id_]").hide();
 });

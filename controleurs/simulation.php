@@ -15,6 +15,7 @@ else {
     $cursus = GetEtudiant($user)->GetCursus();
     if (isset($cursus)) {
         $competences = GetCompetenceListFromCursus($cursus->GetId());
+        $idEtudiant = GetEtudiant($user)->GetId();
         include_once(__DIR__ . '../../vues/simulation_competences.php');
     }
 

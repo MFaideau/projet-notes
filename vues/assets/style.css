@@ -128,3 +128,17 @@
     padding-right: 5%;
 }
 
+#nom_cours {
+    padding-left: 20px;
+    font-weight: bold;
+}
+
+#nom_type_eval {
+    padding-left: 35px;
+}
+
+#nom_epreuve {
+    padding-left: 55px;
+    font-style: italic;
+}
+
