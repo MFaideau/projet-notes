@@ -2,7 +2,7 @@
 
 <div class="row donnees donnees_histo_com_cours">
     <div class="panel panel-default">
-        <div class="panel-heading "><a href="releve_onglet.php"><span class="glyphicon glyphicon-arrow-left retour_prec_histo"></span></a>
+        <div class="panel-heading "><a href="#" id="prec_cours_histo_commun"><span class="glyphicon glyphicon-arrow-left retour_prec_histo"></span></a>
             Histogramme De La Promo - Choix du cours
         </div>
         <table class="table">

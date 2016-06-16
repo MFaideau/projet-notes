@@ -12,10 +12,10 @@ $(document).on("click", "a[id^=simu_comp_id_]", function (e) {
     idCompetence = this.id.replace("simu_comp_id_","");
     if($("tr[class^=simu_cours_comp_" + idCompetence + ']').is(":hidden"))
         $("tr[class^=simu_cours_comp_"+ idCompetence + "_id_]").show();
-    else
-        $("tr[class^=simu_cours_]").hide();
-        $("tr[class^=simu_cours_" + idCours + "_type_eval_").hide();
-        $("tr[class^=simu_type_eval_"+ idTypeEval + "_epreuve_]").hide();
+    else {
+        $("tr[class^=simu_cours_comp_" + idCompetence + "_id_]").hide();
+        $("tr[class^=simu_type_eval_]").hide();
+    }
 });
 
 // Pour le déroulé du cours
@@ -26,7 +26,7 @@ $(document).on("click", "a[id^=simu_cours_]", function (e) {
     }
     else {
         $("tr[class^=simu_cours_" + idCours + "_type_eval_").hide();
-        $("tr[class^=simu_type_eval_"+ idTypeEval + "_epreuve_]").hide();
+        $("tr[class^=simu_type_eval_]").hide();
     }
 });
 
