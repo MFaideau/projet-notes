@@ -22,6 +22,7 @@
                         <span class="orgaEdition">
                                 <a class="link" data-toggle="modal" data-target="#verifDeleteCours" id="orga_delete_cours_<?php echo $current_cours->GetId(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
                                 <a class="link" data-toggle="modal" data-target="#modifyCours" id="orga_modify_cours_<?php echo $current_cours->GetId(); ?>"><span class="glyphicon glyphicon-edit icone"></span></a>
+                                <a class="link" href="visualisation_eleve.php?listIdCours=<?php echo $current_cours->GetId(); ?>" id="orga_list_cours_<?php echo $current_cours->GetId(); ?>"><span class="glyphicon glyphicon-th-list icone"></span></a>
                         </span>
                         <a class="link" id="orga_cours_<?php echo $current_cours->GetId(); ?>"><?php echo $current_cours->GetNom(); ?>
                         </a>

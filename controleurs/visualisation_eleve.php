@@ -19,6 +19,31 @@ if(isset($_GET['id'])) {
    		include_once(__DIR__ . '/releve_onglet.php');
 	}
 }
+else if (isset($_GET['listIdCursus'])) {
+    $listIdCursus=$_GET['listIdCursus'];
+    $listEleves = GetUsersFromCursus($listIdCursus);
+    include_once (__DIR__ . '/../vues/admin/visualisation_lists/visualisation_list_cursus.php');
+}
+else if (isset($_GET['listIdCompetence'])) {
+    $listIdCompetence=$_GET['listIdCompetence'];
+    $listEleves = GetUsersFromCompetence($listIdCompetence);
+    include_once (__DIR__ . '/../vues/admin/visualisation_lists/visualisation_list_competence.php');
+}
+else if (isset($_GET['listIdCours'])) {
+    $listIdCours=$_GET['listIdCours'];
+    $listEleves = GetUsersFromCours($listIdCours);
+    include_once (__DIR__ . '/../vues/admin/visualisation_lists/visualisation_list_cours.php');
+}
+//else if (isset($_GET['listIdTypeEval'])) {
+//    $listIdTypeEval=$_GET['listIdTypeEval'];
+//    $listEleves = GetUsersFromTypeEval($listIdTypeEval);
+//    include_once (__DIR__ . '/../vues/admin/visualisation_lists/visualisation_list_type_eval.php');
+//}
+else if (isset($_GET['listIdEpreuve'])) {
+    $listIdEpreuve=$_GET['listIdEpreuve'];
+    $listEleves = GetUsersFromEpreuve($listIdEpreuve);
+    include_once (__DIR__ . '/../vues/admin/visualisation_lists/visualisation_list_epreuve.php');
+}
 else {
     if ($user->GetAutorite() != 0)
         include_once(__DIR__ . '../../vues/visualisation_eleve.php');
