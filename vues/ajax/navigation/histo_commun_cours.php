@@ -26,9 +26,9 @@
                         $tab_histo = GetStat(GetTabNotesEtudiantsFromCours($idCours));
                         $min = round($tab_histo[2],2);
                         $max = round($tab_histo[3],2);
-                        echo round($tab_histo[2],2); ?></td>
-                    <td><?php echo round($tab_histo[3],2); ?></td>
-                    <td><?php echo round($note_etudiant,2); ?></td>
+                        echo $min; ?></td>
+                    <td><?php echo $max; ?></td>
+                    <td><?php echo $note_etudiant; ?></td>
                     <td class="button_show_histo">
                         <a id="histo_batons_cours_<?php echo $idCours; ?>">
                             <span class="glyphicon glyphicon-stats icone histo_button"></span>
@@ -39,7 +39,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <th>Total</th>
+                <th>Moyenne Générale</th>
                <td> <?php
                 $note_etudiant = round(GetMoyenneFromCompetence($idCompetence, $idEtudiant),2);
                 $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCompetence($idCompetence));
@@ -48,10 +48,10 @@
                 echo $min;
                 ?>
                </td>
-                <th>TODO <?php echo round($tab_histo_total[2],2); ?></th>
-                <th><?php echo round($note_etudiant,2); ?></th>
+                <th><?php echo $max; ?></th>
+                <th><?php echo $note_etudiant; ?></th>
                 <td class="button_show_histo">
-                    <a id="histo_moyenne_ge_batons_comp_<?php echo $idCompetence; ?>">
+                    <a id="histo_batons_comp_<?php echo $idCompetence; ?>">
                         <span class="glyphicon glyphicon-stats icone histo_button"></span>
                     </a>
                 </td>

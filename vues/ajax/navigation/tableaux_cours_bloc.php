@@ -39,7 +39,7 @@
                     ?>
                     <tfoot>
                     <tr>
-                        <td><b>Total</b></td>
+                        <td><b>Moyenne Générale</b></td>
                         <td><b>
                             <?php
                             $note_etudiant = round(GetMoyenneFromCompetence(GetCompetenceFromCours($cours->GetId())->GetId(), GetEtudiant($user)->GetId()),2);

@@ -19,7 +19,7 @@
             <?php
             foreach ($epreuvesList as $epreuve) { ?>
             <tr>
-                <td scope="row"><a class="lien_tableau"><?php echo $epreuve->GetNom(); ?></a></td>
+                <td scope="row"><a class="lien_tableau"><b><?php echo $epreuve->GetNom(); ?></b></a></td>
                 <td width="50%">
                     <?php
                     $note_etudiant = GetEtudiantNoteFromEtudiantEpreuve(GetEtudiant($user)->GetId(), $epreuve->GetId())->GetNoteFinale();
@@ -37,7 +37,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <td>Total</td>
+                <td><b>Moyenne Générale</b></td>
                 <td width="50%">
                     <?php
                     $note_etudiant = GetEtudiantNoteFromEtudiantEpreuve(GetEtudiant($user)->GetId(), $epreuve->GetId())->GetNoteFinale();
@@ -49,8 +49,8 @@
                     ?>
                 </td>
                 <td><b><?php echo round($tab_histo_total[2], 2); ?></b></td>
-                <td><?php echo round($tab_histo_total[3], 2); ?></td>
-                <td><?php echo round($note_etudiant, 2); ?></td>
+                <td><b><?php echo round($tab_histo_total[3], 2); ?></b></td>
+                <td><b><?php echo round($note_etudiant, 2); ?></b></td>
             </tr>
             </tfoot>
             <?php } ?>

@@ -70,3 +70,16 @@ $(document).on("click", "a[id^=histo_batons_cours_]", function (e) {
     })
 });
 
+$(document).on("click", "a[id^=histo_batons_epreuve_]", function (e) {
+    var idEpreuve = this.id.replace("histo_batons_epreuve_","");
+    $.ajax({
+        url: './ajax/conversion_js.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'action=getHistoEpreuve&idEpreuve=' + idEpreuve,
+        success: function (result) {
+            loadBar(result);
+            $("#showHisto1").modal("show");
+        }
+    })
+});

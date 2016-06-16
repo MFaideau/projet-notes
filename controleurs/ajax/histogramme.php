@@ -34,3 +34,12 @@ if (isset($_POST['action']) && isset($_POST['idCours'])) {
         return;
     }
 }
+
+if (isset($_POST['action']) && isset($_POST['idEpreuve'])) {
+    if ($_POST['action'] == "getHistoEpreuve") {
+        $idEpreuve = $_POST['$idEpreuve'];
+        $noteEtudiantEpreuve = GetTabNotesEtudiantsFromEpreuve($idEpreuve);
+        $notesEchantillons = GetVarTabHistoBatons($noteEtudiantEpreuve);
+        return;
+    }
+}
