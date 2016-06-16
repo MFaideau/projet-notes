@@ -16,6 +16,7 @@ $user = unserialize($_SESSION['user']);
 include_once __DIR__ . '../../controleurs/tab_request.php';
 
 if(isset($_POST['idCompetence'])) {
+    $idCompetence = $_POST['idCompetence'];
     $credits_competence = GetCreditsFromCompetence($_POST['idCompetence']);
     $coursList = GetCoursListFromCompetence($_POST['idCompetence']);
     $idEtudiant = GetEtudiant($user)->GetId();
@@ -26,5 +27,6 @@ if(isset($_POST['idCours'])) {
     $epreuvesList =GetEpreuveListFromCours($_POST['idCours']);
     $credits_cours = GetCoursById($_POST['idCours'])->GetCredits();
     $competence = GetCompetenceFromCours($_POST['idCours']);
+    $idEtudiant = GetEtudiant($user)->GetId();
     include_once __DIR__ . '../../vues/ajax/navigation/tableaux_epreuves_bloc.php';
 }

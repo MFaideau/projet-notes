@@ -22,35 +22,40 @@
                 <td scope="row"><a class="lien_tableau"><b><?php echo $epreuve->GetNom(); ?></b></a></td>
                 <td width="50%">
                     <?php
-                    $note_etudiant = GetEtudiantNoteFromEtudiantEpreuve(GetEtudiant($user)->GetId(), $epreuve->GetId())->GetNoteFinale();
-                    $tab_histo = GetStat(GetTabNotesEtudiantsFromEpreuve($epreuve->GetId()));
+                    $idEpreuve = $epreuve->GetId();
+                    $note_etudiant = round(GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuve)->GetNoteFinale(),2);
+                    $tab_histo = GetStat(GetTabNotesEtudiantsFromEpreuve($idEpreuve));
                     $moyenne = $tab_histo[0];
                     $ecart_type = $tab_histo[1];
+                    $min = round($tab_histo[2],2);
+                    $max = round($tab_histo[3],2);
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
                     include(__DIR__ . '../../modules/module_histo.php');
                     ?>
                 </td>
-                <td><?php echo round($tab_histo[2], 2); ?></td>
-                <td><?php echo round($tab_histo[3], 2); ?></td>
-                <td><?php echo round($note_etudiant, 2); ?></td>
+                <td><?php echo $min; ?></td>
+                <td><?php echo $max; ?></td>
+                <td><?php echo $note_etudiant; ?></td>
             </tr>
             </tbody>
             <tfoot>
             <tr>
                 <td><b>Moyenne Générale</b></td>
-                <td width="50%">
+                <td width="50%"><b>
                     <?php
-                    $note_etudiant = GetEtudiantNoteFromEtudiantEpreuve(GetEtudiant($user)->GetId(), $epreuve->GetId())->GetNoteFinale();
-                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromEpreuve($epreuve->GetId()));
+                    $note_etudiant = round(GetMoyenneFromCours($idCours, $idEtudiant),2);
+                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCours($idCours));
                     $moyenne = $tab_histo_total[0];
                     $ecart_type = $tab_histo_total[1];
+                    $min = round($tab_histo_total[2], 2);
+                    $max = round($tab_histo_total[3],2);
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
                     include(__DIR__ . '../../modules/module_histo.php');
                     ?>
-                </td>
-                <td><b><?php echo round($tab_histo_total[2], 2); ?></b></td>
-                <td><b><?php echo round($tab_histo_total[3], 2); ?></b></td>
-                <td><b><?php echo round($note_etudiant, 2); ?></b></td>
+                </b></td>
+                <td><b><?php echo $min; ?></b></td>
+                <td><b><?php echo $max; ?></b></td>
+                <td><b><?php echo $note_etudiant; ?></b></td>
             </tr>
             </tfoot>
             <?php } ?>

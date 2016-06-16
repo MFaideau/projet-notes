@@ -41,6 +41,7 @@
             <tr>
                 <th>Moyenne Générale</th>
                <td> <?php
+                $idCompetence = $competence->GetId();
                 $note_etudiant = round(GetMoyenneFromCompetence($idCompetence, $idEtudiant),2);
                 $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCompetence($idCompetence));
                 $min = round($tab_histo_total[2],2);
