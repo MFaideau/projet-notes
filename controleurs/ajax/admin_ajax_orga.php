@@ -84,7 +84,6 @@ if (isset($_POST['action']) && isset($_POST['idCours'])) {
     }
 }
 
-// TODO : Faire une fenêtre de validation lors de la suppression du cursus
 if (isset($_POST['action']) && isset($_POST['idCursus']) && empty($_POST['nomCompetence']))
     if ($_POST['action'] == "delete")
         DeleteCursus($_POST['idCursus']);
@@ -195,6 +194,3 @@ if (isset($_POST['action']) && isset($_POST['idTypeEval']))
 if (isset($_POST['action']) && isset($_POST['idEpreuve']))
     if ($_POST['action'] == "modify" && isset($_POST['nomEpreuve']) && isset($_POST['coefEpreuve']) && isset($_POST['dateEpreuve']) && isset($_POST['evaluateurEpreuve']) && isset($_POST['secondeSessionEpreuve']) && isset($_POST['substitutionEpreuve']))
         ModifyEpreuve($_POST['idEpreuve'],$_POST['nomEpreuve'],$_POST['coefEpreuve'],$_POST['dateEpreuve'],$_POST['evaluateurEpreuve'],$_POST['substitutionEpreuve'],$_POST['secondeSessionEpreuve']);
-
-
-?>

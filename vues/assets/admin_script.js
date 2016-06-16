@@ -1,5 +1,3 @@
-// TODO : Inclure ce fichier uniquement si on est connecté en ADMIN
-
 $(document).on("click","button[id^=cursus_]", function(e) {
     $.ajax({
         url: './ajax/admin_ajax_infos.php',
@@ -48,7 +46,7 @@ $(document).on("click","button[id^=cours]", function(e) {
             $(".panel_epreuve").remove();
             $(".panel_upload_epreuve").remove();
             $(result).insertAfter($(".panel_cours"));
-        },
+        }
     });
 });
 

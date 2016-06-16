@@ -4,13 +4,13 @@ $utilisateur = unserialize($_SESSION['user']);
 if ($utilisateur->GetAutorite() == 0) {
     die();
 }
-$user = serialize($_SESSION['user']);
+$user = unserialize($_SESSION['user']);
 
 include_once (__DIR__ . '../../../modeles/authentification/authentification.php');
+include_once (__DIR__ . '../../../controleurs/tab_request.php');
 
 if(isset($_POST['idCursus'])) {
     $listEleves = GetUsersFromCursus($_POST['idCursus']);
-    // TODO : Faire le calcul de la moyenne générale d'un étudiant
     $autorite = $utilisateur->GetAutorite();
     include_once (__DIR__ . '../../../vues/ajax/visualisation_eleves.php');
 }
