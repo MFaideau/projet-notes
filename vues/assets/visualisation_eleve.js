@@ -53,3 +53,7 @@ $(function () {
         });
     });
 });
+
+$(document).on("click", "a[id=linkVueEleve]", function (e) {
+    document.getElementById("panelChoixEleves").style.display="initial";
+});

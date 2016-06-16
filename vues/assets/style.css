@@ -79,7 +79,6 @@
 .row {
     margin-right: 0;
 }
-
 .ajoutEtudiant {
     text-align: center;
 }
@@ -153,3 +152,12 @@
     tr {
         -webkit-print-color-adjust: exact !important;
     }}
+
+.menuVisuEleve, .menuVisuEleve div.content {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.menuVisuEleve a {
+    color: #b62224;
+}

@@ -79,8 +79,8 @@
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelSemestreCours">Semestre :</label>
-                        <select class="selectpicker" name="semestreCours" id="semestreCours">
-                            <option value="0">Semestre 1 et 2</option>
+                        <select class="selectpicker form-control" name="semestreCours" id="semestreCours">
+                            <option value="0">Semestres 1 et 2</option>
                             <option value="1">Semestre 1</option>
                             <option value="2">Semestre 2</option>
                         </select>
@@ -187,13 +187,13 @@
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelSecondeSession">Épreuve correspondant à la seconde session :</label>
-                        <select class="selectpicker" name="secondeSessions" id="selectSecondeSession">
+                        <select class="selectpicker form-control" name="secondeSessions" id="selectSecondeSession">
                             <option value="0">Aucune seconde session</option>
                         </select>
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelSubstitution">Épreuve qui prime en cas d'absence excusée :</label>
-                        <select class="selectpicker" id="selectSubstitution" name="substitution">
+                        <select class="selectpicker form-control" id="selectSubstitution" name="substitution">
                             <option value="0">Pas de note en cas d'absence</option>
                         </select>
                     </fieldset>

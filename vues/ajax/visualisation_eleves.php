@@ -15,12 +15,8 @@ global $autorite; ?>
         <?php foreach ($listEleves as $eleve) { ?>
             <tr>
                 <?php if($autorite == 1) { ?>
-                <td><a href="#deleteEtudiant"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
-                    <?php } ?>
-                </td>
-                <td><a data-name="nom" data-value="<?php echo $eleve->GetNom() . $eleve->GetPrenom(); ?>"
-                       href="visualisation_eleve.php?id=<?php echo $eleve->GetMail(); ?>">
-                        <?php echo $eleve->GetNom() . ' ' . $eleve->GetPrenom(); ?></a></td>
+                <td><a href="#deleteEtudiant"><span class="glyphicon glyphicon-minus-sign icone"></span></a><?php } ?></td>
+                <td><a data-name="nom" data-value="<?php echo $eleve->GetNom() . $eleve->GetPrenom(); ?>"href="visualisation_eleve.php?id=<?php echo $eleve->GetMail(); ?>"><?php echo $eleve->GetNom() . ' ' . $eleve->GetPrenom(); ?></a></td>
                 <td><?php echo rand(0, 20); ?></td>
             </tr>
         <?php } ?>
@@ -28,8 +24,7 @@ global $autorite; ?>
         <tfoot>
         <?php if ($autorite == 1) { ?>
             <tr>
-                <td class="ajoutEtudiant" colspan="3"><span class="glyphicon glyphicon-plus-sign icone"></span>
-                    <a data-toggle="modal" data-target="#addEtudiant">Ajouter un étudiant</a></td>
+                <td class="ajoutEtudiant" colspan="3"><span class="glyphicon glyphicon-plus-sign icone"></span><a class="link" data-toggle="modal" data-target="#addEtudiant">Ajouter un étudiant</a></td>
             </tr>
         <?php } ?>
         </tfoot>
