@@ -1,5 +1,5 @@
-@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css");
-
+/*@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css");
+*/
 .container {
     margin: auto;
     margin-top: 10%;
@@ -128,7 +128,28 @@
     padding-right: 5%;
 }
 
+#nom_cours {
+    padding-left: 20px;
+    font-weight: bold;
+}
+
+#nom_type_eval {
+    padding-left: 35px;
+    cursor: pointer;
+}
+
+#nom_epreuve {
+    padding-left: 55px;
+    font-style: italic;
+}
+
+
 .bloc_note_simu {
     text-align: right;
     border: none;
 }
+
+@media print {
+    tr {
+        -webkit-print-color-adjust: exact !important;
+    }}

@@ -6,6 +6,7 @@
 <?php } ?>
 <script src="vues/assets/accueil.js"></script>
 <script src="vues/assets/simulation.js"></script>
+<script src="vues/assets/js/export_pdf.js"></script>
 <script src="vues/assets/releve.js"></script>
 <script src="vues/assets/histo_solo.js"></script>
 <script src="vues/assets/histo_commun.js"></script>
