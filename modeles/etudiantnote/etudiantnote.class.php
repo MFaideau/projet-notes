@@ -30,6 +30,10 @@ class EtudiantNote
     {
         return $this->noteFinale;
     }
+    public function GetNotePrevue()
+    {
+        return $this->notePrevue;
+    }
     public function GetAbsence()
     {
         return $this->absence;

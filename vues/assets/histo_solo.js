@@ -29,3 +29,7 @@ $(document).on("click", "a[id^=hist_cours_]", function (e) {
         }
     });
 });
+
+$(document).on("click", "a[id=prec_cours_histo_commun]", function(e) {
+   $(".histo_commun").trigger("click");
+});

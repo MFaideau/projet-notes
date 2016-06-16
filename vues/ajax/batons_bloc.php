@@ -20,7 +20,7 @@
             foreach($competenceList as $competence)
             { ?>
             <tr>
-                <th scope="row"><a class="lien_tableau" id="hist_com_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></th>
+                <th scope="row"><a class="lien_tableau" id="hist_com_comp_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></th>
                 <td><?php echo $competence->GetCredits(); ?></td>
                 <td>
                     <?php
