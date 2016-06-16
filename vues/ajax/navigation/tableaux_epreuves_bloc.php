@@ -11,7 +11,7 @@
             <table class="table" data-toggle="table">
                 <thead>
                 <tr>
-                    <th>Cours</th>
+                    <th>Epreuve</th>
                     <th>Moyenne</th>
                     <th>Coefficient</th>
                     <th>Grades</th>
@@ -20,8 +20,10 @@
                 <tbody>
                 <?php foreach ($epreuvesList as $epreuve) { ?>
                     <tr>
-                        <td id="releve_epreuve_<?php echo $epreuve->GetId(); ?>"><b><?php echo $epreuve->GetNom(); ?></b></a></td>
-                        <td><?php echo GetEtudiantNoteFromEtudiantEpreuve(GetEtudiant($user)->GetId(), $epreuve->GetId())->GetNoteFinale(); ?></td>
+                        <td id="releve_epreuve_<?php echo $epreuve->GetId(); ?>"><b><?php echo $epreuve->GetNom(); ?></b></td>
+                        <td><?php
+                            $note_etudiant = round(GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId())->GetNoteFinale(),2);
+                            echo $note_etudiant; ?></td>
                         <td><?php echo $epreuve->GetCoef(); ?></td>
                         <td>A</td>
                     </tr>
@@ -32,10 +34,10 @@
                     ?>
                     <tfoot>
                     <tr>
-                        <td><b>Total</b></td>
+                        <td><b>Moyenne Générale</b></td>
                         <td><b>
                             <?php
-                            $note_etudiant = round(GetEtudiantNoteFromEtudiantEpreuve(GetEtudiant($user)->GetId(), $epreuve->GetId())->GetNoteFinale(),2);
+                            $note_etudiant = round(GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId())->GetNoteFinale(),2);
                             echo $note_etudiant;
                             ?>
                             </b></td>
