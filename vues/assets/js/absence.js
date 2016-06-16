@@ -1,7 +1,7 @@
 function loadAbsenceChart() {
     var ctx = document.getElementById("absgraph").getContext('2d');
     var donnees = {
-        labels: ["1", "2", "3", "4", "5", "6", "7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52"],
+        labels: ["14sept", "21sept", "28sept", "5oct", "12oct", "19oct", "26oct","2nov","9nov","16nov","23nov","30nov","7dec","14dec","21dec","28dec","4janv","11janv","18janv","25janv","1fev","8fev","15fev","22fev","29fev","7mars","14mars","21mars","28mars","4avr","11avr","18avr","25avr","2mai","9mai","16mai","23mai","30mai","6juin","13juin"],
         datasets: [
             {
                 label : "",
@@ -22,7 +22,7 @@ function loadAbsenceChart() {
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [5, 2, 6, 9, 9, 0, 3,10,17]
+                data: [0, 0, 0, 0, 0, 0, 0,0,1.75,0,0,0,0,0,0,0,0,0,0,12.75,0,0,0,0,0,0,0,4.5,0,0,0,0,0,0,0,12,0,0,0,0,0]
             }
         ]
     };
