@@ -48,6 +48,72 @@ function GetStat($tab_notes) {
     }
 }
 
+function TriBulle($tab, $size) {
+    for ($i=0;$i<$size;$i=$i+1) {
+        for ($index=$size-1;$index>$i;$index=$index-1) {
+            if ($tab[$index] > $tab[$index-1]) {
+                $x=$tab[$index-1];
+                $y=$tab[$index];
+                $tab[$index-1]=$y;
+                $tab[$index]=$x;
+            }
+        }
+    }
+    return $tab;
+}
+
+function GetEffectifNonGrades($tab, $size) {
+    $compteur = 0;
+    for ($i=0;$i<$size;$i++) {
+        if ($tab[$i] < 10) {
+            $compteur = $compteur+1;
+        }
+    }
+    return $compteur;
+}
+
+function GetGradeFromCursus($idCursus, $idEtudiant) {
+    global $listEtudiantsFromCursus;
+    $studentnote = GetTabNotesEtudiantsFromCursus($idCursus);
+    $size = count($studentnote);
+    $moyenneCursus = GetMoyenneFromCursus($idCursus, $idEtudiant);
+    $effectifTotal = count($listEtudiantsFromCursus);
+    $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
+    $effectifGrades = $effectifTotal - $effectifNonGrades;
+    $tabNotesOrdonne = TriBulle($studentnote, $size);
+    $i = 0;
+    while ($moyenneCursus < $tabNotesOrdonne[$i]) {
+        $i = $i + 1;
+    }
+    if ($moyenneCursus < 8) {
+        return "F";
+    }
+    elseif (($moyenneCursus < 10)&&($moyenneCursus >= 8)) {
+        return "Fx";
+    }
+    else {
+        $coefficient = $i / ($effectifGrades - 1);
+        if ($coefficient < 0.1) {
+            return "A";
+        }
+        elseif (($coefficient < 0.35)&&($coefficient >= 0.1)) {
+            return "B";
+        }
+        elseif (($coefficient < 0.65)&&($coefficient >= 0.35)) {
+            return "C";
+        }
+        elseif (($coefficient < 0.9)&&($coefficient >= 0.65)) {
+            return "D";
+        }
+        elseif (($coefficient <= 1)&&($coefficient >= 0.9)) {
+            return "E";
+        }
+        else {
+            return "F";
+        }
+    }
+}
+
 function GetNotePonderee($note, $coefficient) {
     return $note*$coefficient;
 }
