@@ -1,5 +1,5 @@
-$(document).on("click", "a[id^=hist_com_]", function (e) {
-    var idCompetence = this.id.replace("hist_com_","");
+$(document).on("click", "a[id^=hist_com_comp_]", function (e) {
+    var idCompetence = this.id.replace("hist_com_comp_","");
     $.ajax({
         url: './ajax/histo.php',
         type: 'POST',
@@ -7,7 +7,7 @@ $(document).on("click", "a[id^=hist_com_]", function (e) {
         data: 'type=histo_vert&idCompetence=' + idCompetence,
         success: function (result) {
             $(result).insertAfter($(".visualisation").parent());
-            $(".donnees_histo_commun_epreuves").remove();
+            $(".donnees_histo_com_epreuves").remove();
             $(".donnees_histo").remove();
         }
     });

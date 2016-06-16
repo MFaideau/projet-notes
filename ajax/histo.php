@@ -41,7 +41,8 @@ if(isset($_POST['idCours'])) {
     if (isset($_POST['type'])) {
         if ($_POST['type'] == "histo_cours_hor")
             include_once __DIR__ . '../../vues/ajax/navigation/histo_epreuves_bloc.php';
-        if ($_POST['type'] == "histo_cours_vert")
+        if ($_POST['type'] == "histo_cours_vert") {
             include_once __DIR__ . '../../vues/ajax/navigation/histo_commun_epreuves.php';
+        }
     }
 }

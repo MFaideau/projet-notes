@@ -19,7 +19,7 @@
             <tbody>
             <?php foreach ($coursList as $cours) { ?>
                 <tr>
-                    <th scope="row"><a class="lien_tableau" id="hist_com_comp_<?php echo $idCompetence; ?>"><?php echo $cours->GetNom(); ?></a></th>
+                    <th scope="row"><a class="lien_tableau" id="hist_com_cours_<?php echo $cours->GetId(); ?>"><?php echo $cours->GetNom(); ?></a></th>
                     <td>
                         <?php
                         $idCours = $cours->GetId();
