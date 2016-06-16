@@ -38,3 +38,24 @@ $(document).on("click", "a[id^=simu_type_eval_]", function (e) {
     else
         $("tr[class^=simu_type_eval_"+ idTypeEval + "_epreuve_]").hide();
 });
+
+// ***************** Enregistrement des valeurs saisies *****************
+
+$("input[name^=note_epreuve_]").keypress(function(e) {
+    if(e.which == 13) {
+        var idEpreuveSim = this.name.replace("note_epreuve_","");
+        setNoteSimulee(idEpreuveSim, $(this).val())
+    }
+});
+
+function setNoteSimulee(idEpreuve, valeurNote) {
+    $.ajax({
+        url: './ajax/calculSimulation.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'action=changeNoteEpreuve&idEpreuve=' + idEpreuve + '&noteSimulee=' + valeurNote,
+        success: function (result) {
+            alert(idEpreuve + " | " + valeurNote + " => " + result);
+        }
+    });
+}

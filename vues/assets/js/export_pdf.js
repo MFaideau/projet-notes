@@ -5,6 +5,7 @@ function impressionReleve() {
     $(".identite").hide();
 
     // On réduit l'écart du tableau pour pouvoir tout caser dans 1 page
+    $("tr").each(function() { $(this).show(); });
     $("td").each(function() { $(this).style("line-height","0.5","important"); });
 
     // On imprime la page
