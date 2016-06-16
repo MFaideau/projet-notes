@@ -57,27 +57,19 @@ $('.histo_commun').click(function () {
         datatype: 'html',
         data: 'button=batons',
         success: function (result) {
-            $.ajax({
-                url: './ajax/conversion_js.php',
-                type: 'GET',
-                datatype: 'json',
-                success: function (resultDataHisto) {
-                    $(".donnees_tableaux").remove();
-                    $(".donnees_tableaux_cours").remove();
-                    $(".donnees_tableaux_epreuves").remove();
-                    $(".donnees_batons").remove();
-                    $(".panel_choix_eleves").remove();
-                    $(".donnees_histo").remove();
-                    $(".donnees_histo_cours").remove();
-                    $(".donnees_histo_epreuves").remove();
-                    $(".donnees_histo_com_cours").remove();
-                    $(".donnees_histo_com_epreuves").remove();
-                    $(".absences").remove();
-                    $(result).insertAfter($(".visualisation").parent());
-                    jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
-                    loadBar(resultDataHisto);
-                }
-            });
+            $(".donnees_tableaux").remove();
+            $(".donnees_tableaux_cours").remove();
+            $(".donnees_tableaux_epreuves").remove();
+            $(".donnees_batons").remove();
+            $(".panel_choix_eleves").remove();
+            $(".donnees_histo").remove();
+            $(".donnees_histo_cours").remove();
+            $(".donnees_histo_epreuves").remove();
+            $(".donnees_histo_com_cours").remove();
+            $(".donnees_histo_com_epreuves").remove();
+            $(".absences").remove();
+            $(result).insertAfter($(".visualisation").parent());
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
         }
     });
 });
