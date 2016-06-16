@@ -27,3 +27,59 @@ $(document).on("click", "a[id^=hist_com_cours_]", function (e) {
         }
     });
 });
+
+$(document).on("click", "a[id^=histo_batons_comp_]", function (e) {
+    var idComp = this.id.replace("histo_batons_comp_","");
+    $.ajax({
+        url: './ajax/conversion_js.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'action=getHistoComp&idComp=' + idComp,
+        success: function (result) {
+            loadBar(result);
+            $("#showHisto1").modal("show");
+        }
+    });
+});
+
+$(document).on("click", "a[id^=histo_moyenne_ge_batons_cursus_]", function (e) {
+    var idCursus = this.id.replace("histo_moyenne_ge_batons_cursus_","");
+    $.ajax({
+        url: './ajax/conversion_js.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'action=getHistoCursus&idCursus=' + idCursus,
+        success: function (result) {
+            loadBar(result);
+            $("#showHisto1").modal("show");
+        }
+    })
+});
+
+$(document).on("click", "a[id^=histo_batons_cours_]", function (e) {
+    var idCours = this.id.replace("histo_batons_cours_","");
+    $.ajax({
+        url: './ajax/conversion_js.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'action=getHistoCours&idCours=' + idCours,
+        success: function (result) {
+            loadBar(result);
+            $("#showHisto1").modal("show");
+        }
+    })
+});
+
+$(document).on("click", "a[id^=histo_batons_epreuve_]", function (e) {
+    var idEpreuve = this.id.replace("histo_batons_epreuve_","");
+    $.ajax({
+        url: './ajax/conversion_js.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'action=getHistoEpreuve&idEpreuve=' + idEpreuve,
+        success: function (result) {
+            loadBar(result);
+            $("#showHisto1").modal("show");
+        }
+    })
+});

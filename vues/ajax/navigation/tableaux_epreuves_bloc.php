@@ -32,7 +32,7 @@
                     ?>
                     <tfoot>
                     <tr>
-                        <td><b>Total</b></td>
+                        <td><b>Moyenne Générale</b></td>
                         <td><b>
                             <?php
                             $note_etudiant = round(GetEtudiantNoteFromEtudiantEpreuve(GetEtudiant($user)->GetId(), $epreuve->GetId())->GetNoteFinale(),2);

@@ -14,14 +14,16 @@ if (!isset($_SESSION['user'])) {
 
 $user = unserialize($_SESSION['user']);
 
-// TODO : faire un tri dans le dossier ajax et le mettre dans le controlleur
+// TODO : faire un tri dans le dossier ajax et le mettre dans le controleur
 
 include_once __DIR__ . '../../controleurs/tab_request.php';
 include_once __DIR__ . '../../modeles/etudiantnote/etudiantnote.php';
 
 if(isset($_POST['idCompetence'])) {
+    $idCompetence = $_POST['idCompetence'];
     $credits_competence = GetCreditsFromCompetence($_POST['idCompetence']);
     $coursList = GetCoursListFromCompetence($_POST['idCompetence']);
+    $idEtudiant = GetEtudiant($user)->GetId();
     if(isset($_POST['type'])) {
         if($_POST['type'] == "histo_hor")
             include_once __DIR__ . '../../vues/ajax/navigation/histo_cours_bloc.php';
@@ -31,9 +33,11 @@ if(isset($_POST['idCompetence'])) {
 }
 
 if(isset($_POST['idCours'])) {
-    $epreuvesList = GetEpreuveListFromCours($_POST['idCours']);
+    $idCours = $_POST['idCours'];
     $credits_cours = GetCoursById($_POST['idCours'])->GetCredits();
+    $epreuvesList = GetEpreuveListFromCours($_POST['idCours']);
     $competence = GetCompetenceFromCours($_POST['idCours']);
+    $idEtudiant = GetEtudiant($user)->GetId();
     if (isset($_POST['type'])) {
         if ($_POST['type'] == "histo_cours_hor")
             include_once __DIR__ . '../../vues/ajax/navigation/histo_epreuves_bloc.php';
