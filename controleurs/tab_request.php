@@ -156,7 +156,6 @@ function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
     $moyenne = $somme / count($notesEtudiant);
     return $moyenne;
 }
-// Test : echo GetMoyenneFromTypeEval(5,177516);
 
 function GetMoyenneFromEval($idEval, $idEtudiant) {
     $listTypeEval = GetTypeEvalListFromEval($idEval);
