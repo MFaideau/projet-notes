@@ -1,6 +1,29 @@
 var mailOrigine;
 
 $(function () {
+    $('#insertAdmin').on('submit', function (e) {
+        var newNom = $("#nomCompteInsert").val();
+        var newPrenom = $("#prenomCompteInsert").val();
+        var newMail = $("#mailCompteInsert").val();
+        var newAutorite = $("#autoriteCompteInsert").val();
+        if (newAutorite == "Administrateur")
+            newAutorite = 1;
+        else if (newAutorite == "Visiteur")
+            newAutorite = 2;
+        e.preventDefault();
+        $.ajax({
+            url: './gestion_comptes.php',
+            type: 'POST',
+            data: "action=insertAdmin&nom="+newNom+"&prenom="+newPrenom+"&mail="+newMail+"&autorite="+newAutorite,
+            success: function () {
+                $('#insertAdmin').modal("hide");
+                location.reload();
+            }
+        });
+    });
+});
+
+$(function () {
     $('#modifyAdmin').on('submit', function (e) {
         var newNom = $("#nomCompte").val();
         var newPrenom = $("#prenomCompte").val();
@@ -69,8 +92,6 @@ $(function () {
             type: 'POST',
             data: "action=deleteAdmin&mail="+mailOrigine,
             success: function () {
-                alert(mailOrigine);
-                alert("admin_tr_" + mailOrigine);
                 document.getElementById("admin_tr_" + mailOrigine).remove();
                 $('#deleteAdmin').modal("hide");
             }

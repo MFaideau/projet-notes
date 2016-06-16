@@ -25,6 +25,9 @@ else {
         if (($_POST['action']=="deleteAdmin") && isset($_POST['mail'])) {
             DeleteUser($_POST['mail']);
         }
+        if (($_POST['action']=="insertAdmin") && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && isset($_POST['autorite'])) {
+            InsertUser($_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['autorite']);
+        }
     }
 }
 
