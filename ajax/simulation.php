@@ -13,4 +13,4 @@ if (!isset($_SESSION['user'])) {
 
 $user = unserialize($_SESSION['user']);
 
-include_once __DIR__ . './../controleurs/ajax/simulation.php';
+//include_once __DIR__ . './../controleurs/ajax/simulation.php';

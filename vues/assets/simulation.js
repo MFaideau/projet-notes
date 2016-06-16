@@ -55,7 +55,29 @@ function setNoteSimulee(idEpreuve, valeurNote) {
         datatype: 'json',
         data: 'action=changeNoteEpreuve&idEpreuve=' + idEpreuve + '&noteSimulee=' + valeurNote,
         success: function (result) {
-            alert(idEpreuve + " | " + valeurNote + " => " + result);
+            changeNotes(result);
         }
     });
+}
+
+function changeNotes(resultat) {
+    // On parse le JSON reçu
+    var changes = jQuery.parseJSON(resultat);
+    for(var k in changes) {
+        var note = changes[k];
+        if(note.type == "competence") {
+            $("a[id=simu_comp_id_" + note.id + "]").parent().parent().find($("td"))[2].innerHTML = "<b>" + note.value + "</b>";
+        }
+        if(note.type == "cours") {
+            $("a[id=simu_cours_" + note.id + "]").parent().parent().find($("td"))[2].innerHTML = "<b>" + note.value + "</b>";
+        }
+        if(note.type == "typeEval") {
+            var blocTypeEval = $("a[id=simu_type_eval_" + note.id + "]").parent().parent().find($("td"))[2];
+            if(note.value == -1)
+                blocTypeEval.innerHtml = "<b>-</b>";
+            else
+                blocTypeEval.innerHTML = "<b>" + note.value + "</b>";
+        }
+
+    }
 }
