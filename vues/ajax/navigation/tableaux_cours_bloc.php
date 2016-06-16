@@ -41,7 +41,7 @@
                         <td><b>Moyenne Générale</b></td>
                         <td><b>
                             <?php
-                            $note_etudiant = round(GetMoyenneFromCompetence(GetCompetenceFromCours($cours->GetId())->GetId(), GetEtudiant($user)->GetId()),2);
+                            $note_etudiant = round(GetMoyenneFromCompetence($idCompetence, $idEtudiant),2);
                             echo $note_etudiant;
                             ?>
                             </b></td>

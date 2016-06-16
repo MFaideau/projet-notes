@@ -39,8 +39,8 @@
             </tbody>
             <tfoot>
             <tr>
-                <td>Moyenne Générale</td>
-                <td>
+                <td><b>Moyenne Générale</b></td>
+                <td><b>
                 <?php
                 $note_etudiant = round(GetMoyenneFromCours($idCours, $idEtudiant),2);
                 $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCours($idCours));
@@ -48,9 +48,9 @@
                 $max = round($tab_histo_total[3],2);
                 echo $min;
                 ?>
-                </td>
-                <td><?php echo $max; ?></td>
-                <td><?php echo $note_etudiant; ?></td>
+                </b></td>
+                <td><b><?php echo $max; ?></b></td>
+                <td><b><?php echo $note_etudiant; ?></b></td>
                 <td class="button_show_histo">
                     <a id="histo_batons_cours_<?php echo $idCours; ?>">
                         <span class="glyphicon glyphicon-stats icone histo_button"></span>
