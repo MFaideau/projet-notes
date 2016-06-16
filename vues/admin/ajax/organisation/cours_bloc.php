@@ -20,14 +20,10 @@
                 <tr id="orga_tr_cours_<?php echo $current_cours->GetId(); ?>">
                     <td>
                         <span class="orgaEdition">
-                                <a data-toggle="modal" data-target="#verifDeleteCours" id="orga_delete_cours_<?php echo $current_cours->GetId(); ?>">
-                                    <span class="glyphicon glyphicon-minus-sign icone"></span>
-                                </a>
-                                <a data-toggle="modal" data-target="#modifyCours" id="orga_modify_cours_<?php echo $current_cours->GetId(); ?>">
-                                    <span class="glyphicon glyphicon-edit icone"></span>
-                                </a>
+                                <a class="link" data-toggle="modal" data-target="#verifDeleteCours" id="orga_delete_cours_<?php echo $current_cours->GetId(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
+                                <a class="link" data-toggle="modal" data-target="#modifyCours" id="orga_modify_cours_<?php echo $current_cours->GetId(); ?>"><span class="glyphicon glyphicon-edit icone"></span></a>
                         </span>
-                        <a id="orga_cours_<?php echo $current_cours->GetId(); ?>"><?php echo $current_cours->GetNom(); ?>
+                        <a class="link" id="orga_cours_<?php echo $current_cours->GetId(); ?>"><?php echo $current_cours->GetNom(); ?>
                         </a>
                     </td>
                     <td id="orga_cours_credits_<?php echo $current_cours->GetId(); ?>"><?php echo $current_cours->GetCredits(); ?></td>

@@ -1,5 +1,5 @@
-<div class="panel_choix_eleves">
-    <div class="panel panel-default choix_cursus_eleves">
+<div id="panelChoixEleves" class="panel_choix_eleves">
+    <div id="panelChoixElevesCursus" class="panel panel-default choix_cursus_eleves">
         <div class="panel-heading">Choix du Cursus</div>
         <div class="panel-body">
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -24,22 +24,23 @@
                     <h4 class="modal-title" id="myModalLabel">Ajouter un étudiant</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="id_cursus_add_etudiant" value="" />
+                    <input type="hidden" id="id_cursus_add_etudiant" value=""/>
                     <fieldset class="form-group">
                         <label for="labelIdEtudiant">ID de l'étudiant :</label>
-                        <input type="text" class="form-control" id="idEtudiant" />
+                        <input type="text" class="form-control" id="idEtudiant"/>
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelNom">Nom de l'étudiant :</label>
-                        <input type="text" class="form-control" id="nomEtudiant" />
+                        <input type="text" class="form-control" id="nomEtudiant"/>
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelPrenom">Prénom de l'étudiant :</label>
-                        <input type="text" class="form-control" id="prenomEtudiant" />
+                        <input type="text" class="form-control" id="prenomEtudiant"/>
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelMail">Mail de l'étudiant :</label>
-                        <input type="text" class="form-control" id="mailEtudiant" placeholder="prenom.nom@isen-lille.fr" />
+                        <input type="text" class="form-control" id="mailEtudiant"
+                               placeholder="prenom.nom@isen-lille.fr"/>
                     </fieldset>
                     L'étudiant sera ajouté au cursus <strong><span id="cursus_add_etudiant"></span></strong>.
                 </div>
