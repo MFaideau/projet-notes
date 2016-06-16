@@ -19,10 +19,10 @@
                 <tr id="orga_tr_type_eval_<?php echo $typeEval->GetId(); ?>">
                     <td>
                          <span class="orgaEdition">
-                             <a data-toggle="modal" data-target="#verifDeleteTypeEval" id="orga_delete_type_eval_<?php echo $typeEval->GetId(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
-                             <a data-toggle="modal" data-target="#modifyTypeEval" id="orga_modify_type_eval_<?php echo $typeEval->GetId(); ?>"><span class="glyphicon glyphicon-edit icone"></span></a>
+                             <a class="link" data-toggle="modal" data-target="#verifDeleteTypeEval" id="orga_delete_type_eval_<?php echo $typeEval->GetId(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
+                             <a class="link" data-toggle="modal" data-target="#modifyTypeEval" id="orga_modify_type_eval_<?php echo $typeEval->GetId(); ?>"><span class="glyphicon glyphicon-edit icone"></span></a>
                          </span>
-                        <a id="orga_type_eval_<?php echo $typeEval->GetId(); ?>"><?php echo $typeEval->GetNom(); ?></a>
+                        <a class="link" id="orga_type_eval_<?php echo $typeEval->GetId(); ?>"><?php echo $typeEval->GetNom(); ?></a>
                     </td>
                     <td id="orga_type_eval_coef_<?php echo $typeEval->GetId(); ?>"><?php echo $typeEval->GetCoef(); ?></td>
                 </tr>

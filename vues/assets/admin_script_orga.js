@@ -2,7 +2,11 @@
 var idCursus, idCompetence, idCours, idEval, idTypeEval, idEpreuve;
 
 $(document).on("click", "a[id^=orga_cursus_]", function (e) {
+    if (document.getElementById("orga_cursus_" + idCursus) != null){
+        document.getElementById("orga_cursus_" + idCursus).style.fontWeight = "normal";
+    }
     idCursus = this.id.replace("orga_cursus_", "");
+    document.getElementById("orga_cursus_" + idCursus).style.fontWeight = "bold";
     // On place le nom du cursus choisit dans le formulaire de modification au cas où
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
@@ -26,7 +30,11 @@ $(document).on("click", "a[id^=orga_cursus_]", function (e) {
 });
 
 $(document).on("click", "a[id^=orga_competence_]", function (e) {
+    if (document.getElementById("orga_competence_" + idCompetence) != null){
+        document.getElementById("orga_competence_" + idCompetence).style.fontWeight = "normal";
+    }
     idCompetence = this.id.replace("orga_competence_", "");
+    document.getElementById("orga_competence_" + idCompetence).style.fontWeight = "bold";
     nomCompetence = this.innerText;
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
@@ -49,7 +57,11 @@ $(document).on("click", "a[id^=orga_competence_]", function (e) {
 });
 
 $(document).on("click", "a[id^=orga_cours]", function (e) {
+    if (document.getElementById("orga_cours_" + idCours) != null){
+        document.getElementById("orga_cours_" + idCours).style.fontWeight = "normal";
+    }
     idCours = this.id.replace("orga_cours_", "");
+    document.getElementById("orga_cours_" + idCours).style.fontWeight = "bold";
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
@@ -67,7 +79,11 @@ $(document).on("click", "a[id^=orga_cours]", function (e) {
 });
 
 $(document).on("click", "a[id^=orga_eval]", function (e) {
+    if (document.getElementById("orga_eval_" + idEval) != null){
+        document.getElementById("orga_eval_" + idEval).style.fontWeight = "normal";
+    }
     idEval = this.id.replace("orga_eval_", "");
+    document.getElementById("orga_eval_" + idEval).style.fontWeight = "bold";
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
@@ -83,7 +99,11 @@ $(document).on("click", "a[id^=orga_eval]", function (e) {
 });
 
 $(document).on("click", "a[id^=orga_type_eval]", function (e) {
+    if (document.getElementById("orga_type_eval_" + idTypeEval) != null){
+        document.getElementById("orga_type_eval_" + idTypeEval).style.fontWeight = "normal";
+    }
     idTypeEval = this.id.replace("orga_type_eval_", "");
+    document.getElementById("orga_type_eval_" + idTypeEval).style.fontWeight = "bold";
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
@@ -126,7 +146,11 @@ $(document).on("click", "a[id^=orga_type_eval]", function (e) {
 });
 
 $(document).on("click", "a[id^=orga_epreuve]", function (e) {
+    if (document.getElementById("orga_epreuve_" + idEpreuve) != null){
+        document.getElementById("orga_epreuve_" + idEpreuve).style.fontWeight = "normal";
+    }
     idEpreuve = this.id.replace("orga_epreuve_", "");
+    document.getElementById("orga_epreuve_" + idEpreuve).style.fontWeight = "bold";
     var modifyEpreuveDiv = $("#modifyEpreuve");
     $.ajax({
         url: './ajax/admin_ajax_orga.php',

@@ -7,6 +7,20 @@
  */
 include_once('utilisateur.class.php');
 
+function GetAdmins()
+{
+    $usersList = array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT Mail,Nom,Prenom,Autorite FROM utilisateur WHERE autorite > 0');
+    $req->execute();
+    $users = $req->fetchAll();
+    foreach($users as $user)
+    {
+        $usersList[] = new Utilisateur($user);
+    }
+    return $usersList;
+}
+
 function GetUser($mail)
 {
     global $bdd;
@@ -63,6 +77,21 @@ function InsertUser($nom,$prenom,$mail,$autorite)
         'nom' => $nom,
         'prenom' => $prenom,
         'autorite' => $autorite,
+    ));
+    return;
+}
+
+function ModifyUser($mailOrigine,$nom,$prenom,$mail,$autorite)
+{
+    global $bdd;
+    $req = $bdd->prepare('UPDATE utilisateur SET Mail=:mail,Nom=:nom,Prenom=:prenom,Autorite=:autorite
+WHERE Mail=:mailOrigine');
+    $req->execute(array(
+        'mail' => $mail,
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'autorite' => $autorite,
+        'mailOrigine' => $mailOrigine,
     ));
     return;
 }

@@ -20,9 +20,9 @@
                         <td>
                             <span class="orgaEdition">
                                 <a class="link" data-toggle="modal" data-target="#verifDeleteCompetences" id="orga_delete_competence_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
-                                <a data-toggle="modal" data-target="#modifyCompetence" id="orga_modify_competence_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-edit icone"></span></a>
+                                <a class="link" data-toggle="modal" data-target="#modifyCompetence" id="orga_modify_competence_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-edit icone"></span></a>
                             </span>
-                            <a id="orga_competence_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a>
+                            <a class="link" id="orga_competence_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a>
                         </td>
                     </tr>
                 <?php } ?>
