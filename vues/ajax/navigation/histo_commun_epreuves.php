@@ -33,7 +33,7 @@
                         }
                 ?>
                 <tr>
-                    <td scope="row"><a class="lien_tableau" id="hist_com_epreuves_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a></td>
+                    <td scope="row"><a class="lien_tableau" id="hist_com_epreuves_<?php echo $epreuve->GetId(); ?>"><b><?php echo $epreuve->GetNom(); ?></b></a></td>
                     <td><?php echo $min; ?></td>
                     <td><?php echo $max; ?></td>
                     <td><?php echo $note_etudiant; ?></td>

@@ -45,6 +45,7 @@
                         echo "-";
                     }?></td>
             </tr>
+            <?php } ?>
             </tbody>
             <tfoot>
             <tr>
@@ -52,7 +53,6 @@
                 <td width="50%"><b>
                     <?php
                     $note_etudiant = round(GetMoyenneFromCours($idCours, $idEtudiant),2);
-                    echo var_dump(GetTabNotesEtudiantsFromCours($idCours));
                     $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCours($idCours));
                     $moyenne = $tab_histo_total[0];
                     $ecart_type = $tab_histo_total[1];
@@ -67,7 +67,6 @@
                 <td><b><?php echo $note_etudiant; ?></b></td>
             </tr>
             </tfoot>
-            <?php } ?>
         </table>
     </div>
 </div>
