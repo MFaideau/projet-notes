@@ -33,7 +33,7 @@
                         }
                 ?>
                 <tr>
-                    <td scope="row"><a class="lien_tableau" id="hist_com_epreuves_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a></td>
+                    <td scope="row"><a class="lien_tableau" id="hist_com_epreuves_<?php echo $epreuve->GetId(); ?>"><b><?php echo $epreuve->GetNom(); ?></b></a></td>
                     <td><?php echo $min; ?></td>
                     <td><?php echo $max; ?></td>
                     <td><?php echo $note_etudiant; ?></td>
@@ -47,16 +47,14 @@
             </tbody>
             <tfoot>
             <tr>
-                <td><b>Moyenne Générale</b></td>
-                <td><b>
                 <?php
                 $note_etudiant = round(GetMoyenneFromCours($idCours, $idEtudiant),2);
                 $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCours($idCours));
                 $min = round($tab_histo_total[2],2);
                 $max = round($tab_histo_total[3],2);
-                echo $min;
                 ?>
-                </b></td>
+                <td><b>Moyenne Générale</b></td>
+                <td><b><?php echo $min; ?></b></td>
                 <td><b><?php echo $max; ?></b></td>
                 <td><b><?php echo $note_etudiant; ?></b></td>
                 <td class="button_show_histo">

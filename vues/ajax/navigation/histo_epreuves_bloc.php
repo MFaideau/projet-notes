@@ -17,7 +17,8 @@
             </thead>
             <tbody>
             <?php
-            foreach ($epreuvesList as $epreuve) { ?>
+            foreach ($epreuvesList as $epreuve) {
+                $etudiantnote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId()); ?>
             <tr>
                 <td scope="row"><a class="lien_tableau"><b><?php echo $epreuve->GetNom(); ?></b></a></td>
                 <td width="50%">
@@ -35,8 +36,16 @@
                 </td>
                 <td><?php echo $min; ?></td>
                 <td><?php echo $max; ?></td>
-                <td><?php echo $note_etudiant; ?></td>
+                <td><?php
+                    if (!empty($etudiantnote)) {
+                        $note_etudiant = $etudiantnote->GetNoteFinale();
+                        echo $note_etudiant;
+                    }
+                    else {
+                        echo "-";
+                    }?></td>
             </tr>
+            <?php } ?>
             </tbody>
             <tfoot>
             <tr>
@@ -58,7 +67,6 @@
                 <td><b><?php echo $note_etudiant; ?></b></td>
             </tr>
             </tfoot>
-            <?php } ?>
         </table>
     </div>
 </div>
