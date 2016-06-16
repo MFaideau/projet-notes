@@ -23,7 +23,7 @@ $(document).on("click", "a[id^=hist_com_cours_]", function (e) {
         success: function (result) {
             $(result).insertAfter($(".visualisation").parent());
             $(".donnees_histo").remove();
-            $(".donnees_histo_commun_cours").remove();
+            $(".donnees_histo_com_cours").remove();
         }
     });
 });

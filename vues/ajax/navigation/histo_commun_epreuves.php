@@ -2,7 +2,8 @@
 
 <div class="row donnees donnees_histo_com_epreuves">
     <div class="panel panel-default">
-        <div class="panel-heading "><a href="releve_onglet.php"><span class="glyphicon glyphicon-arrow-left retour_prec_histo"></span></a>
+        <div class="panel-heading ">
+            <a href="#" id="hist_com_cours_<?php echo $idCours; ?>"><span class="glyphicon glyphicon-arrow-left retour_prec_histo"></span></a>
             Histogramme De La Promo - Choix De L'Epreuve
         </div>
         <table class="table">
