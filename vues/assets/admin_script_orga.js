@@ -464,7 +464,12 @@ $(function () {
                 $("#modifyCours").modal("hide");
                 $("#orga_cours_" + idCours).text(newNomCours);
                 $("#orga_cours_credits_" + idCours).text(newCreditsCours);
-                $("#orga_cours_semestre_" + idCours).text(newSemestreCours);
+                if (newSemestreCours == 0)
+                    $("#orga_cours_semestre_" + idCours).text("Semestres 1 et 2");
+                else if (newSemestreCours == 1)
+                    $("#orga_cours_semestre_" + idCours).text("Semestre 1");
+                else if (newSemestreCours == 2)
+                    $("#orga_cours_semestre_" + idCours).text("Semestre 2");
             }
         });
     });

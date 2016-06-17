@@ -7,12 +7,14 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($listEleves as $eleve) { ?>
+        <?php foreach ($listEleves as $eleve) {
+            $etudiantAssocie = GetEtudiant($eleve);
+            if (isset($etudiantAssocie)) {?>
             <tr>
                 <td><a data-name="nom" data-value="<?php echo $eleve->GetNom() . $eleve->GetPrenom(); ?>"href="visualisation_eleve.php?id=<?php echo $eleve->GetMail(); ?>"><?php echo $eleve->GetNom() . ' ' . $eleve->GetPrenom(); ?></a></td>
-                <td><?php echo rand(0, 20); ?></td>
+                <td><?php echo GetMoyenneFromCursus($listIdCursus,$etudiantAssocie->GetId()); ?></td>
             </tr>
-        <?php } ?>
+        <?php }} ?>
         </tbody>
     </table>
 </div>
