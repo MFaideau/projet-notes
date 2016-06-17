@@ -70,6 +70,36 @@ WHERE ID_Epreuve = :idEpreuve AND ID_Etudiant = :idEtudiant');
         return false;
 }
 
+function AddEtudiantNotePrevue($idEpreuve, $idEtudiant, $notePrevue)
+{
+    global $bdd;
+    if (EtudiantNoteExists($idEpreuve, $idEtudiant))
+    {
+        $req = $bdd->prepare('UPDATE etudiantnote SET Note_Finale = :noteFinale,Note_Prevue = :notePrevue,Absence_Epreuve=:absence 
+WHERE ID_Epreuve = :idEpreuve AND ID_Etudiant = :idEtudiant');
+        $req->execute(array(
+            'idEpreuve' => $idEpreuve,
+            'idEtudiant' => $idEtudiant,
+            'noteFinale' => 0,
+            'notePrevue' => $notePrevue,
+            'absence' => 0,
+        ));
+    }
+    else
+    {
+        $req = $bdd->prepare('INSERT INTO etudiantnote (ID_Epreuve,ID_Etudiant,Note_Finale,Note_Prevue,Absence_Epreuve) 
+VALUES (:idEpreuve,:idEtudiant,:noteFinale,:notePrevue,:absenceEpreuve)');
+        $req->execute(array(
+            'idEpreuve' => $idEpreuve,
+            'idEtudiant' => $idEtudiant,
+            'noteFinale' => 0,
+            'notePrevue' =>  $notePrevue,
+            'absenceEpreuve' => 0,
+        ));
+        return;
+    }
+}
+
 function AddEtudiantNote($idEpreuve, $idEtudiant, $noteEtudiant, $absence)
 {
     global $bdd;

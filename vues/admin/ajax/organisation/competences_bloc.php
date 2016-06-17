@@ -21,6 +21,7 @@
                             <span class="orgaEdition">
                                 <a class="link" data-toggle="modal" data-target="#verifDeleteCompetences" id="orga_delete_competence_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
                                 <a class="link" data-toggle="modal" data-target="#modifyCompetence" id="orga_modify_competence_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-edit icone"></span></a>
+                                <a class="link" href="visualisation_eleve.php?listIdCompetence=<?php echo $competence->GetId(); ?>" id="orga_list_competence_<?php echo $competence->GetId(); ?>"><span class="glyphicon glyphicon-th-list icone"></span></a>
                             </span>
                             <a class="link" id="orga_competence_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a>
                         </td>

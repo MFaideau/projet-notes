@@ -56,9 +56,73 @@ function GetUsersFromCursus($idCursus)
 {
     $usersList = array();
     global $bdd;
-    $req = $bdd->prepare('SELECT utilisateur.Mail,Nom,Prenom,Autorite FROM utilisateur,etudiant WHERE utilisateur.Mail=etudiant.Mail
+    $req = $bdd->prepare('SELECT utilisateur.Mail,utilisateur.Nom,utilisateur.Prenom,utilisateur.Autorite FROM utilisateur,etudiant WHERE utilisateur.Mail=etudiant.Mail
 AND etudiant.ID_Cursus=:idCursus');
     $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->execute();
+    $users = $req->fetchAll();
+    foreach($users as $user)
+    {
+        $usersList[]=new Utilisateur($user);
+    }
+    return $usersList;
+}
+
+function GetUsersFromCompetence($idCompetence)
+{
+    $usersList = array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT utilisateur.Mail,utilisateur.Nom,utilisateur.Prenom,utilisateur.Autorite FROM utilisateur,etudiant,cursus,competence WHERE utilisateur.Mail=etudiant.Mail
+AND etudiant.ID_Cursus=cursus.ID_Cursus AND competence.ID_Cursus = cursus.ID_Cursus AND competence.ID_Competence = :idCompetence');
+    $req->bindParam(':idCompetence', $idCompetence, PDO::PARAM_INT);
+    $req->execute();
+    $users = $req->fetchAll();
+    foreach($users as $user)
+    {
+        $usersList[]=new Utilisateur($user);
+    }
+    return $usersList;
+}
+
+function GetUsersFromCours($idCours)
+{
+    $usersList = array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT utilisateur.Mail,utilisateur.Nom,utilisateur.Prenom,utilisateur.Autorite FROM utilisateur,etudiant,cursus,competence,cours WHERE utilisateur.Mail=etudiant.Mail
+AND etudiant.ID_Cursus=cursus.ID_Cursus AND competence.ID_Cursus = cursus.ID_Cursus AND competence.ID_Competence = cours.ID_Competence AND cours.ID_Cours = :idCours');
+    $req->bindParam(':idCours', $idCours, PDO::PARAM_INT);
+    $req->execute();
+    $users = $req->fetchAll();
+    foreach($users as $user)
+    {
+        $usersList[]=new Utilisateur($user);
+    }
+    return $usersList;
+}
+
+function GetUsersFromTypeEval($idTypeEval)
+{
+    $usersList = array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT utilisateur.Mail,utilisateur.Nom,utilisateur.Prenom,utilisateur.Autorite FROM utilisateur,etudiant,cursus,competence,cours,evaluation,type_eval WHERE utilisateur.Mail=etudiant.Mail
+AND etudiant.ID_Cursus=cursus.ID_Cursus AND competence.ID_Cursus = cursus.ID_Cursus AND competence.ID_Competence = cours.ID_Competence AND cours.ID_Cours = evaluation.ID_Cours AND evaluation.ID_Eval = type_eval.ID_Eval AND type_eval.ID_Type=:idType');
+    $req->bindParam(':idType', $idTypeEval, PDO::PARAM_INT);
+    $req->execute();
+    $users = $req->fetchAll();
+    foreach($users as $user)
+    {
+        $usersList[]=new Utilisateur($user);
+    }
+    return $usersList;
+}
+
+function GetUsersFromEpreuve($idEpreuve)
+{
+    $usersList = array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT utilisateur.Mail,utilisateur.Nom,utilisateur.Prenom,utilisateur.Autorite FROM utilisateur,etudiant,cursus,competence,cours,evaluation,type_eval,epreuve WHERE utilisateur.Mail=etudiant.Mail
+AND etudiant.ID_Cursus=cursus.ID_Cursus AND competence.ID_Cursus = cursus.ID_Cursus AND competence.ID_Competence = cours.ID_Competence AND cours.ID_Cours = evaluation.ID_Cours AND evaluation.ID_Eval = type_eval.ID_Eval AND type_eval.ID_Type=epreuve.ID_Type AND epreuve.ID_Epreuve=:idEpreuve');
+    $req->bindParam(':idEpreuve', $idEpreuve, PDO::PARAM_INT);
     $req->execute();
     $users = $req->fetchAll();
     foreach($users as $user)
