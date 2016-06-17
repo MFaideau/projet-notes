@@ -4,9 +4,11 @@ var idCursus, idCompetence, idCours, idEval, idTypeEval, idEpreuve;
 $(document).on("click", "a[id^=orga_cursus_]", function (e) {
     if (document.getElementById("orga_cursus_" + idCursus) != null){
         document.getElementById("orga_cursus_" + idCursus).style.fontWeight = "normal";
+        document.getElementById("orga_tr_cursus_" + idCursus).style.backgroundColor = "white";
     }
     idCursus = this.id.replace("orga_cursus_", "");
     document.getElementById("orga_cursus_" + idCursus).style.fontWeight = "bold";
+    document.getElementById("orga_tr_cursus_" + idCursus).style.backgroundColor = "cornsilk";
     // On place le nom du cursus choisit dans le formulaire de modification au cas où
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
@@ -32,9 +34,11 @@ $(document).on("click", "a[id^=orga_cursus_]", function (e) {
 $(document).on("click", "a[id^=orga_competence_]", function (e) {
     if (document.getElementById("orga_competence_" + idCompetence) != null){
         document.getElementById("orga_competence_" + idCompetence).style.fontWeight = "normal";
+        document.getElementById("orga_tr_competence_" + idCompetence).style.backgroundColor = "white";
     }
     idCompetence = this.id.replace("orga_competence_", "");
     document.getElementById("orga_competence_" + idCompetence).style.fontWeight = "bold";
+    document.getElementById("orga_tr_competence_" + idCompetence).style.backgroundColor = "cornsilk";
     nomCompetence = this.innerText;
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
@@ -59,9 +63,11 @@ $(document).on("click", "a[id^=orga_competence_]", function (e) {
 $(document).on("click", "a[id^=orga_cours]", function (e) {
     if (document.getElementById("orga_cours_" + idCours) != null){
         document.getElementById("orga_cours_" + idCours).style.fontWeight = "normal";
+        document.getElementById("orga_tr_cours_" + idCours).style.backgroundColor = "white";
     }
     idCours = this.id.replace("orga_cours_", "");
     document.getElementById("orga_cours_" + idCours).style.fontWeight = "bold";
+    document.getElementById("orga_tr_cours_" + idCours).style.backgroundColor = "cornsilk";
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
@@ -81,9 +87,11 @@ $(document).on("click", "a[id^=orga_cours]", function (e) {
 $(document).on("click", "a[id^=orga_eval]", function (e) {
     if (document.getElementById("orga_eval_" + idEval) != null){
         document.getElementById("orga_eval_" + idEval).style.fontWeight = "normal";
+        document.getElementById("orga_tr_eval_" + idEval).style.backgroundColor = "white";
     }
     idEval = this.id.replace("orga_eval_", "");
     document.getElementById("orga_eval_" + idEval).style.fontWeight = "bold";
+    document.getElementById("orga_tr_eval_" + idEval).style.backgroundColor = "cornsilk";
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
@@ -101,9 +109,11 @@ $(document).on("click", "a[id^=orga_eval]", function (e) {
 $(document).on("click", "a[id^=orga_type_eval]", function (e) {
     if (document.getElementById("orga_type_eval_" + idTypeEval) != null){
         document.getElementById("orga_type_eval_" + idTypeEval).style.fontWeight = "normal";
+        document.getElementById("orga_tr_type_eval_" + idTypeEval).style.backgroundColor = "white";
     }
     idTypeEval = this.id.replace("orga_type_eval_", "");
     document.getElementById("orga_type_eval_" + idTypeEval).style.fontWeight = "bold";
+    document.getElementById("orga_tr_type_eval_" + idTypeEval).style.backgroundColor = "cornsilk";
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',
@@ -148,9 +158,11 @@ $(document).on("click", "a[id^=orga_type_eval]", function (e) {
 $(document).on("click", "a[id^=orga_epreuve]", function (e) {
     if (document.getElementById("orga_epreuve_" + idEpreuve) != null){
         document.getElementById("orga_epreuve_" + idEpreuve).style.fontWeight = "normal";
+        document.getElementById("orga_tr_epreuve_" + idEpreuve).style.backgroundColor = "white";
     }
     idEpreuve = this.id.replace("orga_epreuve_", "");
     document.getElementById("orga_epreuve_" + idEpreuve).style.fontWeight = "bold";
+    document.getElementById("orga_tr_epreuve_" + idEpreuve).style.backgroundColor = "cornsilk";
     var modifyEpreuveDiv = $("#modifyEpreuve");
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
@@ -452,7 +464,12 @@ $(function () {
                 $("#modifyCours").modal("hide");
                 $("#orga_cours_" + idCours).text(newNomCours);
                 $("#orga_cours_credits_" + idCours).text(newCreditsCours);
-                $("#orga_cours_semestre_" + idCours).text(newSemestreCours);
+                if (newSemestreCours == 0)
+                    $("#orga_cours_semestre_" + idCours).text("Semestres 1 et 2");
+                else if (newSemestreCours == 1)
+                    $("#orga_cours_semestre_" + idCours).text("Semestre 1");
+                else if (newSemestreCours == 2)
+                    $("#orga_cours_semestre_" + idCours).text("Semestre 2");
             }
         });
     });

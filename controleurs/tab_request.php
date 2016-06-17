@@ -3,7 +3,6 @@
  * @Auteur: Joël Guillem
  * @Desc: Requête pour remplir les tableaux et histogrammes de notes
  */
-
 $listEtudiantsFromCursus = GetEtudiantListFromCursus(GetEtudiant($user)->GetCursus());
 
 function showHisto($moyenne, $note_etudiant, $ecart_type) {
