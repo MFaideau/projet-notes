@@ -23,7 +23,7 @@
                     <td>0</td>
                 <?php }
                 else { ?>
-                    <td><?php echo $etudiantNote->GetNoteFinale(); ?></td>
+                    <td><?php echo round($etudiantNote->GetNoteFinale(),2); ?></td>
                 <?php } ?>
             </tr>
         <?php }}} ?>

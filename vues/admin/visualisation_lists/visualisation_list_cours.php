@@ -12,7 +12,7 @@
         if (isset($etudiantAssocie)) {?>
             <tr>
                 <td><a data-name="nom" data-value="<?php echo $eleve->GetNom() . $eleve->GetPrenom(); ?>"href="visualisation_eleve.php?id=<?php echo $eleve->GetMail(); ?>"><?php echo $eleve->GetNom() . ' ' . $eleve->GetPrenom(); ?></a></td>
-                <td><?php echo GetMoyenneFromCours($listIdCours,$etudiantAssocie->GetId()); ?></td>
+                <td><?php echo round(GetMoyenneFromCours($listIdCours,$etudiantAssocie->GetId()),2); ?></td>
             </tr>
         <?php } } ?>
         </tbody>
