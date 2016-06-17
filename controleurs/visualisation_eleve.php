@@ -4,14 +4,12 @@ if (!isset($_SESSION['user'])) {
     header('Location: index.php');
     die();
 }
-else {
-    $user = unserialize($_SESSION['user']);
-}
+
 // Inclusions des blocs du template du site
 include_once (__DIR__ . '../../modeles/sqlConnection.php');
 include_once ('./modeles/consultation/consultation.php');
-include_once ('./controleurs/tab_request.php');
 $user = unserialize($_SESSION['user']);
+include_once ('./controleurs/tab_request.php');
 include_once (__DIR__ . '../../vues/menu.php');
 
 // Insertion de la partie contenu de la visualisation
