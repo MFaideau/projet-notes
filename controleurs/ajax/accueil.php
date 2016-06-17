@@ -1,5 +1,5 @@
 <?php
-
+defined("ROOT_ACCESS") or die();
 $user = unserialize($_SESSION['user']);
 
 include_once (__DIR__ . '../../../modeles/authentification/utilisateur.class.php');

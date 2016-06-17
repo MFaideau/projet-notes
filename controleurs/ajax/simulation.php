@@ -1,5 +1,5 @@
 <?php
-
+defined("ROOT_ACCESS") or die();
 if (isset($_POST['idCompetence'])) {
     $coursList = GetCoursListFromCompetence($_POST['idCompetence']);
     include_once __DIR__ . '../../../controleurs/tab_request.php';

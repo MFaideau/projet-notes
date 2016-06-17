@@ -1,5 +1,5 @@
 <?php
-
+define("ROOT_ACCESS",true);
 session_start();
 
 // On fait les vérifications nécessaires pour protéger le panneau admin des requêtes AJAX

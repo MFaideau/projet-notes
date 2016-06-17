@@ -1,5 +1,5 @@
 <?php
-
+defined("ROOT_ACCESS") or die();
 // Les fonctions utilisées pour le calcul des moyennes se trouve dans ce fichier.
 include_once 'tab_request.php';
 

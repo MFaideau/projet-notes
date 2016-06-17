@@ -1,5 +1,5 @@
 <?php
-
+defined("ROOT_ACCESS") or die();
 $utilisateur = unserialize($_SESSION['user']);
 if ($utilisateur->GetAutorite() != 1) {
     die();

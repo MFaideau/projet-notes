@@ -1,4 +1,5 @@
 <?php
+defined("ROOT_ACCESS") or die();
 /**
  * @Auteur: Joël Guillem
  * @Desc: Requête pour remplir les tableaux et histogrammes de notes

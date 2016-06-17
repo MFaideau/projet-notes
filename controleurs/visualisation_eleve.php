@@ -1,4 +1,5 @@
 <?php
+defined("ROOT_ACCESS") or die();
 include_once ('./modeles/authentification/utilisateur.class.php');
 if (!isset($_SESSION['user'])) {
     header('Location: index.php');
