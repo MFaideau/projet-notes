@@ -44,7 +44,11 @@
                         <td><b>Moyenne Générale</b></td>
                         <td><b>
                             <?php
-                            $note_etudiant = round(GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId())->GetNoteFinale(),2);
+                            $studentNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
+                            if (isset($studentNote))
+                                $note_etudiant = round($studentNote->GetNoteFinale(), 2);
+                            else
+                                $note_etudiant = "-";
                             echo $note_etudiant;
                             ?>
                             </b></td>
