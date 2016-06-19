@@ -23,10 +23,12 @@ if (isset($_POST['action']) && isset($_POST['idEpreuve']) && isset($_POST['noteS
         if ($noteSimulee >= 0 || $noteSimulee <= 20) {
             $epreuve = GetEpreuveFromId($idEpreuve);
             if (isset($epreuve)) {
+                $etudiant = GetEtudiant($user);
                 // On met à jour la base de données avec la note prévue
+                AddEtudiantNotePrevue($idEpreuve, $etudiant->GetId(), $noteSimulee);
 
                 // On retourne la liste des nouvelles moyennes calculées=
-                echo json_encode(GetNouvellesNotes(GetEtudiant($user)));
+                echo json_encode(GetNouvellesNotes($etudiant));
                 return;
             }
         }
@@ -67,11 +69,14 @@ function GetNouvellesNotes($etudiant)
                 foreach (GetEpreuveListFromTypeEval($typeEval->GetId()) as $epreuve) {
                     $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($etudiant->GetId(), $epreuve->GetId());
                     if(isset($etudiantNote)) {
+                        $noteEpreuve = $etudiantNote->GetNoteFinale();
+                        if($noteEpreuve == -1) {
+                            $noteEpreuve = $etudiantNote->GetNotePrevue();
+                        }
                         $donnees = array(
                             'type' => 'epreuve',
                             'id' => $epreuve->GetId(),
-                            'value' => $etudiantNote->GetNoteFinale()
-                            // TODO : Prendre en compte la simulation
+                            'value' => $noteEpreuve
                     );
                         array_push($finalArray, $donnees);
                     }

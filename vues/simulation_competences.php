@@ -49,7 +49,7 @@
                                 <td><b><?php echo $typeEval->GetCoef() * 100; ?></b></td>
                                 <td><b><?php
                                         $note = GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant);
-                                        if ($note == -1)
+                                        if ($note == "-1")
                                             echo "-"; // Pas de note disponible pour le moment pour les épreuves de ce type eval
                                         else
                                             echo $note;
@@ -67,14 +67,18 @@
                                         <?php
                                         $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
                                         if (isset($etudiantNote)) {
-                                            $note = $etudiantNote->GetNoteFinale();
-                                            echo $note;
-                                        } else {
-                                            // Si l'étudiant n'a pas de note, on lui crée un champ
-                                            ?>
-                                            <input type="number" min="0" max="20"
-                                                   name="note_epreuve_<?php echo $epreuve->GetId(); ?>"/>
-                                            <?php
+                                            if ($etudiantNote == "-1") {
+                                                $note = $etudiantNote->GetNoteFinale();
+                                                echo $note;
+                                            } else {
+                                                // Si l'étudiant n'a pas de note, on lui crée un champ
+                                                ?>
+                                                <input type="number" min="0" max="20"
+                                                       name="note_epreuve_<?php echo $epreuve->GetId(); ?>"
+                                                        value="<?php echo $etudiantNote->GetNotePrevue(); ?>"
+                                                />
+                                                <?php
+                                            }
                                         }
                                         ?>
                                     </td>

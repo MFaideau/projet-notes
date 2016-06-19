@@ -1,16 +1,23 @@
 <?php
 defined("ROOT_ACCESS") or die();
-$user = unserialize($_SESSION['user']);
 
-include_once (__DIR__ . '../../../modeles/authentification/utilisateur.class.php');
-include_once __DIR__ . '../../../controleurs/tab_request.php';
+// On teste si c'est un admin qui visualise un étudiant
+if(isset($_SESSION['user_vue']) && $user->GetAutorite() != 0) {
+    $user_vue = unserialize($_SESSION['user_vue']);
+    if (isset($user_vue)) {
+        $etudiant = GetEtudiant($user_vue);
+    }
+}
+else {
+    $etudiant = GetEtudiant($user);
+}
 
-$etudiant = GetEtudiant($user);
 $cursus = $etudiant->GetCursus();
-$competenceList = GetCompetenceListFromCursus($cursus->GetId());
-
 if(!isset($cursus))
     die();
+
+$idEtudiant = $etudiant->GetId();
+$competenceList = GetCompetenceListFromCursus($cursus->GetId());
 
 if(isset($_POST['button'])) {
     if($_POST['button'] == "tableaux") {
