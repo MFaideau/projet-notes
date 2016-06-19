@@ -18,12 +18,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($epreuvesList as $epreuve) { ?>
+                <?php foreach ($epreuvesList as $epreuve) { 
+                    $etudiantnote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId()); ?>
                     <tr>
                         <td id="releve_epreuve_<?php echo $epreuve->GetId(); ?>"><b><?php echo $epreuve->GetNom(); ?></b></td>
                         <td><?php
-                            $note_etudiant = round(GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId())->GetNoteFinale(),2);
-                            echo $note_etudiant; ?></td>
+                            if (!empty($etudiantnote)) {
+                                $note_etudiant = round($etudiantnote->GetNoteFinale(),2);
+                                echo $note_etudiant;
+                            }
+                            else {
+                                echo "-";
+                            }?>
+                        </td>
                         <td><?php echo $epreuve->GetCoef(); ?></td>
                         <td>A</td>
                     </tr>
@@ -37,7 +44,11 @@
                         <td><b>Moyenne Générale</b></td>
                         <td><b>
                             <?php
-                            $note_etudiant = round(GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId())->GetNoteFinale(),2);
+                            $studentNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
+                            if (isset($studentNote))
+                                $note_etudiant = round($studentNote->GetNoteFinale(), 2);
+                            else
+                                $note_etudiant = "-";
                             echo $note_etudiant;
                             ?>
                             </b></td>
