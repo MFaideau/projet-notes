@@ -28,6 +28,11 @@ function showHisto($moyenne, $note_etudiant, $ecart_type) {
     return array([$taille_couleur,$taille_rect_pourcent,$position_moyenne,$position_e_t_low, $position_e_t_high]);
 }
 
+function TestValidite($variable) {
+    if ($variable == -1) return "-";
+    else return $variable;
+}
+
 function GetStat($tab_notes) {
     $effectif = count($tab_notes);
     if ($effectif==0) {
@@ -36,38 +41,30 @@ function GetStat($tab_notes) {
     else {
         $somme = 0;
         $somme_carres = 0;
-        $note_max = $tab_notes[0];
-        $note_min = $tab_notes[0];
+        $note_max = -1;
+        $note_min = -1;
         for ($i = 0; $i < $effectif; $i++) {
             $somme = $somme + $tab_notes[$i];
             $somme_carres = $somme_carres + pow($tab_notes[$i], 2);
-            if ($note_max < $tab_notes[$i]) {
-                $note_max = $tab_notes[$i];
-            }
-            if ($note_min > $tab_notes[$i]) {
-                $note_min = $tab_notes[$i];
+            if ($tab_notes[$i] > -1) {
+                if ($note_max < $tab_notes[$i]) {
+                    $note_max = $tab_notes[$i];
+                }
+                if ($note_min == -1) {
+                    $note_min = $tab_notes[$i];
+                }
+                elseif ($note_min > $tab_notes[$i]) {
+                    $note_min = $tab_notes[$i];
+                }
             }
         }
         $moyenne = $somme / $effectif;
         $moyenne_carres = $somme_carres / $effectif;
         $variance = $moyenne_carres - pow($moyenne, 2);
         $ecart_type = sqrt($variance);
-        return array($moyenne, $ecart_type, $note_min, $note_max);
+        $tab = array($moyenne, $ecart_type, $note_min, $note_max);
+        return $tab;
     }
-}
-
-function TriBulle($tab, $size) {
-    for ($i=0;$i<$size;$i=$i+1) {
-        for ($index=$size-1;$index>$i;$index=$index-1) {
-            if ($tab[$index] > $tab[$index-1]) {
-                $x=$tab[$index-1];
-                $y=$tab[$index];
-                $tab[$index-1]=$y;
-                $tab[$index]=$x;
-            }
-        }
-    }
-    return $tab;
 }
 
 function GetEffectifNonGrades($tab, $size) {
@@ -88,7 +85,7 @@ function GetGradeFromCursus($idCursus, $idEtudiant) {
     $effectifTotal = count($listEtudiantsFromCursus);
     $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
     $effectifGrades = $effectifTotal - $effectifNonGrades;
-    $tabNotesOrdonne = TriBulle($studentnote, $size);
+    $tabNotesOrdonne = arsort($studentnote);
     $i = 0;
     while ($moyenneCursus < $tabNotesOrdonne[$i]) {
         $i = $i + 1;
@@ -126,81 +123,69 @@ function GetNotePonderee($note, $coefficient) {
     return $note*$coefficient;
 }
 
-function GetNoteFromEpreuve($epreuve, $idEtudiant) {
-    $studentnote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
-    if (isset($studentnote)) {
-        $absence = $studentnote->GetAbsence();
-        if ($absence == 1) { // absence justifiée à une épreuve
-            $idEpreuveSubstitution = $epreuve->GetIdSubstitution();
-            if ($idEpreuveSubstitution > 0) {  // test s'il y a une épreuve de substitution
-                $epreuveSubstitution = GetEpreuveFromId($idEpreuveSubstitution);
-                $studentnoteSubstitution = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuveSubstitution);
-                $absenceSubstitution = $studentnoteSubstitution->GetAbsence();
-                if ($absenceSubstitution == 1) { // absence justifiée à l'épreuve de substitution
-                    $idSecondeEpreuveSubstitution = $epreuveSubstitution->GetIdSubstitution();
-                    if ($idSecondeEpreuveSubstitution > 0) { //test s'il y a une seconde épreuve de substitution
-                        $secondeEpreuveSubstitution = GetEpreuveFromId($idSecondeEpreuveSubstitution);
-                        $studentnoteSecondeSubstitution = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idSecondeEpreuveSubstitution);
-                        $absenceSecondeSubstitution = $studentnoteSecondeSubstitution->GetAbsence();
-                        if ($absenceSecondeSubstitution == 1) { // absence justifiée à la seconde épreuve de substitution
-                            return -1; // on ne la compte pas
-                        } elseif ($absenceSecondeSubstitution == 2) { // absence injustifiée : zéro et on la compte
-                            return 0;
-                        } else { // l'étudiant est présent, pas de pb
-                            $noteEpreuveSecondeSubstitution = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idSecondeEpreuveSubstitution)->GetNoteFinale();
-                            $idEpreuveSecondeSubstitutionRattrapage = $secondeEpreuveSubstitution->GetIdSecondeSession();
-                            if ($idEpreuveSecondeSubstitutionRattrapage > 0) {
-                                $noteSecondeSubstitutionRattrapage = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuveSecondeSubstitutionRattrapage);
-                                if ($noteEpreuveSecondeSubstitution > $noteSecondeSubstitutionRattrapage) {
-                                    return $noteEpreuveSecondeSubstitution;
-                                } else {
-                                    return $noteSecondeSubstitutionRattrapage;
-                                }
-                            } else {
-                                return $noteEpreuveSecondeSubstitution;
-                            }
-                        }
-                    } // pas de 2nde épreuve de substitution
-                    else {
-                        return -1;
-                    }
-                } elseif ($absenceSubstitution == 2) {
-                    return 0;
-                } else {
-                    $noteEpreuveSubstitution = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuveSubstitution)->GetNoteFinale();
-                    $idEpreuveSubstitutionRattrapage = $epreuveSubstitution->GetIdSecondeSession();
-                    if ($idEpreuveSubstitutionRattrapage > 0) {
-                        $noteSubstitutionRattrapage = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuveSubstitutionRattrapage);
-                        if ($noteEpreuveSubstitution > $noteSubstitutionRattrapage) {
-                            return $noteEpreuveSubstitution;
-                        } else {
-                            return $noteSubstitutionRattrapage;
-                        }
-                    } else {
-                        return $noteEpreuveSubstitution;
-                    }
-                }
-            } else {
-                return -1;
+function GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant) {
+    $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve);
+    $etudiantNoteRattrapage = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuveRattrapage);
+    if (isset($etudiantNote)) {
+        if (isset($etudiantNoteRattrapage)) {
+            $note = $etudiantNote->GetNoteFinale();
+            $noteRattrapage = $etudiantNoteRattrapage->GetNoteFinale();
+            if ($note >= $noteRattrapage) {
+                return $note;
             }
-        } elseif ($absence == 2) {
-            return 0;
-        } else {
-            $noteEpreuve = $studentnote->GetNoteFinale();
-            $idEpreuveRattrapage = $epreuve->GetIdSecondeSession();
-            if ($idEpreuveRattrapage > 0) {
-                $noteRattrapage = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuveRattrapage);
-                if ($noteEpreuve > $noteRattrapage) {
-                    return $noteEpreuve;
-                } else {
-                    return $noteRattrapage;
-                }
-            } else {
-                return $noteEpreuve;
-            }
+            else return $noteRattrapage;
         }
+        $note = $etudiantNote->GetNoteFinale();
+        return $note;
+    }
+    elseif (isset($etudiantNoteRattrapage)) {
+        $noteRattrapage = $etudiantNoteRattrapage->GetNoteFinale();
+        return $noteRattrapage;
     }
     return -1;
+}
+
+function GestionAbsenceEpreuve($epreuve, $idEtudiant) {
+    $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
+    if (isset($etudiantNote)) {
+        $absence = $etudiantNote->GetAbsence();
+        if ($absence == 1) {
+            $idSubstitution = $epreuve->GetIdSubstitution();
+            if ($idSubstitution > 0) {
+                $epreuveSubstitution = GetEpreuveFromId($idSubstitution);
+                $etudiantNoteSubstitution = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idSubstitution);
+                $absenceSubstitution = $etudiantNoteSubstitution->GetAbsence();
+                if ($absenceSubstitution == 1) {
+                    $note = GestionAbsenceEpreuve($epreuveSubstitution, $idEtudiant);
+                }
+                elseif ($absenceSubstitution == 2) {
+                    $note = 0;
+                }
+                else {
+                    $idRattrapage = $epreuveSubstitution->GetIdSecondeSession();
+                    if ($idRattrapage > 0) {
+                        $epreuveRattrapage = GetEpreuveFromId($idRattrapage);
+                        $note = GetBestNote($epreuveSubstitution, $epreuveRattrapage, $idEtudiant);
+                    }
+                    else $note = $etudiantNoteSubstitution->GetNoteFinale();
+                }
+            }
+            else $note = -1;
+        }
+        elseif ($absence == 2) {
+            $note = 0;
+        }
+        else {
+            $idRattrapage = $epreuve->GetIdSecondeSession();
+            if ($idRattrapage > 0) {
+                $epreuveRattrapage = GetEpreuveFromId($idRattrapage);
+                $note = GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant);
+            }
+            else $note = $etudiantNote->GetNoteFinale();
+        }
+        return $note;
+    }
+    else return -1;
 }
 
 function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
@@ -210,7 +195,7 @@ function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
     $sommecoef = 0;
     foreach ($listEpreuves as $i => $epreuve) {
         $coefEpreuve = $epreuve->GetCoef();
-        $note = GetNoteFromEpreuve($epreuve, $idEtudiant);
+        $note = GestionAbsenceEpreuve($epreuve, $idEtudiant);
         if ($note == -1) {
             $i = $i-1;
         }
@@ -317,6 +302,9 @@ function GetMoyenneFromCursus($idCursus, $idEtudiant) {
             $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $competence->GetCredits());
             $sommecredits = $sommecredits + $competence->GetCredits();
         }
+    }
+    if ($sommecredits == 0) {
+        return -1;
     }
     return $moyenne/$sommecredits;
 }

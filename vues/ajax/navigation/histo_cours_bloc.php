@@ -32,9 +32,9 @@
                         include (__DIR__ . '../../modules/module_histo.php');
                         ?>
                     </td>
-                    <td><?php echo $min; ?></td>
-                    <td><?php echo $max; ?></td>
-                    <td><?php echo $note_etudiant; ?></td>
+                    <td><?php echo TestValidite($min); ?></td>
+                    <td><?php echo TestValidite($max); ?></td>
+                    <td><?php echo TestValidite($note_etudiant); ?></td>
                 </tr>
             <?php } ?>
             </tbody>
@@ -53,9 +53,9 @@
                     include(__DIR__ . '../../modules/module_histo.php');
                     ?>
                         </b></td>
-                <td><b><?php echo $min; ?></b></td>
-                <td><b><?php echo $max; ?></b></td>
-                <td><b><?php echo $note_etudiant; ?></b></td>
+                <td><b><?php echo TestValidite($min); ?></b></td>
+                <td><b><?php echo TestValidite($max); ?></b></td>
+                <td><b><?php echo TestValidite($note_etudiant); ?></b></td>
             </tr>
             </tfoot>
         </table>

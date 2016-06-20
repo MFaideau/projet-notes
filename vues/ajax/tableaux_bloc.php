@@ -23,7 +23,7 @@
                         <td>
                             <?php
                             $note_etudiant = round(GetMoyenneFromCompetence($competence->GetId(), $idEtudiant), 2);
-                            echo $note_etudiant;
+                            echo TestValidite($note_etudiant);
                             ?>
                         </td>
                         <td><?php echo $competence->GetCredits(); ?></td>
@@ -40,7 +40,7 @@
                         <td><b>
                             <?php
                             $note_etudiant = round(GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), $idEtudiant), 2);
-                            echo $note_etudiant;
+                            echo TestValidite($note_etudiant);
                             ?>
                             </b></td>
                         <td><b><?php echo $cursus->GetCredits(); ?></b></td>
