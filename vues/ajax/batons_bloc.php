@@ -34,7 +34,7 @@
                 </td>
                 <td><?php echo TestValidite($max); ?></td>
                 <td><?php echo TestValidite($note_etudiant); ?></td>
-                <td>A</td>
+                <td><?php echo GetGradeFromCompetence($idCompetence, $idEtudiant); ?></td>
                 <td class="button_show_histo">
                     <a id="histo_batons_comp_<?php echo $idCompetence; ?>">
                         <span class="glyphicon glyphicon-stats icone histo_button"></span>
@@ -49,8 +49,9 @@
                 <td><?php echo $cursus->GetCredits(); ?></td>
                 <td>
                     <?php
-                    $note_etudiant = round(GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), $idEtudiant),2);
-                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCursus(GetEtudiant($user)->GetCursus()->GetId()));
+                    $idCursus = $cursus->GetId();
+                    $note_etudiant = round(GetMoyenneFromCursus($idCursus, $idEtudiant),2);
+                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCursus($idCursus));
                     $min = round($tab_histo_total[2],2);
                     $max = round($tab_histo_total[3],2);
                     echo TestValidite($min);
@@ -58,7 +59,7 @@
                 </td>
                 <td><?php echo TestValidite($max); ?></td>
                 <td><?php echo TestValidite($note_etudiant); ?></td>
-                <td>A</td>
+                <td><?php echo GetGradeFromCursus($idCursus, $idEtudiant); ?></td>
                 <td class="button_show_histo">
                     <a id="histo_moyenne_ge_batons_cursus_<?php echo $cursus->GetId(); ?>">
                         <span class="glyphicon glyphicon-stats icone histo_button"></span>
