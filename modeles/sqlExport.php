@@ -20,7 +20,9 @@ function TelechargementString($nom, $str)
 
 function ExportDB()
 {
-    $bddStr = GetContent();
+    $bddStr = GetContentCursus();
+    $bddStr = $bddStr."\r\n".GetContentCompetence();
+    $bddStr = $bddStr."\r\n".GetContentCours();
     TelechargementString(date("d-m-Y")."_".date("H-i-s").'_VisualYear_Exportation_BDD.txt',$bddStr);
 }
 
