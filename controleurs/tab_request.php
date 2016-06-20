@@ -28,6 +28,11 @@ function showHisto($moyenne, $note_etudiant, $ecart_type) {
     return array([$taille_couleur,$taille_rect_pourcent,$position_moyenne,$position_e_t_low, $position_e_t_high]);
 }
 
+function TestValidite($variable) {
+    if ($variable == -1) return "-";
+    else return $variable;
+}
+
 function GetStat($tab_notes) {
     $effectif = count($tab_notes);
     if ($effectif==0) {
@@ -36,23 +41,29 @@ function GetStat($tab_notes) {
     else {
         $somme = 0;
         $somme_carres = 0;
-        $note_max = $tab_notes[0];
-        $note_min = $tab_notes[0];
+        $note_max = -1;
+        $note_min = -1;
         for ($i = 0; $i < $effectif; $i++) {
             $somme = $somme + $tab_notes[$i];
             $somme_carres = $somme_carres + pow($tab_notes[$i], 2);
-            if ($note_max < $tab_notes[$i]) {
-                $note_max = $tab_notes[$i];
-            }
-            if ($note_min > $tab_notes[$i]) {
-                $note_min = $tab_notes[$i];
+            if ($tab_notes[$i] > -1) {
+                if ($note_max < $tab_notes[$i]) {
+                    $note_max = $tab_notes[$i];
+                }
+                if ($note_min == -1) {
+                    $note_min = $tab_notes[$i];
+                }
+                elseif ($note_min > $tab_notes[$i]) {
+                    $note_min = $tab_notes[$i];
+                }
             }
         }
         $moyenne = $somme / $effectif;
         $moyenne_carres = $somme_carres / $effectif;
         $variance = $moyenne_carres - pow($moyenne, 2);
         $ecart_type = sqrt($variance);
-        return array($moyenne, $ecart_type, $note_min, $note_max);
+        $tab = array($moyenne, $ecart_type, $note_min, $note_max);
+        return $tab;
     }
 }
 
