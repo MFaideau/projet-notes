@@ -21,11 +21,14 @@ include_once (__DIR__ . '../../vues/menu.php');
 
 // Insertion de la partie contenu de la visualisation
 if(isset($_GET['id'])) {
-    $mail = $_GET['id'];
-    $user_vue = GetUser($mail);
+    $user_vue = GetUser($_GET['id']);
     if(isset($user_vue)) {
+        $_SESSION['user_vue'] = serialize($user_vue); // pour que l'AJAX ne perde pas
+        // On teste si c'est un admin qui visualise un étudiant
+        $idEtudiant = GetEtudiant($user_vue)->GetId();
+
         // On incrémente le compteur pour cet étudiant
-        IncrementConsultation($user->GetMail(),GetEtudiant($user_vue)->GetId());
+        IncrementConsultation($user->GetMail(),$idEtudiant);
 	    // Insertion du menu uniquement lorsque l'on est en mode "étudiant"
 		include_once (__DIR__ . '/../vues/menu_rapide.php');
    		include_once(__DIR__ . '/releve_onglet.php');
