@@ -9,7 +9,6 @@
             <tr>
                 <th>Absences</th>
                 <th>Semaine</th>
-                <th>Mois</th>
                 <th>Semestre en cours</th>
                 <th>Total</th>
             </tr>
@@ -17,10 +16,9 @@
             <tbody>
             <tr>
                 <th scope="row"></th>
-                <td>13H</td>
-                <td>16H</td>
-                <td>19H</td>
-                <td>25H</td>
+                <td>0H</td>
+                <td>16,5H</td>
+                <td>31H</td>
             </tr>
             <tr>
                <td colspan="5"> <canvas id="absgraph" width="100%" height="40%"></canvas> </td>
