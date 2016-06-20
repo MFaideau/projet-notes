@@ -78,46 +78,42 @@ function GetEffectifNonGrades($tab, $size) {
     return $compteur;
 }
 
+function AttributionGrade($coefficient) {
+    if ($coefficient < 0.1) return "A";
+    elseif (($coefficient < 0.35) && ($coefficient >= 0.1)) return "B";
+    elseif (($coefficient < 0.65) && ($coefficient >= 0.35)) return "C";
+    elseif (($coefficient < 0.9) && ($coefficient >= 0.65)) return "D";
+    elseif (($coefficient <= 1) && ($coefficient >= 0.9)) return "E";
+    else return "F";
+}
+
 function GetGradeFromCursus($idCursus, $idEtudiant) {
     global $listEtudiantsFromCursus;
     $studentnote = GetTabNotesEtudiantsFromCursus($idCursus);
-    $size = count($studentnote);
-    $moyenneCursus = GetMoyenneFromCursus($idCursus, $idEtudiant);
-    $effectifTotal = count($listEtudiantsFromCursus);
-    $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
-    $effectifGrades = $effectifTotal - $effectifNonGrades;
-    $tabNotesOrdonne = arsort($studentnote);
-    $i = 0;
-    while ($moyenneCursus < $tabNotesOrdonne[$i]) {
-        $i = $i + 1;
-    }
-    if ($moyenneCursus < 8) {
-        return "F";
-    }
-    elseif (($moyenneCursus < 10)&&($moyenneCursus >= 8)) {
-        return "Fx";
-    }
-    else {
-        $coefficient = $i / ($effectifGrades - 1);
-        if ($coefficient < 0.1) {
-            return "A";
+    if (isset($studentnote)) {
+
+        // Tri du tableau de notes et obtention du rang de l'étudiant
+        $size = count($studentnote);
+        $moyenneCursus = GetMoyenneFromCursus($idCursus, $idEtudiant);
+        $effectifTotal = count($listEtudiantsFromCursus);
+        $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
+        $effectifGrades = $effectifTotal - $effectifNonGrades;
+        $tabNotesOrdonne = arsort($studentnote);
+        $rang = 0;
+        while ($moyenneCursus < $tabNotesOrdonne[$rang]) {
+            $rang = $rang + 1; //Calcul du rang
         }
-        elseif (($coefficient < 0.35)&&($coefficient >= 0.1)) {
-            return "B";
-        }
-        elseif (($coefficient < 0.65)&&($coefficient >= 0.35)) {
-            return "C";
-        }
-        elseif (($coefficient < 0.9)&&($coefficient >= 0.65)) {
-            return "D";
-        }
-        elseif (($coefficient <= 1)&&($coefficient >= 0.9)) {
-            return "E";
-        }
+
+        // Attribution du grade selon sa moyenne
+        if ($moyenneCursus < 8) return "F";
+        elseif (($moyenneCursus < 10) && ($moyenneCursus >= 8)) return "Fx";
         else {
-            return "F";
+            if ($effectifGrades == 1) return "A"; // Si 1 seul étudiant noté
+            $coefficient = $rang / ($effectifGrades - 1);
+            return AttributionGrade($coefficient);
         }
     }
+    else return "-"; // Si pas d'étudiants, pas de grade
 }
 
 function GetNotePonderee($note, $coefficient) {
