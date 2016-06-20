@@ -5,8 +5,9 @@ defined("ROOT_ACCESS") or die();
  * @Auteur: Joël Guillem
  * @Desc: Requête pour remplir les tableaux et histogrammes de notes
  */
-if(isset($user))
+if(isset($user)) {
     $listEtudiantsFromCursus = GetEtudiantListFromCursus(GetEtudiant($user)->GetCursus());
+}
 if(isset($_SESSION['user_vue'])) {
     if ($user->GetAutorite() != 0) {
         $user_vue = unserialize($_SESSION['user_vue']);

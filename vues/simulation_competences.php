@@ -67,8 +67,8 @@
                                         <?php
                                         $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
                                         if (isset($etudiantNote)) {
-                                            if ($etudiantNote == "-1") {
-                                                $note = $etudiantNote->GetNoteFinale();
+                                            $note = $etudiantNote->GetNoteFinale();
+                                            if ($note != "-1") {
                                                 echo $note;
                                             } else {
                                                 // Si l'étudiant n'a pas de note, on lui crée un champ
