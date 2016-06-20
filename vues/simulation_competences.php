@@ -27,7 +27,10 @@
                         <td class="lien_tableau"><b>
                                 <?php
                                 $note_etudiant = round(GetMoyenneFromCompetence($competence->GetId(), $idEtudiant), 2);
-                                echo $note_etudiant;
+                                if($note_etudiant == "-1")
+                                    echo "-";
+                                else
+                                    echo $note_etudiant;
                                 ?></b>
                         </td>
                     </tr>
@@ -38,7 +41,14 @@
                             </td>
                             <td style="color: #337ab7;"><b><?php echo $cours->GetCredits(); ?></b></td>
                             <td style="color: #337ab7;">
-                                <b><?php echo GetMoyenneFromCours($cours->GetId(), $idEtudiant); ?></b></td>
+                                <b><?php $note = GetMoyenneFromCours($cours->GetId(), $idEtudiant);
+                                    if($note == "-1")
+                                        echo "-";
+                                    else
+                                        echo $note;
+                                    ?>
+                                </b>
+                            </td>
                         </tr>
                         <?php foreach (GetTypeEvalListFromCours($cours->GetId()) as $typeEval) { ?>
                             <tr class="simu_cours_<?php echo $cours->GetId(); ?>_type_eval_<?php echo $typeEval->GetId(); ?>">
@@ -67,8 +77,8 @@
                                         <?php
                                         $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
                                         if (isset($etudiantNote)) {
-                                            if ($etudiantNote == "-1") {
-                                                $note = $etudiantNote->GetNoteFinale();
+                                            $note = $etudiantNote->GetNoteFinale();
+                                            if ($note != "-1") {
                                                 echo $note;
                                             } else {
                                                 // Si l'étudiant n'a pas de note, on lui crée un champ
