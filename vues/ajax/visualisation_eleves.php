@@ -24,7 +24,10 @@ global $autorite; ?>
         <tfoot>
         <?php if ($autorite == 1) { ?>
             <tr>
-                <td class="ajoutEtudiant" colspan="3"><span class="glyphicon glyphicon-plus-sign icone"></span><a class="link" data-toggle="modal" data-target="#addEtudiant">Ajouter un étudiant</a></td>
+                <td class="ajoutEtudiant" colspan="3">
+                    <span class="glyphicon glyphicon-plus-sign icone"></span>
+                    <a class="link" data-toggle="modal" data-target="#addEtudiant" style="padding-left: 0.5%">Ajouter un étudiant</a>
+                </td>
             </tr>
         <?php } ?>
         </tfoot>
