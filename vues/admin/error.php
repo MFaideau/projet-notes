@@ -1,4 +1,4 @@
-<?php
+<?php defined("ROOT_ACCESS") or die();
 
 
 const ERREUR_EXTENSION = 1;

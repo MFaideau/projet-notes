@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <div id="panelChoixEleves" class="panel_choix_eleves">
     <div id="panelChoixElevesCursus" class="panel panel-default choix_cursus_eleves">
         <div class="panel-heading">Choix du Cursus</div>
@@ -42,11 +43,32 @@
                         <input type="text" class="form-control" id="mailEtudiant"
                                placeholder="prenom.nom@isen-lille.fr"/>
                     </fieldset>
-                    L'étudiant sera ajouté au cursus <strong><span id="cursus_add_etudiant"></span></strong>.
+                    L'étudiant sera ajouté au cursus <strong><span id="cursus_add_etudiant"></span></strong>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
                     <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteEtudiant" tabindex="-1" role="dialog" aria-labelledby="deleteEtudiant">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="deleteEtudiantForm">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Supprimer un étudiant</h4>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir supprimer cet étudiant ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                    <button type="submit" class="btn btn-primary">Oui</button>
                 </div>
             </form>
         </div>

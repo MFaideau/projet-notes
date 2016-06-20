@@ -48,7 +48,7 @@ class epreuve
     {
         return $this->evaluateur;
     }
-    public function GetIdSubstition()
+    public function GetIdSubstitution()
     {
         return $this->idSubstition;
     }

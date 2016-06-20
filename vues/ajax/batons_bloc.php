@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <!-- Histogramme en bâtons de données !-->
 
 <div class="row donnees donnees_histo">
@@ -20,22 +21,23 @@
             foreach($competenceList as $competence)
             { ?>
             <tr>
-                <th scope="row"><a class="lien_tableau" id="hist_com_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></th>
+                <th scope="row"><a class="lien_tableau" id="hist_com_comp_<?php echo $competence->GetId(); ?>"><?php echo $competence->GetNom(); ?></a></th>
                 <td><?php echo $competence->GetCredits(); ?></td>
                 <td>
                     <?php
-                    $note_etudiant = GetMoyenneFromCompetence($competence->GetId(), GetEtudiant($user)->GetId());
-                    $tab_histo = GetStat(GetTabNotesEtudiantsFromCompetence($competence->GetId()));
+                    $idCompetence = $competence->GetId();
+                    $note_etudiant = round(GetMoyenneFromCompetence($idCompetence, $idEtudiant),2);
+                    $tab_histo = GetStat(GetTabNotesEtudiantsFromCompetence($idCompetence));
                     $min = round($tab_histo[2],2);
                     $max = round($tab_histo[3],2);
                     echo $min;
                     ?>
                 </td>
                 <td><?php echo $max; ?></td>
-                <td><?php echo round($note_etudiant,2); ?></td>
+                <td><?php echo $note_etudiant; ?></td>
                 <td>A</td>
                 <td class="button_show_histo">
-                    <a data-toggle="modal" data-target="#showHisto1">
+                    <a id="histo_batons_comp_<?php echo $idCompetence; ?>">
                         <span class="glyphicon glyphicon-stats icone histo_button"></span>
                     </a>
                 </td>
@@ -44,11 +46,11 @@
             </tbody>
             <tfoot>
             <tr>
-                <th scope="row">Total</th>
+                <th scope="row">Moyenne Générale</th>
                 <td><?php echo $cursus->GetCredits(); ?></td>
                 <td>
                     <?php
-                    $note_etudiant = round(GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId()),2);
+                    $note_etudiant = round(GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), $idEtudiant),2);
                     $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCursus(GetEtudiant($user)->GetCursus()->GetId()));
                     $min = round($tab_histo_total[2],2);
                     $max = round($tab_histo_total[3],2);
@@ -56,10 +58,10 @@
                     ?>
                 </td>
                 <td><?php echo $max; ?></td>
-                <td><?php echo round($note_etudiant,2); ?></td>
+                <td><?php echo $note_etudiant; ?></td>
                 <td>A</td>
                 <td class="button_show_histo">
-                    <a data-toggle="modal" data-target="#showHisto1">
+                    <a id="histo_moyenne_ge_batons_cursus_<?php echo $cursus->GetId(); ?>">
                         <span class="glyphicon glyphicon-stats icone histo_button"></span>
                     </a>
                 </td>

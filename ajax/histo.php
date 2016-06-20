@@ -1,5 +1,5 @@
 <?php
-
+define("ROOT_ACCESS",true);
 session_start();
 
 include_once __DIR__ . '../../modeles/sqlConnection.php';
@@ -13,13 +13,27 @@ if (!isset($_SESSION['user'])) {
 }
 
 $user = unserialize($_SESSION['user']);
+// On gère le cas où c'est un admin qui visualise un étudiant
+if(isset($_SESSION['user_vue']) && $user->GetAutorite() != 0) {
+    $user_vue = unserialize($_SESSION['user_vue']);
+    if (isset($user_vue))
+        $etudiant = GetEtudiant($user_vue);
+}
+else
+    $etudiant = GetEtudiant($user);
 
-// TODO : faire un tri dans le dossier ajax et le mettre dans le controlleur
+// TODO : faire un tri dans le dossier ajax et le mettre dans le controleur
+$cursus = $etudiant->GetCursus();
+$idEtudiant = $etudiant->GetId();
+
+if(!isset($cursus))
+    die();
 
 include_once __DIR__ . '../../controleurs/tab_request.php';
 include_once __DIR__ . '../../modeles/etudiantnote/etudiantnote.php';
 
 if(isset($_POST['idCompetence'])) {
+    $idCompetence = $_POST['idCompetence'];
     $credits_competence = GetCreditsFromCompetence($_POST['idCompetence']);
     $coursList = GetCoursListFromCompetence($_POST['idCompetence']);
     if(isset($_POST['type'])) {
@@ -31,13 +45,15 @@ if(isset($_POST['idCompetence'])) {
 }
 
 if(isset($_POST['idCours'])) {
-    $epreuvesList = GetEpreuveListFromCours($_POST['idCours']);
-    $credits_cours = GetCoursById($_POST['idCours'])->GetCredits();
-    $competence = GetCompetenceFromCours($_POST['idCours']);
+    $idCours = $_POST['idCours'];
+    $credits_cours = GetCoursById($idCours)->GetCredits();
+    $epreuvesList = GetEpreuveListFromCours($idCours);
+    $competence = GetCompetenceFromCours($idCours);
     if (isset($_POST['type'])) {
         if ($_POST['type'] == "histo_cours_hor")
             include_once __DIR__ . '../../vues/ajax/navigation/histo_epreuves_bloc.php';
-        if ($_POST['type'] == "histo_cours_vert")
+        if ($_POST['type'] == "histo_cours_vert") {
             include_once __DIR__ . '../../vues/ajax/navigation/histo_commun_epreuves.php';
+        }
     }
 }

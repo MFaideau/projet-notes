@@ -1,9 +1,4 @@
-<?php
-/**
- * @Auteur : Joël Guillem
- * @Description : Fichier de vue pour la page menu visible après la connexion
- */
-?>
+<?php defined("ROOT_ACCESS") or die(); ?>
 <!DOCTYPE html>
 <html>
 <head>

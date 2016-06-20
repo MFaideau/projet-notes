@@ -1,5 +1,5 @@
 <?php
-
+defined("ROOT_ACCESS") or die();
 include_once (__DIR__ . '../../modeles/sqlConnection.php');
 include_once('modeles/sqlConnection.php');
 include_once ('./modeles/authentification/utilisateur.class.php');
@@ -9,12 +9,11 @@ if (!isset($_SESSION['user'])) {
     die(); }
 else {
     $user = unserialize($_SESSION['user']);
-
+    $cursus = GetEtudiant($user)->GetCursus();
     include_once __DIR__ . '../../controleurs/tab_request.php';
     include_once(__DIR__ . '../../vues/menu.php');
     include_once(__DIR__ . '../../vues/menu_rapide.php');
 
-    $cursus = GetEtudiant($user)->GetCursus();
     if (isset($cursus)) {
         $competenceList = GetCompetenceListFromCursus($cursus->GetId());
         include_once(__DIR__ . '../../vues/ajax/tableaux_bloc.php');

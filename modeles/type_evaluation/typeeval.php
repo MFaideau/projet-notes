@@ -32,9 +32,21 @@ function GetEpreuveListFromTypeEval($typeEvalId){
     }
     return $list;
 }
+
 function InsertTypeEval($nom,$coef,$idEval)
 {
     global $bdd;
+    $reqSum = $bdd->prepare('SELECT Coef_Type_Eval FROM type_eval WHERE ID_Eval=:idEval');
+    $reqSum->execute(array(
+        'idEval' => $idEval,
+    ));
+    $sommeCoef =$coef;
+    foreach($reqSum->fetchAll() as $coefDb){
+        $sommeCoef+=$coefDb[0];
+    }
+    if ($sommeCoef > 1){
+        return;
+    }
     $req = $bdd->prepare('INSERT INTO type_eval (Nom_Type,Coef_Type_Eval,ID_Eval) VALUES (:nom,:coef,:idEval)');
     $req->execute(array(
         'nom' => $nom,

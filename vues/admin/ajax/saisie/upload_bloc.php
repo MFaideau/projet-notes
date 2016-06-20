@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <div class="panel_upload_epreuve">
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Importation de la liste de notes</div>

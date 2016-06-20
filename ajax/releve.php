@@ -1,5 +1,5 @@
 <?php
-
+define("ROOT_ACCESS",true);
 session_start();
 
 // On fait les vérifications nécessaires pour protéger le panneau admin des requêtes AJAX
@@ -15,10 +15,19 @@ include_once __DIR__ . '../../modeles/type_evaluation/typeeval.php';
 $user = unserialize($_SESSION['user']);
 include_once __DIR__ . '../../controleurs/tab_request.php';
 
-if(isset($_POST['idCompetence'])) {
-    $credits_competence = GetCreditsFromCompetence($_POST['idCompetence']);
-    $coursList = GetCoursListFromCompetence($_POST['idCompetence']);
+// On gère le cas où c'est un admin qui visualise un étudiant
+if(isset($_SESSION['user_vue'])) {
+    $user_vue = unserialize($_SESSION['user_vue']);
+    if (isset($user_vue))
+        $idEtudiant = GetEtudiant($user_vue)->GetId();
+}
+else
     $idEtudiant = GetEtudiant($user)->GetId();
+
+if(isset($_POST['idCompetence'])) {
+    $idCompetence = $_POST['idCompetence'];
+    $credits_competence = GetCreditsFromCompetence($idCompetence);
+    $coursList = GetCoursListFromCompetence($idCompetence);
     include_once __DIR__ . '../../vues/ajax/navigation/tableaux_cours_bloc.php';
 }
 

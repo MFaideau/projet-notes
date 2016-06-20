@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <div class="panel_cours">
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix du Cours</div>

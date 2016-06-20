@@ -1,4 +1,5 @@
-<?php global $listEleves;
+<?php defined("ROOT_ACCESS") or die();
+global $listEleves;
 global $autorite; ?>
 <div class="panel_listing">
     <table class="table" data-toggle="table" data-sort-name="nom" data-sort-order="asc">
@@ -12,14 +13,16 @@ global $autorite; ?>
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($listEleves as $eleve) { ?>
-            <tr>
-                <?php if($autorite == 1) { ?>
-                <td><a href="#deleteEtudiant"><span class="glyphicon glyphicon-minus-sign icone"></span></a><?php } ?></td>
+        <?php foreach ($listEleves as $eleve) { $etudiant = GetEtudiant($eleve);
+            if(isset($etudiant)) { ?>
+            <tr id="etudiant_tr_<?php echo $eleve->GetMail(); ?>">
+                <?php
+                if($autorite == 1) { ?>
+                <td><a class="link" data-toggle="modal" data-target="#deleteEtudiant" id="deleteEtudiant_<?php echo $eleve->GetMail(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a></td><?php } ?>
                 <td><a data-name="nom" data-value="<?php echo $eleve->GetNom() . $eleve->GetPrenom(); ?>"href="visualisation_eleve.php?id=<?php echo $eleve->GetMail(); ?>"><?php echo $eleve->GetNom() . ' ' . $eleve->GetPrenom(); ?></a></td>
-                <td><?php echo rand(0, 20); ?></td>
+                <td><?php echo round(GetMoyenneFromCursus($etudiant->GetCursus()->GetId(), $etudiant->GetId()),2); ?></td>
             </tr>
-        <?php } ?>
+        <?php } } ?>
         </tbody>
         <tfoot>
         <?php if ($autorite == 1) { ?>

@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <!-- Page de données !-->
 
 <div class="row donnees donnees_tableaux_cours">
@@ -18,8 +19,10 @@
                 <tbody>
                 <?php foreach ($coursList as $cours) { ?>
                     <tr>
-                        <td scope="row"><a class="lien_tableau"
-                                           id="releve_cours_<?php echo $cours->GetId(); ?>"><b><?php echo $cours->GetNom(); ?></b></a>
+                        <td scope="row">
+                            <a class="lien_tableau" id="releve_cours_<?php echo $cours->GetId(); ?>">
+                                <b><?php echo $cours->GetNom(); ?></b>
+                            </a>
                         </td>
                         <td><?php
                             $moyenne = GetMoyenneFromCours($cours->GetId(), $idEtudiant);
@@ -38,10 +41,10 @@
                     ?>
                     <tfoot>
                     <tr>
-                        <td><b>Total</b></td>
+                        <td><b>Moyenne Générale</b></td>
                         <td><b>
                             <?php
-                            $note_etudiant = round(GetMoyenneFromCompetence(GetCompetenceFromCours($cours->GetId())->GetId(), GetEtudiant($user)->GetId()),2);
+                            $note_etudiant = round(GetMoyenneFromCompetence($idCompetence, $idEtudiant),2);
                             echo $note_etudiant;
                             ?>
                             </b></td>

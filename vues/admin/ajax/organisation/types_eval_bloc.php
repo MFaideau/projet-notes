@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <div class="panel_type_eval">
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix du Type d'Evaluation

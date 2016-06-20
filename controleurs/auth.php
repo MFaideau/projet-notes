@@ -3,7 +3,7 @@
  * @Auteur : Baudouin Landais
  * @Desc : Système de connexion avec Google
  */
-
+defined("ROOT_ACCESS") or die();
 session_start();
 
 include_once('./modeles/authentification/authentification.php');

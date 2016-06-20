@@ -34,9 +34,21 @@ WHERE type_eval.ID_Eval=:idEval');
     }
     return $list;
 }
+
 function InsertEvaluation($nom,$coef,$idCours)
 {
     global $bdd;
+    $reqSum = $bdd->prepare('SELECT Coef_Eval FROM evaluation WHERE ID_Cours=:idCours');
+    $reqSum->execute(array(
+        'idCours' => $idCours,
+    ));
+    $sommeCoef =$coef;
+    foreach($reqSum->fetchAll() as $coefDb){
+        $sommeCoef+=$coefDb[0];
+    }
+    if ($sommeCoef > 1){
+        return;
+    }
     $req = $bdd->prepare('INSERT INTO evaluation (Nom_Eval,Coef_Eval,ID_Cours) VALUES (:nom,:coef,:idCours)');
     $req->execute(array(
         'nom' => $nom,
