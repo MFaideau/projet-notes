@@ -105,6 +105,7 @@ function GetGradeFromEpreuve($idEpreuve, $idEtudiant) {
         }
 
         // Attribution du grade selon sa moyenne
+        if ($moyenneEpreuve < 0) return "-";
         if ($moyenneEpreuve < 8) return "F";
         elseif (($moyenneEpreuve < 10) && ($moyenneEpreuve >= 8)) return "Fx";
         else {
@@ -134,6 +135,7 @@ function GetGradeFromCours($idCours, $idEtudiant) {
         }
 
         // Attribution du grade selon sa moyenne
+        if ($moyenneCours < 0) return "-";
         if ($moyenneCours < 8) return "F";
         elseif (($moyenneCours < 10) && ($moyenneCours >= 8)) return "Fx";
         else {
@@ -163,6 +165,7 @@ function GetGradeFromCompetence($idCompetence, $idEtudiant) {
         }
 
         // Attribution du grade selon sa moyenne
+        if ($moyenneCompetence < 0) return "-";
         if ($moyenneCompetence < 8) return "F";
         elseif (($moyenneCompetence < 10) && ($moyenneCompetence >= 8)) return "Fx";
         else {
@@ -192,6 +195,7 @@ function GetGradeFromCursus($idCursus, $idEtudiant) {
         }
 
         // Attribution du grade selon sa moyenne
+        if ($moyenneCursus < 0) return "-";
         if ($moyenneCursus < 8) return "F";
         elseif (($moyenneCursus < 10) && ($moyenneCursus >= 8)) return "Fx";
         else {
