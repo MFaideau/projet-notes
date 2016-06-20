@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 10 Juin 2016 à 08:17
+-- Généré le :  Lun 20 Juin 2016 à 14:35
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -84,6 +84,16 @@ CREATE TABLE IF NOT EXISTS `consultation` (
   `Nombre_Vues_Etudiant` int(5) NOT NULL,
   PRIMARY KEY (`ID_Etudiant`,`Mail_Consultant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `consultation`
+--
+
+INSERT INTO `consultation` (`ID_Etudiant`, `Mail_Consultant`, `Nombre_Vues_Etudiant`) VALUES
+(1291167, 'maxence.faideau@isen-lille.fr', 12),
+(1292315, 'maxence.faideau@isen-lille.fr', 4),
+(1292336, 'maxence.faideau@isen-lille.fr', 3),
+(1292562, 'maxence.faideau@isen-lille.fr', 14);
 
 -- --------------------------------------------------------
 
@@ -209,14 +219,22 @@ CREATE TABLE IF NOT EXISTS `epreuve` (
   `Evaluateur_Epreuve` varchar(255) NOT NULL,
   PRIMARY KEY (`ID_Epreuve`),
   KEY `ID_Type` (`ID_Type`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `epreuve`
 --
 
 INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `ID_Epreuve_Session2`, `ID_Epreuve_Substitution`, `Nom_Epreuve`, `Coef_Epreuve`, `Date_Epreuve`, `Evaluateur_Epreuve`) VALUES
-(19, 46, 0, 0, 'rrééééé', 3, '2016-06-14', 'Monsieur Carette');
+(20, 53, 0, 0, 'Evaluation de TP de Langage C', 1, '2015-09-16', ''),
+(21, 54, 0, 0, 'Evaluation de Projet', 1, '2016-02-02', ''),
+(22, 23, 0, 0, 'Devoir Surveillé d''informatique', 0.5, '2015-11-17', ''),
+(23, 43, 24, 0, 'Partiel d''informatique', 1, '2015-12-16', ''),
+(24, 43, 0, 0, '2ème session d''informatique', 1, '2016-02-25', ''),
+(25, 55, 0, 0, 'TP de Bases de Données/Réseaux', 1, '2016-02-28', ''),
+(26, 44, 0, 0, '2ème session d''informatique - Base de données et réseaux', 0.5, '2016-05-11', ''),
+(27, 44, 26, 0, 'Partiel d''informatique - Base de données et réseaux', 0.5, '2016-05-11', ''),
+(28, 24, 0, 27, 'Devoir surveillé d''informatique - Base de données et réseaux', 1, '2016-03-22', '');
 
 -- --------------------------------------------------------
 
@@ -237,11 +255,10 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
 --
 
 INSERT INTO `etudiant` (`ID_Etudiant`, `ID_Cursus`, `Mail`) VALUES
-('121341411', 2, 'chicken'),
-('p59051', 1, 'maxence.faideau@isen-lille.fr'),
-('p59060', 1, 'antoine.goelzer@isen-lille.fr'),
-('p59062', 1, 'joel.guillem@isen-lille.fr'),
-('p59080', 1, 'baudouin.landais@isen-lille.fr');
+('1291167', 1, 'antoine.goelzer@isen-lille.fr'),
+('1292315', 1, 'baudouin.landais@isen-lille.fr'),
+('1292336', 1, 'joel.guillem@isen-lille.fr'),
+('1292562', 1, 'maxence.faideau@isen-lille.fr');
 
 -- --------------------------------------------------------
 
@@ -259,6 +276,42 @@ CREATE TABLE IF NOT EXISTS `etudiantnote` (
   PRIMARY KEY (`ID_Epreuve`,`ID_Etudiant`),
   KEY `ID_Epreuve` (`ID_Epreuve`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `etudiantnote`
+--
+
+INSERT INTO `etudiantnote` (`ID_Epreuve`, `ID_Etudiant`, `Note_Finale`, `Note_Prevue`, `Absence_Epreuve`) VALUES
+(20, 1291167, 18.11, -1, 0),
+(20, 1292315, 16.33, -1, 0),
+(20, 1292336, 18.11, -1, 0),
+(20, 1292562, 17.34, -1, 0),
+(21, 1291167, 18.5, -1, 0),
+(21, 1292315, 15, -1, 0),
+(21, 1292336, 18.5, -1, 0),
+(21, 1292562, 18.5, -1, 0),
+(22, 1291167, 14.25, -1, 0),
+(22, 1292315, 9.5, -1, 0),
+(22, 1292336, 4.75, -1, 0),
+(22, 1292562, 7, -1, 0),
+(23, 1291167, 18.5, -1, 0),
+(23, 1292315, 17.5, -1, 0),
+(23, 1292336, 11, -1, 0),
+(23, 1292562, 9.5, -1, 0),
+(24, 1292336, 14.5, -1, 0),
+(24, 1292562, 9, -1, 0),
+(25, 1291167, 20, -1, 0),
+(25, 1292315, 19, -1, 0),
+(25, 1292336, 18, -1, 0),
+(25, 1292562, 15, -1, 0),
+(27, 1291167, 14, -1, 0),
+(27, 1292315, 10.4, -1, 0),
+(27, 1292336, 6.7, -1, 0),
+(27, 1292562, 0, -1, 1),
+(28, 1291167, 7.8, -1, 0),
+(28, 1292315, 14.1, -1, 0),
+(28, 1292336, 6.2, -1, 0),
+(28, 1292562, 12.9, -1, 0);
 
 -- --------------------------------------------------------
 

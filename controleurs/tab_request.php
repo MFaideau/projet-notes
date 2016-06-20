@@ -121,8 +121,8 @@ function GetNotePonderee($note, $coefficient) {
 }
 
 function GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant) {
-    $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve);
-    $etudiantNoteRattrapage = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuveRattrapage);
+    $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
+    $etudiantNoteRattrapage = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuveRattrapage->GetId());
     if (isset($etudiantNote)) {
         if (isset($etudiantNoteRattrapage)) {
             $note = $etudiantNote->GetNoteFinale();
