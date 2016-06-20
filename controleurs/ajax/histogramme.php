@@ -3,8 +3,6 @@
 // Les fonctions utilisées pour le calcul des moyennes se trouve dans ce fichier.
 include_once (__DIR__ . '../../../controleurs/tab_request.php');
 
-// TODO : Adapter pour chaque compétence
-
 if (isset($_POST['action']) && isset($_POST['idComp'])) {
     if ($_POST['action'] == "getHistoComp") {
         $idCompetence = $_POST['idComp'];

@@ -12,14 +12,15 @@ global $autorite; ?>
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($listEleves as $eleve) { ?>
+        <?php foreach ($listEleves as $eleve) { $etudiant = GetEtudiant($eleve);
+            if(isset($etudiant)) { ?>
             <tr>
                 <?php if($autorite == 1) { ?>
                 <td><a href="#deleteEtudiant"><span class="glyphicon glyphicon-minus-sign icone"></span></a><?php } ?></td>
                 <td><a data-name="nom" data-value="<?php echo $eleve->GetNom() . $eleve->GetPrenom(); ?>"href="visualisation_eleve.php?id=<?php echo $eleve->GetMail(); ?>"><?php echo $eleve->GetNom() . ' ' . $eleve->GetPrenom(); ?></a></td>
-                <td><?php echo rand(0, 20); ?></td>
+                <td><?php echo round(GetMoyenneFromCursus($etudiant->GetCursus()->GetId(), $etudiant->GetId()),2); ?></td>
             </tr>
-        <?php } ?>
+        <?php } } ?>
         </tbody>
         <tfoot>
         <?php if ($autorite == 1) { ?>

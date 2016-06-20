@@ -3,6 +3,7 @@
  * @Auteur : Baudouin Landais
  * @Description : Permet de récuperer le fichier de notes avec l'épreuve correspondante.
  */
+define("ROOT_ACCESS",true);
 session_start();
 // Si le compte n'est pas connecté, on le redirige vers la page d'accueil
 if(!isset($_SESSION['user'])) {

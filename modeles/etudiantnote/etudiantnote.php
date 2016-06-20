@@ -80,7 +80,7 @@ WHERE ID_Epreuve = :idEpreuve AND ID_Etudiant = :idEtudiant');
         $req->execute(array(
             'idEpreuve' => $idEpreuve,
             'idEtudiant' => $idEtudiant,
-            'noteFinale' => 0,
+            'noteFinale' => -1,
             'notePrevue' => $notePrevue,
             'absence' => 0,
         ));
@@ -92,7 +92,7 @@ VALUES (:idEpreuve,:idEtudiant,:noteFinale,:notePrevue,:absenceEpreuve)');
         $req->execute(array(
             'idEpreuve' => $idEpreuve,
             'idEtudiant' => $idEtudiant,
-            'noteFinale' => 0,
+            'noteFinale' => -1,
             'notePrevue' =>  $notePrevue,
             'absenceEpreuve' => 0,
         ));

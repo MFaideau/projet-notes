@@ -1,5 +1,5 @@
 <?php
-
+define("ROOT_ACCESS",true);
 session_start();
 
 include_once __DIR__ . '../../modeles/sqlConnection.php';

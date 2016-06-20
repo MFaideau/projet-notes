@@ -3,6 +3,7 @@
  * @Auteur: Baudouin LANDAIS
  * @Description: vue élève
  **/
+define("ROOT_ACCESS",true);
 session_start();
 
 if(!isset($_SESSION['user'])) {

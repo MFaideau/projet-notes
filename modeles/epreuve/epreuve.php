@@ -22,10 +22,20 @@ function GetEpreuveFromId($epreuveId){
         return null;
     }
 }
-
 function InsertEpreuve($nom,$coef,$dateEpreuve,$evaluateur,$idEpreuveSubstitution,$idSecondeSession,$idTypeEval)
 {
     global $bdd;
+    $reqSum = $bdd->prepare('SELECT Coef_Epreuve FROM epreuve WHERE ID_Type=:idType');
+    $reqSum->execute(array(
+        'idType' => $idTypeEval,
+    ));
+    $sommeCoef =$coef;
+    foreach($reqSum->fetchAll() as $coefDb){
+        $sommeCoef+=$coefDb[0];
+    }
+    if ($sommeCoef > 1){
+        return;
+    }
     $req = $bdd->prepare('INSERT INTO epreuve (Nom_Epreuve,Coef_Epreuve,Date_Epreuve,Evaluateur_Epreuve,ID_Type,ID_Epreuve_Substitution,ID_Epreuve_Session2) 
 VALUES (:nom,:coef,:dateEpreuve,:evaluateur,:idType,:idEpreuveSubstitution,:idSession2)');
     $req->execute(array(
@@ -42,7 +52,6 @@ VALUES (:nom,:coef,:dateEpreuve,:evaluateur,:idType,:idEpreuveSubstitution,:idSe
     $lastEpreuveID= $req->fetch();
     return $lastEpreuveID[0];
 }
-
 
 function DeleteEpreuve($id)
 {

@@ -18,13 +18,13 @@
             <tbody>
             <?php
             foreach ($epreuvesList as $epreuve) {
-                $etudiantnote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId()); ?>
+                $idEpreuve = $epreuve->GetId();
+                $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuve); ?>
             <tr>
                 <td scope="row"><a class="lien_tableau"><b><?php echo $epreuve->GetNom(); ?></b></a></td>
                 <td width="50%">
                     <?php
-                    $idEpreuve = $epreuve->GetId();
-                    $note_etudiant = round(GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuve)->GetNoteFinale(),2);
+                    $note_etudiant = round($etudiantNote->GetNoteFinale(),2);
                     $tab_histo = GetStat(GetTabNotesEtudiantsFromEpreuve($idEpreuve));
                     $moyenne = $tab_histo[0];
                     $ecart_type = $tab_histo[1];
@@ -37,8 +37,8 @@
                 <td><?php echo $min; ?></td>
                 <td><?php echo $max; ?></td>
                 <td><?php
-                    if (!empty($etudiantnote)) {
-                        $note_etudiant = $etudiantnote->GetNoteFinale();
+                    if (!empty($etudiantNote)) {
+                        $note_etudiant = $etudiantNote->GetNoteFinale();
                         echo $note_etudiant;
                     }
                     else {

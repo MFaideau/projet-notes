@@ -25,7 +25,7 @@
                 <td>
                     <?php
                     $idCompetence = $competence->GetId();
-                    $note_etudiant = round(GetMoyenneFromCompetence($idCompetence, GetEtudiant($user)->GetId()),2);
+                    $note_etudiant = round(GetMoyenneFromCompetence($idCompetence, $idEtudiant),2);
                     $tab_histo = GetStat(GetTabNotesEtudiantsFromCompetence($idCompetence));
                     $min = round($tab_histo[2],2);
                     $max = round($tab_histo[3],2);
@@ -49,7 +49,7 @@
                 <td><?php echo $cursus->GetCredits(); ?></td>
                 <td>
                     <?php
-                    $note_etudiant = round(GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), GetEtudiant($user)->GetId()),2);
+                    $note_etudiant = round(GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), $idEtudiant),2);
                     $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCursus(GetEtudiant($user)->GetCursus()->GetId()));
                     $min = round($tab_histo_total[2],2);
                     $max = round($tab_histo_total[3],2);

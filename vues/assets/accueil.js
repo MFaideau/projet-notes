@@ -12,10 +12,8 @@ $('.tableaux_logo').click(function () {
             $(".donnees_histo").remove();
             $(".donnees_histo_cours").remove();
             $(".donnees_histo_epreuves").remove();
-            $(".donnees_tableaux").remove();
             $(".absences").remove();
             $(".panel_choix_eleves").remove();
-            $(".donnees_tableaux_cours").remove();
             $(".donnees_histo_com_cours").remove();
             $(".donnees_histo_com_epreuves").remove();
             $(result).insertAfter($(".visualisation").parent());
@@ -40,8 +38,6 @@ $('.histo_logo').click(function () {
             $(".donnees_histo_epreuves").remove();
             $(".absences").remove();
             $(".panel_choix_eleves").remove();
-            $(".donnees_histo_cours").remove();
-            $(".donnees_histo_epreuves").remove();
             $(".donnees_histo_com_cours").remove();
             $(".donnees_histo_com_epreuves").remove();
             $(result).insertAfter($(".visualisation").parent());
@@ -92,22 +88,6 @@ $('.abs').click(function () {
             $(result).insertAfter($(".visualisation").parent());
             jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
             loadAbsenceChart();
-        }
-    });
-});
-
-
-//// =================== PARTIE SIMULATION ==============================
-
-$('.simulationmanuelle').click(function () {
-    $.ajax({
-        url: './simulation.php',
-        type: 'GET',
-        datatype: 'html',
-        success: function (result) {
-            $(".menu").remove();
-            $(".navbar").remove();
-            $(result).insertAfter($(".visualisation").parent());
         }
     });
 });
