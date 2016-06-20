@@ -54,6 +54,25 @@ $(function () {
     });
 });
 
+$(function () {
+    $('#deleteEtudiantForm').on("submit", function (e) {
+        e.preventDefault();
+        $("#deleteEtudiant").modal("hide");
+        $.ajax({
+            url: './ajax/visualisation_eleves.php',
+            type: 'POST',
+            datatype: 'html',
+            data: 'action=add&idEtudiant='+ $("#idEtudiant").val(),
+            success: function (result) {
+                $("button[id=eleves_cursus_" + $("#id_cursus_add_etudiant").val() + "]").trigger("click");
+            },
+            error: function (result) {
+                alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
+            }
+        });
+    });
+});
+
 $(document).on("click", "a[id=linkVueEleve]", function (e) {
     document.getElementById("panelChoixEleves").style.display="initial";
 });

@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <!-- Histogramme de données !-->
 
 <div class="row donnees donnees_histo_cours">

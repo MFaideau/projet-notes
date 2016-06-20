@@ -1,4 +1,4 @@
-
+<?php defined("ROOT_ACCESS") or die(); ?>
 <!-- Modification d'un cursus !-->
 <div class="modal fade" id="modifyCursus" tabindex="-1" role="dialog" aria-labelledby="modifyCursus">
     <div class="modal-dialog" role="document">
