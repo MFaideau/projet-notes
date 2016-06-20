@@ -66,10 +66,18 @@ function changeNotes(resultat) {
     for(var k in changes) {
         var note = changes[k];
         if(note.type == "competence") {
-            $("a[id=simu_comp_id_" + note.id + "]").parent().parent().find($("td"))[2].innerHTML = "<b>" + note.value + "</b>";
+            var competenceBloc = $("a[id=simu_comp_id_" + note.id + "]").parent().parent().find($("td"))[2];
+            if(note.value == -1)
+                competenceBloc.innerHTML = "<b>-</b>";
+            else
+                competenceBloc.innerHTML = "<b>"+ note.value +"</b>";
         }
         if(note.type == "cours") {
-            $("a[id=simu_cours_" + note.id + "]").parent().parent().find($("td"))[2].innerHTML = "<b>" + note.value + "</b>";
+            var blocCours = $("a[id=simu_cours_" + note.id + "]").parent().parent().find($("td"))[2];
+            if(note.value == -1)
+                blocCours.innerHTML = "<b>-</b>";
+            else
+                blocCours.innerHTML = "<b>" + note.value + "</b>";
         }
         if(note.type == "typeEval") {
             var blocTypeEval = $("a[id=simu_type_eval_" + note.id + "]").parent().parent().find($("td"))[2];
