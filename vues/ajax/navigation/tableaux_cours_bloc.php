@@ -25,7 +25,7 @@
                             </a>
                         </td>
                         <td><?php
-                            $moyenne = GetMoyenneFromCours($idCours, $idEtudiant);
+                            $moyenne = round(GetMoyenneFromCours($idCours, $idEtudiant),2);
                             if ($moyenne == -1)
                                 echo "-";
                             else

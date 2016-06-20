@@ -241,6 +241,7 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant) {
         $absence = $etudiantNote->GetAbsence();
         if ($absence == 1) {
             $idSubstitution = $epreuve->GetIdSubstitution();
+            $idRattrapage = $epreuve->GetIdSecondeSession();
             if ($idSubstitution > 0) {
                 $epreuveSubstitution = GetEpreuveFromId($idSubstitution);
                 $etudiantNoteSubstitution = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idSubstitution);
@@ -252,20 +253,35 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant) {
                     $note = 0;
                 }
                 else {
-                    $idRattrapage = $epreuveSubstitution->GetIdSecondeSession();
-                    if ($idRattrapage > 0) {
-                        $epreuveRattrapage = GetEpreuveFromId($idRattrapage);
-                        $note = GetBestNote($epreuveSubstitution, $epreuveRattrapage, $idEtudiant);
+                    $idSubstitutionRattrapage = $epreuveSubstitution->GetIdSecondeSession();
+                    if ($idSubstitutionRattrapage > 0) {
+                        $epreuveSubstitutionRattrapage = GetEpreuveFromId($idSubstitutionRattrapage);
+                        $note = GetBestNote($epreuveSubstitution, $epreuveSubstitutionRattrapage, $idEtudiant);
                     }
                     else $note = $etudiantNoteSubstitution->GetNoteFinale();
                 }
+            }
+            elseif ($idRattrapage > 0) {
+                $epreuveRattrapage = GetEpreuveFromId($idRattrapage);
+                $etudiantNoteRattrapage = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idRattrapage);
+                if(isset($etudiantNoteRattrapage)) {
+                    $absenceRattrapage = $etudiantNoteRattrapage->GetAbsence();
+                    if ($absenceRattrapage == 1) {
+                        $note = GestionAbsenceEpreuve($epreuveRattrapage, $idEtudiant);
+                    } elseif ($absenceRattrapage == 2) {
+                        $note = 0;
+                    } else {
+                        $note = $etudiantNoteRattrapage->GetNoteFinale();
+                    }
+                }
+                else $note = -1;
             }
             else $note = -1;
         }
         elseif ($absence == 2) {
             $note = 0;
         }
-        else {
+        elseif ($absence == 0) {
             $idRattrapage = $epreuve->GetIdSecondeSession();
             if ($idRattrapage > 0) {
                 $epreuveRattrapage = GetEpreuveFromId($idRattrapage);
