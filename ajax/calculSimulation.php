@@ -1,5 +1,5 @@
 <?php
-
+define("ROOT_ACCESS",true);
 session_start();
 
 include_once __DIR__ . '../../modeles/sqlConnection.php';
@@ -13,7 +13,7 @@ if (!isset($_SESSION['user'])) {
 }
 
 $user = unserialize($_SESSION['user']);
-
+$idEtudiant = GetEtudiant($user)->GetId();
 include_once __DIR__ . '../../controleurs/tab_request.php';
 
 if (isset($_POST['action']) && isset($_POST['idEpreuve']) && isset($_POST['noteSimulee'])) {
