@@ -81,15 +81,25 @@
                                             $note = $etudiantNote->GetNoteFinale();
                                             if ($note != "-1") {
                                                 echo $note;
-                                            } else {
+                                            }
+                                            else {
                                                 // Si l'étudiant n'a pas de note, on lui crée un champ
                                                 ?>
                                                 <input type="number" min="0" max="20"
                                                        name="note_epreuve_<?php echo $epreuve->GetId(); ?>"
-                                                        value="<?php echo $etudiantNote->GetNotePrevue(); ?>"
+                                                       value="<?php echo $etudiantNote->GetNotePrevue(); ?>"
                                                 />
                                                 <?php
                                             }
+                                        }
+                                        else {
+                                            // Si l'étudiant n'a pas de note, on lui crée un champ
+                                            ?>
+                                            <input type="number" min="0" max="20"
+                                                   name="note_epreuve_<?php echo $epreuve->GetId(); ?>"
+                                                   value=""
+                                            />
+                                            <?php
                                         }
                                         ?>
                                     </td>
