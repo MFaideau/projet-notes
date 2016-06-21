@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <!-- Page de données !-->
 <div class="row donnees donnees_tableaux">
     <div class="panel panel-default">
@@ -13,21 +14,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($competenceList as $competence) { ?>
+                <?php foreach ($competenceList as $competence) {
+                    $idCompetence = $competence->GetId();?>
                     <tr>
                         <td class="lien_tableau" scope="row">
-                            <a class="lien_tableau" id="releve_comp_<?php echo $competence->GetId(); ?>">
+                            <a class="lien_tableau" id="releve_comp_<?php echo $idCompetence; ?>">
                                 <b><?php echo $competence->GetNom(); ?></b>
                             </a>
                         </td>
                         <td>
                             <?php
-                            $note_etudiant = round(GetMoyenneFromCompetence($competence->GetId(), $idEtudiant), 2);
+                            $note_etudiant = round(GetMoyenneFromCompetence($idCompetence, $idEtudiant), 2);
                             echo TestValidite($note_etudiant);
                             ?>
                         </td>
                         <td><?php echo $competence->GetCredits(); ?></td>
-                        <td>A</td>
+                        <td><?php echo GetGradeFromCompetence($idCompetence, $idEtudiant); ?></td>
                     </tr>
                 <?php } ?>
                 </tbody>
@@ -39,12 +41,13 @@
                         <td><b>Moyenne Générale</b></td>
                         <td><b>
                             <?php
-                            $note_etudiant = round(GetMoyenneFromCursus(GetEtudiant($user)->GetCursus()->GetId(), $idEtudiant), 2);
+                            $idCursus = $cursus->GetId();
+                            $note_etudiant = round(GetMoyenneFromCursus($idCursus, $idEtudiant), 2);
                             echo TestValidite($note_etudiant);
                             ?>
                             </b></td>
                         <td><b><?php echo $cursus->GetCredits(); ?></b></td>
-                        <td><b>A</b></td>
+                        <td><b><?php echo GetGradeFromCursus($idCursus, $idEtudiant); ?></b></td>
                     </tr>
                     </tfoot>
                 <?php } ?>

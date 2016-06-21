@@ -87,6 +87,96 @@ function AttributionGrade($coefficient) {
     else return "F";
 }
 
+function GetGradeFromEpreuve($idEpreuve, $idEtudiant) {
+    global $listEtudiantsFromCursus;
+    $studentnote = GetTabNotesEtudiantsFromEpreuve($idEpreuve);
+    if (isset($studentnote)) {
+
+        // Tri du tableau de notes et obtention du rang de l'étudiant
+        $size = count($studentnote);
+        $moyenneEpreuve = GetMoyenneFromCursus($idEpreuve, $idEtudiant);
+        $effectifTotal = count($listEtudiantsFromCursus);
+        $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
+        $effectifGrades = $effectifTotal - $effectifNonGrades;
+        $tabNotesOrdonne = arsort($studentnote);
+        $rang = 0;
+        while ($moyenneEpreuve < $tabNotesOrdonne[$rang]) {
+            $rang = $rang + 1; //Calcul du rang
+        }
+
+        // Attribution du grade selon sa moyenne
+        if ($moyenneEpreuve < 0) return "-";
+        if ($moyenneEpreuve < 8) return "F";
+        elseif (($moyenneEpreuve < 10) && ($moyenneEpreuve >= 8)) return "Fx";
+        else {
+            if ($effectifGrades == 1) return "A"; // Si 1 seul étudiant noté
+            $coefficient = $rang / ($effectifGrades - 1);
+            return AttributionGrade($coefficient);
+        }
+    }
+    else return "-"; // Si pas d'étudiants, pas de grade
+}
+
+function GetGradeFromCours($idCours, $idEtudiant) {
+    global $listEtudiantsFromCursus;
+    $studentnote = GetTabNotesEtudiantsFromCours($idCours);
+    if (isset($studentnote)) {
+
+        // Tri du tableau de notes et obtention du rang de l'étudiant
+        $size = count($studentnote);
+        $moyenneCours = GetMoyenneFromCursus($idCours, $idEtudiant);
+        $effectifTotal = count($listEtudiantsFromCursus);
+        $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
+        $effectifGrades = $effectifTotal - $effectifNonGrades;
+        $tabNotesOrdonne = arsort($studentnote);
+        $rang = 0;
+        while ($moyenneCours < $tabNotesOrdonne[$rang]) {
+            $rang = $rang + 1; //Calcul du rang
+        }
+
+        // Attribution du grade selon sa moyenne
+        if ($moyenneCours < 0) return "-";
+        if ($moyenneCours < 8) return "F";
+        elseif (($moyenneCours < 10) && ($moyenneCours >= 8)) return "Fx";
+        else {
+            if ($effectifGrades == 1) return "A"; // Si 1 seul étudiant noté
+            $coefficient = $rang / ($effectifGrades - 1);
+            return AttributionGrade($coefficient);
+        }
+    }
+    else return "-"; // Si pas d'étudiants, pas de grade
+}
+
+function GetGradeFromCompetence($idCompetence, $idEtudiant) {
+    global $listEtudiantsFromCursus;
+    $studentnote = GetTabNotesEtudiantsFromCursus($idCompetence);
+    if (isset($studentnote)) {
+
+        // Tri du tableau de notes et obtention du rang de l'étudiant
+        $size = count($studentnote);
+        $moyenneCompetence = GetMoyenneFromCursus($idCompetence, $idEtudiant);
+        $effectifTotal = count($listEtudiantsFromCursus);
+        $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
+        $effectifGrades = $effectifTotal - $effectifNonGrades;
+        $tabNotesOrdonne = arsort($studentnote);
+        $rang = 0;
+        while ($moyenneCompetence < $tabNotesOrdonne[$rang]) {
+            $rang = $rang + 1; //Calcul du rang
+        }
+
+        // Attribution du grade selon sa moyenne
+        if ($moyenneCompetence < 0) return "-";
+        if ($moyenneCompetence < 8) return "F";
+        elseif (($moyenneCompetence < 10) && ($moyenneCompetence >= 8)) return "Fx";
+        else {
+            if ($effectifGrades == 1) return "A"; // Si 1 seul étudiant noté
+            $coefficient = $rang / ($effectifGrades - 1);
+            return AttributionGrade($coefficient);
+        }
+    }
+    else return "-"; // Si pas d'étudiants, pas de grade
+}
+
 function GetGradeFromCursus($idCursus, $idEtudiant) {
     global $listEtudiantsFromCursus;
     $studentnote = GetTabNotesEtudiantsFromCursus($idCursus);
@@ -105,6 +195,7 @@ function GetGradeFromCursus($idCursus, $idEtudiant) {
         }
 
         // Attribution du grade selon sa moyenne
+        if ($moyenneCursus < 0) return "-";
         if ($moyenneCursus < 8) return "F";
         elseif (($moyenneCursus < 10) && ($moyenneCursus >= 8)) return "Fx";
         else {
@@ -132,8 +223,10 @@ function GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant) {
             }
             else return $noteRattrapage;
         }
-        $note = $etudiantNote->GetNoteFinale();
-        return $note;
+        else {
+            $note = $etudiantNote->GetNoteFinale();
+            return $note;
+        }
     }
     elseif (isset($etudiantNoteRattrapage)) {
         $noteRattrapage = $etudiantNoteRattrapage->GetNoteFinale();
@@ -148,31 +241,47 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant) {
         $absence = $etudiantNote->GetAbsence();
         if ($absence == 1) {
             $idSubstitution = $epreuve->GetIdSubstitution();
+            $idRattrapage = $epreuve->GetIdSecondeSession();
             if ($idSubstitution > 0) {
                 $epreuveSubstitution = GetEpreuveFromId($idSubstitution);
                 $etudiantNoteSubstitution = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idSubstitution);
-                $absenceSubstitution = $etudiantNoteSubstitution->GetAbsence();
-                if ($absenceSubstitution == 1) {
-                    $note = GestionAbsenceEpreuve($epreuveSubstitution, $idEtudiant);
-                }
-                elseif ($absenceSubstitution == 2) {
-                    $note = 0;
-                }
-                else {
-                    $idRattrapage = $epreuveSubstitution->GetIdSecondeSession();
-                    if ($idRattrapage > 0) {
-                        $epreuveRattrapage = GetEpreuveFromId($idRattrapage);
-                        $note = GetBestNote($epreuveSubstitution, $epreuveRattrapage, $idEtudiant);
+                if (isset($etudiantNoteSubstitution)) {
+                    $absenceSubstitution = $etudiantNoteSubstitution->GetAbsence();
+                    if ($absenceSubstitution == 1) {
+                        $note = GestionAbsenceEpreuve($epreuveSubstitution, $idEtudiant);
+                    } elseif ($absenceSubstitution == 2) {
+                        $note = 0;
+                    } else {
+                        $idSubstitutionRattrapage = $epreuveSubstitution->GetIdSecondeSession();
+                        if ($idSubstitutionRattrapage > 0) {
+                            $epreuveSubstitutionRattrapage = GetEpreuveFromId($idSubstitutionRattrapage);
+                            $note = GetBestNote($epreuveSubstitution, $epreuveSubstitutionRattrapage, $idEtudiant);
+                        } else $note = $etudiantNoteSubstitution->GetNoteFinale();
                     }
-                    else $note = $etudiantNoteSubstitution->GetNoteFinale();
                 }
+                else $note = -1;
+            }
+            elseif ($idRattrapage > 0) {
+                $epreuveRattrapage = GetEpreuveFromId($idRattrapage);
+                $etudiantNoteRattrapage = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idRattrapage);
+                if(isset($etudiantNoteRattrapage)) {
+                    $absenceRattrapage = $etudiantNoteRattrapage->GetAbsence();
+                    if ($absenceRattrapage == 1) {
+                        $note = GestionAbsenceEpreuve($epreuveRattrapage, $idEtudiant);
+                    } elseif ($absenceRattrapage == 2) {
+                        $note = 0;
+                    } else {
+                        $note = $etudiantNoteRattrapage->GetNoteFinale();
+                    }
+                }
+                else $note = -1;
             }
             else $note = -1;
         }
         elseif ($absence == 2) {
             $note = 0;
         }
-        else {
+        elseif ($absence == 0) {
             $idRattrapage = $epreuve->GetIdSecondeSession();
             if ($idRattrapage > 0) {
                 $epreuveRattrapage = GetEpreuveFromId($idRattrapage);

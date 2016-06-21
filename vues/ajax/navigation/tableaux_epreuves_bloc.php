@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <!-- Page de données !-->
 
 <div class="row donnees donnees_tableaux_epreuves">
@@ -18,10 +19,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($epreuvesList as $epreuve) { 
-                    $etudiantnote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId()); ?>
+                <?php foreach ($epreuvesList as $epreuve) {
+                    $idEpreuve = $epreuve->GetId();
+                    $etudiantnote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuve); ?>
                     <tr>
-                        <td id="releve_epreuve_<?php echo $epreuve->GetId(); ?>"><b><?php echo $epreuve->GetNom(); ?></b></td>
+                        <td id="releve_epreuve_<?php echo $idEpreuve; ?>"><b><?php echo $epreuve->GetNom(); ?></b></td>
                         <td><?php
                             if (!empty($etudiantnote)) {
                                 $note_etudiant = round($etudiantnote->GetNoteFinale(),2);
@@ -32,7 +34,7 @@
                             }?>
                         </td>
                         <td><?php echo $epreuve->GetCoef(); ?></td>
-                        <td>A</td>
+                        <td><?php echo GetGradeFromEpreuve($idEpreuve, $idEtudiant); ?></td>
                     </tr>
                 <?php } ?>
                 </tbody>
@@ -44,16 +46,17 @@
                         <td><b>Moyenne Générale</b></td>
                         <td><b>
                             <?php
-                            $studentNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
+                            $idCours = $cours->GetId();
+                            $studentNote = GetMoyenneFromCours($idCours, $idEtudiant);
                             if (isset($studentNote))
-                                $note_etudiant = round($studentNote->GetNoteFinale(), 2);
+                                $note_etudiant = round($studentNote, 2);
                             else
                                 $note_etudiant = "-";
                             echo $note_etudiant;
                             ?>
                             </b></td>
                         <td><b><?php echo $credits_cours; ?></b></td>
-                        <td><b>A</b></td>
+                        <td><b><?php echo GetGradeFromCours($idCours, $idEtudiant); ?></b></td>
                     </tr>
                     </tfoot>
                 <?php } ?>

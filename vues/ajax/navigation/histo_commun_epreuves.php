@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <!-- Histogramme Promo !-->
 
 <div class="row donnees donnees_histo_com_epreuves">
