@@ -133,4 +133,3 @@ function GetContent() {
     }
     return $str;
 }
-GetContent();
