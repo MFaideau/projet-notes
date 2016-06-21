@@ -307,20 +307,21 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant) {
 
 function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
     $listEpreuves = GetEpreuveListFromTypeEval($idTypeEval);
-    // $listSecondesSessions = GetEpreuveSecondeSessionListFromTypeEval($idTypeEval);
+    $listSecondesSessions = GetEpreuveSecondeSessionListFromTypeEval($idTypeEval);
     $notesEtudiant = array();
     $somme = 0;
     $sommecoef = 0;
     foreach ($listEpreuves as $i => $epreuve) {
-        $coefEpreuve = $epreuve->GetCoef();
-        $note = GestionAbsenceEpreuve($epreuve, $idEtudiant);
-        if ($note == -1) {
-            $i = $i-1;
-        }
-        else {
-            $notesEtudiant[$i] = $note;
-            $somme = $somme + GetNotePonderee($notesEtudiant[$i], $coefEpreuve);
-            $sommecoef = $sommecoef + $coefEpreuve;
+        if(!in_array($epreuve, $listSecondesSessions)) {
+            $coefEpreuve = $epreuve->GetCoef();
+            $note = GestionAbsenceEpreuve($epreuve, $idEtudiant);
+            if ($note == -1) {
+                $i = $i - 1;
+            } else {
+                $notesEtudiant[$i] = $note;
+                $somme = $somme + GetNotePonderee($notesEtudiant[$i], $coefEpreuve);
+                $sommecoef = $sommecoef + $coefEpreuve;
+            }
         }
     }
     if (count($notesEtudiant) == 0) {
