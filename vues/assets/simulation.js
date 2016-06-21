@@ -86,6 +86,13 @@ function changeNotes(resultat) {
             else
                 blocTypeEval.innerHTML = "<b>" + note.value + "</b>";
         }
+        if(note.type == "moyenne") {
+            var blocEpreuve = $("#moyenne_generale")[0];
+            if(note.value == -1)
+                blocEpreuve.innerHTML = "<b>-</b>";
+            else
+                blocEpreuve.innerHTML = "<b>" + note.value + "</b>";
+        }
 
     }
 }

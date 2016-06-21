@@ -116,7 +116,7 @@
                     <tr>
                         <td><strong>Total</strong></td>
                         <td><strong><?php echo $cursus->GetCredits(); ?></strong></td>
-                        <td><strong>
+                        <td id="moyenne_generale"><strong>
                                 <?php
                                 $note_etudiant = round(GetMoyenneFromCursus($cursus->GetId(), $etudiant->GetId(), true), 2);
                                 echo $note_etudiant;

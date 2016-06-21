@@ -85,5 +85,13 @@ function GetNouvellesNotes($etudiant)
         }
     }
 
+    // On refresh la moyenne générale
+    $donnees = array(
+        'type' => 'moyenne',
+        'id' => '',
+        'value' => round(GetMoyenneFromCursus($etudiant->GetCursus()->GetId(), $etudiant->GetId(), true),2)
+    );
+    array_push($finalArray, $donnees);
+
     return $finalArray;
 }
