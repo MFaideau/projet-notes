@@ -52,6 +52,9 @@ $("input[name^=note_epreuve_]").keypress(function(e) {
 });
 
 function setNoteSimulee(idEpreuve, valeurNote) {
+    if (valeurNote > 20 || valeurNote < 0)
+        return;
+
     $.ajax({
         url: './ajax/calculSimulation.php',
         type: 'POST',
