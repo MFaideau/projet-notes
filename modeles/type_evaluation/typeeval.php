@@ -32,6 +32,19 @@ function GetEpreuveListFromTypeEval($typeEvalId){
     }
     return $list;
 }
+function GetEpreuveSecondeSessionListFromTypeEval($typeEvalId){
+    $list =array();
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Epreuve,ID_Epreuve_Substitution,ID_Epreuve_Session2,Nom_Epreuve,Coef_Epreuve,Date_Epreuve,Evaluateur_Epreuve FROM epreuve WHERE epreuve.ID_Type = :idType AND epreuve.ID_Epreuve IN(SELECT ID_Epreuve_Session2 FROM epreuve WHERE epreuve.ID_Epreuve_Session2>0)');
+    $req->bindParam(':idType', $typeEvalId, PDO::PARAM_INT);
+    $req->execute();
+    $epreuveList=$req->fetchAll();
+    foreach($epreuveList as $epreuve)
+    {
+        $list[]=new Epreuve($epreuve);
+    }
+    return $list;
+}
 
 function InsertTypeEval($nom,$coef,$idEval)
 {
@@ -90,4 +103,23 @@ function ModifyTypeEval($idTypeEval,$nom,$coef)
         'id' => $idTypeEval,
     ));
     return;
+}
+
+function GetContentTypeEval($idCursus) {
+    global $bdd;
+    $req = $bdd->prepare('SELECT * FROM cours,competence,evaluation,type_eval WHERE type_eval.ID_Eval=evaluation.ID_Eval AND evaluation.ID_Cours=cours.ID_Cours AND cours.ID_Competence=competence.ID_Competence
+AND competence.ID_Cursus=:idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll();
+    $str="type_eval"."\r\n";
+    $str =$str.count($result)."\r\n";
+    $str=$str."ID_Type;ID_Eval;Nom_Type;Coef_Type_Eval"."\r\n";
+    foreach ($result as $line){
+        $str=$str.$line["ID_Type"].";";
+        $str=$str.$line["ID_Eval"].";";
+        $str=$str.$line["Nom_Type"].";";
+        $str=$str.$line["Coef_Type_Eval"]."\r\n";
+    }
+    return $str;
 }

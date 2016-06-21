@@ -89,3 +89,22 @@ function ModifyEval($idEval,$nom,$coef)
     ));
     return;
 }
+
+function GetContentEval($idCursus) {
+    global $bdd;
+    $req = $bdd->prepare('SELECT * FROM cours,competence,evaluation WHERE evaluation.ID_Cours=cours.ID_Cours AND cours.ID_Competence=competence.ID_Competence
+AND competence.ID_Cursus=:idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll();
+    $str="evaluation"."\r\n";
+    $str =$str.count($result)."\r\n";
+    $str=$str."ID_Eval;ID_Cours;Nom_Eval;Coef_Eval"."\r\n";
+    foreach ($result as $line){
+        $str=$str.$line["ID_Eval"].";";
+        $str=$str.$line["ID_Cours"].";";
+        $str=$str.$line["Nom_Eval"].";";
+        $str=$str.$line["Coef_Eval"]."\r\n";
+    }
+    return $str;
+}

@@ -285,7 +285,18 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant) {
             $idRattrapage = $epreuve->GetIdSecondeSession();
             if ($idRattrapage > 0) {
                 $epreuveRattrapage = GetEpreuveFromId($idRattrapage);
-                $note = GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant);
+                $etudiantNoteRattrapage = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idRattrapage);
+                if(isset($etudiantNoteRattrapage)) {
+                    $absenceRattrapage = $etudiantNoteRattrapage->GetAbsence();
+                    if ($absenceRattrapage == 1) {
+                        $note = $etudiantNote->GetNoteFinale();
+                    } elseif ($absenceRattrapage == 2) {
+                        $note = $etudiantNote->GetNoteFinale();
+                    } else {
+                        $note = GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant);
+                    }
+                }
+                else $note = $etudiantNote->GetNoteFinale();
             }
             else $note = $etudiantNote->GetNoteFinale();
         }
@@ -296,6 +307,7 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant) {
 
 function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
     $listEpreuves = GetEpreuveListFromTypeEval($idTypeEval);
+    // $listSecondesSessions = GetEpreuveSecondeSessionListFromTypeEval($idTypeEval);
     $notesEtudiant = array();
     $somme = 0;
     $sommecoef = 0;
