@@ -94,7 +94,7 @@ function GetGradeFromEpreuve($idEpreuve, $idEtudiant, $isSimulation = false) {
 
         // Tri du tableau de notes et obtention du rang de l'étudiant
         $size = count($studentnote);
-        $moyenneEpreuve = GetMoyenneFromCursus($idEpreuve, $idEtudiant, $isSimulation);
+        $moyenneEpreuve = GetEtudiantNoteFromEtudiantEpreuve($idEpreuve, $idEtudiant);
         $effectifTotal = count($listEtudiantsFromCursus);
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
@@ -124,7 +124,7 @@ function GetGradeFromCours($idCours, $idEtudiant, $isSimulation = false) {
 
         // Tri du tableau de notes et obtention du rang de l'étudiant
         $size = count($studentnote);
-        $moyenneCours = GetMoyenneFromCursus($idCours, $idEtudiant, $isSimulation);
+        $moyenneCours = GetMoyenneFromCours($idCours, $idEtudiant);
         $effectifTotal = count($listEtudiantsFromCursus);
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
@@ -149,7 +149,7 @@ function GetGradeFromCours($idCours, $idEtudiant, $isSimulation = false) {
 
 function GetGradeFromCompetence($idCompetence, $idEtudiant, $isSimulation = false) {
     global $listEtudiantsFromCursus;
-    $studentnote = GetTabNotesEtudiantsFromCursus($idCompetence);
+    $studentnote = GetTabNotesEtudiantsFromCompetence($idCompetence);
     if (isset($studentnote)) {
 
         // Tri du tableau de notes et obtention du rang de l'étudiant
