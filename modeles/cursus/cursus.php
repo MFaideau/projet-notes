@@ -78,6 +78,16 @@ function InsertCursus($nom,$annee)
     return $lastCursusID[0];
 }
 
+function InsertCursusFull($data)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO cursus (ID_Cursus,Nom_Cursus,Annee_Cursus) VALUES (:idCursus,:nomCursus,:anneeCursus)');
+    $req->bindParam(':idCursus', $data[0], PDO::PARAM_INT);
+    $req->bindParam(':nomCursus', $data[1], PDO::PARAM_INT);
+    $req->bindParam(':anneeCursus', $data[2], PDO::PARAM_INT);
+    $req->execute();
+}
+
 function DeleteCursus($id)
 {
     global $bdd;
@@ -126,7 +136,7 @@ function GetContentAllCursus() {
     $result=$req->fetchAll();
     $str="cursus"."\r\n";
     $str =$str.count($result)."\r\n";
-    $str=$str."ID_Cursus;Nom_Cursus;Annee_Cursus"."\r\n";
+    //$str=$str."ID_Cursus;Nom_Cursus;Annee_Cursus"."\r\n";
     foreach ($result as $line){
         $str=$str.$line["ID_Cursus"].";";
         $str=$str.$line["Nom_Cursus"].";";

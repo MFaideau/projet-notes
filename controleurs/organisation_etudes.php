@@ -23,3 +23,28 @@ else {
 
 	include_once ('./vues/footer.php');
 }
+
+function ImportDB()
+{
+    if (($handle = fopen($_FILES['export_bdd']['tmp_name'], "r")) !== FALSE) {
+        while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+            if($data=="cursus"){ImportCursus($handle);}
+            elseif($data=="cursus"){ImportCursus($handle);}
+        }
+        fclose($handle);
+        return true;
+    }
+    $erreur_upload = 3;
+    include_once('./vues/admin/error.php');
+    return false;
+}
+
+function ImportCursus($handle)
+{
+    global $bdd;
+    $count = fgetcsv($handle, 1000, ";");
+    for ($i = 0; $i < $count; $i++) {
+        $data = fgetcsv($handle, 1000, ";");
+        InsertCursusFull($data);
+    }
+}

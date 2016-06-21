@@ -139,7 +139,7 @@ function GetContentEtudiantNote($idCursus) {
     $result=$req->fetchAll();
     $str="etudiantnote"."\r\n";
     $str =$str.count($result)."\r\n";
-    $str=$str."ID_Epreuve;ID_Etudiant;Note_Finale;Note_Prevue;Absence_Epreuve"."\r\n";
+    //$str=$str."ID_Epreuve;ID_Etudiant;Note_Finale;Note_Prevue;Absence_Epreuve"."\r\n";
     foreach ($result as $line){
         $str=$str.$line["ID_Epreuve"].";";
         $str=$str.$line["ID_Etudiant"].";";
