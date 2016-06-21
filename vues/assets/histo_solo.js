@@ -30,6 +30,26 @@ $(document).on("click", "a[id^=hist_cours_]", function (e) {
     });
 });
 
-$(document).on("click", "a[id=prec_cours_histo_commun]", function(e) {
-   $(".histo_commun").trigger("click");
+$(document).on("click", "a[id=prec_cours_histo_commun]", function() {
+    $(".histo_commun").trigger("click");
+});
+
+$(document).on("click", "a[id=prec_cours_histo_perso]", function() {
+    $(".histo_logo").trigger("click");
+});
+
+$(document).on("click", "a[id^=prec_hist_perso_comp_]", function() {
+    var idCompetence = this.id.replace("prec_hist_perso_comp_","");
+    $.ajax({
+        url: './ajax/histo.php',
+        type: 'POST',
+        datatype: 'html',
+        data: 'type=histo_hor&idCompetence=' + idCompetence,
+        success: function (result) {
+            $(result).insertAfter($(".visualisation").parent());
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
+            $(".donnees_histo_epreuves").remove();
+            $(".donnees_histo").remove();
+        }
+    });
 });
