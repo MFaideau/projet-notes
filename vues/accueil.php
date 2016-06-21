@@ -8,6 +8,5 @@
         $idEtudiant = GetEtudiant($user)->GetId();
     }
 
-
     include_once('vues/ajax/tableaux_bloc.php');
 ?>
