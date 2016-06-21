@@ -18,14 +18,16 @@ function TelechargementString($nom, $str)
     exit();
 }
 
-function ExportDB()
+function ExportDB($idCursus)
 {
-    $bddStr = GetCursus(GetCursusList(),1)->GetContentCursus();
-    $bddStr = $bddStr."\r\n".GetContentCompetence(1);
-    $bddStr = $bddStr."\r\n".GetContentCours(1);
-    $bddStr = $bddStr."\r\n".GetContentEval(1);
-    $bddStr = $bddStr."\r\n".GetContentEpreuve(1);
+    $bddStr = GetCursus(GetCursusList(),$idCursus)->GetContentCursus();
+    $bddStr = $bddStr."\r\n".GetContentCompetence($idCursus);
+    $bddStr = $bddStr."\r\n".GetContentCours($idCursus);
+    $bddStr = $bddStr."\r\n".GetContentEval($idCursus);
+    $bddStr = $bddStr."\r\n".GetContentTypeEval($idCursus);
+    $bddStr = $bddStr."\r\n".GetContentEpreuve($idCursus);
+    $bddStr = $bddStr."\r\n".GetContentEtudiantNote($idCursus);
     TelechargementString(date("d-m-Y")."_".date("H-i-s").'_VisualYear_Exportation_BDD.txt',$bddStr);
 }
 
-//ExportDB();
+ExportDB(1);

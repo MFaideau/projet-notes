@@ -27,11 +27,11 @@
                         <td class="lien_tableau"><b><?php echo $competence->GetCredits(); ?></b></td>
                         <td class="lien_tableau"><b>
                                 <?php
-                                $note_etudiant = round(GetMoyenneFromCompetence($competence->GetId(), $idEtudiant), 2);
+                                $note_etudiant = round(GetMoyenneFromCompetence($competence->GetId(), $idEtudiant, true), 2);
                                 if($note_etudiant == "-1")
                                     echo "-";
                                 else
-                                    echo $note_etudiant;
+                                    echo round($note_etudiant,2);
                                 ?></b>
                         </td>
                     </tr>
@@ -42,11 +42,11 @@
                             </td>
                             <td style="color: #337ab7;"><b><?php echo $cours->GetCredits(); ?></b></td>
                             <td style="color: #337ab7;">
-                                <b><?php $note = GetMoyenneFromCours($cours->GetId(), $idEtudiant);
+                                <b><?php $note = GetMoyenneFromCours($cours->GetId(), $idEtudiant, true);
                                     if($note == "-1")
                                         echo "-";
                                     else
-                                        echo $note;
+                                        echo round($note,2);
                                     ?>
                                 </b>
                             </td>
@@ -59,11 +59,11 @@
                                 </td>
                                 <td><b><?php echo $typeEval->GetCoef() * 100; ?></b></td>
                                 <td><b><?php
-                                        $note = GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant);
+                                        $note = GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant, true);
                                         if ($note == "-1")
                                             echo "-"; // Pas de note disponible pour le moment pour les épreuves de ce type eval
                                         else
-                                            echo $note;
+                                            echo round($note,2);
                                         ?></b></td>
                             </tr>
                             <?php foreach (GetEpreuveListFromTypeEval($typeEval->GetId()) as $epreuve) { ?>
@@ -81,15 +81,25 @@
                                             $note = $etudiantNote->GetNoteFinale();
                                             if ($note != "-1") {
                                                 echo $note;
-                                            } else {
+                                            }
+                                            else {
                                                 // Si l'étudiant n'a pas de note, on lui crée un champ
                                                 ?>
                                                 <input type="number" min="0" max="20"
                                                        name="note_epreuve_<?php echo $epreuve->GetId(); ?>"
-                                                        value="<?php echo $etudiantNote->GetNotePrevue(); ?>"
+                                                       value="<?php echo $etudiantNote->GetNotePrevue(); ?>"
                                                 />
                                                 <?php
                                             }
+                                        }
+                                        else {
+                                            // Si l'étudiant n'a pas de note, on lui crée un champ
+                                            ?>
+                                            <input type="number" min="0" max="20"
+                                                   name="note_epreuve_<?php echo $epreuve->GetId(); ?>"
+                                                   value=""
+                                            />
+                                            <?php
                                         }
                                         ?>
                                     </td>
@@ -108,7 +118,7 @@
                         <td><strong><?php echo $cursus->GetCredits(); ?></strong></td>
                         <td><strong>
                                 <?php
-                                $note_etudiant = round(GetMoyenneFromCursus($cursus->GetId(), $etudiant->GetId()), 2);
+                                $note_etudiant = round(GetMoyenneFromCursus($cursus->GetId(), $etudiant->GetId(), true), 2);
                                 echo $note_etudiant;
                                 ?>
                             </strong>
