@@ -118,3 +118,19 @@ function GetCreditsFromCursus($idCursus) {
     $req->execute();
     return $req->fetch()[0];
 }
+
+function GetContentAllCursus() {
+    global $bdd;
+    $req = $bdd->prepare('SELECT * FROM cursus');
+    $req->execute();
+    $result=$req->fetchAll();
+    $str="cursus"."\r\n";
+    $str =$str.count($result)."\r\n";
+    $str=$str."ID_Cursus;Nom_Cursus;Annee_Cursus"."\r\n";
+    foreach ($result as $line){
+        $str=$str.$line["ID_Cursus"].";";
+        $str=$str.$line["Nom_Cursus"].";";
+        $str=$str.$line["Annee_Cursus"]."\r\n";
+    }
+    return $str;
+}
