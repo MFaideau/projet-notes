@@ -5,7 +5,7 @@
  */
 const ERREUR_MAUVAIS_LOGIN = 1;
 const ERREUR_PAS_CONNECTE = 2;
-
+defined("ROOT_ACCESS") or die();
 ?>
 <!DOCTYPE html>
 <html>

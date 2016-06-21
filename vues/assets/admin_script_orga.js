@@ -163,49 +163,7 @@ $(document).on("click", "a[id^=orga_epreuve]", function (e) {
     idEpreuve = this.id.replace("orga_epreuve_", "");
     document.getElementById("orga_epreuve_" + idEpreuve).style.fontWeight = "bold";
     document.getElementById("orga_tr_epreuve_" + idEpreuve).style.backgroundColor = "cornsilk";
-    var modifyEpreuveDiv = $("#modifyEpreuve");
-    $.ajax({
-        url: './ajax/admin_ajax_orga.php',
-        type: 'POST',
-        datatype: 'html',
-        data: 'idEpreuve=' + idEpreuve,
-        success: function (result) {
-            $(result).insertAfter($(".panel_epreuve"));
-            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
-            $.ajax({
-                url: './ajax/admin_ajax_orga.php',
-                type: 'POST',
-                datatype: 'json',
-                data: 'idTypeEval=' + idTypeEval +"&action=secondesession",
-                success: function(result2) {
-                    var current_type_eval = jQuery.parseJSON(result2);
-                    modifyEpreuveDiv.find("select[id=selectSecondeSession]").empty().append('<option value="0">Aucune seconde session</option>');
-                        $.each(current_type_eval, function(index) {
-                            if(current_type_eval[index].id != idEpreuve) {
-                                modifyEpreuveDiv.find("select[id=selectSecondeSession]").append("<option value=" + current_type_eval[index].id + ">" +
-                                    current_type_eval[index].nom + "</option>");
-                            }
-                    });
-                }
-            });
-            $.ajax({
-                url: './ajax/admin_ajax_orga.php',
-                type: 'POST',
-                datatype: 'json',
-                data: 'idCours=' + idCours +"&action=substitution",
-                success: function(result2) {
-                    var current_cours = jQuery.parseJSON(result2);
-                    modifyEpreuveDiv.find("select[id=selectSubstitution]").empty().append('<option value="0">Pas de note en cas d\'absence</option>');
-                    $.each(current_cours, function(index) {
-                        if(current_cours[index].id != idEpreuve) {
-                            modifyEpreuveDiv.find("select[id=selectSubstitution]").append("<option value=" + current_cours[index].id + ">" +
-                                current_cours[index].nom + "</option>");
-                        }
-                    });
-                }
-            });
-        }
-    });
+
 });
 
 $(function () {
@@ -638,6 +596,38 @@ $(document).on("click", "a[id^=orga_modify_epreuve_]", function (e) {
     idEpreuve = this.id.replace("orga_modify_epreuve_", "");
     var modifyEpreuveDiv = $("#modifyEpreuve");
     // On récupère aussi des informations pour le bloc de modifications
+    $.ajax({
+        url: './ajax/admin_ajax_orga.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'idTypeEval=' + idTypeEval +"&action=secondesession",
+        success: function(result2) {
+            var current_type_eval = jQuery.parseJSON(result2);
+            modifyEpreuveDiv.find("select[id=selectSecondeSession]").empty().append('<option value="0">Aucune seconde session</option>');
+            $.each(current_type_eval, function(index) {
+                if(current_type_eval[index].id != idEpreuve) {
+                    modifyEpreuveDiv.find("select[id=selectSecondeSession]").append("<option value=" + current_type_eval[index].id + ">" +
+                        current_type_eval[index].nom + "</option>");
+                }
+            });
+        }
+    });
+    $.ajax({
+        url: './ajax/admin_ajax_orga.php',
+        type: 'POST',
+        datatype: 'json',
+        data: 'idCours=' + idCours +"&action=substitution",
+        success: function(result2) {
+            var current_cours = jQuery.parseJSON(result2);
+            modifyEpreuveDiv.find("select[id=selectSubstitution]").empty().append('<option value="0">Pas de note en cas d\'absence</option>');
+            $.each(current_cours, function(index) {
+                if(current_cours[index].id != idEpreuve) {
+                    modifyEpreuveDiv.find("select[id=selectSubstitution]").append("<option value=" + current_cours[index].id + ">" +
+                        current_cours[index].nom + "</option>");
+                }
+            });
+        }
+    });
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
         type: 'POST',

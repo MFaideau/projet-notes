@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <!-- Selection entre les Tableaux et les Histogrammes !-->
 
 <div class="row">

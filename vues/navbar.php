@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <div class="col-lg-9 menu_rapide">
     <div class="panel panel-default">
         <div class="panel-body">

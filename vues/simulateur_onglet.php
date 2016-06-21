@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <div class="row donnees donnees_tableaux" xmlns="http://www.w3.org/1999/html">
     <div class="donnees panel-heading">
         <a href="simulateur_onglet.php"><span class="retour_prec_histo glyphicon glyphicon-arrow-left"></span></a>

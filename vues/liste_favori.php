@@ -1,5 +1,5 @@
 <!-- Page du listing des eleves les plus consultés !-->
-
+<?php defined("ROOT_ACCESS") or die(); ?>
 <?php global $listEleves; ?>
 <div class="panel_listing">
     <table class="table" data-toggle="table">

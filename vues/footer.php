@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 </div>
 <?php if($user->GetAutorite() > 0)
 { ?>

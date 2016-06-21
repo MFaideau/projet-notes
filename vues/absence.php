@@ -1,5 +1,5 @@
 <!-- Absences de l'élève !-->
-
+<?php defined("ROOT_ACCESS") or die(); ?>
 
 <div class="row donnees absences">
         <div class="panel panel-default">
