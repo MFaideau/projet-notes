@@ -126,14 +126,16 @@ function GetCoursById($idCours) {
     return new Cours($req->fetchAll()[0]);
 }
 
-function GetContentCours() {
+function GetContentCours($idCursus) {
     global $bdd;
-    $req = $bdd->prepare('SELECT * FROM cours');
+    $req = $bdd->prepare('SELECT * FROM cours,competence WHERE cours.ID_Competence=competence.ID_Competence
+AND competence.ID_Cursus=:idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
     $req->execute();
     $result=$req->fetchAll();
     $str="cours"."\r\n";
     $str =$str.count($result)."\r\n";
-    $str=$str."ID_Cours,ID_Competence;Nom_Cours;Credits_Cours;Semestre_Cours"."\r\n";
+    $str=$str."ID_Cours;ID_Competence;Nom_Cours;Credits_Cours;Semestre_Cours"."\r\n";
     foreach ($result as $line){
         $str=$str.$line["ID_Cours"].";";
         $str=$str.$line["ID_Competence"].";";

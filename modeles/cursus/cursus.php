@@ -119,7 +119,7 @@ function GetCreditsFromCursus($idCursus) {
     return $req->fetch()[0];
 }
 
-function GetContentCursus() {
+function GetContentAllCursus() {
     global $bdd;
     $req = $bdd->prepare('SELECT * FROM cursus');
     $req->execute();

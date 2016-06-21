@@ -90,9 +90,10 @@ function ModifyCompetence($id,$newName)
     return;
 }
 
-function GetContentCompetence() {
+function GetContentCompetence($idCursus) {
     global $bdd;
-    $req = $bdd->prepare('SELECT * FROM competence');
+    $req = $bdd->prepare('SELECT * FROM competence WHERE ID_Cursus=:idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
     $req->execute();
     $result=$req->fetchAll();
     $str="competence"."\r\n";

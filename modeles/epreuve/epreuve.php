@@ -78,3 +78,26 @@ function ModifyEpreuve($idEpreuve,$nom,$coef,$dateEpreuve,$evaluateur,$idEpreuve
     ));
     return;
 }
+
+function GetContentEpreuve($idCursus) {
+    global $bdd;
+    $req = $bdd->prepare('SELECT * FROM cours,competence,evaluation,type_eval,epreuve WHERE type_eval.ID_Type=epreuve.ID_Type AND type_eval.ID_Eval=evaluation.ID_Eval AND evaluation.ID_Cours=cours.ID_Cours AND cours.ID_Competence=competence.ID_Competence
+AND competence.ID_Cursus=:idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll();
+    $str="epreuve"."\r\n";
+    $str =$str.count($result)."\r\n";
+    $str=$str."ID_Epreuve;ID_Type;ID_Epreuve_Session2;ID_Epreuve_Substitution;Nom_Epreuve;Coef_Epreuve;Date_Epreuve;Evaluateur_Epreuve"."\r\n";
+    foreach ($result as $line){
+        $str=$str.$line["ID_Epreuve"].";";
+        $str=$str.$line["ID_Type"].";";
+        $str=$str.$line["ID_Epreuve_Session2"].";";
+        $str=$str.$line["ID_Epreuve_Substitution"].";";
+        $str=$str.$line["Nom_Epreuve"].";";
+        $str=$str.$line["Coef_Epreuve"].";";
+        $str=$str.$line["Date_Epreuve"].";";
+        $str=$str.$line["Evaluateur_Epreuve"]."\r\n";
+    }
+    return $str;
+}
