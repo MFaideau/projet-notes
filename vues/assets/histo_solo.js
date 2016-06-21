@@ -30,6 +30,15 @@ $(document).on("click", "a[id^=hist_cours_]", function (e) {
     });
 });
 
-$(document).on("click", "a[id=prec_cours_histo_commun]", function(e) {
-   $(".histo_commun").trigger("click");
+$(document).on("click", "a[id=prec_cours_histo_commun]", function() {
+    $(".histo_commun").trigger("click");
+});
+
+$(document).on("click", "a[id=prec_cours_histo_perso]", function() {
+    $(".histo_logo").trigger("click");
+});
+
+$(document).on("click", "a[id^=prec_hist_perso_comp_]", function() {
+    var idCompetence = this.id.replace("prec_hist_perso_comp_","");
+   $("a[id=hist_comp_" + idCompetence + "]").trigger("click");
 });

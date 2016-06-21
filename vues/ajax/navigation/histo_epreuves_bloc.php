@@ -2,7 +2,7 @@
 
 <div class="row donnees donnees_histo_epreuves">
     <div class="panel panel-default">
-        <div class="panel-heading"><a href="#" id="histo_comp_<?php echo $competence->GetId(); ?>"><span
+        <div class="panel-heading"><a href="#" id="prec_hist_perso_comp_<?php echo $competence->GetId(); ?>"><span
                     class="glyphicon glyphicon-arrow-left retour_prec_histo"></span></a>
             Histogramme Perso - Détail des Notes
         </div>
