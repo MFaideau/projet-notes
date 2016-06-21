@@ -94,7 +94,7 @@ function GetGradeFromEpreuve($idEpreuve, $idEtudiant) {
 
         // Tri du tableau de notes et obtention du rang de l'étudiant
         $size = count($studentnote);
-        $moyenneEpreuve = GetMoyenneFromCursus($idEpreuve, $idEtudiant);
+        $moyenneEpreuve = GetEtudiantNoteFromEtudiantEpreuve($idEpreuve, $idEtudiant);
         $effectifTotal = count($listEtudiantsFromCursus);
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
@@ -124,7 +124,7 @@ function GetGradeFromCours($idCours, $idEtudiant) {
 
         // Tri du tableau de notes et obtention du rang de l'étudiant
         $size = count($studentnote);
-        $moyenneCours = GetMoyenneFromCursus($idCours, $idEtudiant);
+        $moyenneCours = GetMoyenneFromCours($idCours, $idEtudiant);
         $effectifTotal = count($listEtudiantsFromCursus);
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
@@ -133,7 +133,6 @@ function GetGradeFromCours($idCours, $idEtudiant) {
         while ($moyenneCours < $tabNotesOrdonne[$rang]) {
             $rang = $rang + 1; //Calcul du rang
         }
-
         // Attribution du grade selon sa moyenne
         if ($moyenneCours < 0) return "-";
         if ($moyenneCours < 8) return "F";
@@ -149,12 +148,12 @@ function GetGradeFromCours($idCours, $idEtudiant) {
 
 function GetGradeFromCompetence($idCompetence, $idEtudiant) {
     global $listEtudiantsFromCursus;
-    $studentnote = GetTabNotesEtudiantsFromCursus($idCompetence);
+    $studentnote = GetTabNotesEtudiantsFromCompetence($idCompetence);
     if (isset($studentnote)) {
 
         // Tri du tableau de notes et obtention du rang de l'étudiant
         $size = count($studentnote);
-        $moyenneCompetence = GetMoyenneFromCursus($idCompetence, $idEtudiant);
+        $moyenneCompetence = GetMoyenneFromCompetence($idCompetence, $idEtudiant);
         $effectifTotal = count($listEtudiantsFromCursus);
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
