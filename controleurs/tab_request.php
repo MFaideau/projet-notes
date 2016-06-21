@@ -100,8 +100,14 @@ function GetGradeFromEpreuve($idEpreuve, $idEtudiant, $isSimulation = false) {
         $effectifGrades = $effectifTotal - $effectifNonGrades;
         arsort($studentnote);
         $rang = 0;
-        while ($moyenneEpreuve < $studentnote[$rang]) {
-            $rang = $rang + 1; // Calcul du rang
+
+        // On reordonne le tableau et on cherche le rang
+        $studentNoteKey = array();
+        foreach ($studentnote as $note)
+            $studentNoteKey[] = $note;
+
+        while ($moyenneEpreuve < $studentNoteKey[$rang]) {
+            $rang = $rang + 1; //Calcul du rang
         }
 
         // Attribution du grade selon sa moyenne
@@ -130,7 +136,13 @@ function GetGradeFromCours($idCours, $idEtudiant, $isSimulation = false) {
         $effectifGrades = $effectifTotal - $effectifNonGrades;
         arsort($studentnote);
         $rang = 0;
-        while ($moyenneCours < $studentnote[$rang]) {
+
+        // On reordonne le tableau et on cherche le rang
+        $studentNoteKey = array();
+        foreach ($studentnote as $note)
+            $studentNoteKey[] = $note;
+
+        while ($moyenneCours < $studentNoteKey[$rang]) {
             $rang = $rang + 1; //Calcul du rang
         }
 
@@ -160,7 +172,13 @@ function GetGradeFromCompetence($idCompetence, $idEtudiant, $isSimulation = fals
         $effectifGrades = $effectifTotal - $effectifNonGrades;
         arsort($studentnote);
         $rang = 0;
-        while ($moyenneCompetence < $studentnote[$rang]) {
+
+        // On reordonne le tableau et on cherche le rang
+        $studentNoteKey = array();
+        foreach ($studentnote as $note)
+            $studentNoteKey[] = $note;
+
+        while ($moyenneCompetence < $studentNoteKey[$rang]) {
             $rang = $rang + 1; //Calcul du rang
         }
 
@@ -170,7 +188,7 @@ function GetGradeFromCompetence($idCompetence, $idEtudiant, $isSimulation = fals
         elseif (($moyenneCompetence < 10) && ($moyenneCompetence >= 8)) return "Fx";
         else {
             if ($effectifGrades == 1) return "A"; // Si 1 seul étudiant noté
-            $coefficient = $rang / ($effectifGrades - 1);
+            $coefficient = ($rang) / ($effectifGrades - 1);
             return AttributionGrade($coefficient);
         }
     }
@@ -190,7 +208,13 @@ function GetGradeFromCursus($idCursus, $idEtudiant, $isSimulation = false) {
         $effectifGrades = $effectifTotal - $effectifNonGrades;
         arsort($studentnote);
         $rang = 0;
-        while ($moyenneCursus < $studentnote[$rang]) {
+
+        // On reordonne le tableau et on cherche le rang
+        $studentNoteKey = array();
+        foreach ($studentnote as $note)
+            $studentNoteKey[] = $note;
+
+        while ($moyenneCursus < $studentNoteKey[$rang]) {
             $rang = $rang + 1; //Calcul du rang
         }
 
