@@ -135,7 +135,7 @@ AND competence.ID_Cursus=:idCursus');
     $result=$req->fetchAll();
     $str="cours"."\r\n";
     $str =$str.count($result)."\r\n";
-    $str=$str."ID_Cours;ID_Competence;Nom_Cours;Credits_Cours;Semestre_Cours"."\r\n";
+    //$str=$str."ID_Cours;ID_Competence;Nom_Cours;Credits_Cours;Semestre_Cours"."\r\n";
     foreach ($result as $line){
         $str=$str.$line["ID_Cours"].";";
         $str=$str.$line["ID_Competence"].";";

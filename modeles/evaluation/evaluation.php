@@ -99,7 +99,7 @@ AND competence.ID_Cursus=:idCursus');
     $result=$req->fetchAll();
     $str="evaluation"."\r\n";
     $str =$str.count($result)."\r\n";
-    $str=$str."ID_Eval;ID_Cours;Nom_Eval;Coef_Eval"."\r\n";
+    //$str=$str."ID_Eval;ID_Cours;Nom_Eval;Coef_Eval"."\r\n";
     foreach ($result as $line){
         $str=$str.$line["ID_Eval"].";";
         $str=$str.$line["ID_Cours"].";";
