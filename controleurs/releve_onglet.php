@@ -10,6 +10,9 @@ if (!isset($_SESSION['user'])) {
 else {
     $user = unserialize($_SESSION['user']);
     $etudiant = GetEtudiant($user);
+    if(isset($user_vue)) {
+        $etudiant = GetEtudiant($user_vue);
+    }
     $idEtudiant = $etudiant->GetId();
     $cursus = $etudiant->GetCursus();
     include_once __DIR__ . '../../controleurs/tab_request.php';

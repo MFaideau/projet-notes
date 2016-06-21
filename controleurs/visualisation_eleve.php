@@ -7,7 +7,7 @@ if (!isset($_SESSION['user'])) {
 }
 else{
     $user = unserialize($_SESSION['user']);
-    if ($user->GetAutorite() != 1) {
+    if ($user->GetAutorite() == 0) {
         header('Location: accueil.php');
         die();
     }
@@ -66,4 +66,3 @@ else {
 
 // Insertion du footer pour les scripts JS (jQuery)
 include_once (__DIR__ . '../../vues/footer.php');
-
