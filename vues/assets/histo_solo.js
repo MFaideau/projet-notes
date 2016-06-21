@@ -40,5 +40,16 @@ $(document).on("click", "a[id=prec_cours_histo_perso]", function() {
 
 $(document).on("click", "a[id^=prec_hist_perso_comp_]", function() {
     var idCompetence = this.id.replace("prec_hist_perso_comp_","");
-   $("a[id=hist_comp_" + idCompetence + "]").trigger("click");
+    $.ajax({
+        url: './ajax/histo.php',
+        type: 'POST',
+        datatype: 'html',
+        data: 'type=histo_hor&idCompetence=' + idCompetence,
+        success: function (result) {
+            $(result).insertAfter($(".visualisation").parent());
+            jQuery.getScript('./vues/assets/bootstrap/bootstrap-table.js');
+            $(".donnees_histo_epreuves").remove();
+            $(".donnees_histo").remove();
+        }
+    });
 });
