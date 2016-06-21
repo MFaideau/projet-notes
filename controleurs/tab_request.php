@@ -87,14 +87,14 @@ function AttributionGrade($coefficient) {
     else return "F";
 }
 
-function GetGradeFromEpreuve($idEpreuve, $idEtudiant) {
+function GetGradeFromEpreuve($idEpreuve, $idEtudiant, $isSimulation = false) {
     global $listEtudiantsFromCursus;
     $studentnote = GetTabNotesEtudiantsFromEpreuve($idEpreuve);
     if (isset($studentnote)) {
 
         // Tri du tableau de notes et obtention du rang de l'étudiant
         $size = count($studentnote);
-        $moyenneEpreuve = GetMoyenneFromCursus($idEpreuve, $idEtudiant);
+        $moyenneEpreuve = GetMoyenneFromCursus($idEpreuve, $idEtudiant, $isSimulation);
         $effectifTotal = count($listEtudiantsFromCursus);
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
@@ -117,14 +117,14 @@ function GetGradeFromEpreuve($idEpreuve, $idEtudiant) {
     else return "-"; // Si pas d'étudiants, pas de grade
 }
 
-function GetGradeFromCours($idCours, $idEtudiant) {
+function GetGradeFromCours($idCours, $idEtudiant, $isSimulation = false) {
     global $listEtudiantsFromCursus;
     $studentnote = GetTabNotesEtudiantsFromCours($idCours);
     if (isset($studentnote)) {
 
         // Tri du tableau de notes et obtention du rang de l'étudiant
         $size = count($studentnote);
-        $moyenneCours = GetMoyenneFromCursus($idCours, $idEtudiant);
+        $moyenneCours = GetMoyenneFromCursus($idCours, $idEtudiant, $isSimulation);
         $effectifTotal = count($listEtudiantsFromCursus);
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
@@ -147,14 +147,14 @@ function GetGradeFromCours($idCours, $idEtudiant) {
     else return "-"; // Si pas d'étudiants, pas de grade
 }
 
-function GetGradeFromCompetence($idCompetence, $idEtudiant) {
+function GetGradeFromCompetence($idCompetence, $idEtudiant, $isSimulation = false) {
     global $listEtudiantsFromCursus;
     $studentnote = GetTabNotesEtudiantsFromCursus($idCompetence);
     if (isset($studentnote)) {
 
         // Tri du tableau de notes et obtention du rang de l'étudiant
         $size = count($studentnote);
-        $moyenneCompetence = GetMoyenneFromCursus($idCompetence, $idEtudiant);
+        $moyenneCompetence = GetMoyenneFromCursus($idCompetence, $idEtudiant, $isSimulation);
         $effectifTotal = count($listEtudiantsFromCursus);
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
@@ -177,14 +177,14 @@ function GetGradeFromCompetence($idCompetence, $idEtudiant) {
     else return "-"; // Si pas d'étudiants, pas de grade
 }
 
-function GetGradeFromCursus($idCursus, $idEtudiant) {
+function GetGradeFromCursus($idCursus, $idEtudiant, $isSimulation = false) {
     global $listEtudiantsFromCursus;
     $studentnote = GetTabNotesEtudiantsFromCursus($idCursus);
     if (isset($studentnote)) {
 
         // Tri du tableau de notes et obtention du rang de l'étudiant
         $size = count($studentnote);
-        $moyenneCursus = GetMoyenneFromCursus($idCursus, $idEtudiant);
+        $moyenneCursus = GetMoyenneFromCursus($idCursus, $idEtudiant, $isSimulation);
         $effectifTotal = count($listEtudiantsFromCursus);
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
@@ -246,7 +246,7 @@ function GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant, $isSimulation = 
 }
 
 function GestionAbsenceEpreuve($epreuve, $idEtudiant, $isSimulation = false) {
-    $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
+    $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId(), $isSimulation);
     if (isset($etudiantNote)) {
         $absence = $etudiantNote->GetAbsence();
         if ($absence == 1) {
@@ -258,14 +258,14 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant, $isSimulation = false) {
                 if (isset($etudiantNoteSubstitution)) {
                     $absenceSubstitution = $etudiantNoteSubstitution->GetAbsence();
                     if ($absenceSubstitution == 1) {
-                        $note = GestionAbsenceEpreuve($epreuveSubstitution, $idEtudiant);
+                        $note = GestionAbsenceEpreuve($epreuveSubstitution, $idEtudiant, $isSimulation);
                     } elseif ($absenceSubstitution == 2) {
                         $note = 0;
                     } else {
                         $idSubstitutionRattrapage = $epreuveSubstitution->GetIdSecondeSession();
                         if ($idSubstitutionRattrapage > 0) {
                             $epreuveSubstitutionRattrapage = GetEpreuveFromId($idSubstitutionRattrapage);
-                            $note = GetBestNote($epreuveSubstitution, $epreuveSubstitutionRattrapage, $idEtudiant);
+                            $note = GetBestNote($epreuveSubstitution, $epreuveSubstitutionRattrapage, $idEtudiant, $isSimulation);
                         } else $note = GetNoteSimulation($etudiantNoteSubstitution, $isSimulation);
                     }
                 }
@@ -277,7 +277,7 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant, $isSimulation = false) {
                 if(isset($etudiantNoteRattrapage)) {
                     $absenceRattrapage = $etudiantNoteRattrapage->GetAbsence();
                     if ($absenceRattrapage == 1) {
-                        $note = GestionAbsenceEpreuve($epreuveRattrapage, $idEtudiant);
+                        $note = GestionAbsenceEpreuve($epreuveRattrapage, $idEtudiant, $isSimulation);
                     } elseif ($absenceRattrapage == 2) {
                         $note = 0;
                     } else {
@@ -303,7 +303,7 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant, $isSimulation = false) {
                     } elseif ($absenceRattrapage == 2) {
                         $note = GetNoteSimulation($etudiantNote, $isSimulation);
                     } else {
-                        $note = GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant);
+                        $note = GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant, $isSimulation);
                     }
                 }
                 else $note = GetNoteSimulation($etudiantNote, $isSimulation);
@@ -315,7 +315,7 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant, $isSimulation = false) {
     else return -1;
 }
 
-function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
+function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant, $isSimulation = false) {
     $listEpreuves = GetEpreuveListFromTypeEval($idTypeEval);
     $listSecondesSessions = GetEpreuveSecondeSessionListFromTypeEval($idTypeEval);
     $notesEtudiant = array();
@@ -324,7 +324,7 @@ function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
     foreach ($listEpreuves as $i => $epreuve) {
         if(!in_array($epreuve, $listSecondesSessions)) {
             $coefEpreuve = $epreuve->GetCoef();
-            $note = GestionAbsenceEpreuve($epreuve, $idEtudiant);
+            $note = GestionAbsenceEpreuve($epreuve, $idEtudiant, $isSimulation);
             if ($note == -1) {
                 $i = $i - 1;
             } else {
@@ -341,13 +341,13 @@ function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
     return $moyenne;
 }
 
-function GetMoyenneFromEval($idEval, $idEtudiant) {
+function GetMoyenneFromEval($idEval, $idEtudiant, $isSimulation = false) {
     $listTypeEval = GetTypeEvalListFromEval($idEval);
     $notesEtudiant = array();
     $moyenne = 0;
     $sommecoef = 0;
     foreach ($listTypeEval as $i => $typeEval) {
-        $studentnote = GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant);
+        $studentnote = GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant, $isSimulation);
         $coefTypeEval = $typeEval->GetCoef();
         if (isset($studentnote)) {
             if ($studentnote == -1) {
@@ -366,13 +366,13 @@ function GetMoyenneFromEval($idEval, $idEtudiant) {
     return $moyenne/$sommecoef;
 }
 
-function GetMoyenneFromCours($idCours, $idEtudiant) {
+function GetMoyenneFromCours($idCours, $idEtudiant, $isSimulation = false) {
     $listEval = GetEvalListFromCours($idCours);
     $notesEtudiant = array();
     $moyenne = 0;
     $sommecoef = 0;
     foreach ($listEval as $i => $eval) {
-        $studentnote = GetMoyenneFromEval($eval->GetId(), $idEtudiant);
+        $studentnote = GetMoyenneFromEval($eval->GetId(), $idEtudiant, $isSimulation);
         $coefEval = $eval->GetCoef();
         if (isset($studentnote)) {
             if ($studentnote == -1) {
@@ -391,13 +391,13 @@ function GetMoyenneFromCours($idCours, $idEtudiant) {
     return $moyenne/$sommecoef;
 }
 
-function GetMoyenneFromCompetence($idCompetence, $idEtudiant) {
+function GetMoyenneFromCompetence($idCompetence, $idEtudiant, $isSimulation = false) {
     $listCours = GetCoursListFromCompetence($idCompetence);
     $notesEtudiant = array();
     $moyenne = 0;
     $sommecredits = 0;
     foreach ($listCours as $i => $cours) {
-        $studentnote = GetMoyenneFromCours($cours->GetId(), $idEtudiant);
+        $studentnote = GetMoyenneFromCours($cours->GetId(), $idEtudiant, $isSimulation);
         $creditscours = $cours->GetCredits();
         if (isset($studentnote)) {
             if ($studentnote == -1) {
@@ -420,13 +420,13 @@ function GetMoyenneFromCompetence($idCompetence, $idEtudiant) {
     }
 }
 
-function GetMoyenneFromCursus($idCursus, $idEtudiant) {
+function GetMoyenneFromCursus($idCursus, $idEtudiant, $isSimulation = false) {
     $listCompetence = GetCompetenceListFromCursus($idCursus);
     $notesEtudiant = array();
     $moyenne = 0;
     $sommecredits = 0;
     foreach ($listCompetence as $i => $competence) {
-        $notesEtudiant[$i] = GetMoyenneFromCompetence($competence->GetId(), $idEtudiant);
+        $notesEtudiant[$i] = GetMoyenneFromCompetence($competence->GetId(), $idEtudiant, $isSimulation);
         if ($notesEtudiant[$i] != -1) {
             $moyenne = $moyenne + GetNotePonderee($notesEtudiant[$i], $competence->GetCredits());
             $sommecredits = $sommecredits + $competence->GetCredits();
@@ -443,7 +443,7 @@ function GetTabNotesEtudiantsFromEpreuve($idEpreuve, $isSimulation = false) {
     $notesEtudiants = array();
     foreach ($listEtudiantsFromCursus as $i => $etudiant) {
         $idEtudiant = $etudiant->GetId();
-        $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuve);
+        $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuve, $isSimulation);
         if (isset($etudiantNote)) {
             $absenceEtudiant = $etudiantNote->GetAbsence();
             if (($absenceEtudiant == 0) || ($absenceEtudiant == 2)) {
@@ -454,47 +454,47 @@ function GetTabNotesEtudiantsFromEpreuve($idEpreuve, $isSimulation = false) {
     return $notesEtudiants;
 }
 
-function GetTabNotesEtudiantsFromTypeEval($idTypeEval) {
+function GetTabNotesEtudiantsFromTypeEval($idTypeEval,$isSimulation = false) {
     $notesEtudiants = array();
     global $listEtudiantsFromCursus;
     foreach ($listEtudiantsFromCursus as $etudiant) {
-        $notesEtudiants[] = GetMoyenneFromTypeEval($idTypeEval, $etudiant->GetId());
+        $notesEtudiants[] = GetMoyenneFromTypeEval($idTypeEval, $etudiant->GetId(), $isSimulation);
     }
     return $notesEtudiants;
 }
 
-function GetTabNotesEtudiantsFromEval($idEval) {
+function GetTabNotesEtudiantsFromEval($idEval, $isSimulation = false) {
     $notesEtudiants = array();
     global $listEtudiantsFromCursus;
     foreach ($listEtudiantsFromCursus as $etudiant) {
-        $notesEtudiants[] = GetMoyenneFromEval($idEval, $etudiant->GetId());
+        $notesEtudiants[] = GetMoyenneFromEval($idEval, $etudiant->GetId(), $isSimulation);
     }
     return $notesEtudiants;
 }
 
-function GetTabNotesEtudiantsFromCours($idCours) {
+function GetTabNotesEtudiantsFromCours($idCours, $isSimulation = false) {
     $notesEtudiants = array();
     global $listEtudiantsFromCursus;
     foreach ($listEtudiantsFromCursus as $etudiant) {
-        $notesEtudiants[] = GetMoyenneFromCours($idCours, $etudiant->GetId());
+        $notesEtudiants[] = GetMoyenneFromCours($idCours, $etudiant->GetId(), $isSimulation);
     }
     return $notesEtudiants;
 }
 
-function GetTabNotesEtudiantsFromCompetence($idCompetence) {
+function GetTabNotesEtudiantsFromCompetence($idCompetence, $isSimulation = false) {
     $notesEtudiants = array();
     global $listEtudiantsFromCursus;
     foreach ($listEtudiantsFromCursus as $etudiant) {
-        $notesEtudiants[] = GetMoyenneFromCompetence($idCompetence, $etudiant->GetId());
+        $notesEtudiants[] = GetMoyenneFromCompetence($idCompetence, $etudiant->GetId(), $isSimulation);
     }
     return $notesEtudiants;
 }
 
-function GetTabNotesEtudiantsFromCursus($idCursus) {
+function GetTabNotesEtudiantsFromCursus($idCursus, $isSimulation = false) {
     $notesEtudiants = array();
     global $listEtudiantsFromCursus;
     foreach ($listEtudiantsFromCursus as $etudiant) {
-        $notesEtudiants[] = GetMoyenneFromCursus($idCursus, $etudiant->GetId());
+        $notesEtudiants[] = GetMoyenneFromCursus($idCursus, $etudiant->GetId(), $isSimulation);
     }
     return $notesEtudiants;
 }
