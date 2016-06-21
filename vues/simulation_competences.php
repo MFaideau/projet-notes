@@ -28,10 +28,10 @@
                         <td class="lien_tableau"><b>
                                 <?php
                                 $note_etudiant = round(GetMoyenneFromCompetence($competence->GetId(), $idEtudiant, true), 2);
-                                if($note_etudiant == "-1")
+                                if ($note_etudiant == "-1")
                                     echo "-";
                                 else
-                                    echo round($note_etudiant,2);
+                                    echo round($note_etudiant, 2);
                                 ?></b>
                         </td>
                     </tr>
@@ -43,28 +43,31 @@
                             <td style="color: #337ab7;"><b><?php echo $cours->GetCredits(); ?></b></td>
                             <td style="color: #337ab7;">
                                 <b><?php $note = GetMoyenneFromCours($cours->GetId(), $idEtudiant, true);
-                                    if($note == "-1")
+                                    if ($note == "-1")
                                         echo "-";
                                     else
-                                        echo round($note,2);
+                                        echo round($note, 2);
                                     ?>
                                 </b>
                             </td>
                         </tr>
                         <?php foreach (GetTypeEvalListFromCours($cours->GetId()) as $typeEval) { ?>
-                            <tr class="simu_cours_<?php echo $cours->GetId(); ?>_type_eval_<?php echo $typeEval->GetId(); ?>">
+                            <tr id="typeEval_comp_<?php echo $competence->GetId(); ?>" class="simu_cours_<?php echo $cours->GetId(); ?>_type_eval_<?php echo $typeEval->GetId(); ?>">
                                 <td id="nom_type_eval"><a style="color: black;"
                                                           id="simu_type_eval_<?php echo $typeEval->GetId(); ?>">
                                         <b><?php echo $typeEval->GetNom(); ?></b></a>
                                 </td>
                                 <td><b><?php echo $typeEval->GetCoef() * 100; ?></b></td>
-                                <td><b><?php
+                                <td>
+                                    <b><?php
                                         $note = GetMoyenneFromTypeEval($typeEval->GetId(), $idEtudiant, true);
                                         if ($note == "-1")
                                             echo "-"; // Pas de note disponible pour le moment pour les épreuves de ce type eval
                                         else
-                                            echo round($note,2);
-                                        ?></b></td>
+                                            echo round($note, 2);
+                                        ?>
+                                    </b>
+                                </td>
                             </tr>
                             <?php foreach (GetEpreuveListFromTypeEval($typeEval->GetId()) as $epreuve) { ?>
                                 <tr class="simu_type_eval_<?php echo $typeEval->GetId(); ?>_epreuve_<?php echo $epreuve->GetId(); ?>">
@@ -81,8 +84,7 @@
                                             $note = $etudiantNote->GetNoteFinale();
                                             if ($note != "-1") {
                                                 echo $note;
-                                            }
-                                            else {
+                                            } else {
                                                 // Si l'étudiant n'a pas de note, on lui crée un champ
                                                 ?>
                                                 <input type="number" min="0" max="20"
@@ -91,8 +93,7 @@
                                                 />
                                                 <?php
                                             }
-                                        }
-                                        else {
+                                        } else {
                                             // Si l'étudiant n'a pas de note, on lui crée un champ
                                             ?>
                                             <input type="number" min="0" max="20"
