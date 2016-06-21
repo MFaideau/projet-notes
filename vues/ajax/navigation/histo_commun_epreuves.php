@@ -55,9 +55,9 @@
                 $max = round($tab_histo_total[3],2);
                 ?>
                 <td><b>Moyenne Générale</b></td>
-                <td><b><?php echo $min; ?></b></td>
-                <td><b><?php echo $max; ?></b></td>
-                <td><b><?php echo $note_etudiant; ?></b></td>
+                <td><b><?php echo TestValidite($min); ?></b></td>
+                <td><b><?php echo TestValidite($max); ?></b></td>
+                <td><b><?php echo TestValidite($note_etudiant); ?></b></td>
                 <td class="button_show_histo">
                     <a id="histo_batons_cours_<?php echo $idCours; ?>">
                         <span class="glyphicon glyphicon-stats icone histo_button"></span>

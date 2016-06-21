@@ -9,7 +9,12 @@ if (!isset($_SESSION['user'])) {
     die(); }
 else {
     $user = unserialize($_SESSION['user']);
-    $cursus = GetEtudiant($user)->GetCursus();
+    $etudiant = GetEtudiant($user);
+    if(isset($user_vue)) {
+        $etudiant = GetEtudiant($user_vue);
+    }
+    $idEtudiant = $etudiant->GetId();
+    $cursus = $etudiant->GetCursus();
     include_once __DIR__ . '../../controleurs/tab_request.php';
     include_once(__DIR__ . '../../vues/menu.php');
     include_once(__DIR__ . '../../vues/menu_rapide.php');

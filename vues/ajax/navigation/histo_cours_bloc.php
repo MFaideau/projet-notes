@@ -3,7 +3,7 @@
 
 <div class="row donnees donnees_histo_cours">
     <div class="panel panel-default">
-        <div class="panel-heading "><a href="releve_onglet.php"><span class="glyphicon glyphicon-arrow-left retour_prec_histo"></span></a>
+        <div class="panel-heading "><a href="#" id="prec_cours_histo_perso"><span class="glyphicon glyphicon-arrow-left retour_prec_histo"></span></a>
             Histogramme Perso - Choix du cours
         </div>
         <table class="table" data-toggle="table">
@@ -33,9 +33,9 @@
                         include (__DIR__ . '../../modules/module_histo.php');
                         ?>
                     </td>
-                    <td><?php echo $min; ?></td>
-                    <td><?php echo $max; ?></td>
-                    <td><?php echo $note_etudiant; ?></td>
+                    <td><?php echo TestValidite($min); ?></td>
+                    <td><?php echo TestValidite($max); ?></td>
+                    <td><?php echo TestValidite($note_etudiant); ?></td>
                 </tr>
             <?php } ?>
             </tbody>
@@ -54,9 +54,9 @@
                     include(__DIR__ . '../../modules/module_histo.php');
                     ?>
                         </b></td>
-                <td><b><?php echo $min; ?></b></td>
-                <td><b><?php echo $max; ?></b></td>
-                <td><b><?php echo $note_etudiant; ?></b></td>
+                <td><b><?php echo TestValidite($min); ?></b></td>
+                <td><b><?php echo TestValidite($max); ?></b></td>
+                <td><b><?php echo TestValidite($note_etudiant); ?></b></td>
             </tr>
             </tfoot>
         </table>

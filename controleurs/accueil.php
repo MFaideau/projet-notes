@@ -8,6 +8,7 @@ include_once('./modeles/authentification/utilisateur.class.php');
 include_once('./modeles/consultation/consultation.php');
 
 $user = unserialize($_SESSION['user']);
+include_once('./controleurs/tab_request.php');
 
 include_once("vues/menu.php");
 if ($user->GetAutorite() == 0) {

@@ -28,9 +28,9 @@
                         $tab_histo = GetStat(GetTabNotesEtudiantsFromCours($idCours));
                         $min = round($tab_histo[2],2);
                         $max = round($tab_histo[3],2);
-                        echo $min; ?></td>
-                    <td><?php echo $max; ?></td>
-                    <td><?php echo $note_etudiant; ?></td>
+                        echo TestValidite($min); ?></td>
+                    <td><?php echo TestValidite($max); ?></td>
+                    <td><?php echo TestValidite($note_etudiant); ?></td>
                     <td class="button_show_histo">
                         <a id="histo_batons_cours_<?php echo $idCours; ?>">
                             <span class="glyphicon glyphicon-stats icone histo_button"></span>
@@ -47,11 +47,11 @@
                 $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCompetence($idCompetence));
                 $min = round($tab_histo_total[2],2);
                 $max = round($tab_histo_total[3],2);
-                echo $min;
+                echo TestValidite($min);
                 ?>
                </b></td>
-                <td><b><?php echo $max; ?></b></td>
-                <td><b><?php echo $note_etudiant; ?></b></td>
+                <td><b><?php echo TestValidite($max); ?></b></td>
+                <td><b><?php echo TestValidite($note_etudiant); ?></b></td>
                 <td class="button_show_histo">
                     <a id="histo_batons_comp_<?php echo $idCompetence; ?>">
                         <span class="glyphicon glyphicon-stats icone histo_button"></span>

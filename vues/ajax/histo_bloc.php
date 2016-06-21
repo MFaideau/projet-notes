@@ -26,13 +26,15 @@
                         $tab_histo = GetStat(GetTabNotesEtudiantsFromCompetence($competence->GetId()));
                         $moyenne = $tab_histo[0];
                         $ecart_type = $tab_histo[1];
+                        $min = round($tab_histo[2],2);
+                        $max = round($tab_histo[3],2);
                         $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
                         include('modules/module_histo.php');
                         ?>
                     </td>
-                    <td><?php echo round($tab_histo[2],2); ?></td>
-                    <td><?php echo round($tab_histo[3],2); ?></td>
-                    <td><?php echo round($note_etudiant,2); ?></td>
+                    <td><?php echo TestValidite($min); ?></td>
+                    <td><?php echo TestValidite($max); ?></td>
+                    <td><?php echo TestValidite(round($note_etudiant,2)); ?></td>
                 </tr>
             <?php } ?>
             </tbody>
@@ -45,13 +47,15 @@
                     $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCursus($cursus->GetId()));
                     $moyenne = $tab_histo_total[0];
                     $ecart_type = $tab_histo_total[1];
+                    $min = round($tab_histo_total[2],2);
+                    $max = round($tab_histo_total[3],2);
                     $tab = showHisto($moyenne, $note_etudiant, $ecart_type);
                     include('modules/module_histo.php');
                     ?>
                 </td>
-                <td><b><?php echo round($tab_histo_total[2],2); ?></b></td>
-                <td><b><?php echo round($tab_histo_total[3],2); ?></b></td>
-                <td><b><?php echo round($note_etudiant,2); ?></b></td>
+                <td><b><?php echo TestValidite($min); ?></b></td>
+                <td><b><?php echo TestValidite($max); ?></b></td>
+                <td><b><?php echo TestValidite(round($note_etudiant,2)); ?></b></td>
             </tr>
             </tfoot>
         </table>

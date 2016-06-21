@@ -1,5 +1,5 @@
 <?php
-
+define("ROOT_ACCESS",true);
 session_start();
 
 include_once __DIR__ . '../../modeles/sqlConnection.php';
@@ -13,7 +13,7 @@ if (!isset($_SESSION['user'])) {
 }
 
 $user = unserialize($_SESSION['user']);
-
+$idEtudiant = GetEtudiant($user)->GetId();
 include_once __DIR__ . '../../controleurs/tab_request.php';
 
 if (isset($_POST['action']) && isset($_POST['idEpreuve']) && isset($_POST['noteSimulee'])) {
@@ -43,7 +43,7 @@ function GetNouvellesNotes($etudiant)
         $donnees = array(
             'type' => 'competence',
             'id' => $competence->GetId(),
-            'value' => round(GetMoyenneFromCompetence($competence->GetId(), $etudiant->GetId()), 2)
+            'value' => round(GetMoyenneFromCompetence($competence->GetId(), $etudiant->GetId(), true), 2)
         );
         array_push($finalArray, $donnees);
 
@@ -52,7 +52,7 @@ function GetNouvellesNotes($etudiant)
             $donnees = array(
                 'type' => 'cours',
                 'id' => $cours->GetId(),
-                'value' => round(GetMoyenneFromCours($cours->GetId(), $etudiant->GetId()), 2)
+                'value' => round(GetMoyenneFromCours($cours->GetId(), $etudiant->GetId(), true), 2)
             );
             array_push($finalArray, $donnees);
 
@@ -61,7 +61,7 @@ function GetNouvellesNotes($etudiant)
                 $donnees = array(
                     'type' => 'typeEval',
                     'id' => $typeEval->GetId(),
-                    'value' => round(GetMoyenneFromTypeEval($typeEval->GetId(), $etudiant->GetId()), 2)
+                    'value' => round(GetMoyenneFromTypeEval($typeEval->GetId(), $etudiant->GetId(), true), 2)
                 );
                 array_push($finalArray, $donnees);
 
