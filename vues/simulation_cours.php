@@ -1,3 +1,4 @@
+<?php defined("ROOT_ACCESS") or die(); ?>
 <!-- Simulateur Manuel !-->
 <div class="row donnees donnees_tableaux panel_simu_cours">
     <div class="panel panel-default">

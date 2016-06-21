@@ -1,4 +1,5 @@
-<?php global $tab; $tab = $tab[0]; ?>
+<?php defined("ROOT_ACCESS") or die();
+global $tab; $tab = $tab[0]; ?>
 <svg width="100%" height="16px">
     <defs>
         <linearGradient id="histo" x1="0%" y1="0%" x2="<?php echo $tab[0]; ?>%" y2="0%">

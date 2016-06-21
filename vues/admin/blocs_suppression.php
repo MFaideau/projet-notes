@@ -1,11 +1,4 @@
-<?php
-/**
- * @Auteur : bLandais
- * @Description : Les blocs dans ce fichier servent à demander la confirmation de l'utilisateur lors de la suppression
- * @Date : 02 / 07 / 2016
- * @Projet : github.com/bLandais/projet-notes
- */
-?>
+<?php defined("ROOT_ACCESS") or die(); ?>
 
 <!-- Fenêtre de confirmation pour la suppression des cursus !-->
 <div class="modal fade" id="verifDeleteCursus" tabindex="-1" role="dialog" aria-labelledby="verifDeleteCursus">
