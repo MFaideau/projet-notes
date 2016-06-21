@@ -211,31 +211,41 @@ function GetNotePonderee($note, $coefficient) {
     return $note*$coefficient;
 }
 
-function GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant) {
+function GetNoteSimulation($etudiantNote, $isSimulation = false) {
+    if (!isset($etudiantNote))
+        return -1;
+    $noteFinale = $etudiantNote->GetNoteFinale();
+    $notePrevue = $etudiantNote->GetNotePrevue();
+    if ($noteFinale == -1 && $isSimulation)
+        return $notePrevue;
+    return $noteFinale;
+}
+
+function GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant, $isSimulation = false) {
     $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
     $etudiantNoteRattrapage = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuveRattrapage->GetId());
     if (isset($etudiantNote)) {
         if (isset($etudiantNoteRattrapage)) {
-            $note = $etudiantNote->GetNoteFinale();
-            $noteRattrapage = $etudiantNoteRattrapage->GetNoteFinale();
+            $note = GetNoteSimulation($etudiantNote, $isSimulation);
+            $noteRattrapage = GetNoteSimulation($etudiantNoteRattrapage, $isSimulation);
             if ($note >= $noteRattrapage) {
                 return $note;
             }
             else return $noteRattrapage;
         }
         else {
-            $note = $etudiantNote->GetNoteFinale();
+            $note = GetNoteSimulation($etudiantNote, $isSimulation);
             return $note;
         }
     }
     elseif (isset($etudiantNoteRattrapage)) {
-        $noteRattrapage = $etudiantNoteRattrapage->GetNoteFinale();
+        $noteRattrapage = GetNoteSimulation($etudiantNoteRattrapage, $isSimulation);
         return $noteRattrapage;
     }
     return -1;
 }
 
-function GestionAbsenceEpreuve($epreuve, $idEtudiant) {
+function GestionAbsenceEpreuve($epreuve, $idEtudiant, $isSimulation = false) {
     $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
     if (isset($etudiantNote)) {
         $absence = $etudiantNote->GetAbsence();
@@ -256,7 +266,7 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant) {
                         if ($idSubstitutionRattrapage > 0) {
                             $epreuveSubstitutionRattrapage = GetEpreuveFromId($idSubstitutionRattrapage);
                             $note = GetBestNote($epreuveSubstitution, $epreuveSubstitutionRattrapage, $idEtudiant);
-                        } else $note = $etudiantNoteSubstitution->GetNoteFinale();
+                        } else $note = GetNoteSimulation($etudiantNoteSubstitution, $isSimulation);
                     }
                 }
                 else $note = -1;
@@ -271,7 +281,7 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant) {
                     } elseif ($absenceRattrapage == 2) {
                         $note = 0;
                     } else {
-                        $note = $etudiantNoteRattrapage->GetNoteFinale();
+                        $note = GetNoteSimulation($etudiantNoteRattrapage, $isSimulation);
                     }
                 }
                 else $note = -1;
@@ -289,16 +299,16 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant) {
                 if(isset($etudiantNoteRattrapage)) {
                     $absenceRattrapage = $etudiantNoteRattrapage->GetAbsence();
                     if ($absenceRattrapage == 1) {
-                        $note = $etudiantNote->GetNoteFinale();
+                        $note = GetNoteSimulation($etudiantNote, $isSimulation);
                     } elseif ($absenceRattrapage == 2) {
-                        $note = $etudiantNote->GetNoteFinale();
+                        $note = GetNoteSimulation($etudiantNote, $isSimulation);
                     } else {
                         $note = GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant);
                     }
                 }
-                else $note = $etudiantNote->GetNoteFinale();
+                else $note = GetNoteSimulation($etudiantNote, $isSimulation);
             }
-            else $note = $etudiantNote->GetNoteFinale();
+            else $note = GetNoteSimulation($etudiantNote, $isSimulation);
         }
         return $note;
     }
@@ -428,7 +438,7 @@ function GetMoyenneFromCursus($idCursus, $idEtudiant) {
     return $moyenne/$sommecredits;
 }
 
-function GetTabNotesEtudiantsFromEpreuve($idEpreuve) {
+function GetTabNotesEtudiantsFromEpreuve($idEpreuve, $isSimulation = false) {
     global $listEtudiantsFromCursus;
     $notesEtudiants = array();
     foreach ($listEtudiantsFromCursus as $i => $etudiant) {
@@ -437,7 +447,7 @@ function GetTabNotesEtudiantsFromEpreuve($idEpreuve) {
         if (isset($etudiantNote)) {
             $absenceEtudiant = $etudiantNote->GetAbsence();
             if (($absenceEtudiant == 0) || ($absenceEtudiant == 2)) {
-                $notesEtudiants[] = $etudiantNote->GetNoteFinale();
+                $notesEtudiants[] = GetNoteSimulation($etudiantNote, $isSimulation);
             }
         }
     }
