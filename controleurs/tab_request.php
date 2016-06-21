@@ -285,7 +285,18 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant) {
             $idRattrapage = $epreuve->GetIdSecondeSession();
             if ($idRattrapage > 0) {
                 $epreuveRattrapage = GetEpreuveFromId($idRattrapage);
-                $note = GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant);
+                $etudiantNoteRattrapage = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idRattrapage);
+                if(isset($etudiantNoteRattrapage)) {
+                    $absenceRattrapage = $etudiantNoteRattrapage->GetAbsence();
+                    if ($absenceRattrapage == 1) {
+                        $note = $etudiantNote->GetNoteFinale();
+                    } elseif ($absenceRattrapage == 2) {
+                        $note = $etudiantNote->GetNoteFinale();
+                    } else {
+                        $note = GetBestNote($epreuve, $epreuveRattrapage, $idEtudiant);
+                    }
+                }
+                else $note = $etudiantNote->GetNoteFinale();
             }
             else $note = $etudiantNote->GetNoteFinale();
         }
@@ -296,19 +307,21 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant) {
 
 function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant) {
     $listEpreuves = GetEpreuveListFromTypeEval($idTypeEval);
+    $listSecondesSessions = GetEpreuveSecondeSessionListFromTypeEval($idTypeEval);
     $notesEtudiant = array();
     $somme = 0;
     $sommecoef = 0;
     foreach ($listEpreuves as $i => $epreuve) {
-        $coefEpreuve = $epreuve->GetCoef();
-        $note = GestionAbsenceEpreuve($epreuve, $idEtudiant);
-        if ($note == -1) {
-            $i = $i-1;
-        }
-        else {
-            $notesEtudiant[$i] = $note;
-            $somme = $somme + GetNotePonderee($notesEtudiant[$i], $coefEpreuve);
-            $sommecoef = $sommecoef + $coefEpreuve;
+        if(!in_array($epreuve, $listSecondesSessions)) {
+            $coefEpreuve = $epreuve->GetCoef();
+            $note = GestionAbsenceEpreuve($epreuve, $idEtudiant);
+            if ($note == -1) {
+                $i = $i - 1;
+            } else {
+                $notesEtudiant[$i] = $note;
+                $somme = $somme + GetNotePonderee($notesEtudiant[$i], $coefEpreuve);
+                $sommecoef = $sommecoef + $coefEpreuve;
+            }
         }
     }
     if (count($notesEtudiant) == 0) {
