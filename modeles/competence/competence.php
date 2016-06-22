@@ -98,7 +98,7 @@ function GetContentCompetence($idCursus) {
     $result=$req->fetchAll();
     $str="competence"."\r\n";
     $str =$str.count($result)."\r\n";
-    $str=$str."ID_Competence;ID_Cursus;Nom_Competence"."\r\n";
+    //$str=$str."ID_Competence;ID_Cursus;Nom_Competence"."\r\n";
     foreach ($result as $line){
         $str=$str.$line["ID_Competence"].";";
         $str=$str.$line["ID_Cursus"].";";

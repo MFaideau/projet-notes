@@ -11,7 +11,7 @@
                 <thead>
                 <tr>
                     <th>Cours</th>
-                    <th>Moyenne</th>
+                    <th>Note</th>
                     <th>ECTS</th>
                     <th>Grades</th>
                 </tr>

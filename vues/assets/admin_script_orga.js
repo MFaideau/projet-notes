@@ -280,7 +280,7 @@ $(function () {
             data: "action=delete&idCursus=" + idCursus,
             success: function (result) {
                 $("#verifDeleteCursus").modal("hide");
-                $("tr[id^=orga_tr_cursus_" + idCursus + "]").remove();
+                $("tr[id=orga_tr_cursus_" + idCursus + "]").remove();
                 $(".panel_competences").remove();
                 $(".panel_cours").remove();
                 $(".panel_eval").remove();
@@ -300,7 +300,7 @@ $(function () {
             data: "action=delete&idCompetence=" + idCompetence,
             success: function () {
                 $("#verifDeleteCompetences").modal("hide");
-                $("tr[id^=orga_tr_competence_" + idCompetence + "]").remove();
+                $("tr[id=orga_tr_competence_" + idCompetence + "]").remove();
                 $(".panel_cours").remove();
                 $(".panel_type_eval").remove();
                 $(".panel_epreuve").remove();
@@ -319,7 +319,7 @@ $(function () {
             data: "action=delete&idCours=" + idCours,
             success: function () {
                 $("#verifDeleteCours").modal("hide");
-                $("tr[id^=orga_tr_cours_" + idCours + "]").remove();
+                $("tr[id=orga_tr_cours_" + idCours + "]").remove();
                 $(".panel_eval").remove();
                 $(".panel_type_eval").remove();
                 $(".panel_epreuve").remove();
@@ -337,7 +337,7 @@ $(function () {
             data: "action=delete&idEval=" + idEval,
             success: function () {
                 $("#verifDeleteEval").modal("hide");
-                $("tr[id^=orga_tr_eval_" + idEval + "]").remove();
+                $("tr[id=orga_tr_eval_" + idEval + "]").remove();
                 $(".panel_type_eval").remove();
                 $(".panel_epreuve").remove();
             }
@@ -354,7 +354,7 @@ $(function () {
             data: "action=delete&idTypeEval=" + idTypeEval,
             success: function () {
                 $("#verifDeleteTypeEval").modal("hide");
-                $("tr[id^=orga_tr_type_eval_" + idTypeEval + "]").remove();
+                $("tr[id=orga_tr_type_eval_" + idTypeEval + "]").remove();
                 $(".panel_epreuve").remove();
             }
         });
@@ -369,7 +369,7 @@ $(function () {
             data: "action=delete&idEpreuve=" + idEpreuve,
             success: function () {
                 $("#verifDeleteEpreuve").modal("hide");
-                $("tr[id^=orga_tr_epreuve_" + idEpreuve + "]").remove();
+                $("tr[id=orga_tr_epreuve_" + idEpreuve + "]").remove();
             }
         });
     });

@@ -88,7 +88,7 @@ AND competence.ID_Cursus=:idCursus');
     $result=$req->fetchAll();
     $str="epreuve"."\r\n";
     $str =$str.count($result)."\r\n";
-    $str=$str."ID_Epreuve;ID_Type;ID_Epreuve_Session2;ID_Epreuve_Substitution;Nom_Epreuve;Coef_Epreuve;Date_Epreuve;Evaluateur_Epreuve"."\r\n";
+    //$str=$str."ID_Epreuve;ID_Type;ID_Epreuve_Session2;ID_Epreuve_Substitution;Nom_Epreuve;Coef_Epreuve;Date_Epreuve;Evaluateur_Epreuve"."\r\n";
     foreach ($result as $line){
         $str=$str.$line["ID_Epreuve"].";";
         $str=$str.$line["ID_Type"].";";
