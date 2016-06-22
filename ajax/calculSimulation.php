@@ -13,6 +13,11 @@ if (!isset($_SESSION['user']))
 
 $user = unserialize($_SESSION['user']);
 $etudiant = GetEtudiant($user);
+if(isset($_SESSION['user_vue'])) {
+    $user_vue = unserialize($_SESSION['user_vue']);
+    $etudiant = GetEtudiant($user_vue);
+}
+
 if(isset($etudiant))
     $idEtudiant = $etudiant->GetId();
 

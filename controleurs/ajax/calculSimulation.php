@@ -10,8 +10,12 @@ if (isset($_POST['action']) && isset($_POST['idEpreuve']) && isset($_POST['noteS
                 if (isset($epreuve)) {
                     $etudiant = GetEtudiant($user);
                     // On met à jour la base de données avec la note prévue
-                    AddEtudiantNotePrevue($idEpreuve, $etudiant->GetId(), $noteSimulee);
-
+                    if($user->GetAutorite() == 1) {
+                        AddEtudiantNote($idEpreuve, $etudiant->GetId(), $noteSimulee, 0);
+                    }
+                    else {
+                        AddEtudiantNotePrevue($idEpreuve, $etudiant->GetId(), $noteSimulee);
+                    }
                     // On retourne la liste des nouvelles moyennes calculées
                     echo json_encode(GetNouvellesNotes($etudiant));
                     return;

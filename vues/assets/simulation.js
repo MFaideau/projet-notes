@@ -47,7 +47,7 @@ $(document).on("click", "a[id^=simu_type_eval_]", function (e) {
 $("input[name^=note_epreuve_]").keypress(function(e) {
     if(e.which == 13) {
         var idEpreuveSim = this.name.replace("note_epreuve_","");
-        setNoteSimulee(idEpreuveSim, $(this).val())
+        setNoteSimulee(idEpreuveSim, $(this).val());
     }
 });
 

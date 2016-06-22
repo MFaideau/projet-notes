@@ -82,14 +82,18 @@
                                         $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
                                         if (isset($etudiantNote)) {
                                             $note = $etudiantNote->GetNoteFinale();
-                                            if ($note != "-1") {
+                                            if ($note != "-1" && $user->GetAutorite() == 0) {
                                                 echo $note;
                                             } else {
                                                 // Si l'étudiant n'a pas de note, on lui crée un champ
                                                 ?>
                                                 <input type="number" min="0" max="20"
                                                        name="note_epreuve_<?php echo $epreuve->GetId(); ?>"
-                                                       value="<?php echo $etudiantNote->GetNotePrevue(); ?>"
+                                                       value="<?php
+                                                        if($user->GetAutorite() == 1)
+                                                            echo $note;
+                                                        else
+                                                            echo $etudiantNote->GetNotePrevue(); ?>"
                                                 />
                                                 <?php
                                             }
