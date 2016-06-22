@@ -101,6 +101,18 @@ VALUES (:idEpreuve,:idEtudiant,:noteFinale,:notePrevue,:absenceEpreuve)');
     }
 }
 
+function InsertEtudiantNoteFull($data)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO etudiantnote (ID_Epreuve,ID_Etudiant,Note_Finale,Note_Prevue,Absence_Epreuve) VALUES (:idEpreuve,:idEtudiant,:noteFinale,:notePrevue,:absence)');
+    $req->bindParam(':idEpreuve', $data[0], PDO::PARAM_INT);
+    $req->bindParam(':idEtudiant', $data[1], PDO::PARAM_INT);
+    $req->bindParam(':noteFinale', $data[2], PDO::PARAM_STR);
+    $req->bindParam(':notePrevue', $data[3], PDO::PARAM_STR);
+    $req->bindParam(':absence', $data[4], PDO::PARAM_INT);
+    $req->execute();
+}
+
 function AddEtudiantNote($idEpreuve, $idEtudiant, $noteEtudiant, $absence)
 {
     global $bdd;

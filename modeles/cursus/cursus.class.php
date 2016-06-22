@@ -42,7 +42,7 @@ class Cursus
     public function GetContentCursus() {
         $str="cursus"."\r\n";
         $str = $str . "1\r\n";
-        $str = $str . "ID_Cursus;Nom_Cursus;Annee_Cursus"."\r\n";
+        //$str = $str . "ID_Cursus;Nom_Cursus;Annee_Cursus"."\r\n";
         $str = $str . $this->id . ";";
         $str = $str . $this->nom . ";";
         $str = $str . $this->annee . "\r\n";

@@ -12,6 +12,15 @@ else {
         header('Location: accueil.php');
         die();
     }
+    if (isset($_GET['idCursusSauvegarde'])){
+        if(is_numeric($_GET['idCursusSauvegarde'])){
+            ExportDB($_GET['idCursusSauvegarde']);
+            die();
+        }
+    }
+
+    if (isset($_FILES['fichier_db']))
+        ImportDB();
 
 	include_once ('./vues/menu.php');
 	include_once ('./vues/admin/organisation_etudes.php');
@@ -26,25 +35,82 @@ else {
 
 function ImportDB()
 {
-    if (($handle = fopen($_FILES['export_bdd']['tmp_name'], "r")) !== FALSE) {
-        while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-            if($data=="cursus"){ImportCursus($handle);}
-            elseif($data=="cursus"){ImportCursus($handle);}
+    if (($handle = fopen($_FILES['fichier_db']['tmp_name'], "r")) !== FALSE) {
+        $i=0;
+        while (($data = fgetcsv($handle, 1000, ";")) != FALSE) {
+            if($data[0]=="cursus"){ImportCursus($handle);}
+            elseif($data[0]=="competence"){ImportCompetence($handle);}
+            elseif($data[0]=="cours"){ImportCours($handle);}
+            elseif($data[0]=="evaluation"){ImportEvaluation($handle);}
+            elseif($data[0]=="type_eval"){ImportTypeEval($handle);}
+            elseif($data[0]=="epreuve"){ImportEpreuve($handle);}
+            elseif($data[0]=="etudiantnote"){ImportEtudiantNote($handle);}
         }
         fclose($handle);
-        return true;
     }
-    $erreur_upload = 3;
-    include_once('./vues/admin/error.php');
-    return false;
+    return;
 }
 
 function ImportCursus($handle)
 {
-    global $bdd;
-    $count = fgetcsv($handle, 1000, ";");
+    $count = fgetcsv($handle, 1000, ";")[0];
     for ($i = 0; $i < $count; $i++) {
         $data = fgetcsv($handle, 1000, ";");
         InsertCursusFull($data);
     }
+    fgetcsv($handle, 1000, ";");
+}
+function ImportCompetence($handle)
+{
+    $count = fgetcsv($handle, 1000, ";")[0];
+    for ($i = 0; $i < $count; $i++) {
+        $data = fgetcsv($handle, 1000, ";");
+        InsertCompetenceFull($data);
+    }
+    fgetcsv($handle, 1000, ";");
+}
+function ImportCours($handle)
+{
+    $count = fgetcsv($handle, 1000, ";")[0];
+    for ($i = 0; $i < $count; $i++) {
+        $data = fgetcsv($handle, 1000, ";");
+        InsertCoursFull($data);
+    }
+    fgetcsv($handle, 1000, ";");
+}
+function ImportEvaluation($handle)
+{
+    $count = fgetcsv($handle, 1000, ";")[0];
+    for ($i = 0; $i < $count; $i++) {
+        $data = fgetcsv($handle, 1000, ";");
+        InsertEvaluationFull($data);
+    }
+    fgetcsv($handle, 1000, ";");
+}
+function ImportTypeEval($handle)
+{
+    $count = fgetcsv($handle, 1000, ";")[0];
+    for ($i = 0; $i < $count; $i++) {
+        $data = fgetcsv($handle, 1000, ";");
+        InsertTypeEvalFull($data);
+    }
+    fgetcsv($handle, 1000, ";");
+}
+function ImportEpreuve($handle)
+{
+    $count = fgetcsv($handle, 1000, ";")[0];
+    for ($i = 0; $i < $count; $i++) {
+        $data = fgetcsv($handle, 1000, ";");
+        InsertEpreuveFull($data);
+    }
+    fgetcsv($handle, 1000, ";");
+}
+function ImportEtudiantNote($handle)
+{
+    $count = fgetcsv($handle, 1000, ";")[0];
+    for ($i = 0; $i < $count; $i++) {
+        $data = fgetcsv($handle, 1000, ";");
+        InsertEtudiantNoteFull($data);
+    }
+    fgetcsv($handle, 1000, ";");
 }

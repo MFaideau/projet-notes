@@ -27,5 +27,5 @@ function ExportDB($idCursus)
     $bddStr = $bddStr."\r\n".GetContentTypeEval($idCursus);
     $bddStr = $bddStr."\r\n".GetContentEpreuve($idCursus);
     $bddStr = $bddStr."\r\n".GetContentEtudiantNote($idCursus);
-    TelechargementString(date("d-m-Y")."_".date("H-i-s").'_VisualYear_Exportation_BDD.txt',$bddStr);
+    TelechargementString(date("d-m-Y")."_".date("H-i-s").'_VisualYear_Exportation_BDD.agg',$bddStr);
 }

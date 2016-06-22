@@ -72,6 +72,17 @@ function InsertTypeEval($nom,$coef,$idEval)
     return $lastTypeEvalID[0];
 }
 
+function InsertTypeEvalFull($data)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO type_eval (ID_Type,ID_Eval,Nom_Type,Coef_Type_Eval) VALUES (:idType,:idEval,:nomType,:coefTypeEval)');
+    $req->bindParam(':idType', $data[0], PDO::PARAM_INT);
+    $req->bindParam(':idEval', $data[1], PDO::PARAM_INT);
+    $req->bindParam(':nomType', $data[2], PDO::PARAM_STR);
+    $req->bindParam(':coefTypeEval', $data[3], PDO::PARAM_STR);
+    $req->execute();
+}
+
 function DeleteTypeEval($id)
 {
     global $bdd;

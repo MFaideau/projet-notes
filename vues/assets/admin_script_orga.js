@@ -167,7 +167,7 @@ $(document).on("click", "a[id^=orga_epreuve]", function (e) {
 });
 
 $(function () {
-    $('#addCursus').on('submit', function (e) {
+    $('form[id=addCursus]').on('submit', function (e) {
         e.preventDefault();
         $.ajax({
             url: './ajax/admin_ajax_orga.php', //this is the submit URL
@@ -493,7 +493,8 @@ $(function () {
 // MODIFICATION
 // ==========================================================
 $(document).on("click", "a[id^=orga_modify_cursus_]", function (e) {
-    idCursus = this.id.replace("orga_modify_cursus_", "");
+    var idCursus = this.id.replace("orga_modify_cursus_", "");
+    $("a[id^=orga_cursus_"+idCursus+"]").trigger("click");
     // On récupère aussi des informations pour le bloc de modifications
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
@@ -509,11 +510,14 @@ $(document).on("click", "a[id^=orga_modify_cursus_]", function (e) {
     });
 });
 $(document).on("click", "a[id^=orga_delete_cursus_]", function (e) {
-    idCursus = this.id.replace("orga_delete_cursus_", "");
+    var idCursus = this.id.replace("orga_delete_cursus_", "");
+    $("a[id^=orga_cursus_"+idCursus+"]").trigger("click");
+    document.getElementById("lienSauvegardeCursus").href= "organisation_etudes.php?idCursusSauvegarde="+idCursus;
 });
 
 $(document).on("click", "a[id^=orga_modify_competence_]", function (e) {
-    idCompetence = this.id.replace("orga_modify_competence_", "");
+    var idCompetence = this.id.replace("orga_modify_competence_", "");
+    $("a[id^=orga_competence_"+idCompetence+"]").trigger("click");
     // On récupère aussi des informations pour le bloc de modifications
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
@@ -528,12 +532,14 @@ $(document).on("click", "a[id^=orga_modify_competence_]", function (e) {
     });
 });
 $(document).on("click", "a[id^=orga_delete_competence_]", function (e) {
-    idCompetence = this.id.replace("orga_delete_competence_", "");
+    var idCompetence = this.id.replace("orga_delete_competence_", "");
+    $("a[id^=orga_competence_"+idCompetence+"]").trigger("click");
 });
 
 
 $(document).on("click", "a[id^=orga_modify_cours_]", function (e) {
-    idCours = this.id.replace("orga_modify_cours_", "");
+    var idCours = this.id.replace("orga_modify_cours_", "");
+    $("a[id^=orga_cours_"+idCours+"]").trigger("click");
     // On récupère aussi des informations pour le bloc de modifications
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
@@ -549,11 +555,13 @@ $(document).on("click", "a[id^=orga_modify_cours_]", function (e) {
     });
 });
 $(document).on("click", "a[id^=orga_delete_cours_]", function (e) {
-    idCours = this.id.replace("orga_delete_cours_", "");
+    var idCours = this.id.replace("orga_delete_cours_", "");
+    $("a[id^=orga_cours_"+idCours+"]").trigger("click");
 });
 
 $(document).on("click", "a[id^=orga_modify_eval_]", function (e) {
-    idEval = this.id.replace("orga_modify_eval_", "");
+    var idEval = this.id.replace("orga_modify_eval_", "");
+    $("a[id^=orga_eval_"+idEval+"]").trigger("click");
     // On récupère aussi des informations pour le bloc de modifications
     // On récupère aussi des informations pour le bloc de modifications
     $.ajax({
@@ -570,11 +578,13 @@ $(document).on("click", "a[id^=orga_modify_eval_]", function (e) {
     });
 });
 $(document).on("click", "a[id^=orga_delete_eval_]", function (e) {
-    idEval = this.id.replace("orga_delete_eval_", "");
+    var idEval = this.id.replace("orga_delete_eval_", "");
+    $("a[id^=orga_eval_"+idEval+"]").trigger("click");
 });
 
 $(document).on("click", "a[id^=orga_modify_type_eval_]", function (e) {
-    idTypeEval = this.id.replace("orga_modify_type_eval_", "");
+    var idTypeEval = this.id.replace("orga_modify_type_eval_", "");
+    $("a[id^=orga_type_eval_"+idTypeEval+"]").trigger("click");
     // On récupère aussi des informations pour le bloc de modifications
     $.ajax({
         url: './ajax/admin_ajax_orga.php',
@@ -589,11 +599,13 @@ $(document).on("click", "a[id^=orga_modify_type_eval_]", function (e) {
     });
 });
 $(document).on("click", "a[id^=orga_delete_type_eval_]", function (e) {
-    idTypeEval = this.id.replace("orga_delete_type_eval_", "");
+    var idTypeEval = this.id.replace("orga_delete_type_eval_", "");
+    $("a[id^=orga_type_eval_"+idTypeEval+"]").trigger("click");
 });
 
 $(document).on("click", "a[id^=orga_modify_epreuve_]", function (e) {
-    idEpreuve = this.id.replace("orga_modify_epreuve_", "");
+    var idEpreuve = this.id.replace("orga_modify_epreuve_", "");
+    $("a[id^=orga_epreuve_"+idEpreuve+"]").trigger("click");
     var modifyEpreuveDiv = $("#modifyEpreuve");
     // On récupère aussi des informations pour le bloc de modifications
     $.ajax({
@@ -644,5 +656,6 @@ $(document).on("click", "a[id^=orga_modify_epreuve_]", function (e) {
     });
 });
 $(document).on("click", "a[id^=orga_delete_epreuve_]", function (e) {
-    idEpreuve = this.id.replace("orga_delete_epreuve_", "");
+    var idEpreuve = this.id.replace("orga_delete_epreuve_", "");
+    $("a[id^=orga_epreuve_"+idEpreuve+"]").trigger("click");
 });
