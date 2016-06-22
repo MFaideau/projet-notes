@@ -53,6 +53,21 @@ VALUES (:nom,:coef,:dateEpreuve,:evaluateur,:idType,:idEpreuveSubstitution,:idSe
     return $lastEpreuveID[0];
 }
 
+function InsertEpreuveFull($data)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO epreuve (ID_Epreuve,ID_Type,ID_Epreuve_Session2,ID_Epreuve_Substitution,Nom_Epreuve,Coef_Epreuve,Date_Epreuve,Evaluateur_Epreuve) VALUES (:idEpreuve,:idType,:idEpreuveSession2,:idEpreuveSubstitution,:nomEpreuve,:coefEpreuve,:dateEpreuve,:evaluateurEpreuve)');
+    $req->bindParam(':idEpreuve', $data[0], PDO::PARAM_INT);
+    $req->bindParam(':idType', $data[1], PDO::PARAM_INT);
+    $req->bindParam(':idEpreuveSession2', $data[2], PDO::PARAM_INT);
+    $req->bindParam(':idEpreuveSubstitution', $data[3], PDO::PARAM_INT);
+    $req->bindParam(':nomEpreuve', $data[4], PDO::PARAM_STR);
+    $req->bindParam(':coefEpreuve', $data[5], PDO::PARAM_STR);
+    $req->bindParam(':dateEpreuve', $data[6], PDO::PARAM_STR);
+    $req->bindParam(':evaluateurEpreuve', $data[7], PDO::PARAM_STR);
+    $req->execute();
+}
+
 function DeleteEpreuve($id)
 {
     global $bdd;

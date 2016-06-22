@@ -58,6 +58,16 @@ function InsertCompetence($nom,$idCursus)
     return $lastCompetenceID[0];
 }
 
+function InsertCompetenceFull($data)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO competence (ID_Competence,ID_Cursus,Nom_Competence) VALUES (:idCompetence,:idCursus,:nomCompetence)');
+    $req->bindParam(':idCompetence', $data[0], PDO::PARAM_INT);
+    $req->bindParam(':idCursus', $data[1], PDO::PARAM_INT);
+    $req->bindParam(':nomCompetence', $data[2], PDO::PARAM_STR);
+    $req->execute();
+}
+
 function DeleteCompetence($id)
 {
     global $bdd;

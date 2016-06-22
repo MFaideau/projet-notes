@@ -21,8 +21,20 @@
                     </fieldset>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
                     <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+            <form method="post" action="organisation_etudes.php" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <fieldset class="form-group">
+                        <label for="labelCursus">Réimporter un cursus supprimé :</label>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="1048576"/>
+                        <input type="hidden" name="idEpreuveUpload" id="idEpreuveUpload" value="" />
+                        <input type="file" name="fichier_db" id="fichier_db"/><br/>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
                 </div>
             </form>
         </div>
