@@ -9,10 +9,15 @@ if (!isset($_SESSION['user'])) {
 else {
     $user = unserialize($_SESSION['user']);
     $etudiant = GetEtudiant($user);
+    if(isset($_SESSION['user_vue'])) {
+        $user_vue = unserialize($_SESSION['user_vue']);
+        $etudiant = GetEtudiant($user_vue);
+    }
     $idEtudiant = $etudiant->GetId();
     include_once ('./controleurs/tab_request.php');
     include_once(__DIR__ . '../../vues/menu.php');
-    
+    include_once(__DIR__ . '../../vues/menu_rapide.php');
+
     // On récupère l'étudiant à partir de l'utilisateur, plus pratique (- de requetes!)
     if (isset($etudiant)) {
         $cursus = $etudiant->GetCursus();
