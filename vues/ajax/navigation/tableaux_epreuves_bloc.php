@@ -52,7 +52,7 @@
                                 $note_etudiant = round($studentNote, 2);
                             else
                                 $note_etudiant = "-";
-                            echo $note_etudiant;
+                            echo TestValidite($note_etudiant);
                             ?>
                             </b></td>
                         <td><b><?php echo $credits_cours; ?></b></td>

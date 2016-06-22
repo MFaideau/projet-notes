@@ -472,7 +472,9 @@ function GetTabNotesEtudiantsFromEpreuve($idEpreuve, $isSimulation = false) {
             if (($absenceEtudiant == 0) || ($absenceEtudiant == 2)) {
                 $notesEtudiants[] = GetNoteSimulation($etudiantNote, $isSimulation);
             }
+            else $notesEtudiants[] = -1;
         }
+        else $notesEtudiants[] = -1;
     }
     return $notesEtudiants;
 }
