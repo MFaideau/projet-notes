@@ -52,7 +52,7 @@ $("input[name^=note_epreuve_]").keypress(function(e) {
 });
 
 function setNoteSimulee(idEpreuve, valeurNote) {
-    if (valeurNote > 20 || valeurNote < 0)
+    if ((valeurNote > 20 || valeurNote < 0) && valeurNote != -1)
         return;
 
     $.ajax({

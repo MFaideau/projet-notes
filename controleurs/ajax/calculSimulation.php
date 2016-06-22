@@ -5,7 +5,7 @@ if (isset($_POST['action']) && isset($_POST['idEpreuve']) && isset($_POST['noteS
         $idEpreuve = $_POST['idEpreuve'];
         $noteSimulee = $_POST['noteSimulee'];
         if(is_numeric($noteSimulee)) {
-            if ($noteSimulee >= 0 && $noteSimulee <= 20) {
+            if (($noteSimulee >= 0 && $noteSimulee <= 20) || $noteSimulee == -1) {
                 $epreuve = GetEpreuveFromId($idEpreuve);
                 if (isset($epreuve)) {
                     $etudiant = GetEtudiant($user);
