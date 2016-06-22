@@ -29,6 +29,7 @@ function showHisto($moyenne, $note_etudiant, $ecart_type) {
     return array([$taille_couleur,$taille_rect_pourcent,$position_moyenne,$position_e_t_low, $position_e_t_high]);
 }
 
+// Utilisé pour l'affichage (s'il n'y a pas de note)
 function TestValidite($variable) {
     if ($variable == -1) return "-";
     else return $variable;
@@ -68,6 +69,7 @@ function GetStat($tab_notes) {
     }
 }
 
+// Retourne le nombre d'étudiants qui n'ont pas la moyenne
 function GetEffectifNonGrades($tab, $size) {
     $compteur = 0;
     for ($i=0;$i<$size;$i++) {
@@ -409,9 +411,8 @@ function GetMoyenneFromCours($idCours, $idEtudiant, $isSimulation = false) {
             }
         }
     }
-    if ($sommecoef == 0) {
+    if ($sommecoef == 0)
         return -1;
-    }
     return $moyenne/$sommecoef;
 }
 
@@ -436,12 +437,10 @@ function GetMoyenneFromCompetence($idCompetence, $idEtudiant, $isSimulation = fa
     }
     // echo "Credits : ", var_dump($sommecredits);
     // echo "Moyenne : ", $moyenne;
-    if ($sommecredits == 0) {
+    if ($sommecredits == 0)
         return -1;
-    }
-    else {
+    else
         return $moyenne/$sommecredits;
-    }
 }
 
 function GetMoyenneFromCursus($idCursus, $idEtudiant, $isSimulation = false) {

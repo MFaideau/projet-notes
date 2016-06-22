@@ -10,11 +10,14 @@ $(document).ready(function() {
 // Pour le déroulé de la compétence
 $(document).on("click", "a[id^=simu_comp_id_]", function (e) {
     idCompetence = this.id.replace("simu_comp_id_","");
-    if($("tr[class^=simu_cours_comp_" + idCompetence + ']').is(":hidden"))
-        $("tr[class^=simu_cours_comp_"+ idCompetence + "_id_]").show();
+    if($("tr[class^=simu_cours_comp_" + idCompetence + ']').is(":hidden")) {
+        $("tr[class^=simu_cours_comp_" + idCompetence + "_id_]").show();
+    }
     else {
         $("tr[class^=simu_cours_comp_" + idCompetence + "_id_]").hide();
+        $("span[id^=typeEval_comp_]").hide();
         $("tr[class^=simu_type_eval_]").hide();
+        $("tr[id=typeEval_comp_" + idCompetence + "]").hide();
     }
 });
 
@@ -49,6 +52,9 @@ $("input[name^=note_epreuve_]").keypress(function(e) {
 });
 
 function setNoteSimulee(idEpreuve, valeurNote) {
+    if (valeurNote > 20 || valeurNote < 0)
+        return;
+
     $.ajax({
         url: './ajax/calculSimulation.php',
         type: 'POST',
@@ -85,6 +91,13 @@ function changeNotes(resultat) {
                 blocTypeEval.innerHtml = "<b>-</b>";
             else
                 blocTypeEval.innerHTML = "<b>" + note.value + "</b>";
+        }
+        if(note.type == "moyenne") {
+            var blocEpreuve = $("#moyenne_generale")[0];
+            if(note.value == -1)
+                blocEpreuve.innerHTML = "<b>-</b>";
+            else
+                blocEpreuve.innerHTML = "<b>" + note.value + "</b>";
         }
 
     }
