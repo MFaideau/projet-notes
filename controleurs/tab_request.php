@@ -237,6 +237,10 @@ function GetNotePonderee($note, $coefficient) {
     return $note*$coefficient;
 }
 
+function SimulationValidation($moyenne) {
+    
+}
+
 function GetNoteSimulation($etudiantNote, $isSimulation = false) {
     if (!isset($etudiantNote))
         return -1;
