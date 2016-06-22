@@ -1,6 +1,7 @@
 <?php
 defined("ROOT_ACCESS") or die();
 
+
 /**
  * @Auteur: Joël Guillem
  * @Desc: Requête pour remplir les tableaux et histogrammes de notes
@@ -341,9 +342,31 @@ function GestionAbsenceEpreuve($epreuve, $idEtudiant, $isSimulation = false) {
     else return -1;
 }
 
+function GetArrayLine($array,$id)
+{
+    foreach($array as $line)
+    {
+        if($line[0]==$id){return $line[1];}
+    }
+    return null;
+}
+
+$epreuveLists=array();
+$epreuveSecondeSessionLists = array();
+
 function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant, $isSimulation = false) {
-    $listEpreuves = GetEpreuveListFromTypeEval($idTypeEval);
-    $listSecondesSessions = GetEpreuveSecondeSessionListFromTypeEval($idTypeEval);
+    global $epreuveLists;
+    global $epreuveSecondeSessionLists;
+    $listEpreuves = GetArrayLine($epreuveLists, $idTypeEval);
+    if (!isset($listEpreuves)){
+        $listEpreuves=GetEpreuveListFromTypeEval($idTypeEval);
+        $epreuveLists[]=array($idTypeEval,$listEpreuves);
+    }
+    $listSecondesSessions = GetArrayLine($epreuveSecondeSessionLists, $idTypeEval);
+    if (!isset($listSecondesSessions)){
+        $listSecondesSessions=GetEpreuveSecondeSessionListFromTypeEval($idTypeEval);
+        $epreuveSecondeSessionLists[]=array($idTypeEval,$listSecondesSessions);
+    }
     $notesEtudiant = array();
     $somme = 0;
     $sommecoef = 0;
@@ -367,8 +390,15 @@ function GetMoyenneFromTypeEval($idTypeEval, $idEtudiant, $isSimulation = false)
     return $moyenne;
 }
 
+$typeEvalLists=array();
+
 function GetMoyenneFromEval($idEval, $idEtudiant, $isSimulation = false) {
-    $listTypeEval = GetTypeEvalListFromEval($idEval);
+    global $typeEvalLists;
+    $listTypeEval = GetArrayLine($typeEvalLists, $idEval);
+    if (!isset($listTypeEval)){
+        $listTypeEval=GetTypeEvalListFromEval($idEval);
+        $typeEvalLists[]=array($idEval,$listTypeEval);
+    }
     $notesEtudiant = array();
     $moyenne = 0;
     $sommecoef = 0;
@@ -392,8 +422,15 @@ function GetMoyenneFromEval($idEval, $idEtudiant, $isSimulation = false) {
     return $moyenne/$sommecoef;
 }
 
+$evalLists=array();
+
 function GetMoyenneFromCours($idCours, $idEtudiant, $isSimulation = false) {
-    $listEval = GetEvalListFromCours($idCours);
+    global $evalLists;
+    $listEval = GetArrayLine($evalLists,$idCours);
+    if (!isset($listEval)){
+        $listEval=GetEvalListFromCours($idCours);
+        $evalLists[]=array($idCours,$listEval);
+    }
     $notesEtudiant = array();
     $moyenne = 0;
     $sommecoef = 0;
@@ -416,8 +453,15 @@ function GetMoyenneFromCours($idCours, $idEtudiant, $isSimulation = false) {
     return $moyenne/$sommecoef;
 }
 
+$coursLists=array();
+
 function GetMoyenneFromCompetence($idCompetence, $idEtudiant, $isSimulation = false) {
-    $listCours = GetCoursListFromCompetence($idCompetence);
+    global $coursLists;
+    $listCours = GetArrayLine($coursLists,$idCompetence);
+    if (!isset($listCours)){
+        $listCours=GetCoursListFromCompetence($idCompetence);
+        $coursLists[]=array($idCompetence,$listCours);
+    }
     $notesEtudiant = array();
     $moyenne = 0;
     $sommecredits = 0;
@@ -443,8 +487,15 @@ function GetMoyenneFromCompetence($idCompetence, $idEtudiant, $isSimulation = fa
         return $moyenne/$sommecredits;
 }
 
+$competenceLists=array();
+
 function GetMoyenneFromCursus($idCursus, $idEtudiant, $isSimulation = false) {
-    $listCompetence = GetCompetenceListFromCursus($idCursus);
+    global $competenceLists;
+    $listCompetence = GetArrayLine($competenceLists,$idCursus);
+    if (!isset($listCompetence)){
+        $listCompetence=GetCompetenceListFromCursus($idCursus);
+        $competenceLists[]=array($idCursus,$listCompetence);
+    }
     $notesEtudiant = array();
     $moyenne = 0;
     $sommecredits = 0;
