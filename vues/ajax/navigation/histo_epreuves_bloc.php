@@ -43,7 +43,7 @@
                 <td><?php
                     if (!empty($etudiantNote)) {
                         $note_etudiant = $etudiantNote->GetNoteFinale();
-                        echo $note_etudiant;
+                        echo TestValidite($note_etudiant);
                     }
                     else {
                         echo "-";

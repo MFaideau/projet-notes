@@ -13,7 +13,7 @@
                 <thead>
                 <tr>
                     <th>Epreuve</th>
-                    <th>Moyenne</th>
+                    <th>Note</th>
                     <th>Coefficient</th>
                     <th>Grades</th>
                 </tr>
@@ -27,7 +27,7 @@
                         <td><?php
                             if (!empty($etudiantnote)) {
                                 $note_etudiant = round($etudiantnote->GetNoteFinale(),2);
-                                echo $note_etudiant;
+                                echo TestValidite($note_etudiant);
                             }
                             else {
                                 echo "-";
