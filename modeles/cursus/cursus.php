@@ -83,7 +83,7 @@ function InsertCursusFull($data)
     global $bdd;
     $req = $bdd->prepare('INSERT INTO cursus (ID_Cursus,Nom_Cursus,Annee_Cursus) VALUES (:idCursus,:nomCursus,:anneeCursus)');
     $req->bindParam(':idCursus', $data[0], PDO::PARAM_INT);
-    $req->bindParam(':nomCursus', $data[1], PDO::PARAM_INT);
+    $req->bindParam(':nomCursus', $data[1], PDO::PARAM_STR);
     $req->bindParam(':anneeCursus', $data[2], PDO::PARAM_INT);
     $req->execute();
 }

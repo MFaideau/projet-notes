@@ -84,6 +84,18 @@ function InsertCours($nom,$ects,$semestre,$idCompetence)
     return $lastCoursID[0];
 }
 
+function InsertCoursFull($data)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO cours (ID_Cours,ID_Competence,Nom_Cours,Credits_Cours,Semestre_Cours) VALUES (:idCours,:idCompetence,:nomCours,:creditsCours,:semestreCours)');
+    $req->bindParam(':idCours', $data[0], PDO::PARAM_INT);
+    $req->bindParam(':idCompetence', $data[1], PDO::PARAM_INT);
+    $req->bindParam(':nomCours', $data[2], PDO::PARAM_STR);
+    $req->bindParam(':creditsCours', $data[3], PDO::PARAM_STR);
+    $req->bindParam(':semestreCours', $data[4], PDO::PARAM_INT);
+    $req->execute();
+}
+
 function DeleteCours($id)
 {
     global $bdd;
