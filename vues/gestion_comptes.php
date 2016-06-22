@@ -1,5 +1,5 @@
 <?php defined("ROOT_ACCESS") or die(); ?>
-<div class="panel_listing">
+<div class="panel_listing decale_admin">
 <table class="table" data-toggle="table" data-sort-name="nom" data-sort-order="asc">
     <thead>
         <th><a id="insert_admin" class="link" data-toggle="modal" data-target="#insertAdmin"><span class="glyphicon glyphicon-plus icone"></span></a></th>

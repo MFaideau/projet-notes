@@ -1,7 +1,7 @@
 <?php defined("ROOT_ACCESS") or die();
 global $listEleves;
 global $autorite; ?>
-<div class="panel_listing">
+<div class="panel_listing decale_admin">
     <table class="table" data-toggle="table" data-sort-name="nom" data-sort-order="asc">
         <thead>
         <tr>

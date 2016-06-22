@@ -14,7 +14,7 @@ $(document).on("click", "button[id^=eleves_cursus_]", function (e) {
             $("#cursus_add_etudiant").empty().append(nomCursus);
         },
         error: function (result) {
-            alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
+            alert("Erreur lors de la récupération des étudiants. Veuillez réessayer.");
         }
     });
 });
@@ -36,7 +36,7 @@ $(function () {
                 $("button[id=eleves_cursus_" + $("#id_cursus_add_etudiant").val() + "]").trigger("click");
             },
             error: function (result) {
-                alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
+                alert("Erreur lors de l'ajout de l'étudiant. Veuillez réessayer.");
             }
         });
     });
@@ -55,7 +55,24 @@ $(function () {
                 document.getElementById("etudiant_tr_"+mail).remove();
             },
             error: function (result) {
-                alert("Erreur lors de la récupération des compétences. Veuillez réessayer.");
+                alert("Erreur lors de la suppression de l'étudiant. Veuillez réessayer.");
+            }
+        });
+    });
+});
+
+
+$(function () {
+    $('#deleteTopConsult').on("submit", function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: './ajax/visualisation_eleves.php',
+            type: 'POST',
+            datatype: 'html',
+            data: 'action=deleteTopConsult',
+            success: function (result) {
+                $("#deleteTopConsult").modal("hide");
+                window.location.reload();
             }
         });
     });

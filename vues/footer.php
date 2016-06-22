@@ -1,4 +1,4 @@
-<div class="alert alert-warning disclaimer" role="alert">
+<div class="alert alert-warning disclaimer decale_admin" role="alert">
     Ce site est un outil à usage personnel et ne fait pas foi de bulletin officiel
 </div>
 
