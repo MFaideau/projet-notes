@@ -119,8 +119,9 @@ function ParseFichierEtudiants($idCursus, $delimiter) {
         while (($data = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
             $mail = GetMailFromNomPrenom($data[$indexNom],$data[$indexPrenom]);
             if(!empty($mail)) {
-                InsertEtudiant($idCursus, $data[$indexIDEtudiant], $data[$indexNom], $data[$indexPrenom], $mail);
-                $nombreEtudiants++;
+                $success = InsertEtudiant($idCursus, $data[$indexIDEtudiant], $data[$indexNom], $data[$indexPrenom], $mail);
+                if($success)
+                    $nombreEtudiants++;
             }
         }
         fclose($handle);

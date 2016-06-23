@@ -29,12 +29,28 @@ function GetEtudiant($utilisateur)
 function InsertEtudiant($idCursus,$idEtudiant,$nom,$prenom,$mail)
 {
     // Insère l'étudiant dans les utilisateurs également
-    InsertUser($nom, $prenom, $mail,0);
     global $bdd;
+    if(!UtilisateurExists($mail)) {
+        InsertUser($nom, $prenom, $mail, 0);
+    }
     $req = $bdd->prepare('INSERT INTO etudiant (ID_Etudiant,ID_Cursus,Mail) VALUES (:idEtudiant,:idCursus,:mail)');
-    $req->execute(array(
+    $result = $req->execute(array(
         'mail' => $mail,
         'idEtudiant' => $idEtudiant,
         'idCursus' => $idCursus,
     ));
+    return $result;
+}
+
+function UtilisateurExists($mail)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT count(Mail) FROM utilisateur WHERE Mail = :mail');
+    $req->bindParam(':mail', $mail, PDO::PARAM_STR);
+    $req->execute();
+    $matchCount = $req->fetch();
+    if ($matchCount['count(Mail)'] > 0)
+        return true;
+    else
+        return false;
 }
