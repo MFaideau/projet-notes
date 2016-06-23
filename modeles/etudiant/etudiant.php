@@ -16,12 +16,14 @@ function GetEtudiant($utilisateur)
     $req->bindParam(':mail', $userMail, PDO::PARAM_STR);
     $req->execute();
     $etudiantLine = $req->fetchAll();
-    $cursus = GetCursus(GetCursusList(),$etudiantLine[0]["ID_Cursus"]);
+
     if (empty($etudiantLine))
         return null;
-    else
-        $etudiant = new Etudiant($etudiantLine[0],$cursus,$utilisateur);
+    else {
+        $cursus = GetCursus(GetCursusList(), $etudiantLine[0]["ID_Cursus"]);
+        $etudiant = new Etudiant($etudiantLine[0], $cursus, $utilisateur);
         return $etudiant;
+    }
 }
 
 function InsertEtudiant($idCursus,$idEtudiant,$nom,$prenom,$mail)

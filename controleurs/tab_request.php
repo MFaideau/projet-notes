@@ -7,12 +7,16 @@ defined("ROOT_ACCESS") or die();
  * @Desc: Requête pour remplir les tableaux et histogrammes de notes
  */
 if(isset($user)) {
-    $listEtudiantsFromCursus = GetEtudiantListFromCursus(GetEtudiant($user)->GetCursus());
+    if (!empty(GetEtudiant($user))) {
+        $listEtudiantsFromCursus = GetEtudiantListFromCursus(GetEtudiant($user)->GetCursus());
+    }
 }
 if(isset($_SESSION['user_vue'])) {
     if ($user->GetAutorite() != 0) {
         $user_vue = unserialize($_SESSION['user_vue']);
-        $listEtudiantsFromCursus = GetEtudiantListFromCursus(GetEtudiant($user_vue)->GetCursus());
+        if (!empty(GetEtudiant($user_vue))) {
+            $listEtudiantsFromCursus = GetEtudiantListFromCursus(GetEtudiant($user_vue)->GetCursus());
+        }
     }
 }
 

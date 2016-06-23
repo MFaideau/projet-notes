@@ -9,6 +9,8 @@ if (isset($_POST['action']) && isset($_POST['idEpreuve']) && isset($_POST['noteS
                 $epreuve = GetEpreuveFromId($idEpreuve);
                 if (isset($epreuve)) {
                     $etudiant = GetEtudiant($user);
+                    if(isset($user_vue))
+                        $etudiant = GetEtudiant($user_vue);
                     // On met à jour la base de données avec la note prévue
                     if($user->GetAutorite() == 1) {
                         AddEtudiantNote($idEpreuve, $etudiant->GetId(), $noteSimulee, 0);
