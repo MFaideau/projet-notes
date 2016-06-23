@@ -32,6 +32,12 @@ global $autorite; ?>
                     <a class="link" data-toggle="modal" data-target="#addEtudiant" style="padding-left: 0.5%">Ajouter un étudiant</a>
                 </td>
             </tr>
+            <tr>
+                <td class="ajoutEtudiant" colspan="3">
+                    <span class="glyphicon glyphicon-open-file icone"></span>
+                    <a class="link" data-toggle="modal" data-target="#importListEtudiant" style="padding-left: 0.5%">Importer une liste d'étudiants</a>
+                </td>
+            </tr>
         <?php } ?>
         </tfoot>
     </table>

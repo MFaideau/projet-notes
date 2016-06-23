@@ -24,7 +24,13 @@
                     <td>0</td>
                 <?php }
                 else { ?>
-                    <td><?php echo round($etudiantNote->GetNoteFinale(),2); ?></td>
+                    <td><?php $note = round($etudiantNote->GetNoteFinale(),2);
+                        if($note == "-1")
+                            echo $note;
+                        else
+                            echo "-";
+                        ?>
+                    </td>
                 <?php } ?>
             </tr>
         <?php }}} ?>
