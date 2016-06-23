@@ -59,7 +59,8 @@ function AjouterNotes($idEpreuve, $delimiter)
         global $nombreNotes;
         $nombreNotes=0;
         while (($data = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
-            AddEtudiantNote($idEpreuve, $data[$indexIDEtudiant], $data[$indexNote], 0);
+            $note=str_replace(',','.',$data[$indexNote]);
+            AddEtudiantNote($idEpreuve, $data[$indexIDEtudiant], $note, 0);
             $nombreNotes++;
         }
         fclose($handle);

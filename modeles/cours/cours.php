@@ -157,3 +157,36 @@ AND competence.ID_Cursus=:idCursus');
     }
     return $str;
 }
+
+function GetMoyenneCoursEtudiant($idCours,$idEtudiant)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT Moyenne FROM coursmoyenne WHERE ID_Cours=:idCours AND ID_Etudiant=:idEtudiant');
+    $req->bindParam(':idCours', $idCours, PDO::PARAM_INT);
+    $req->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetch()['Moyenne'];
+    return $result;
+}
+
+function InsertMoyenneCoursEtudiant($idCours,$idEtudiant,$moyenne)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO coursmoyenne (ID_Cours,ID_Etudiant,Moyenne) VALUES (:idCours,:idEtudiant,:moyenne)');
+    $req->execute(array(
+        'idCours' => $idCours,
+        'idEtudiant' => $idEtudiant,
+        'moyenne'=> $moyenne,
+    ));
+    return;
+}
+
+function GetBDDTabNotesMoyenneCours($idCours)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT Moyenne FROM coursmoyenne WHERE ID_Cours=:idCours ORDER BY Moyenne DESC');
+    $req->bindParam(':idCours', $idCours, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll(PDO::FETCH_COLUMN);
+    return $result;
+}

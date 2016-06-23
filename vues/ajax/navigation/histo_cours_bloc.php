@@ -23,8 +23,8 @@
                     <td width="50%">
                         <?php
                         $idCours = $cours->GetId();
-                        $note_etudiant = round(GetMoyenneFromCours($idCours, $idEtudiant),2);
-                        $tab_histo = GetStat(GetTabNotesEtudiantsFromCours($idCours));
+                        $note_etudiant = round(GetMoyenneFromCoursCalc($idCours, $idEtudiant),2);
+                        $tab_histo = GetStat(GetBDDTabNotesMoyenneCours($idCours));
                         $moyenne = $tab_histo[0];
                         $ecart_type = $tab_histo[1];
                         $min = round($tab_histo[2],2);
@@ -44,8 +44,8 @@
                 <td><b>Moyenne Générale</b></td>
                 <td width="50%"><b>
                     <?php
-                    $note_etudiant = round(GetMoyenneFromCompetence($idCompetence, $idEtudiant),2);
-                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCompetence($idCompetence));
+                    $note_etudiant = round(GetMoyenneFromCompetenceCalc($idCompetence, $idEtudiant),2);
+                    $tab_histo_total = GetStat(GetBDDTabNotesMoyenneCompetence($idCompetence));
                     $moyenne = $tab_histo_total[0];
                     $ecart_type = $tab_histo_total[1];
                     $min = round($tab_histo_total[2],2);

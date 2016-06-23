@@ -49,8 +49,8 @@
             <tfoot>
             <tr>
                 <?php
-                $note_etudiant = round(GetMoyenneFromCours($idCours, $idEtudiant),2);
-                $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCours($idCours));
+                $note_etudiant = round(GetMoyenneFromCoursCalc($idCours, $idEtudiant),2);
+                $tab_histo_total = GetStat(GetBDDTabNotesMoyenneCours($idCours));
                 $min = round($tab_histo_total[2],2);
                 $max = round($tab_histo_total[3],2);
                 ?>

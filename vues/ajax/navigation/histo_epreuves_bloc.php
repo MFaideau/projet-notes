@@ -56,8 +56,8 @@
                 <td><b>Moyenne Générale</b></td>
                 <td width="50%"><b>
                     <?php
-                    $note_etudiant = round(GetMoyenneFromCours($idCours, $idEtudiant),2);
-                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCours($idCours));
+                    $note_etudiant = round(GetMoyenneFromCoursCalc($idCours, $idEtudiant),2);
+                    $tab_histo_total = GetStat(GetBDDTabNotesMoyenneCours($idCours));
                     $moyenne = $tab_histo_total[0];
                     $ecart_type = $tab_histo_total[1];
                     $min = round($tab_histo_total[2], 2);

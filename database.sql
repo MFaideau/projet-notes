@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 22 Juin 2016 à 15:29
+-- Généré le :  Jeu 23 Juin 2016 à 12:53
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -74,6 +74,46 @@ INSERT INTO `competence` (`ID_Competence`, `ID_Cursus`, `Nom_Competence`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `competencemoyenne`
+--
+
+DROP TABLE IF EXISTS `competencemoyenne`;
+CREATE TABLE IF NOT EXISTS `competencemoyenne` (
+  `ID_Competence` int(5) NOT NULL,
+  `ID_Etudiant` int(5) NOT NULL,
+  `Moyenne` float NOT NULL,
+  PRIMARY KEY (`ID_Competence`,`ID_Etudiant`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `competencemoyenne`
+--
+
+INSERT INTO `competencemoyenne` (`ID_Competence`, `ID_Etudiant`, `Moyenne`) VALUES
+(5, 1292336, -1),
+(4, 1292336, -1),
+(3, 1292336, 12.1332),
+(2, 1292336, -1),
+(1, 1292336, -1),
+(5, 1291167, 14.0863),
+(4, 1291167, -1),
+(3, 1291167, 16.1632),
+(2, 1291167, 14.4384),
+(1, 1291167, 14.5427),
+(5, 1292562, 11.595),
+(4, 1292562, -1),
+(3, 1292562, 12.3851),
+(2, 1292562, 10.5613),
+(1, 1292562, 10.9946),
+(5, 1292315, 12.3775),
+(4, 1292315, -1),
+(3, 1292315, 14.1958),
+(2, 1292315, 14.2295),
+(1, 1292315, 13.3508);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `consultation`
 --
 
@@ -90,9 +130,13 @@ CREATE TABLE IF NOT EXISTS `consultation` (
 --
 
 INSERT INTO `consultation` (`ID_Etudiant`, `Mail_Consultant`, `Nombre_Vues_Etudiant`) VALUES
+(1291167, 'antoine.goelzer@isen-lille.fr', 6),
 (1291167, 'maxence.faideau@isen-lille.fr', 39),
+(1292315, 'antoine.goelzer@isen-lille.fr', 13),
 (1292315, 'maxence.faideau@isen-lille.fr', 8),
+(1292336, 'antoine.goelzer@isen-lille.fr', 8),
 (1292336, 'maxence.faideau@isen-lille.fr', 6),
+(1292562, 'antoine.goelzer@isen-lille.fr', 33),
 (1292562, 'maxence.faideau@isen-lille.fr', 44);
 
 -- --------------------------------------------------------
@@ -181,6 +225,34 @@ INSERT INTO `cours` (`ID_Cours`, `ID_Competence`, `Nom_Cours`, `Credits_Cours`, 
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `coursmoyenne`
+--
+
+DROP TABLE IF EXISTS `coursmoyenne`;
+CREATE TABLE IF NOT EXISTS `coursmoyenne` (
+  `ID_Cours` int(5) NOT NULL,
+  `ID_Etudiant` int(5) NOT NULL,
+  `Moyenne` float NOT NULL,
+  PRIMARY KEY (`ID_Cours`,`ID_Etudiant`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `coursmoyenne`
+--
+
+INSERT INTO `coursmoyenne` (`ID_Cours`, `ID_Etudiant`, `Moyenne`) VALUES
+(11, 1292336, 8.76),
+(10, 1292336, 13.097),
+(4, 1292562, 10.28),
+(2, 1292562, 12.95),
+(1, 1292562, 11.86),
+(4, 1292315, 12.01),
+(2, 1292315, 14.6),
+(1, 1292315, 16.91);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `cursus`
 --
 
@@ -200,6 +272,30 @@ INSERT INTO `cursus` (`ID_Cursus`, `Nom_Cursus`, `Annee_Cursus`) VALUES
 (1, 'CSI3', 2015),
 (2, 'CSI-U3', 2015),
 (3, 'CIR3', 2015);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `cursusmoyenne`
+--
+
+DROP TABLE IF EXISTS `cursusmoyenne`;
+CREATE TABLE IF NOT EXISTS `cursusmoyenne` (
+  `ID_Cursus` int(5) NOT NULL,
+  `ID_Etudiant` int(5) NOT NULL,
+  `Moyenne` float NOT NULL,
+  PRIMARY KEY (`ID_Cursus`,`ID_Etudiant`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `cursusmoyenne`
+--
+
+INSERT INTO `cursusmoyenne` (`ID_Cursus`, `ID_Etudiant`, `Moyenne`) VALUES
+(1, 1292336, 12.1332),
+(1, 1291167, 14.8165),
+(1, 1292562, 11.3513),
+(1, 1292315, 13.598);
 
 -- --------------------------------------------------------
 

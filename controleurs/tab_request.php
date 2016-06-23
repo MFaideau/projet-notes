@@ -42,14 +42,15 @@ function GetStat($tab_notes) {
         return -1;
     }
     else {
+        $sommeEffectif=0;
         $somme = 0;
         $somme_carres = 0;
         $note_max = -1;
         $note_min = -1;
         for ($i = 0; $i < $effectif; $i++) {
-            $somme = $somme + $tab_notes[$i];
-            $somme_carres = $somme_carres + pow($tab_notes[$i], 2);
             if ($tab_notes[$i] > -1) {
+                $somme = $somme + $tab_notes[$i];
+                $somme_carres = $somme_carres + pow($tab_notes[$i], 2);
                 if ($note_max < $tab_notes[$i]) {
                     $note_max = $tab_notes[$i];
                 }
@@ -59,10 +60,15 @@ function GetStat($tab_notes) {
                 elseif ($note_min > $tab_notes[$i]) {
                     $note_min = $tab_notes[$i];
                 }
+                $sommeEffectif++;
             }
         }
-        $moyenne = $somme / $effectif;
-        $moyenne_carres = $somme_carres / $effectif;
+        if ($sommeEffectif==0)
+        {
+            return -1;
+        }
+        $moyenne = $somme / $sommeEffectif;
+        $moyenne_carres = $somme_carres / $sommeEffectif;
         $variance = $moyenne_carres - pow($moyenne, 2);
         $ecart_type = sqrt($variance);
         $tab = array($moyenne, $ecart_type, $note_min, $note_max);
@@ -128,24 +134,18 @@ function GetGradeFromEpreuve($idEpreuve, $idEtudiant, $isSimulation = false) {
 
 function GetGradeFromCours($idCours, $idEtudiant, $isSimulation = false) {
     global $listEtudiantsFromCursus;
-    $studentnote = GetTabNotesEtudiantsFromCours($idCours);
+    $studentnote = GetBDDTabNotesMoyenneCours($idCours);
     if (isset($studentnote)) {
 
         // Tri du tableau de notes et obtention du rang de l'étudiant
         $size = count($studentnote);
-        $moyenneCours = GetMoyenneFromCours($idCours, $idEtudiant);
+        $moyenneCours = GetMoyenneFromCoursCalc($idCours, $idEtudiant);
         $effectifTotal = count($listEtudiantsFromCursus);
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
-        arsort($studentnote);
         $rang = 0;
 
-        // On reordonne le tableau et on cherche le rang
-        $studentNoteKey = array();
-        foreach ($studentnote as $note)
-            $studentNoteKey[] = $note;
-
-        while ($moyenneCours < $studentNoteKey[$rang]) {
+        while ($moyenneCours < $studentnote[$rang]) {
             $rang = $rang + 1; //Calcul du rang
         }
 
@@ -162,26 +162,21 @@ function GetGradeFromCours($idCours, $idEtudiant, $isSimulation = false) {
     else return "-"; // Si pas d'étudiants, pas de grade
 }
 
-function GetGradeFromCompetence($idCompetence, $idEtudiant, $isSimulation = false) {
+function GetGradeFromCompetence($idCompetence, $idEtudiant) {
     global $listEtudiantsFromCursus;
-    $studentnote = GetTabNotesEtudiantsFromCompetence($idCompetence);
-    if (isset($studentnote)) {
+    $studentnote = GetBDDTabNotesMoyenneCompetence($idCompetence);
+
+    if (!empty($studentnote)) {
 
         // Tri du tableau de notes et obtention du rang de l'étudiant
         $size = count($studentnote);
-        $moyenneCompetence = GetMoyenneFromCompetence($idCompetence, $idEtudiant, $isSimulation);
+        $moyenneCompetence = GetMoyenneFromCompetenceCalc($idCompetence, $idEtudiant);
         $effectifTotal = count($listEtudiantsFromCursus);
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
-        arsort($studentnote);
         $rang = 0;
 
-        // On reordonne le tableau et on cherche le rang
-        $studentNoteKey = array();
-        foreach ($studentnote as $note)
-            $studentNoteKey[] = $note;
-
-        while ($moyenneCompetence < $studentNoteKey[$rang]) {
+        while ($moyenneCompetence < $studentnote[$rang]) {
             $rang = $rang + 1; //Calcul du rang
         }
 
@@ -198,26 +193,21 @@ function GetGradeFromCompetence($idCompetence, $idEtudiant, $isSimulation = fals
     else return "-"; // Si pas d'étudiants, pas de grade
 }
 
-function GetGradeFromCursus($idCursus, $idEtudiant, $isSimulation = false) {
+function GetGradeFromCursus($idCursus, $idEtudiant) {
     global $listEtudiantsFromCursus;
-    $studentnote = GetTabNotesEtudiantsFromCursus($idCursus);
-    if (isset($studentnote)) {
+    $studentnote = GetBDDTabNotesMoyenneCursus($idCursus);
+    if (!empty($studentnote)) {
 
         // Tri du tableau de notes et obtention du rang de l'étudiant
         $size = count($studentnote);
-        $moyenneCursus = GetMoyenneFromCursus($idCursus, $idEtudiant, $isSimulation);
+        $moyenneCursus = GetMoyenneFromCursusCalc($idCursus, $idEtudiant);
         $effectifTotal = count($listEtudiantsFromCursus);
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
-        arsort($studentnote);
         $rang = 0;
 
-        // On reordonne le tableau et on cherche le rang
-        $studentNoteKey = array();
-        foreach ($studentnote as $note)
-            $studentNoteKey[] = $note;
 
-        while ($moyenneCursus < $studentNoteKey[$rang]) {
+        while ($moyenneCursus < $studentnote[$rang]) {
             $rang = $rang + 1; //Calcul du rang
         }
 
@@ -428,6 +418,19 @@ function GetMoyenneFromEval($idEval, $idEtudiant, $isSimulation = false) {
 
 $evalLists=array();
 
+function GetMoyenneFromCoursCalc($idCours, $idEtudiant)
+{
+    $moyenne = GetMoyenneCoursEtudiant($idCours, $idEtudiant);
+    if (isset($moyenne)) {
+        return $moyenne;
+    }
+    else{
+        $calcMoyenne=GetMoyenneFromCours($idCours, $idEtudiant);
+        InsertMoyenneCoursEtudiant($idCours,$idEtudiant,$calcMoyenne);
+        return $calcMoyenne;
+    }
+}
+
 function GetMoyenneFromCours($idCours, $idEtudiant, $isSimulation = false) {
     global $evalLists;
     $listEval = GetArrayLine($evalLists,$idCours);
@@ -458,6 +461,19 @@ function GetMoyenneFromCours($idCours, $idEtudiant, $isSimulation = false) {
 }
 
 $coursLists=array();
+
+function GetMoyenneFromCompetenceCalc($idCompetence, $idEtudiant)
+{
+    $moyenne = GetMoyenneCompetenceEtudiant($idCompetence, $idEtudiant);
+    if (isset($moyenne)) {
+        return $moyenne;
+    }
+    else{
+        $calcMoyenne=GetMoyenneFromCompetence($idCompetence, $idEtudiant);
+        InsertMoyenneCompetenceEtudiant($idCompetence, $idEtudiant, $calcMoyenne);
+        return $calcMoyenne;
+    }
+}
 
 function GetMoyenneFromCompetence($idCompetence, $idEtudiant, $isSimulation = false) {
     global $coursLists;
@@ -514,6 +530,19 @@ function GetMoyenneFromCursus($idCursus, $idEtudiant, $isSimulation = false) {
         return -1;
     }
     return $moyenne/$sommecredits;
+}
+
+function GetMoyenneFromCursusCalc($idCursus, $idEtudiant)
+{
+    $moyenne = GetMoyenneCursusEtudiant($idCursus, $idEtudiant);
+    if (isset($moyenne)) {
+        return $moyenne;
+    }
+    else{
+        $calcMoyenne=GetMoyenneFromCursus($idCursus, $idEtudiant);
+        InsertMoyenneCursusEtudiant($idCursus,$idEtudiant,$calcMoyenne);
+        return $calcMoyenne;
+    }
 }
 
 function GetTabNotesEtudiantsFromEpreuve($idEpreuve, $isSimulation = false) {
