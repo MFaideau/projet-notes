@@ -25,7 +25,7 @@
                             <td>
                                 <a href="visualisation_eleve.php?id=<?php echo $etudiant->GetMail(); ?>"><?php echo $etudiant->GetNom() . ' ' . $etudiant->GetPrenom(); ?></a>
                             </td>
-                            <td><?php $moyenne = round(GetMoyenneFromCursus(GetEtudiant($etudiant)->GetCursus()->GetId(), $eleve->GetId()), 2);
+                            <td><?php $moyenne = round(GetMoyenneFromCursusCalc(GetEtudiant($etudiant)->GetCursus()->GetId(), $eleve->GetId()), 2);
                                 if($moyenne == -1)
                                     echo "-";
                                 else

@@ -26,8 +26,8 @@
                 <td>
                     <?php
                     $idCompetence = $competence->GetId();
-                    $note_etudiant = round(GetMoyenneFromCompetence($idCompetence, $idEtudiant),2);
-                    $tab_histo = GetStat(GetTabNotesEtudiantsFromCompetence($idCompetence));
+                    $note_etudiant = round(GetMoyenneFromCompetenceCalc($idCompetence, $idEtudiant),2);
+                    $tab_histo = GetStat(GetBDDTabNotesMoyenneCompetence($idCompetence));
                     $min = round($tab_histo[2],2);
                     $max = round($tab_histo[3],2);
                     echo TestValidite($min);
@@ -51,8 +51,8 @@
                 <td>
                     <?php
                     $idCursus = $cursus->GetId();
-                    $note_etudiant = round(GetMoyenneFromCursus($idCursus, $idEtudiant),2);
-                    $tab_histo_total = GetStat(GetTabNotesEtudiantsFromCursus($idCursus));
+                    $note_etudiant = round(GetMoyenneFromCursusCalc($idCursus, $idEtudiant),2);
+                    $tab_histo_total = GetStat(GetBDDTabNotesMoyenneCursus($idCursus));
                     $min = round($tab_histo_total[2],2);
                     $max = round($tab_histo_total[3],2);
                     echo TestValidite($min);

@@ -24,7 +24,7 @@ include_once (__DIR__ . '../../../controleurs/tab_request.php');
 if (isset($_POST['action']) && isset($_POST['idComp'])) {
     if ($_POST['action'] == "getHistoComp") {
         $idCompetence = $_POST['idComp'];
-        $noteEtudiantComp = GetTabNotesEtudiantsFromCompetence($idCompetence);
+        $noteEtudiantComp = GetBDDTabNotesMoyenneCompetence($idCompetence);
         $notesEchantillons = GetVarTabHistoBatons($noteEtudiantComp);
         echo json_encode($notesEchantillons);
         return;
@@ -34,7 +34,7 @@ if (isset($_POST['action']) && isset($_POST['idComp'])) {
 if (isset($_POST['action']) && isset($_POST['idCursus'])) {
     if ($_POST['action'] == "getHistoCursus") {
         $idCursus = $_POST['idCursus'];
-        $noteEtudiantCursus = GetTabNotesEtudiantsFromCursus($idCursus);
+        $noteEtudiantCursus = GetBDDTabNotesMoyenneCursus($idCursus);
         $notesEchantillons = GetVarTabHistoBatons($noteEtudiantCursus);
         echo json_encode($notesEchantillons);
         return;
@@ -44,7 +44,7 @@ if (isset($_POST['action']) && isset($_POST['idCursus'])) {
 if (isset($_POST['action']) && isset($_POST['idCours'])) {
     if ($_POST['action'] == "getHistoCours") {
         $idCours = $_POST['idCours'];
-        $noteEtudiantCours = GetTabNotesEtudiantsFromCours($idCours);
+        $noteEtudiantCours = GetBDDTabNotesMoyenneCours($idCours);
         $notesEchantillons = GetVarTabHistoBatons($noteEtudiantCours);
         echo json_encode($notesEchantillons);
         return;

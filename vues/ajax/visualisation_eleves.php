@@ -25,7 +25,7 @@ global $autorite; ?>
                     <td><a data-name="nom" data-value="<?php echo $eleve->GetNom() . $eleve->GetPrenom(); ?>"
                            href="visualisation_eleve.php?id=<?php echo $eleve->GetMail(); ?>"><?php echo $eleve->GetNom() . ' ' . $eleve->GetPrenom(); ?></a>
                     </td>
-                    <td><?php echo round(GetMoyenneFromCursus($etudiant->GetCursus()->GetId(), $etudiant->GetId()), 2); ?></td>
+                    <td><?php echo round(GetMoyenneFromCursusCalc($etudiant->GetCursus()->GetId(), $etudiant->GetId()), 2); ?></td>
                 </tr>
             <?php }
         } ?>
@@ -35,15 +35,13 @@ global $autorite; ?>
             <tr>
                 <td class="ajoutEtudiant" colspan="3">
                     <span class="glyphicon glyphicon-plus-sign icone"></span>
-                    <a class="link" data-toggle="modal" data-target="#addEtudiant" style="padding-left: 0.5%">Ajouter un
-                        étudiant</a>
+                    <a class="link" data-toggle="modal" data-target="#addEtudiant" style="padding-left: 0.5%">Ajouter un étudiant</a>
                 </td>
             </tr>
             <tr>
                 <td class="ajoutEtudiant" colspan="3">
                     <span class="glyphicon glyphicon-open-file icone"></span>
-                    <a class="link" data-toggle="modal" data-target="#importListEtudiant" style="padding-left: 0.5%">Importer
-                        une liste d'étudiants</a>
+                    <a class="link" data-toggle="modal" data-target="#importListEtudiant" style="padding-left: 0.5%">Importer une liste d'étudiants</a>
                 </td>
             </tr>
         <?php } ?>

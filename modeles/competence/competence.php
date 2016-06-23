@@ -116,3 +116,36 @@ function GetContentCompetence($idCursus) {
     }
     return $str;
 }
+
+function GetMoyenneCompetenceEtudiant($idCompetence,$idEtudiant)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT Moyenne FROM competencemoyenne WHERE ID_Competence=:idCompetence AND ID_Etudiant=:idEtudiant');
+    $req->bindParam(':idCompetence', $idCompetence, PDO::PARAM_INT);
+    $req->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetch()['Moyenne'];
+    return $result;
+}
+
+function InsertMoyenneCompetenceEtudiant($idCompetence,$idEtudiant,$moyenne)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO competencemoyenne (ID_Competence,ID_Etudiant,Moyenne) VALUES (:idCompetence,:idEtudiant,:moyenne)');
+    $req->execute(array(
+        'idCompetence' => $idCompetence,
+        'idEtudiant' => $idEtudiant,
+        'moyenne'=> $moyenne,
+    ));
+    return;
+}
+
+function GetBDDTabNotesMoyenneCompetence($idCompetence)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT Moyenne FROM competencemoyenne WHERE ID_Competence=:idCompetence ORDER BY Moyenne DESC');
+    $req->bindParam(':idCompetence', $idCompetence, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll(PDO::FETCH_COLUMN);
+    return $result;
+}

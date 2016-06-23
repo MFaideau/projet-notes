@@ -144,3 +144,36 @@ function GetContentAllCursus() {
     }
     return $str;
 }
+
+function GetMoyenneCursusEtudiant($idCursus,$idEtudiant)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT Moyenne FROM cursusmoyenne WHERE ID_Cursus=:idCursus AND ID_Etudiant=:idEtudiant');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetch()['Moyenne'];
+    return $result;
+}
+
+function InsertMoyenneCursusEtudiant($idCursus,$idEtudiant,$moyenne)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO cursusmoyenne (ID_Cursus,ID_Etudiant,Moyenne) VALUES (:idCursus,:idEtudiant,:moyenne)');
+    $req->execute(array(
+        'idCursus' => $idCursus,
+        'idEtudiant' => $idEtudiant,
+        'moyenne'=> $moyenne,
+    ));
+    return;
+}
+
+function GetBDDTabNotesMoyenneCursus($idCursus)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT Moyenne FROM cursusmoyenne WHERE ID_Cursus=:idCursus ORDER BY Moyenne DESC');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll(PDO::FETCH_COLUMN);
+    return $result;
+}
