@@ -56,3 +56,12 @@ WHERE Mail_Consultant = :mailConsultant AND ID_Etudiant = :idEtudiant');
         ));
     }
 }
+
+function DeleteTopConsultation($mailConsultant) {
+    global $bdd;
+    $req = $bdd->prepare('DELETE FROM consultation WHERE Mail_Consultant = :mailConsultant');
+    $result = $req->execute(array(
+        'mailConsultant' => $mailConsultant,
+    ));
+    return $result;
+}

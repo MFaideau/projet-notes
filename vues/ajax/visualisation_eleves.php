@@ -1,7 +1,7 @@
 <?php defined("ROOT_ACCESS") or die();
 global $listEleves;
 global $autorite; ?>
-<div class="panel_listing">
+<div class="panel_listing decale_admin">
     <table class="table" data-toggle="table" data-sort-name="nom" data-sort-order="asc">
         <thead>
         <tr>
@@ -30,6 +30,12 @@ global $autorite; ?>
                 <td class="ajoutEtudiant" colspan="3">
                     <span class="glyphicon glyphicon-plus-sign icone"></span>
                     <a class="link" data-toggle="modal" data-target="#addEtudiant" style="padding-left: 0.5%">Ajouter un étudiant</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="ajoutEtudiant" colspan="3">
+                    <span class="glyphicon glyphicon-open-file icone"></span>
+                    <a class="link" data-toggle="modal" data-target="#importListEtudiant" style="padding-left: 0.5%">Importer une liste d'étudiants</a>
                 </td>
             </tr>
         <?php } ?>

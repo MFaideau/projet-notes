@@ -5,7 +5,7 @@
  * Date: 20/06/2016
  * Time: 11:15
  */
-include_once(__DIR__ . '../cursus/cursus.php');
+include_once(__DIR__ . '/cursus/cursus.php');
 function TelechargementString($nom, $str)
 {
     header('Content-Type: application/octet-stream');

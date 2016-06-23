@@ -1,5 +1,5 @@
 <?php defined("ROOT_ACCESS") or die(); ?>
-<div class="panel_listing">
+<div class="panel_listing decale_admin">
     <table class="table" data-toggle="table" data-sort-name="nom" data-sort-order="asc">
         <thead>
         <tr>
@@ -24,7 +24,13 @@
                     <td>0</td>
                 <?php }
                 else { ?>
-                    <td><?php echo round($etudiantNote->GetNoteFinale(),2); ?></td>
+                    <td><?php $note = round($etudiantNote->GetNoteFinale(),2);
+                        if($note == "-1")
+                            echo $note;
+                        else
+                            echo "-";
+                        ?>
+                    </td>
                 <?php } ?>
             </tr>
         <?php }}} ?>
