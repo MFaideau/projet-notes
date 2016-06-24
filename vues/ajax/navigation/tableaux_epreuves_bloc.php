@@ -21,7 +21,8 @@
                 <tbody>
                 <?php foreach ($epreuvesList as $epreuve) {
                     $idEpreuve = $epreuve->GetId();
-                    $etudiantnote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuve); ?>
+                    $etudiantnote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuve);
+                    $coefEpreuve = $epreuve->GetCoef(); ?>
                     <tr>
                         <td id="releve_epreuve_<?php echo $idEpreuve; ?>"><b><?php echo $epreuve->GetNom(); ?></b></td>
                         <td><?php
@@ -33,7 +34,7 @@
                                 echo "-";
                             }?>
                         </td>
-                        <td><?php echo $epreuve->GetCoef(); ?></td>
+                        <td><?php echo $coefEpreuve; ?></td>
                         <td><?php echo GetGradeFromEpreuve($idEpreuve, $idEtudiant); ?></td>
                     </tr>
                 <?php } ?>

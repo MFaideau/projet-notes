@@ -237,8 +237,39 @@ function GetNotePonderee($note, $coefficient) {
     return $note*$coefficient;
 }
 
-function SimulationValidation($moyenne) {
-    
+function SimulationValidation($moyenne, $idCompetence, $idEtudiant) {
+    $listCours = GetCoursListFromCompetence($idCompetence);
+    foreach ($listCours as $cours) {
+        $idCours = $cours->GetId();
+        $coefCours = $cours->GetCoef();
+        // $sommeCoefTotalCours = $sommeCoefTotalCours + $coefCours;
+        $listEval = GetEvalListFromCours($idCours);
+        $moyenneCours = GetMoyenneFromCours($idCours, $idEtudiant);
+        foreach ($listEval as $eval) {
+            $idEval = $eval->GetId();
+            $coefEval = $eval->GetCoef();
+            // $sommeCoefTotalEval = $sommeCoefTotalEval + $coefEval;
+            $listTypeEval = GetTypeEvalListFromEval($idEval);
+            foreach ($listTypeEval as $typeEval) {
+                $idTypeEval = $typeEval->GetId();
+                $coefTypeEval = $typeEval->GetCoef();
+                // $sommeCoefTotalTypeEval = $sommeCoefTotalTypeEval + $coefTypeEval;
+                $listEpreuve = GetEpreuveListFromTypeEval($idTypeEval);
+                foreach ($listEpreuve as $epreuve) {
+                    $idEpreuve = $epreuve->GetId();
+                    $coefEpreuve = $epreuve->GetCoef();
+                    $studentnote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuve);
+                    if (isset($studentnote)) {
+                        $note = $studentnote->GetNoteFinale();
+                        // if ($note != -1) $sommeCoefFinalEpreuve = $sommeCoefFinalEpreuve + $coefEpreuve;
+                        // else $sommeCoefPrevuEpreuve = $sommeCoefPrevuEpreuve + $coefEpreuve;
+                        // $sommeCoefTotalEpreuve = $sommeCoefTotalEpreuve + $coefEpreuve;
+                        
+                    }
+                }
+            }
+        }
+    }
 }
 
 function GetNoteSimulation($etudiantNote, $isSimulation = false) {
