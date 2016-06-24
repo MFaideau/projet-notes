@@ -127,6 +127,14 @@
     padding-right: 5%;
 }
 
+.profil_image_top img {
+    height: 50px;
+}
+
+.profil_texte {
+    vertical-align: middle!important;
+}
+
 #nom_cours {
     padding-left: 20px;
     font-weight: bold;
