@@ -156,6 +156,19 @@ function GetMoyenneCursusEtudiant($idCursus,$idEtudiant)
     return $result;
 }
 
+function InsertMoyenneCursus($idCursus)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Etudiant FROM etudiant WHERE etudiant.ID_Cursus = :idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll(PDO::FETCH_COLUMN);
+    foreach($result as $etudiant)
+    {
+        InsertMoyenneCursusEtudiant($idCursus, $etudiant, -1);
+    }
+}
+
 function InsertMoyenneCursusEtudiant($idCursus,$idEtudiant,$moyenne)
 {
     global $bdd;
@@ -164,6 +177,18 @@ function InsertMoyenneCursusEtudiant($idCursus,$idEtudiant,$moyenne)
         'idCursus' => $idCursus,
         'idEtudiant' => $idEtudiant,
         'moyenne'=> $moyenne,
+    ));
+    return;
+}
+
+function UpdateMoyenneCursusEtudiant($idCursus,$idEtudiant,$moyenne)
+{
+    global $bdd;
+    $req = $bdd->prepare('UPDATE cursusmoyenne SET Moyenne=:moyenne WHERE ID_Cursus=:idCursus AND ID_Etudiant=:idEtudiant');
+    $req->execute(array(
+        'idCursus' => $idCursus,
+        'idEtudiant' => $idEtudiant,
+        'moyenne' => $moyenne,
     ));
     return;
 }

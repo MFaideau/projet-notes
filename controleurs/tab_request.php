@@ -179,7 +179,6 @@ function GetGradeFromCompetence($idCompetence, $idEtudiant) {
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
         $rang = 0;
-
         while ($moyenneCompetence < $studentnote[$rang]) {
             $rang = $rang + 1; //Calcul du rang
         }
@@ -230,10 +229,6 @@ function GetGradeFromCursus($idCursus, $idEtudiant) {
 
 function GetNotePonderee($note, $coefficient) {
     return $note*$coefficient;
-}
-
-function SimulationValidation($moyenne) {
-    
 }
 
 function GetNoteSimulation($etudiantNote, $isSimulation = false) {
@@ -584,7 +579,6 @@ function GetTabNotesEtudiantsFromEval($idEval, $isSimulation = false) {
     }
     return $notesEtudiants;
 }
-
 function GetTabNotesEtudiantsFromCours($idCours, $isSimulation = false) {
     $notesEtudiants = array();
     global $listEtudiantsFromCursus;

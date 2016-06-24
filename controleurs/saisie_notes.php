@@ -14,7 +14,7 @@ if (!isset($_SESSION['user'])) {
         die();
     }
     include_once('./vues/menu.php');
-
+    include_once('tab_request.php');
     // Si on a reçu le fichier de notes, on le traite sinon on affiche le formulaire
     if (isset($_FILES['fichier_notes']) && !empty($_POST['idEpreuveUpload'])) {
         $extension = strrchr($_FILES['fichier_notes']['name'], '.');
@@ -61,6 +61,7 @@ function AjouterNotes($idEpreuve, $delimiter)
         while (($data = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
             $note=str_replace(',','.',$data[$indexNote]);
             AddEtudiantNote($idEpreuve, $data[$indexIDEtudiant], $note, 0);
+            UpdateMoyenneEtudiant($idEpreuve, $data[$indexIDEtudiant]);
             $nombreNotes++;
         }
         fclose($handle);
@@ -69,4 +70,17 @@ function AjouterNotes($idEpreuve, $delimiter)
     $erreur_upload = 3;
     include_once('./vues/admin/error.php');
     return false;
+}
+
+function UpdateMoyenneEtudiant($idEpreuve,$idEtudiant){
+    $idCursus=GetCursusIdFromEpreuveId($idEpreuve);
+    $idCompetence=GetCompetenceIdFromEpreuveId($idEpreuve);
+    $idCours = GetCoursIdFromEpreuveId($idEpreuve);
+    InsertMoyenneCompetence($idCompetence);
+    InsertMoyenneCursus($idCursus);
+    InsertMoyenneCours($idCours);
+    UpdateMoyenneCursusEtudiant($idCursus, $idEtudiant, GetMoyenneFromCursus($idCursus, $idEtudiant));
+    UpdateMoyenneCompetenceEtudiant($idCompetence, $idEtudiant, GetMoyenneFromCompetence($idCompetence, $idEtudiant));
+    UpdateMoyenneCoursEtudiant($idCours, $idEtudiant, GetMoyenneFromCours($idCours, $idEtudiant));
+    return;
 }
