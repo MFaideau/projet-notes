@@ -60,6 +60,18 @@ function InsertEvaluation($nom,$coef,$idCours)
     $lastEvalID= $req->fetch();
     return $lastEvalID[0];
 }
+
+function InsertEvaluationFull($data)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO evaluation (ID_Eval,ID_Cours,Nom_Eval,Coef_Eval) VALUES (:idEval,:idCours,:nomEval,:coefEval)');
+    $req->bindParam(':idEval', $data[0], PDO::PARAM_INT);
+    $req->bindParam(':idCours', $data[1], PDO::PARAM_INT);
+    $req->bindParam(':nomEval', $data[2], PDO::PARAM_STR);
+    $req->bindParam(':coefEval', $data[3], PDO::PARAM_STR);
+    $req->execute();
+}
+
 function DeleteEval($id){
     global $bdd;
     $req = $bdd->prepare('DELETE FROM evaluation WHERE ID_Eval = :idEval');

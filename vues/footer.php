@@ -1,3 +1,7 @@
+<div class="alert alert-warning disclaimer decale_admin" role="alert">
+    Ce site est un outil à usage personnel et ne fait pas foi de bulletin officiel
+</div>
+
 <?php defined("ROOT_ACCESS") or die(); ?>
 </div>
 <?php if($user->GetAutorite() > 0)

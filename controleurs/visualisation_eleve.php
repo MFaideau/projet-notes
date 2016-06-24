@@ -1,5 +1,7 @@
 <?php
+global $nombreEtudiants;
 defined("ROOT_ACCESS") or die();
+
 include_once ('./modeles/authentification/utilisateur.class.php');
 if (!isset($_SESSION['user'])) {
     header('Location: index.php');
@@ -18,6 +20,21 @@ include_once (__DIR__ . '../../modeles/sqlConnection.php');
 include_once ('./modeles/consultation/consultation.php');
 include_once ('./controleurs/tab_request.php');
 include_once (__DIR__ . '../../vues/menu.php');
+
+// Importation de la partie d'upload
+if (isset($_FILES['fichier_eleves']) && !empty($_POST['idCursusUpload'])) {
+    $extension = strrchr($_FILES['fichier_eleves']['name'], '.');
+    if ($extension != ".csv") {
+        $erreur_upload = 1;
+        include_once('./vues/admin/error.php');
+    } else {
+        $result = ParseFichierEtudiants($_POST['idCursusUpload'], ";");
+        if ($result){
+            $code_upload = 1;
+            include_once('./vues/admin/congratulations.php');
+        }
+    }
+}
 
 // Insertion de la partie contenu de la visualisation
 if(isset($_GET['id'])) {
@@ -66,3 +83,80 @@ else {
 
 // Insertion du footer pour les scripts JS (jQuery)
 include_once (__DIR__ . '../../vues/footer.php');
+
+function ParseFichierEtudiants($idCursus, $delimiter) {
+    if(!isset($_FILES['fichier_eleves'])) {
+        $erreur_upload = 3;
+        include_once('./vues/admin/error.php');
+        return false;
+    }
+
+    if (($handle = fopen($_FILES['fichier_eleves']['tmp_name'], "r")) !== FALSE) {
+        $header = fgetcsv($handle, 1000, $delimiter);
+        if (count($header) <= 1) {
+            if ($delimiter == ',') {
+                $erreur_upload = 2;
+                include_once('./vues/admin/error.php');
+                return false;
+            } else {
+                fclose($handle);
+                return ParseFichierEtudiants($idCursus, ','); // On retente avec l'autre delimiter
+            }
+        }
+        $indexIDEtudiant = -1;
+        $indexPrenom = -1;
+        $indexNom =-1;
+        foreach ($header as $i => $category) {
+            if ($category == 'id.Apprenant')
+                $indexIDEtudiant = $i;
+            elseif ($category == 'Prénom.Apprenant')
+                $indexPrenom = $i;
+            elseif ($category == 'Nom.Apprenant')
+                $indexNom = $i;
+        }
+        global $nombreEtudiants;
+        $nombreEtudiants=0;
+        while (($data = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
+            $nom = utf8_decode($data[$indexNom]);
+            $prenom = mb_convert_encoding($data[$indexPrenom], "UTF-8");
+            $mail = GetMailFromNomPrenom($nom, $prenom);
+            if(!empty($mail)) {
+                $success = InsertEtudiant($idCursus, $data[$indexIDEtudiant], $nom, $prenom, $mail);
+                if($success)
+                    $nombreEtudiants++;
+                else
+                    echo var_dump($data, $nom, $prenom, $mail);
+            }
+        }
+        fclose($handle);
+        return true;
+    }
+    $erreur_upload = 3;
+    include_once('./vues/admin/error.php');
+    return false;
+}
+
+function GetMailFromNomPrenom($nom, $prenom) {
+    $ndd_mail = "isen-lille.fr";
+    if(!empty($nom) && !empty($prenom)) {
+        $mail = $prenom . "." . $nom . '@' . $ndd_mail;
+        $mail = str_replace(" ", "_", $mail);
+        $mail = str_replace("'", "_", $mail);
+        $mail = wd_remove_accents($mail);
+        return strtolower($mail);
+    }
+    else {
+        return "";
+    }
+}
+
+function wd_remove_accents($str, $charset='utf-8')
+{
+    $str = htmlentities($str, ENT_NOQUOTES, $charset);
+
+    $str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
+    $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
+    $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
+
+    return $str;
+}

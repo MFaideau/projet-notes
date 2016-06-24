@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 21 Juin 2016 à 07:22
+-- Généré le :  Jeu 23 Juin 2016 à 12:53
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -74,6 +74,46 @@ INSERT INTO `competence` (`ID_Competence`, `ID_Cursus`, `Nom_Competence`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `competencemoyenne`
+--
+
+DROP TABLE IF EXISTS `competencemoyenne`;
+CREATE TABLE IF NOT EXISTS `competencemoyenne` (
+  `ID_Competence` int(5) NOT NULL,
+  `ID_Etudiant` int(5) NOT NULL,
+  `Moyenne` float NOT NULL,
+  PRIMARY KEY (`ID_Competence`,`ID_Etudiant`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `competencemoyenne`
+--
+
+INSERT INTO `competencemoyenne` (`ID_Competence`, `ID_Etudiant`, `Moyenne`) VALUES
+(5, 1292336, -1),
+(4, 1292336, -1),
+(3, 1292336, 12.1332),
+(2, 1292336, -1),
+(1, 1292336, -1),
+(5, 1291167, 14.0863),
+(4, 1291167, -1),
+(3, 1291167, 16.1632),
+(2, 1291167, 14.4384),
+(1, 1291167, 14.5427),
+(5, 1292562, 11.595),
+(4, 1292562, -1),
+(3, 1292562, 12.3851),
+(2, 1292562, 10.5613),
+(1, 1292562, 10.9946),
+(5, 1292315, 12.3775),
+(4, 1292315, -1),
+(3, 1292315, 14.1958),
+(2, 1292315, 14.2295),
+(1, 1292315, 13.3508);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `consultation`
 --
 
@@ -90,10 +130,14 @@ CREATE TABLE IF NOT EXISTS `consultation` (
 --
 
 INSERT INTO `consultation` (`ID_Etudiant`, `Mail_Consultant`, `Nombre_Vues_Etudiant`) VALUES
-(1291167, 'maxence.faideau@isen-lille.fr', 30),
+(1291167, 'antoine.goelzer@isen-lille.fr', 6),
+(1291167, 'maxence.faideau@isen-lille.fr', 39),
+(1292315, 'antoine.goelzer@isen-lille.fr', 13),
 (1292315, 'maxence.faideau@isen-lille.fr', 8),
+(1292336, 'antoine.goelzer@isen-lille.fr', 8),
 (1292336, 'maxence.faideau@isen-lille.fr', 6),
-(1292562, 'maxence.faideau@isen-lille.fr', 25);
+(1292562, 'antoine.goelzer@isen-lille.fr', 33),
+(1292562, 'maxence.faideau@isen-lille.fr', 44);
 
 -- --------------------------------------------------------
 
@@ -181,6 +225,34 @@ INSERT INTO `cours` (`ID_Cours`, `ID_Competence`, `Nom_Cours`, `Credits_Cours`, 
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `coursmoyenne`
+--
+
+DROP TABLE IF EXISTS `coursmoyenne`;
+CREATE TABLE IF NOT EXISTS `coursmoyenne` (
+  `ID_Cours` int(5) NOT NULL,
+  `ID_Etudiant` int(5) NOT NULL,
+  `Moyenne` float NOT NULL,
+  PRIMARY KEY (`ID_Cours`,`ID_Etudiant`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `coursmoyenne`
+--
+
+INSERT INTO `coursmoyenne` (`ID_Cours`, `ID_Etudiant`, `Moyenne`) VALUES
+(11, 1292336, 8.76),
+(10, 1292336, 13.097),
+(4, 1292562, 10.28),
+(2, 1292562, 12.95),
+(1, 1292562, 11.86),
+(4, 1292315, 12.01),
+(2, 1292315, 14.6),
+(1, 1292315, 16.91);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `cursus`
 --
 
@@ -204,6 +276,30 @@ INSERT INTO `cursus` (`ID_Cursus`, `Nom_Cursus`, `Annee_Cursus`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `cursusmoyenne`
+--
+
+DROP TABLE IF EXISTS `cursusmoyenne`;
+CREATE TABLE IF NOT EXISTS `cursusmoyenne` (
+  `ID_Cursus` int(5) NOT NULL,
+  `ID_Etudiant` int(5) NOT NULL,
+  `Moyenne` float NOT NULL,
+  PRIMARY KEY (`ID_Cursus`,`ID_Etudiant`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `cursusmoyenne`
+--
+
+INSERT INTO `cursusmoyenne` (`ID_Cursus`, `ID_Etudiant`, `Moyenne`) VALUES
+(1, 1292336, 12.1332),
+(1, 1291167, 14.8165),
+(1, 1292562, 11.3513),
+(1, 1292315, 13.598);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `epreuve`
 --
 
@@ -219,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `epreuve` (
   `Evaluateur_Epreuve` varchar(255) NOT NULL,
   PRIMARY KEY (`ID_Epreuve`),
   KEY `ID_Type` (`ID_Type`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=178 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `epreuve`
@@ -246,15 +342,15 @@ INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `ID_Epreuve_Session2`, `ID_Epreu
 (38, 21, 0, 39, 'Devoir surveillé CSI3 Electronique Numérique et Analogique ', 1, '2015-12-01', ''),
 (39, 39, 40, 40, 'Partiel CSI3 Electronique Numérique et Analogique ', 0.5, '2015-12-18', ''),
 (40, 39, 0, 0, '2ème session CSI3 Electronique Numérique et Analogique ', 0.5, '2016-03-03', ''),
-(41, 48, 0, 0, 'TP FPGA', 0.5, '2016-02-02', ''),
-(42, 48, 0, 0, 'TP MICROCONTROLEURS', 0.5, '2016-01-03', ''),
+(41, 48, 0, 0, 'TP FPGA', 0.3, '2016-02-02', ''),
+(42, 48, 0, 0, 'TP MICROCONTROLEURS', 0.7, '2016-01-03', ''),
 (43, 49, 0, 0, 'Projet Electronique CSI3 Semestre 1', 1, '2016-01-18', ''),
 (44, 7, 0, 0, 'Interrogation CSI3 Transformations', 1, '2015-11-24', ''),
 (45, 40, 46, 46, 'Partiel CSI3 Transformations', 0.5, '2015-12-14', ''),
 (46, 40, 0, 0, '2ème session CSI3 Transformations', 0.5, '2015-12-14', ''),
 (47, 50, 0, 0, 'Travaux Pratiques CSI3 Transformations', 0.5, '2015-11-17', ''),
-(48, 41, 49, 49, 'Partiel', 0.5, '2016-03-11', ''),
-(49, 41, 0, 0, '2ème session Partiel', 0.5, '2016-03-11', ''),
+(48, 41, 49, 49, 'Partiel Probabilités', 0.5, '2016-03-11', ''),
+(49, 41, 0, 0, '2ème session Probabilités', 0.5, '2016-03-11', ''),
 (50, 51, 0, 0, 'Travaux Pratiques', 1, '2016-03-08', ''),
 (51, 8, 0, 0, 'Interrogation d''analyse des signaux et des images ', 1, '2016-03-29', ''),
 (52, 22, 0, 53, 'Devoir surveillé d''analyse des signaux et des images ', 1, '2016-04-26', ''),
@@ -274,7 +370,115 @@ INSERT INTO `epreuve` (`ID_Epreuve`, `ID_Type`, `ID_Epreuve_Session2`, `ID_Epreu
 (66, 136, 0, 67, 'Devoir surveillé de Systèmes Electroniques ', 1, '2016-04-18', ''),
 (67, 137, 68, 68, 'Partiel de Systèmes Electroniques ', 0.5, '2016-05-10', ''),
 (68, 137, 0, 0, '2ème session de Systèmes Electroniques ', 0.5, '2016-05-10', ''),
-(69, 89, 0, 0, 'Evaluation de Projet', 1, '2016-06-30', '');
+(69, 89, 0, 0, 'Evaluation de Projet', 1, '2016-06-30', ''),
+(70, 100, 71, 71, 'Partiel de Systèmes Electroniques', 0.5, '2016-06-21', ''),
+(71, 100, 0, 0, '2ème session de Systèmes Electroniques', 0.5, '2016-06-21', ''),
+(72, 99, 0, 70, 'Devoir surveillé de Systèmes Electroniques', 1, '2016-06-21', ''),
+(73, 15, 0, 0, 'Interrogation de Systèmes Electroniques', 0.5, '2016-06-21', ''),
+(74, 15, 0, 0, 'Interrogation 2 de Systèmes Electroniques', 0.5, '2016-06-21', ''),
+(75, 101, 0, 0, 'Travaux Pratiques', 1, '2016-06-21', ''),
+(76, 102, 0, 0, 'Devoir Surveillé CIR3 sciences industrielles', 1, '2016-06-21', ''),
+(77, 97, 0, 0, 'CIR3 TP Electronique ', 1, '2016-06-21', ''),
+(78, 98, 0, 0, 'Projet Electronique CIR3 ', 1, '2016-06-21', ''),
+(79, 14, 0, 0, 'Interrogation CIR3 Electronique Numérique et Analogique', 1, '2016-06-21', ''),
+(80, 96, 81, 81, 'Partiel CIR3 Electronique Numérique et Analogique', 0.5, '2016-06-21', ''),
+(81, 96, 0, 0, '2ème session CIR3 Electronique Numérique et Analogique', 0.5, '2016-06-21', ''),
+(82, 95, 0, 80, 'Devoir surveillé CIR3 Electronique Numérique et Analogique', 1, '2016-06-21', ''),
+(83, 94, 0, 0, 'Devoir surveillé CIR3 Liaisons optiques', 1, '2016-06-21', ''),
+(84, 103, 0, 0, 'Evaluation des Ateliers Préparatoires de Mathématiques', 1, '2016-06-21', ''),
+(85, 104, 0, 0, 'Examen CIR3 mathématiques', 1, '2016-06-21', ''),
+(86, 105, 0, 0, 'TP1: courbes de Bézier', 0.5, '2016-06-21', ''),
+(87, 105, 0, 0, 'TP2: B-splines', 0.5, '2016-06-21', ''),
+(88, 106, 0, 0, 'Interrogation CIR3 Calcul Numérique', 0.5, '2016-06-21', ''),
+(89, 106, 0, 0, 'Interrogation n°2 CIR3 Calcul Numérique', 0.5, '2016-06-21', ''),
+(90, 107, 91, 91, 'Partiel CIR3 Calcul Numérique', 0.5, '2016-06-21', ''),
+(91, 107, 0, 0, '2ème session CIR3 Calcul Numérique', 0.5, '2016-06-21', ''),
+(92, 16, 0, 0, 'Interrogation CIR3 transformations', 1, '2016-06-21', ''),
+(93, 108, 94, 94, 'Partiel CIR3 Transformations', 0.5, '2016-06-21', ''),
+(94, 108, 0, 0, '2ème session CIR3 Transformations', 0.5, '2016-06-21', ''),
+(95, 109, 0, 0, 'Travaux Pratiques CIR3 Transformations', 1, '2016-06-21', ''),
+(96, 110, 97, 97, 'Partiel CIR3 Probabilités', 0.5, '2016-06-21', ''),
+(97, 110, 0, 0, '2ème session CIR3 Probabilités', 0.5, '2016-06-21', ''),
+(98, 111, 0, 0, 'TP CIR3 Probabilités', 1, '2016-06-21', ''),
+(99, 17, 0, 0, 'Interrogation CIR3 ASN', 1, '2016-06-21', ''),
+(100, 113, 101, 101, 'Partiel CIR3 ASN', 0.5, '2016-06-21', ''),
+(101, 113, 0, 0, '2ème session CIR3 ASN', 0.5, '2016-06-21', ''),
+(102, 112, 0, 100, 'Devoir surveillé CIR3 ASN', 1, '2016-06-21', ''),
+(103, 18, 0, 0, 'Interrogation n°1 Informatique', 0.5, '2016-06-21', ''),
+(104, 18, 0, 0, 'Interrogation n°2 Informatique', 0.5, '2016-06-21', ''),
+(105, 115, 0, 106, 'Devoir surveillé CIR3 Informatique', 1, '2016-06-21', ''),
+(106, 116, 107, 107, 'Partiel CIR3 Informatique', 0.5, '2016-06-21', ''),
+(107, 116, 0, 0, '2ème session CIR3 Informatique', 0.5, '2016-06-21', ''),
+(108, 117, 0, 0, 'TP JAVA (à verifier)', 0.5, '2016-06-21', ''),
+(109, 117, 0, 0, 'Projet JAVA (à verifier)', 0.5, '2016-06-21', ''),
+(110, 118, 0, 111, 'Devoir surveillé CIR3 informatique S2', 1, '2016-06-21', ''),
+(111, 119, 112, 112, 'Partiel CIR3 informatique S2', 0.5, '2016-06-21', ''),
+(112, 119, 0, 0, '2ème session CIR3 informatique S2', 0.5, '2016-06-21', ''),
+(113, 121, 0, 0, 'Evaluation de Projet', 1, '2016-06-21', ''),
+(114, 125, 0, 0, 'Evaluation module elective', 0.5, '2016-06-21', ''),
+(115, 125, 0, 114, 'Evaluation PR', 0.5, '2016-06-21', ''),
+(116, 33, 0, 0, 'Evaluation CIR3 Anglais S1', 1, '2016-06-21', ''),
+(117, 34, 0, 0, 'Evaluation CIR3 Anglais S2', 1, '2016-06-21', ''),
+(118, 122, 0, 0, 'Evaluation CIR3 Projet Communication', 1, '2016-06-21', ''),
+(119, 123, 0, 0, 'Partiel CIR3 Gestion de Projet', 1, '2016-06-21', ''),
+(120, 124, 0, 0, 'Jeu d''entreprise', 1, '2016-06-21', ''),
+(121, 29, 0, 0, 'Evaluation CSIU3 Anglais S1', 1, '2016-06-21', ''),
+(122, 30, 0, 0, 'Evaluation CSIU3 Anglais S2', 1, '2016-06-21', ''),
+(123, 90, 0, 0, 'Evaluation CSIU3 Projet Communication ', 1, '2016-06-21', ''),
+(124, 91, 0, 0, 'Evaluation CSIU3 Projet Jeu d''entreprise ', 1, '2016-06-21', ''),
+(125, 92, 0, 0, 'Partiel CSIU3 Gestion de Projet', 1, '2016-06-21', ''),
+(126, 32, 0, 0, 'Devoir surveillé de Macro Economie ', 1, '2016-06-21', ''),
+(127, 83, 128, 128, 'Partiel d''informatique - Algorithmique et Lang C', 0.5, '2016-06-21', ''),
+(128, 83, 0, 0, '2ème session d''informatique - Algorithmique et Lang C', 0.5, '2016-06-21', ''),
+(129, 82, 0, 127, 'Devoir surveillé d''informatique - Algorithmique et Lang C', 1, '2016-06-21', ''),
+(130, 84, 0, 0, 'Travaux pratiques de bases de Lang C', 1, '2016-06-21', ''),
+(131, 85, 0, 0, 'Evaluation de Projet d''informatique ', 1, '2016-06-21', ''),
+(132, 86, 0, 133, 'Devoir surveillé de BDD', 1, '2016-06-21', ''),
+(133, 87, 134, 134, 'Partiel CSIU3 BDD', 0.5, '2016-06-21', ''),
+(134, 87, 0, 0, '2ème session CSIU3 BDD', 0.5, '2016-06-21', ''),
+(135, 88, 0, 0, 'Travaux Pratiques de BDD ', 1, '2016-06-21', ''),
+(136, 68, 0, 0, 'Evaluation des Ateliers Préparatoires de Mathématiques', 1, '2016-06-21', ''),
+(137, 69, 0, 0, 'Devoir surveillé des Ateliers Préparatoires de Mathématiques', 1, '2016-06-21', ''),
+(138, 12, 0, 0, 'Interrogation U3 Electronique numérique et analogique ', 1, '2016-06-21', ''),
+(139, 70, 0, 140, 'Devoir surveillé U3 Electronique numérique et analogique ', 1, '2016-06-21', ''),
+(140, 71, 141, 141, 'Partiel U3 Electronique numérique et analogique ', 0.5, '2016-06-21', ''),
+(141, 71, 0, 0, '2ème session U3 Electronique numérique et analogique ', 0.5, '2016-06-21', ''),
+(142, 72, 0, 0, 'TP FPGA', 0.3, '2016-06-21', ''),
+(143, 72, 0, 0, 'TP MICROCONTROLEURS', 0.7, '2016-06-21', ''),
+(144, 73, 0, 0, 'Projet Electronique CSIU3', 1, '2016-06-21', ''),
+(145, 74, 0, 146, 'Devoir surveillé CSIU3 Transformations', 1, '2016-06-21', ''),
+(146, 75, 147, 147, 'Partiel CSIU3 Transformations', 0.5, '2016-06-21', ''),
+(147, 75, 0, 0, '2ème session CSIU3 Transformations', 0.5, '2016-06-21', ''),
+(148, 76, 0, 0, 'Travaux Pratiques CSIU3 Transformations', 1, '2016-06-21', ''),
+(149, 77, 150, 150, 'Partiel CSIU3 Probabilités', 0.5, '2016-06-21', ''),
+(150, 77, 0, 0, '2ème session CSIU3 Probabilités', 0.5, '2016-06-21', ''),
+(151, 78, 0, 0, 'Travaux Pratiques CSIU3 Probabilités', 1, '2016-06-21', ''),
+(152, 13, 0, 0, 'Interrogation CSIU3 ASN', 1, '2016-06-21', ''),
+(153, 79, 0, 154, 'Devoir surveillé CSIU3 ASN', 1, '2016-06-21', ''),
+(154, 80, 155, 155, 'Partiel CSIU3 ASN', 0.5, '2016-06-21', ''),
+(155, 80, 0, 0, '2ème session CSIU3 ASN', 0.5, '2016-06-21', ''),
+(156, 81, 0, 0, 'Travaux Pratiques CSIU3 ASN', 1, '2016-06-21', ''),
+(157, 138, 0, 0, 'Evaluation Semestre 1 ', 1, '2016-06-21', ''),
+(158, 65, 0, 0, 'CC Electromagnétisme', 1, '2016-06-21', ''),
+(159, 140, 0, 0, 'Projet Electromagnétisme', 1, '2016-06-21', ''),
+(160, 10, 0, 0, 'Interrogation de systèmes Electroniques', 0.5, '2016-06-21', ''),
+(161, 10, 0, 0, 'Interrogation 2 de systèmes Electroniques', 0.5, '2016-06-21', ''),
+(162, 62, 0, 163, 'Devoir surveillé de systèmes Electroniques', 1, '2016-06-21', ''),
+(163, 63, 164, 164, 'Partiel de systèmes Electroniques', 0.5, '2016-06-21', ''),
+(164, 63, 0, 0, '2ème session de systèmes Electroniques', 0.5, '2016-06-21', ''),
+(165, 64, 0, 0, 'Travaux Pratiques de Systèmes Electroniques', 1, '2016-06-21', ''),
+(166, 11, 0, 0, 'Interrogation de Nanosciences', 1, '2016-06-21', ''),
+(167, 66, 0, 168, 'Devoir surveillé de Nanosciences', 1, '2016-06-21', ''),
+(168, 67, 169, 169, 'Partiel de Nanosciences', 0.5, '2016-06-21', ''),
+(169, 67, 0, 0, '2ème session de Nanosciences', 0.5, '2016-06-21', ''),
+(170, 9, 0, 0, 'Interrogation de Mécanique Quantique', 1, '2016-06-21', ''),
+(171, 60, 0, 172, 'Devoir surveillé de Mécanique Quantique', 1, '2016-06-21', ''),
+(172, 61, 173, 173, 'Partiel de Mécanique Quantique', 0.5, '2016-06-21', ''),
+(173, 61, 0, 0, '2ème session de Mécanique Quantique', 0.5, '2016-06-21', ''),
+(174, 114, 0, 0, 'Travaux pratiques CIR3 ASN', 1, '2016-06-21', ''),
+(175, 36, 0, 0, 'Devoir surveillé de macro economie ', 1, '2016-06-21', ''),
+(176, 46, 0, 0, 'Travaux Pratiques de Systèmes Electronique', 1, '2016-06-21', ''),
+(177, 28, 0, 0, 'Devoir surveillé de Macro économie', 1, '2016-06-21', '');
 
 -- --------------------------------------------------------
 
@@ -295,7 +499,6 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
 --
 
 INSERT INTO `etudiant` (`ID_Etudiant`, `ID_Cursus`, `Mail`) VALUES
-('11111111', 1, 'FER.TRE@isen-lille.fr'),
 ('1291167', 1, 'antoine.goelzer@isen-lille.fr'),
 ('1292315', 1, 'baudouin.landais@isen-lille.fr'),
 ('1292336', 1, 'joel.guillem@isen-lille.fr'),
@@ -345,6 +548,7 @@ INSERT INTO `etudiantnote` (`ID_Epreuve`, `ID_Etudiant`, `Note_Finale`, `Note_Pr
 (25, 1292315, 19, -1, 0),
 (25, 1292336, 18, -1, 0),
 (25, 1292562, 15, -1, 0),
+(26, 1292562, -1, -1, 0),
 (27, 1291167, 14, -1, 0),
 (27, 1292315, 10.4, -1, 0),
 (27, 1292336, 6.7, -1, 0),
@@ -359,6 +563,7 @@ INSERT INTO `etudiantnote` (`ID_Epreuve`, `ID_Etudiant`, `Note_Finale`, `Note_Pr
 (33, 1291167, 15, -1, 0),
 (33, 1292315, 12, -1, 0),
 (33, 1292562, 0, -1, 1),
+(34, 1291167, 14.1, -1, 0),
 (34, 1292315, 12.3, -1, 0),
 (34, 1292562, 14.1, -1, 0),
 (35, 1291167, 12, -1, 0),
@@ -410,6 +615,7 @@ INSERT INTO `etudiantnote` (`ID_Epreuve`, `ID_Etudiant`, `Note_Finale`, `Note_Pr
 (53, 1291167, 20, -1, 0),
 (53, 1292315, 16.5, -1, 0),
 (53, 1292562, 0, -1, 1),
+(54, 1292562, -1, -1, 0),
 (55, 1291167, 9.6, -1, 0),
 (55, 1292315, 14.4, -1, 0),
 (55, 1292562, 0, -1, 1),
@@ -443,7 +649,8 @@ INSERT INTO `etudiantnote` (`ID_Epreuve`, `ID_Etudiant`, `Note_Finale`, `Note_Pr
 (66, 1292562, 11.8, -1, 0),
 (67, 1291167, 16.9, -1, 0),
 (67, 1292315, 12.4, -1, 0),
-(67, 1292562, 0, -1, 1);
+(67, 1292562, 0, -1, 1),
+(68, 1292562, -1, -1, 0);
 
 -- --------------------------------------------------------
 
@@ -560,7 +767,7 @@ CREATE TABLE IF NOT EXISTS `type_eval` (
   `Coef_Type_Eval` float NOT NULL,
   PRIMARY KEY (`ID_Type`),
   KEY `ID_Eval` (`ID_Eval`)
-) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `type_eval`
@@ -622,7 +829,7 @@ INSERT INTO `type_eval` (`ID_Type`, `ID_Eval`, `Nom_Type`, `Coef_Type_Eval`) VAL
 (62, 56, 'DS', 0.3),
 (63, 56, 'Partiel', 0.5),
 (64, 57, 'TP', 1),
-(65, 58, 'Evaluation', 1),
+(65, 58, 'Contrôle Continu', 0.5),
 (66, 59, 'DS', 0.3),
 (67, 59, 'Partiel', 0.5),
 (68, 46, 'Quizz', 0.6),
@@ -691,7 +898,9 @@ INSERT INTO `type_eval` (`ID_Type`, `ID_Eval`, `Nom_Type`, `Coef_Type_Eval`) VAL
 (134, 2, 'Partiel', 0.5),
 (135, 3, 'Interrogation', 0.2),
 (136, 3, 'DS', 0.3),
-(137, 3, 'Partiel', 0.5);
+(137, 3, 'Partiel', 0.5),
+(138, 55, 'Evaluation', 1),
+(140, 58, 'Projet', 0.5);
 
 -- --------------------------------------------------------
 
@@ -716,7 +925,7 @@ INSERT INTO `utilisateur` (`Mail`, `Autorite`, `Nom`, `Prenom`) VALUES
 ('antoine.goelzer@isen-lille.fr', 1, 'Goelzer', 'Antoine'),
 ('baudouin.landais@isen-lille.fr', 0, 'Landais', 'Baudouin'),
 ('joel.guillem@isen-lille.fr', 0, 'Guillem', 'Joël'),
-('maxence.faideau@isen-lille.fr', 0, 'Faideau', 'Maxence'),
+('maxence.faideau@isen-lille.fr', 1, 'Faideau', 'Maxence'),
 ('mikael.morelle@isen-lille.fr', 1, 'Morelle', 'Mikael');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

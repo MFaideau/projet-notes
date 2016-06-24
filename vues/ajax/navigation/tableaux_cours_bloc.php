@@ -26,7 +26,7 @@
                             </a>
                         </td>
                         <td><?php
-                            $moyenne = round(GetMoyenneFromCours($idCours, $idEtudiant),2);
+                            $moyenne = round(GetMoyenneFromCoursCalc($idCours, $idEtudiant),2);
                             if ($moyenne == -1)
                                 echo "-";
                             else
@@ -45,7 +45,7 @@
                         <td><b>Moyenne Générale</b></td>
                         <td><b>
                             <?php
-                            $note_etudiant = round(GetMoyenneFromCompetence($idCompetence, $idEtudiant),2);
+                            $note_etudiant = round(GetMoyenneFromCompetenceCalc($idCompetence, $idEtudiant),2);
                             echo TestValidite($note_etudiant);
                             ?>
                             </b></td>

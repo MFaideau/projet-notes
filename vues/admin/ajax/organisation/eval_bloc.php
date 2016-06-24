@@ -1,5 +1,5 @@
 <?php defined("ROOT_ACCESS") or die(); ?>
-<div class="panel_eval">
+<div class="panel_eval decale_admin">
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix de l'Evaluation
             <div class="add_button_etudes">

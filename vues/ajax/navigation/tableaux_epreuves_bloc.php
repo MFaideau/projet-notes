@@ -48,7 +48,7 @@
                         <td><b>
                             <?php
                             $idCours = $cours->GetId();
-                            $studentNote = GetMoyenneFromCours($idCours, $idEtudiant);
+                            $studentNote = GetMoyenneFromCoursCalc($idCours, $idEtudiant);
                             if (isset($studentNote))
                                 $note_etudiant = round($studentNote, 2);
                             else

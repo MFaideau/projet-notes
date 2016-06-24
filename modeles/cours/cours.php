@@ -84,6 +84,18 @@ function InsertCours($nom,$ects,$semestre,$idCompetence)
     return $lastCoursID[0];
 }
 
+function InsertCoursFull($data)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO cours (ID_Cours,ID_Competence,Nom_Cours,Credits_Cours,Semestre_Cours) VALUES (:idCours,:idCompetence,:nomCours,:creditsCours,:semestreCours)');
+    $req->bindParam(':idCours', $data[0], PDO::PARAM_INT);
+    $req->bindParam(':idCompetence', $data[1], PDO::PARAM_INT);
+    $req->bindParam(':nomCours', $data[2], PDO::PARAM_STR);
+    $req->bindParam(':creditsCours', $data[3], PDO::PARAM_STR);
+    $req->bindParam(':semestreCours', $data[4], PDO::PARAM_INT);
+    $req->execute();
+}
+
 function DeleteCours($id)
 {
     global $bdd;
@@ -144,4 +156,37 @@ AND competence.ID_Cursus=:idCursus');
         $str=$str.$line["Semestre_Cours"]."\r\n";
     }
     return $str;
+}
+
+function GetMoyenneCoursEtudiant($idCours,$idEtudiant)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT Moyenne FROM coursmoyenne WHERE ID_Cours=:idCours AND ID_Etudiant=:idEtudiant');
+    $req->bindParam(':idCours', $idCours, PDO::PARAM_INT);
+    $req->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetch()['Moyenne'];
+    return $result;
+}
+
+function InsertMoyenneCoursEtudiant($idCours,$idEtudiant,$moyenne)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO coursmoyenne (ID_Cours,ID_Etudiant,Moyenne) VALUES (:idCours,:idEtudiant,:moyenne)');
+    $req->execute(array(
+        'idCours' => $idCours,
+        'idEtudiant' => $idEtudiant,
+        'moyenne'=> $moyenne,
+    ));
+    return;
+}
+
+function GetBDDTabNotesMoyenneCours($idCours)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT Moyenne FROM coursmoyenne WHERE ID_Cours=:idCours ORDER BY Moyenne DESC');
+    $req->bindParam(':idCours', $idCours, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll(PDO::FETCH_COLUMN);
+    return $result;
 }

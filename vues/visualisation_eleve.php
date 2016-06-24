@@ -1,5 +1,5 @@
 <?php defined("ROOT_ACCESS") or die(); ?>
-<div id="panelChoixEleves" class="panel_choix_eleves">
+<div id="panelChoixEleves" class="panel_choix_eleves decale_admin">
     <div id="panelChoixElevesCursus" class="panel panel-default choix_cursus_eleves">
         <div class="panel-heading">Choix du Cursus</div>
         <div class="panel-body">

@@ -12,6 +12,7 @@
                 </div>
                 <div class="modal-body">
                     Êtes-vous sûr de vouloir supprimer le cursus ?
+                    <br><br><a id="lienSauvegardeCursus">Fichier de sauvegarde</a>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>

@@ -1,5 +1,5 @@
 <?php defined("ROOT_ACCESS") or die(); ?>
-<div class="panel_cours">
+<div class="panel_cours decale_admin">
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix du Cours
             <div class="add_button_etudes">
