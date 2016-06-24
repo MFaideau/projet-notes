@@ -13,16 +13,22 @@ global $autorite; ?>
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($listEleves as $eleve) { $etudiant = GetEtudiant($eleve);
-            if(isset($etudiant)) { ?>
-            <tr id="etudiant_tr_<?php echo $eleve->GetMail(); ?>">
-                <?php
-                if($autorite == 1) { ?>
-                <td><a class="link" data-toggle="modal" data-target="#deleteEtudiant" id="deleteEtudiant_<?php echo $eleve->GetMail(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a></td><?php } ?>
-                <td><a data-name="nom" data-value="<?php echo $eleve->GetNom() . $eleve->GetPrenom(); ?>"href="visualisation_eleve.php?id=<?php echo $eleve->GetMail(); ?>"><?php echo $eleve->GetNom() . ' ' . $eleve->GetPrenom(); ?></a></td>
-                <td><?php echo round(GetMoyenneFromCursusCalc($etudiant->GetCursus()->GetId(), $etudiant->GetId()),2); ?></td>
-            </tr>
-        <?php } } ?>
+        <?php foreach ($listEleves as $eleve) {
+            $etudiant = GetEtudiant($eleve);
+            if (isset($etudiant)) { ?>
+                <tr id="etudiant_tr_<?php echo $eleve->GetMail(); ?>">
+                    <?php
+                    if ($autorite == 1) { ?>
+                        <td><a class="link" data-toggle="modal" data-target="#deleteEtudiant"
+                               id="deleteEtudiant_<?php echo $eleve->GetMail(); ?>"><span
+                                class="glyphicon glyphicon-minus-sign icone"></span></a></td><?php } ?>
+                    <td><a data-name="nom" data-value="<?php echo $eleve->GetNom() . $eleve->GetPrenom(); ?>"
+                           href="visualisation_eleve.php?id=<?php echo $eleve->GetMail(); ?>"><?php echo $eleve->GetNom() . ' ' . $eleve->GetPrenom(); ?></a>
+                    </td>
+                    <td><?php echo round(GetMoyenneFromCursusCalc($etudiant->GetCursus()->GetId(), $etudiant->GetId()), 2); ?></td>
+                </tr>
+            <?php }
+        } ?>
         </tbody>
         <tfoot>
         <?php if ($autorite == 1) { ?>
@@ -41,4 +47,30 @@ global $autorite; ?>
         <?php } ?>
         </tfoot>
     </table>
+</div>
+
+<div class="modal fade" id="importListEtudiant" tabindex="-1" role="dialog" aria-labelledby="importListEtudiant">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="visualisation_eleve.php" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Importer une liste d'étudiants</h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset class="form-group">
+                        <label for="nomUpload">Saisie du fichier d'étudiants:</label>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="1048576"/>
+                        <input type="hidden" name="idCursusUpload" id="idCursusUpload" value=""/>
+                        <input type="file" name="fichier_eleves" id="fichier_eleves"/><br/>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <input type="submit" name="submit" class="btn btn-primary" value="Enregistrer" />
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
