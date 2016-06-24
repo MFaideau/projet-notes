@@ -2,7 +2,6 @@
 defined("ROOT_ACCESS") or die();
 include_once('modeles/sqlConnection.php');
 include_once('./modeles/authentification/utilisateur.class.php');
-include_once('tab_request.php');
 
 $nombreNotes = 0;
 if (!isset($_SESSION['user'])) {
@@ -15,7 +14,7 @@ if (!isset($_SESSION['user'])) {
         die();
     }
     include_once('./vues/menu.php');
-
+    include_once('tab_request.php');
     // Si on a reçu le fichier de notes, on le traite sinon on affiche le formulaire
     if (isset($_FILES['fichier_notes']) && !empty($_POST['idEpreuveUpload'])) {
         $extension = strrchr($_FILES['fichier_notes']['name'], '.');
