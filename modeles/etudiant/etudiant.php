@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ISEN
- * Date: 25/05/2016
- * Time: 15:53
- */
 
 include_once('etudiant.class.php');
 

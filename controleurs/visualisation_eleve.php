@@ -117,11 +117,15 @@ function ParseFichierEtudiants($idCursus, $delimiter) {
         global $nombreEtudiants;
         $nombreEtudiants=0;
         while (($data = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
-            $mail = GetMailFromNomPrenom($data[$indexNom],$data[$indexPrenom]);
+            $nom = utf8_decode($data[$indexNom]);
+            $prenom = mb_convert_encoding($data[$indexPrenom], "UTF-8");
+            $mail = GetMailFromNomPrenom($nom, $prenom);
             if(!empty($mail)) {
-                $success = InsertEtudiant($idCursus, $data[$indexIDEtudiant], $data[$indexNom], $data[$indexPrenom], $mail);
+                $success = InsertEtudiant($idCursus, $data[$indexIDEtudiant], $nom, $prenom, $mail);
                 if($success)
                     $nombreEtudiants++;
+                else
+                    echo var_dump($data, $nom, $prenom, $mail);
             }
         }
         fclose($handle);
@@ -138,9 +142,21 @@ function GetMailFromNomPrenom($nom, $prenom) {
         $mail = $prenom . "." . $nom . '@' . $ndd_mail;
         $mail = str_replace(" ", "_", $mail);
         $mail = str_replace("'", "_", $mail);
+        $mail = wd_remove_accents($mail);
         return strtolower($mail);
     }
     else {
         return "";
     }
+}
+
+function wd_remove_accents($str, $charset='utf-8')
+{
+    $str = htmlentities($str, ENT_NOQUOTES, $charset);
+
+    $str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
+    $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
+    $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
+
+    return $str;
 }
