@@ -16,7 +16,7 @@ $(document).on("click", "a[id^=simu_comp_id_]", function (e) {
     else {
         $("tr[class^=simu_cours_comp_" + idCompetence + "_id_]").hide();
         $("span[id^=typeEval_comp_]").hide();
-        $("tr[class^=simu_type_eval_]").hide();
+        $("tr[id^=bloc_simu_comp_"+ idCompetence +"]").hide();
         $("tr[id=typeEval_comp_" + idCompetence + "]").hide();
     }
 });

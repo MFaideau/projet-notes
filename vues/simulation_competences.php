@@ -70,7 +70,7 @@
                                 </td>
                             </tr>
                             <?php foreach (GetEpreuveListFromTypeEval($typeEval->GetId()) as $epreuve) { ?>
-                                <tr class="simu_type_eval_<?php echo $typeEval->GetId(); ?>_epreuve_<?php echo $epreuve->GetId(); ?>">
+                                <tr id="bloc_simu_comp_<?php echo $competence->GetId(); ?>_epreuve_<?php echo $epreuve->GetId(); ?>" class="simu_type_eval_<?php echo $typeEval->GetId(); ?>_epreuve_<?php echo $epreuve->GetId(); ?>">
                                     <td id="nom_epreuve_<?php echo $epreuve->GetId(); ?>">
                                         <span id="nom_epreuve"><a style="color: black;">
                                             <?php echo $epreuve->GetNom(); ?>
