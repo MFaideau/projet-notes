@@ -83,4 +83,5 @@ function UpdateMoyenneEtudiant($idEpreuve,$idEtudiant){
     UpdateMoyenneCursusEtudiant($idCursus, $idEtudiant, GetMoyenneFromCursus($idCursus, $idEtudiant));
     UpdateMoyenneCompetenceEtudiant($idCompetence, $idEtudiant, GetMoyenneFromCompetence($idCompetence, $idEtudiant));
     UpdateMoyenneCoursEtudiant($idCours, $idEtudiant, GetMoyenneFromCours($idCours, $idEtudiant));
+    return;
 }

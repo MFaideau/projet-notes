@@ -179,7 +179,6 @@ function GetGradeFromCompetence($idCompetence, $idEtudiant) {
         $effectifNonGrades = GetEffectifNonGrades($studentnote, $size);
         $effectifGrades = $effectifTotal - $effectifNonGrades;
         $rang = 0;
-
         while ($moyenneCompetence < $studentnote[$rang]) {
             $rang = $rang + 1; //Calcul du rang
         }
@@ -426,7 +425,7 @@ function GetMoyenneFromCoursCalc($idCours, $idEtudiant)
     }
     else{
         $calcMoyenne=GetMoyenneFromCours($idCours, $idEtudiant);
-        //InsertMoyenneCoursEtudiant($idCours,$idEtudiant,$calcMoyenne);
+        InsertMoyenneCoursEtudiant($idCours,$idEtudiant,$calcMoyenne);
         return $calcMoyenne;
     }
 }
@@ -470,7 +469,7 @@ function GetMoyenneFromCompetenceCalc($idCompetence, $idEtudiant)
     }
     else{
         $calcMoyenne=GetMoyenneFromCompetence($idCompetence, $idEtudiant);
-        //InsertMoyenneCompetenceEtudiant($idCompetence, $idEtudiant, $calcMoyenne);
+        InsertMoyenneCompetenceEtudiant($idCompetence, $idEtudiant, $calcMoyenne);
         return $calcMoyenne;
     }
 }
@@ -540,7 +539,7 @@ function GetMoyenneFromCursusCalc($idCursus, $idEtudiant)
     }
     else{
         $calcMoyenne=GetMoyenneFromCursus($idCursus, $idEtudiant);
-        //InsertMoyenneCursusEtudiant($idCursus,$idEtudiant,$calcMoyenne);
+        InsertMoyenneCursusEtudiant($idCursus,$idEtudiant,$calcMoyenne);
         return $calcMoyenne;
     }
 }
@@ -580,7 +579,6 @@ function GetTabNotesEtudiantsFromEval($idEval, $isSimulation = false) {
     }
     return $notesEtudiants;
 }
-
 function GetTabNotesEtudiantsFromCours($idCours, $isSimulation = false) {
     $notesEtudiants = array();
     global $listEtudiantsFromCursus;
