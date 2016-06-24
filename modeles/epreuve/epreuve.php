@@ -116,3 +116,48 @@ AND competence.ID_Cursus=:idCursus');
     }
     return $str;
 }
+
+function GetCursusIdFromEpreuveId($idEpreuve){
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Cursus FROM competence,cours,evaluation,type_eval,epreuve WHERE competence.ID_Competence=cours.ID_Competence 
+AND cours.ID_Cours=evaluation.ID_Cours AND evaluation.ID_Eval=type_eval.ID_Eval AND type_eval.ID_Type=epreuve.ID_Type AND epreuve.ID_Epreuve=:idEpreuve');
+    $req->bindParam(':idEpreuve', $idEpreuve, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll(PDO::FETCH_COLUMN);
+    if (empty($result)){
+        return 0;
+    }
+    else{
+        return $result[0];
+    }
+}
+
+function GetCompetenceIdFromEpreuveId($idEpreuve){
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Competence FROM cours,evaluation,type_eval,epreuve WHERE cours.ID_Cours=evaluation.ID_Cours AND evaluation.ID_Eval=type_eval.ID_Eval AND type_eval.ID_Type=epreuve.ID_Type 
+AND epreuve.ID_Epreuve=:idEpreuve');
+    $req->bindParam(':idEpreuve', $idEpreuve, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll(PDO::FETCH_COLUMN);
+    if (empty($result)){
+        return 0;
+    }
+    else{
+        return $result[0];
+    }
+}
+
+function GetCoursIdFromEpreuveId($idEpreuve){
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Cours FROM evaluation,type_eval,epreuve WHERE evaluation.ID_Eval=type_eval.ID_Eval AND type_eval.ID_Type=epreuve.ID_Type 
+AND epreuve.ID_Epreuve=:idEpreuve');
+    $req->bindParam(':idEpreuve', $idEpreuve, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll(PDO::FETCH_COLUMN);
+    if (empty($result)){
+        return 0;
+    }
+    else{
+        return $result[0];
+    }
+}

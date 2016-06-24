@@ -228,10 +228,6 @@ function GetNotePonderee($note, $coefficient) {
     return $note*$coefficient;
 }
 
-function SimulationValidation($moyenne) {
-    
-}
-
 function GetNoteSimulation($etudiantNote, $isSimulation = false) {
     if (!isset($etudiantNote))
         return -1;
@@ -426,7 +422,7 @@ function GetMoyenneFromCoursCalc($idCours, $idEtudiant)
     }
     else{
         $calcMoyenne=GetMoyenneFromCours($idCours, $idEtudiant);
-        InsertMoyenneCoursEtudiant($idCours,$idEtudiant,$calcMoyenne);
+        //InsertMoyenneCoursEtudiant($idCours,$idEtudiant,$calcMoyenne);
         return $calcMoyenne;
     }
 }
@@ -470,7 +466,7 @@ function GetMoyenneFromCompetenceCalc($idCompetence, $idEtudiant)
     }
     else{
         $calcMoyenne=GetMoyenneFromCompetence($idCompetence, $idEtudiant);
-        InsertMoyenneCompetenceEtudiant($idCompetence, $idEtudiant, $calcMoyenne);
+        //InsertMoyenneCompetenceEtudiant($idCompetence, $idEtudiant, $calcMoyenne);
         return $calcMoyenne;
     }
 }
@@ -540,7 +536,7 @@ function GetMoyenneFromCursusCalc($idCursus, $idEtudiant)
     }
     else{
         $calcMoyenne=GetMoyenneFromCursus($idCursus, $idEtudiant);
-        InsertMoyenneCursusEtudiant($idCursus,$idEtudiant,$calcMoyenne);
+        //InsertMoyenneCursusEtudiant($idCursus,$idEtudiant,$calcMoyenne);
         return $calcMoyenne;
     }
 }

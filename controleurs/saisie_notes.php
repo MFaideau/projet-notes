@@ -2,6 +2,7 @@
 defined("ROOT_ACCESS") or die();
 include_once('modeles/sqlConnection.php');
 include_once('./modeles/authentification/utilisateur.class.php');
+include_once('tab_request.php');
 
 $nombreNotes = 0;
 if (!isset($_SESSION['user'])) {
@@ -61,6 +62,7 @@ function AjouterNotes($idEpreuve, $delimiter)
         while (($data = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
             $note=str_replace(',','.',$data[$indexNote]);
             AddEtudiantNote($idEpreuve, $data[$indexIDEtudiant], $note, 0);
+            UpdateMoyenneEtudiant($idEpreuve, $data[$indexIDEtudiant]);
             $nombreNotes++;
         }
         fclose($handle);
@@ -69,4 +71,16 @@ function AjouterNotes($idEpreuve, $delimiter)
     $erreur_upload = 3;
     include_once('./vues/admin/error.php');
     return false;
+}
+
+function UpdateMoyenneEtudiant($idEpreuve,$idEtudiant){
+    $idCursus=GetCursusIdFromEpreuveId($idEpreuve);
+    $idCompetence=GetCompetenceIdFromEpreuveId($idEpreuve);
+    $idCours = GetCoursIdFromEpreuveId($idEpreuve);
+    InsertMoyenneCompetence($idCompetence);
+    InsertMoyenneCursus($idCursus);
+    InsertMoyenneCours($idCours);
+    UpdateMoyenneCursusEtudiant($idCursus, $idEtudiant, GetMoyenneFromCursus($idCursus, $idEtudiant));
+    UpdateMoyenneCompetenceEtudiant($idCompetence, $idEtudiant, GetMoyenneFromCompetence($idCompetence, $idEtudiant));
+    UpdateMoyenneCoursEtudiant($idCours, $idEtudiant, GetMoyenneFromCours($idCours, $idEtudiant));
 }
