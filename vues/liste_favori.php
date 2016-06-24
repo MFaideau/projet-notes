@@ -14,8 +14,8 @@
                 <thead>
                 <tr>
                     <th>Photo</th>
-                    <th data-field="nom" data-sortable="true">Nom</th>
-                    <th data-field="moyenne" data-sortable="true">Moyenne générale</th>
+                    <th>Nom</th>
+                    <th>Moyenne générale</th>
                 </tr>
                 </thead>
                 <tbody>

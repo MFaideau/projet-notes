@@ -49,18 +49,38 @@ function AjouterNotes($idEpreuve, $delimiter)
         }
         $indexIDEtudiant = -1;
         $indexNote = -1;
-        // $indexAbsence =-1;
+        $indexMotifAbsence = -1;
         foreach ($header as $i => $category) {
             if ($category == 'id.Apprenant')
                 $indexIDEtudiant = $i;
             elseif ($category == 'Note numérique')
                 $indexNote = $i;
+            elseif ($category == "Motif d absence")
+                $indexMotifAbsence = $i;
         }
         global $nombreNotes;
         $nombreNotes=0;
+        global $nombreAbsencesExcusees;
+        $nombreAbsencesExcusees = 0;
+        global $nombreAbsencesNonExcusees;
+        $nombreAbsencesNonExcusees = 0;
         while (($data = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
-            $note=str_replace(',','.',$data[$indexNote]);
-            AddEtudiantNote($idEpreuve, $data[$indexIDEtudiant], $note, 0);
+            $note = str_replace(',','.',$data[$indexNote]);
+            $motifAbsence = $data[$indexMotifAbsence];
+            $absence = 0; // par défaut, il est présent
+            if(!empty($motifAbsence)) {
+                if ($motifAbsence == "NON_EXCUSE") {
+                    $note = 0;
+                    $absence = 2;
+                    $nombreAbsencesNonExcusees++;
+                }
+                else {
+                    $note = -1;
+                    $absence = 1;
+                    $nombreAbsencesExcusees++;
+                }
+            }
+            AddEtudiantNote($idEpreuve, $data[$indexIDEtudiant], $note, $absence);
             UpdateMoyenneEtudiant($idEpreuve, $data[$indexIDEtudiant]);
             $nombreNotes++;
         }
