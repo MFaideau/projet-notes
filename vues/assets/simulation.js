@@ -51,6 +51,23 @@ $("input[name^=note_epreuve_]").keypress(function(e) {
     }
 });
 
+$("input[id^=absence_epreuve_]").change(function() {
+    var idEpreuve = this.id.replace("absence_epreuve_","");
+    if($(this).is(":checked")) {
+        // Une vérification des droits administrateur coté serveur est effectuée
+        $.ajax({
+            url: './ajax/calculSimulation.php',
+            type: 'POST',
+            datatype: 'json',
+            data: 'action=changeAbsenceEpreuve&idEpreuve=' + idEpreuve,
+            success: function (result) {
+                $("input[name=note_epreuve_" + idEpreuve + "]").val("");
+                changeNotes(result);
+            }
+        });
+    }
+});
+
 function setNoteSimulee(idEpreuve, valeurNote) {
     if ((valeurNote > 20 || valeurNote < 0) && valeurNote != -1)
         return;
@@ -62,6 +79,8 @@ function setNoteSimulee(idEpreuve, valeurNote) {
         data: 'action=changeNoteEpreuve&idEpreuve=' + idEpreuve + '&noteSimulee=' + valeurNote,
         success: function (result) {
             changeNotes(result);
+            $("input[id^=absence_epreuve_]").attr('checked', false);
+
         }
     });
 }
@@ -88,7 +107,7 @@ function changeNotes(resultat) {
         if(note.type == "typeEval") {
             var blocTypeEval = $("a[id=simu_type_eval_" + note.id + "]").parent().parent().find($("td"))[2];
             if(note.value == -1)
-                blocTypeEval.innerHtml = "<b>-</b>";
+                blocTypeEval.innerHTML = "<b>-</b>";
             else
                 blocTypeEval.innerHTML = "<b>" + note.value + "</b>";
         }
