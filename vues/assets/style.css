@@ -148,6 +148,7 @@
 #nom_epreuve {
     padding-left: 55px;
     font-style: italic;
+    vertical-align: middle!important;
 }
 
 
