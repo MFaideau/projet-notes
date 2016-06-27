@@ -67,6 +67,7 @@ function InsertCompetenceFull($data)
     $req->bindParam(':idCursus', $data[1], PDO::PARAM_INT);
     $req->bindParam(':nomCompetence', $data[2], PDO::PARAM_STR);
     $req->execute();
+    InsertMoyenneCompetence($data[0]);
 }
 
 function DeleteCompetence($id)
