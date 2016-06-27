@@ -181,6 +181,20 @@ function InsertMoyenneCursusEtudiant($idCursus,$idEtudiant,$moyenne)
     return;
 }
 
+function InsertMoyenneCursusEtudiantList($list)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO cursusmoyenne (ID_Cursus,ID_Etudiant,Moyenne) VALUES (:idCursus,:idEtudiant,:moyenne)');
+    foreach($list as $cursusMoyenne){
+        $req->execute(array(
+            'idCursus' => $cursusMoyenne[0],
+            'idEtudiant' => $cursusMoyenne[1],
+            'moyenne'=> $cursusMoyenne[2],
+        ));
+    }
+    return;
+}
+
 function UpdateMoyenneCursusEtudiant($idCursus,$idEtudiant,$moyenne)
 {
     global $bdd;

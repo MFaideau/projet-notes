@@ -26,9 +26,11 @@ if (isset($code_upload)) {
                     </span>
             </div>
         </div>
-        </div><?php $listIdEpreuve=$_POST['idEpreuveUpload'];
-        $listEleves = GetUsersFromEpreuve($listIdEpreuve);
-        define("AJOUT_NOTES",true);
-        include_once (__DIR__ . '/visualisation_lists/visualisation_list_epreuve.php');
+        </div><?php
+        if (isset($nombreNotes)) {$listIdEpreuve=$_POST['idEpreuveUpload'];
+            $listEleves = GetUsersFromEpreuve($listIdEpreuve);
+            define("AJOUT_NOTES",true);
+            include_once (__DIR__ . '/visualisation_lists/visualisation_list_epreuve.php');
+        }
     }
 }

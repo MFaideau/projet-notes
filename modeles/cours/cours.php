@@ -184,6 +184,19 @@ function InsertMoyenneCoursEtudiant($idCours,$idEtudiant,$moyenne)
     return;
 }
 
+function InsertMoyenneCoursEtudiantList($list)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO coursmoyenne (ID_Cours,ID_Etudiant,Moyenne) VALUES (:idCours,:idEtudiant,:moyenne)');
+    foreach($list as $coursMoyenne){
+        $req->execute(array(
+            'idCours' => $coursMoyenne[0],
+            'idEtudiant' => $coursMoyenne[1],
+            'moyenne'=> $coursMoyenne[2],
+        ));}
+    return;
+}
+
 function InsertMoyenneCours($idCours)
 {
     foreach(GetEtudiantIDListFromCours($idCours) as $etudiant)
@@ -223,4 +236,13 @@ function GetBDDTabNotesMoyenneCours($idCours)
     $req->execute();
     $result=$req->fetchAll(PDO::FETCH_COLUMN);
     return $result;
+}
+
+function GetCoursIDListFromCursus($idCursus)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Cours FROM competence,cours WHERE cours.ID_Competence=competence.ID_Competence AND competence.ID_Cursus=:idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_STR);
+    $req->execute();
+    return $req->fetchAll(PDO::FETCH_COLUMN);
 }
