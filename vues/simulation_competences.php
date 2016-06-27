@@ -14,6 +14,7 @@
                     <th>Libellé</th>
                     <th>Coef</th>
                     <th>Note</th>
+                    <th>Excusé</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,7 @@
                                     echo round($note_etudiant, 2);
                                 ?></b>
                         </td>
+                        <td></td>
                     </tr>
                     <?php foreach (GetCoursListFromCompetence($competence->GetId()) as $cours) { ?>
                         <tr class="simu_cours_comp_<?php echo $competence->GetId(); ?>_id_<?php echo $cours->GetId(); ?>">
@@ -50,9 +52,11 @@
                                     ?>
                                 </b>
                             </td>
+                            <td></td>
                         </tr>
                         <?php foreach (GetTypeEvalListFromCours($cours->GetId()) as $typeEval) { ?>
-                            <tr id="typeEval_comp_<?php echo $competence->GetId(); ?>" class="simu_cours_<?php echo $cours->GetId(); ?>_type_eval_<?php echo $typeEval->GetId(); ?>">
+                            <tr id="typeEval_comp_<?php echo $competence->GetId(); ?>"
+                                class="simu_cours_<?php echo $cours->GetId(); ?>_type_eval_<?php echo $typeEval->GetId(); ?>">
                                 <td id="nom_type_eval"><a style="color: black;"
                                                           id="simu_type_eval_<?php echo $typeEval->GetId(); ?>">
                                         <b><?php echo $typeEval->GetNom(); ?></b></a>
@@ -68,9 +72,12 @@
                                         ?>
                                     </b>
                                 </td>
+                                <td></td>
                             </tr>
-                            <?php foreach (GetEpreuveListFromTypeEval($typeEval->GetId()) as $epreuve) { ?>
-                                <tr class="simu_type_eval_<?php echo $typeEval->GetId(); ?>_epreuve_<?php echo $epreuve->GetId(); ?>">
+                            <?php foreach (GetEpreuveListFromTypeEval($typeEval->GetId()) as $epreuve) {
+                                $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId()); ?>
+                                <tr id="bloc_simu_comp_<?php echo $competence->GetId(); ?>_epreuve_<?php echo $epreuve->GetId(); ?>"
+                                    class="simu_type_eval_<?php echo $typeEval->GetId(); ?>_epreuve_<?php echo $epreuve->GetId(); ?>">
                                     <td id="nom_epreuve_<?php echo $epreuve->GetId(); ?>">
                                         <span id="nom_epreuve"><a style="color: black;">
                                             <?php echo $epreuve->GetNom(); ?>
@@ -79,7 +86,6 @@
                                     <td><?php echo $epreuve->GetCoef() * 100; ?></td>
                                     <td>
                                         <?php
-                                        $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId());
                                         if (isset($etudiantNote)) {
                                             $note = $etudiantNote->GetNoteFinale();
                                             if ($note != "-1" && $user->GetAutorite() == 0) {
@@ -90,10 +96,10 @@
                                                 <input type="number" min="0" max="20"
                                                        name="note_epreuve_<?php echo $epreuve->GetId(); ?>"
                                                        value="<?php
-                                                        if($user->GetAutorite() == 1)
-                                                            echo $note;
-                                                        else
-                                                            echo $etudiantNote->GetNotePrevue(); ?>"
+                                                       if ($user->GetAutorite() == 1)
+                                                           echo $note;
+                                                       else
+                                                           echo $etudiantNote->GetNotePrevue(); ?>"
                                                 />
                                                 <?php
                                             }
@@ -105,8 +111,18 @@
                                                    value=""
                                             />
                                             <?php
+                                        } ?>
+                                    </td>
+                                    <td>
+                                    <?php // Menu d'absence
+                                    if ($user->GetAutorite() != 0) {
+                                        if (isset($etudiantNote)) { ?>
+                                            <input type="checkbox" id="absence_epreuve_<?php echo $epreuve->GetId(); ?>"
+                                            <?php if ($etudiantNote->GetAbsence() == 1) echo " checked" ?>
+                                            <?php
                                         }
-                                        ?>
+                                    }
+                                    ?>
                                     </td>
                                 </tr>
                             <?php }
@@ -128,6 +144,7 @@
                                 ?>
                             </strong>
                         </td>
+                        <td></td>
                     </tr>
                     </tfoot>
                 <?php } ?>

@@ -35,10 +35,12 @@
                 <a href="#histogramme_commun" class="histo_commun">
                     <span class="glyphicon glyphicon-stats icone" title="Histogramme Promo"></span>
                 </a>
-                <a href="#absences" class="abs">
-                    <span class="glyphicon glyphicon-exclamation-sign icone" title="Mes absences"></span>
-                </a>
                 <?php
+                /*
+                 * <a href="#absences" class="abs">
+                 *   <span class="glyphicon glyphicon-exclamation-sign icone" title="Mes absences"></span>
+                 * </a>
+                 */
                 if ($user->GetAutorite() == 1) {
                 ?>
                     <a href="simulateur_onglet.php">
