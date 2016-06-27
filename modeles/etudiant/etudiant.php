@@ -48,3 +48,30 @@ function UtilisateurExists($mail)
     else
         return false;
 }
+
+function GetCursusIDFromEtudiant($idEtudiant)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Cursus FROM etudiant WHERE ID_Etudiant=:idEtudiant');
+    $req->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_STR);
+    $req->execute();
+    return $req->fetchAll(PDO::FETCH_COLUMN);
+}
+
+function GetCompetenceIDFromEtudiant($idEtudiant)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Competence FROM etudiant,competence WHERE competence.ID_Cursus=etudiant.ID_Cursus AND etudiant.ID_Etudiant=:idEtudiant');
+    $req->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_STR);
+    $req->execute();
+    return $req->fetchAll(PDO::FETCH_COLUMN);
+}
+
+function GetCoursIDFromEtudiant($idEtudiant)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Cours FROM etudiant,competence,cours WHERE cours.ID_Competence=competence.ID_Competence AND competence.ID_Cursus=etudiant.ID_Cursus AND etudiant.ID_Etudiant=:idEtudiant');
+    $req->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_STR);
+    $req->execute();
+    return $req->fetchAll(PDO::FETCH_COLUMN);
+}

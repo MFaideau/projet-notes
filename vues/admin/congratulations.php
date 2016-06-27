@@ -15,7 +15,7 @@ if (isset($code_upload)) {
                             echo $nombreNotes . ' notes ont été importées ';
                             if (isset($nombreAbsencesNonExcusees) && isset($nombreAbsencesExcusees)) {
                                 if ($nombreAbsencesNonExcusees > 0 || $nombreAbsencesExcusees > 0) {
-                                    echo " : " . $nombreAbsencesNonExcusees . " absence(s) excusée(s) et ";
+                                    echo " : " . $nombreAbsencesNonExcusees . " absence(s) non excusée(s) et ";
                                     echo $nombreAbsencesExcusees . " absence(s) excusée(s)";
                                 }
                             }

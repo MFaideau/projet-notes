@@ -1,13 +1,11 @@
 <?php
 defined("ROOT_ACCESS") or die();
-$utilisateur = unserialize($_SESSION['user']);
-if ($utilisateur->GetAutorite() != 1) {
+$user = unserialize($_SESSION['user']);
+if ($user->GetAutorite() != 1) {
     die();
 }
-
 // Création du menu en dynamique
-$user = serialize($_SESSION['user']);
-
+include_once (__DIR__ . '../../../controleurs/tab_request.php');
 // S'il n'y a que l'idCursus qui est rempli, on crée un nouveau cursus
 if (!isset($_POST['action']) && isset($_POST['idCursus']) && empty($_POST['nomCompetence'])) {
     $idCursus = $_POST['idCursus'];
@@ -151,13 +149,17 @@ if (isset($_POST['action']) && (isset($_POST['nomCursus'])) && isset($_POST['ann
         $idCursusNew = InsertCursus($_POST['nomCursus'], $_POST['anneeCursus']);
         include_once __DIR__ . '../../../vues/admin/ajax/organisation/new_cursus_bloc.php';
 }
+
 if (isset($_POST['action']) && (isset($_POST['nomCompetence'])) && isset($_POST['idCursus'])) {
-    if ($_POST['action'] == "add")
+    if ($_POST['action'] == "add"){
         InsertCompetence($_POST['nomCompetence'], $_POST['idCursus']);
+    }
 }
+
 if (isset($_POST['action']) && (isset($_POST['nomCours'])) && isset($_POST['nbCreditsCours']) && isset($_POST['semestreCours']) && isset($_POST['idCompetence'])) {
-    if ($_POST['action'] == "add")
+    if ($_POST['action'] == "add"){
         InsertCours($_POST['nomCours'], $_POST['nbCreditsCours'], $_POST['semestreCours'], $_POST['idCompetence']);
+    }
 }
 if (isset($_POST['action']) && isset($_POST['idCours']) && isset($_POST['nomEval']) && isset($_POST['coefEval'])) {
     if ($_POST['action'] == "add")

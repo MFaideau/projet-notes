@@ -122,8 +122,10 @@ function ParseFichierEtudiants($idCursus, $delimiter) {
             $mail = GetMailFromNomPrenom($nom, $prenom);
             if(!empty($mail)) {
                 $success = InsertEtudiant($idCursus, $data[$indexIDEtudiant], $nom, $prenom, $mail);
-                if($success)
+                if($success){
+                    UpdateMoyenneNewEtudiant($idCursus,$data[$indexIDEtudiant]);
                     $nombreEtudiants++;
+                }
             }
         }
         fclose($handle);
@@ -132,6 +134,25 @@ function ParseFichierEtudiants($idCursus, $delimiter) {
     $erreur_upload = 3;
     include_once('./vues/admin/error.php');
     return false;
+}
+
+function UpdateMoyenneNewEtudiant($idCursus,$idEtudiant){
+    //$moyenneCursus=GetMoyenneFromCursus($idCursus, $idEtudiant);
+    InsertMoyenneCursusEtudiant($idCursus,$idEtudiant,-1);
+    //UpdateMoyenneCursusEtudiant($idCursus, $idEtudiant, -1);
+    foreach(GetCompetenceIDFromEtudiant($idEtudiant) as $idCompetence)
+    {
+        //$moyenneCompetence= GetMoyenneFromCompetence($idCompetence, $idEtudiant);
+        InsertMoyenneCompetenceEtudiant($idCompetence, $idEtudiant, -1);
+        //UpdateMoyenneCompetenceEtudiant($idCompetence, $idEtudiant, -1);
+    }
+    foreach(GetCoursIDFromEtudiant($idEtudiant) as $idCours)
+    {
+        //$moyenneCours = GetMoyenneFromCours($idCours, $idEtudiant);
+        InsertMoyenneCoursEtudiant($idCours, $idEtudiant, -1);
+        //UpdateMoyenneCoursEtudiant($idCours, $idEtudiant, -1);
+    }
+    return;
 }
 
 function GetMailFromNomPrenom($nom, $prenom) {

@@ -14,7 +14,13 @@ if (isset($_POST['action']) && isset($_POST['idEpreuve']) && isset($_POST['noteS
                     
                     // On met à jour la base de données avec la note prévue
                     if($user->GetAutorite() == 1) {
-                        AddEtudiantNote($idEpreuve, $etudiant->GetId(), $noteSimulee, 0);
+                        $etudiantID=$etudiant->GetId();
+                        $competenceId=GetCompetenceIdFromEpreuveId($idEpreuve);
+                        $coursId=GetCoursIdFromEpreuveId($idEpreuve);
+                        AddEtudiantNote($idEpreuve, $etudiantID, $noteSimulee, 0);
+                        UpdateMoyenneCursusEtudiant(GetCursusIdFromEpreuveId($idEpreuve),$etudiantID,GetMoyenneFromCursus($etudiant->GetCursus()->GetId(),$etudiantID));
+                        UpdateMoyenneCompetenceEtudiant($competenceId,$etudiantID,GetMoyenneFromCompetence($competenceId, $etudiantID));
+                        UpdateMoyenneCoursEtudiant($coursId,$etudiantID,GetMoyenneFromCours($coursId, $etudiantID));
                     }
                     else {
                         AddEtudiantNotePrevue($idEpreuve, $etudiant->GetId(), $noteSimulee);

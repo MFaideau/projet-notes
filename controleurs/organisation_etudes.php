@@ -32,7 +32,6 @@ else {
 
 	include_once ('./vues/footer.php');
 }
-
 function ImportDB()
 {
     if (($handle = fopen($_FILES['fichier_db']['tmp_name'], "r")) !== FALSE) {

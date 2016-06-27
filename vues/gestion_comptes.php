@@ -49,15 +49,15 @@
                 <div class="modal-body">
                     <fieldset class="form-group">
                         <label for="labelNom">Nom :</label>
-                        <input type="text" class="form-control" id="nomCompteInsert" placeholder="Exemple : Stefanelli">
+                        <input type="text" class="form-control" id="nomCompteInsert" placeholder="Exemple : Boulinguez">
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelPrenom">Prénom :</label>
-                        <input type="text" class="form-control" id="prenomCompteInsert" placeholder="Exemple : Bruno">
+                        <input type="text" class="form-control" id="prenomCompteInsert" placeholder="Exemple : David">
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelMail">Mail (doit être une adresse Google) :</label>
-                        <input type="text" class="form-control" id="mailCompteInsert" placeholder="Exemple : bruno.stefanelli@isen-lille.fr">
+                        <input type="text" class="form-control" id="mailCompteInsert" placeholder="Exemple : david.boulinguez@isen-lille.fr">
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelAutorite">Autorité :</label>
@@ -87,15 +87,15 @@
                 <div class="modal-body">
                     <fieldset class="form-group">
                         <label for="labelNom">Nom :</label>
-                        <input type="text" class="form-control" id="nomCompte" placeholder="Exemple : Stefanelli">
+                        <input type="text" class="form-control" id="nomCompte" placeholder="Exemple : Carette">
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelPrenom">Prénom :</label>
-                        <input type="text" class="form-control" id="prenomCompte" placeholder="Exemple : Bruno">
+                        <input type="text" class="form-control" id="prenomCompte" placeholder="Exemple : Thierry">
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelMail">Mail (doit être une adresse Google) :</label>
-                        <input type="text" class="form-control" id="mailCompte" placeholder="Exemple : bruno.stefanelli@isen-lille.fr">
+                        <input type="text" class="form-control" id="mailCompte" placeholder="Exemple : thierry.carette@isen-lille.fr">
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="labelAutorite">Autorité :</label>
