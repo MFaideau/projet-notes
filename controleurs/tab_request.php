@@ -232,32 +232,36 @@ function GetNotePonderee($note, $coefficient) {
     return $note*$coefficient;
 }
 
-function SimulationValidation($moyenne, $idCompetence, $idEtudiant) {
-    $listCours = GetCoursListFromCompetence($idCompetence);
-    $sommeCreditsTotalCours = 0;
-    $sommeCreditsMoyennePrevue = 0;
-    $sommeProduitCreditsMoyenneFixe = 0;
-    foreach ($listCours as $cours) {
-        $idCours = $cours->GetId();
-        $creditsCours = $cours->GetCredits();
-        $sommeCreditsTotalCours = $sommeCreditsTotalCours + $creditsCours;
-        $moyenneCours = GetMoyenneFromCoursCalc($idCours, $idEtudiant);
-        if ($moyenneCours <= -1) {
-            $sommeCreditsMoyennePrevue = $sommeCreditsMoyennePrevue + $creditsCours;
-        }
-        else {
-            $sommeProduitCreditsMoyenneFixe = $sommeProduitCreditsMoyenneFixe + $creditsCours*$moyenneCours;
-        }
-    }
-    if ($sommeCreditsMoyennePrevue == 0) {
-        return -1;
+function SimulationValidation($moyenneVoulue, $idCompetence, $idEtudiant) {
+    if ($moyenneVoulue == -1){
+        return 10;
     }
     else {
-        $moyennePrevue = ($moyenne*$sommeCreditsTotalCours - $sommeProduitCreditsMoyenneFixe)/$sommeCreditsMoyennePrevue;
+        $listCours = GetCoursListFromCompetence($idCompetence);
+        $sommeCreditsTotalCours = 0;
+        $sommeCreditsMoyennePrevue = 0;
+        $sommeProduitCreditsMoyenneFixe = 0;
+        foreach ($listCours as $cours) {
+            $idCours = $cours->GetId();
+            $creditsCours = $cours->GetCredits();
+            $sommeCreditsTotalCours = $sommeCreditsTotalCours + $creditsCours;
+            $moyenneCours = GetMoyenneFromCoursCalc($idCours, $idEtudiant);
+            if ($moyenneCours <= -1) {
+                $sommeCreditsMoyennePrevue = $sommeCreditsMoyennePrevue + $creditsCours;
+            }
+            else {
+                $sommeProduitCreditsMoyenneFixe = $sommeProduitCreditsMoyenneFixe + $creditsCours*$moyenneCours;
+            }
+        }
+        if ($sommeCreditsMoyennePrevue == 0) {
+            return -1;
+        }
+        else {
+            $moyennePrevue = ($moyenneVoulue*$sommeCreditsTotalCours - $sommeProduitCreditsMoyenneFixe)/$sommeCreditsMoyennePrevue;
+        }
+        return $moyennePrevue;
     }
-    return $moyennePrevue;
 }
-//echo var_dump(SimulationValidation(8, , ));
 
 function GetNoteSimulation($etudiantNote, $isSimulation = false) {
     if (!isset($etudiantNote))
