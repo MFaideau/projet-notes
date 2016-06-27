@@ -1,4 +1,4 @@
-<?php defined("ROOT_ACCESS") or die(); ?>
+<?php defined("ROOT_ACCESS") or die(); !defined("AJOUT_NOTES") or die(); ?>
 <div class="panel_cursus decale_admin">
     <div class="panel panel-default saisie_notes">
         <div class="panel-heading">Choix du Cursus</div>

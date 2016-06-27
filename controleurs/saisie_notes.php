@@ -64,6 +64,9 @@ function AjouterNotes($idEpreuve, $delimiter)
         $nombreAbsencesExcusees = 0;
         global $nombreAbsencesNonExcusees;
         $nombreAbsencesNonExcusees = 0;
+        $idCursus=GetCursusIdFromEpreuveId($idEpreuve);
+        $idCompetence=GetCompetenceIdFromEpreuveId($idEpreuve);
+        $idCours = GetCoursIdFromEpreuveId($idEpreuve);
         while (($data = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
             $note = str_replace(',','.',$data[$indexNote]);
             $motifAbsence = $data[$indexMotifAbsence];
@@ -81,7 +84,7 @@ function AjouterNotes($idEpreuve, $delimiter)
                 }
             }
             AddEtudiantNote($idEpreuve, $data[$indexIDEtudiant], $note, $absence);
-            UpdateMoyenneEtudiant($idEpreuve, $data[$indexIDEtudiant]);
+            UpdateMoyenneEtudiant($data[$indexIDEtudiant],$idCursus,$idCompetence,$idCours);
             $nombreNotes++;
         }
         fclose($handle);
@@ -92,13 +95,10 @@ function AjouterNotes($idEpreuve, $delimiter)
     return false;
 }
 
-function UpdateMoyenneEtudiant($idEpreuve,$idEtudiant){
-    $idCursus=GetCursusIdFromEpreuveId($idEpreuve);
-    $idCompetence=GetCompetenceIdFromEpreuveId($idEpreuve);
-    $idCours = GetCoursIdFromEpreuveId($idEpreuve);
-    InsertMoyenneCompetence($idCompetence);
-    InsertMoyenneCursus($idCursus);
-    InsertMoyenneCours($idCours);
+function UpdateMoyenneEtudiant($idEtudiant,$idCursus,$idCompetence,$idCours){
+    //InsertMoyenneCompetence($idCompetence);
+    //InsertMoyenneCursus($idCursus);
+    //InsertMoyenneCours($idCours);
     UpdateMoyenneCursusEtudiant($idCursus, $idEtudiant, GetMoyenneFromCursus($idCursus, $idEtudiant));
     UpdateMoyenneCompetenceEtudiant($idCompetence, $idEtudiant, GetMoyenneFromCompetence($idCompetence, $idEtudiant));
     UpdateMoyenneCoursEtudiant($idCours, $idEtudiant, GetMoyenneFromCours($idCours, $idEtudiant));

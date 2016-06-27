@@ -1,5 +1,4 @@
 <?php defined("ROOT_ACCESS") or die();
-
 const UPLOAD_SUCCESS = 1;
 
 if (isset($code_upload)) {
@@ -27,6 +26,9 @@ if (isset($code_upload)) {
                     </span>
             </div>
         </div>
-        </div><?php
+        </div><?php $listIdEpreuve=$_POST['idEpreuveUpload'];
+        $listEleves = GetUsersFromEpreuve($listIdEpreuve);
+        define("AJOUT_NOTES",true);
+        include_once (__DIR__ . '/visualisation_lists/visualisation_list_epreuve.php');
     }
 }

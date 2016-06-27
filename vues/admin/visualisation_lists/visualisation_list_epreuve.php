@@ -25,7 +25,7 @@
                 <?php }
                 else { ?>
                     <td><?php $note = round($etudiantNote->GetNoteFinale(),2);
-                        if($note == "-1")
+                        if($note != "-1")
                             echo $note;
                         else
                             echo "-";
