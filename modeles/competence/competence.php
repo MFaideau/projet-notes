@@ -55,6 +55,7 @@ function InsertCompetence($nom,$idCursus)
     $req = $bdd->prepare('SELECT ID_Competence FROM competence ORDER BY ID_Competence DESC LIMIT 1');
     $req->execute();
     $lastCompetenceID= $req->fetch();
+    InsertCompetenceMoyenne($lastCompetenceID[0]);
     return $lastCompetenceID[0];
 }
 
@@ -66,6 +67,7 @@ function InsertCompetenceFull($data)
     $req->bindParam(':idCursus', $data[1], PDO::PARAM_INT);
     $req->bindParam(':nomCompetence', $data[2], PDO::PARAM_STR);
     $req->execute();
+    InsertMoyenneCompetence($data[0]);
 }
 
 function DeleteCompetence($id)
@@ -128,6 +130,20 @@ function GetMoyenneCompetenceEtudiant($idCompetence,$idEtudiant)
     return $result;
 }
 
+function InsertMoyenneCompetence($idCompetence)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Etudiant FROM etudiant,competence WHERE competence.ID_Cursus=etudiant.ID_Cursus AND
+competence.ID_Competence=:idCompetence');
+    $req->bindParam(':idCompetence', $idCompetence, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll(PDO::FETCH_COLUMN);
+    foreach($result as $etudiant)
+    {
+        InsertMoyenneCompetenceEtudiant($idCompetence, $etudiant, -1);
+    }
+}
+
 function InsertMoyenneCompetenceEtudiant($idCompetence,$idEtudiant,$moyenne)
 {
     global $bdd;
@@ -136,6 +152,18 @@ function InsertMoyenneCompetenceEtudiant($idCompetence,$idEtudiant,$moyenne)
         'idCompetence' => $idCompetence,
         'idEtudiant' => $idEtudiant,
         'moyenne'=> $moyenne,
+    ));
+    return;
+}
+
+function UpdateMoyenneCompetenceEtudiant($idCompetence,$idEtudiant,$moyenne)
+{
+    global $bdd;
+    $req = $bdd->prepare('UPDATE competencemoyenne SET Moyenne=:moyenne WHERE ID_Competence=:idCompetence AND ID_Etudiant=:idEtudiant');
+    $req->execute(array(
+        'idCompetence' => $idCompetence,
+        'idEtudiant' => $idEtudiant,
+        'moyenne' => $moyenne,
     ));
     return;
 }

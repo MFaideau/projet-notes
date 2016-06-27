@@ -14,7 +14,7 @@ if (!isset($_SESSION['user'])) {
         die();
     }
     include_once('./vues/menu.php');
-
+    include_once('tab_request.php');
     // Si on a reçu le fichier de notes, on le traite sinon on affiche le formulaire
     if (isset($_FILES['fichier_notes']) && !empty($_POST['idEpreuveUpload'])) {
         $extension = strrchr($_FILES['fichier_notes']['name'], '.');
@@ -49,18 +49,39 @@ function AjouterNotes($idEpreuve, $delimiter)
         }
         $indexIDEtudiant = -1;
         $indexNote = -1;
-        // $indexAbsence =-1;
+        $indexMotifAbsence = -1;
         foreach ($header as $i => $category) {
             if ($category == 'id.Apprenant')
                 $indexIDEtudiant = $i;
             elseif ($category == 'Note numérique')
                 $indexNote = $i;
+            elseif ($category == "Motif d absence")
+                $indexMotifAbsence = $i;
         }
         global $nombreNotes;
         $nombreNotes=0;
+        global $nombreAbsencesExcusees;
+        $nombreAbsencesExcusees = 0;
+        global $nombreAbsencesNonExcusees;
+        $nombreAbsencesNonExcusees = 0;
         while (($data = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
-            $note=str_replace(',','.',$data[$indexNote]);
-            AddEtudiantNote($idEpreuve, $data[$indexIDEtudiant], $note, 0);
+            $note = str_replace(',','.',$data[$indexNote]);
+            $motifAbsence = $data[$indexMotifAbsence];
+            $absence = 0; // par défaut, il est présent
+            if(!empty($motifAbsence)) {
+                if ($motifAbsence == "NON_EXCUSE") {
+                    $note = 0;
+                    $absence = 2;
+                    $nombreAbsencesNonExcusees++;
+                }
+                else {
+                    $note = -1;
+                    $absence = 1;
+                    $nombreAbsencesExcusees++;
+                }
+            }
+            AddEtudiantNote($idEpreuve, $data[$indexIDEtudiant], $note, $absence);
+            UpdateMoyenneEtudiant($idEpreuve, $data[$indexIDEtudiant]);
             $nombreNotes++;
         }
         fclose($handle);
@@ -69,4 +90,17 @@ function AjouterNotes($idEpreuve, $delimiter)
     $erreur_upload = 3;
     include_once('./vues/admin/error.php');
     return false;
+}
+
+function UpdateMoyenneEtudiant($idEpreuve,$idEtudiant){
+    $idCursus=GetCursusIdFromEpreuveId($idEpreuve);
+    $idCompetence=GetCompetenceIdFromEpreuveId($idEpreuve);
+    $idCours = GetCoursIdFromEpreuveId($idEpreuve);
+    InsertMoyenneCompetence($idCompetence);
+    InsertMoyenneCursus($idCursus);
+    InsertMoyenneCours($idCours);
+    UpdateMoyenneCursusEtudiant($idCursus, $idEtudiant, GetMoyenneFromCursus($idCursus, $idEtudiant));
+    UpdateMoyenneCompetenceEtudiant($idCompetence, $idEtudiant, GetMoyenneFromCompetence($idCompetence, $idEtudiant));
+    UpdateMoyenneCoursEtudiant($idCours, $idEtudiant, GetMoyenneFromCours($idCours, $idEtudiant));
+    return;
 }

@@ -10,6 +10,10 @@ include_once('./modeles/authentification/authentification.php');
 require_once './gplus-lib/vendor/autoload.php';
 require_once 'credentials.php';
 
+if(empty(CLIENT_ID) || empty(CLIENT_SECRET) || empty(REDIRECT_URI)) {
+    die("Les informations de connexion aux services d'authentification par Google sont incorrectes.");
+}
+
 $client = new Google_Client();
 $client->setClientId(CLIENT_ID);
 $client->setClientSecret(CLIENT_SECRET);

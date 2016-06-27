@@ -13,8 +13,9 @@
             <table class="table" data-toggle="table">
                 <thead>
                 <tr>
-                    <th data-field="nom" data-sortable="true">Nom</th>
-                    <th data-field="moyenne" data-sortable="true">Moyenne générale</th>
+                    <th>Photo</th>
+                    <th>Nom</th>
+                    <th>Moyenne générale</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,9 +24,14 @@
                     if (isset($etudiant)) { ?>
                         <tr>
                             <td>
+                                <span class="profil_image_top">
+                                    <img src="https://cas.isen.fr/photos/<?php echo $eleve->GetId() % 100; ?>/<?php echo $eleve->GetId(); ?>.jpg" />
+                                </span>
+                            </td>
+                            <td class="profil_texte">
                                 <a href="visualisation_eleve.php?id=<?php echo $etudiant->GetMail(); ?>"><?php echo $etudiant->GetNom() . ' ' . $etudiant->GetPrenom(); ?></a>
                             </td>
-                            <td><?php $moyenne = round(GetMoyenneFromCursusCalc(GetEtudiant($etudiant)->GetCursus()->GetId(), $eleve->GetId()), 2);
+                            <td class="profil_texte"><?php $moyenne = round(GetMoyenneFromCursusCalc(GetEtudiant($etudiant)->GetCursus()->GetId(), $eleve->GetId()), 2);
                                 if($moyenne == -1)
                                     echo "-";
                                 else

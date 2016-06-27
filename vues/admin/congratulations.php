@@ -11,8 +11,16 @@ if (isset($code_upload)) {
                 <span class="glyphicon glyphicon-thumbs-up"></span>
                     <span class="texte_erreur">
                         <?php
-                        if (isset($nombreNotes))
-                            echo $nombreNotes . ' notes ont été importées !';
+                        if (isset($nombreNotes)) {
+                            echo $nombreNotes . ' notes ont été importées ';
+                            if (isset($nombreAbsencesNonExcusees) && isset($nombreAbsencesExcusees)) {
+                                if ($nombreAbsencesNonExcusees > 0 || $nombreAbsencesExcusees > 0) {
+                                    echo " : " . $nombreAbsencesNonExcusees . " absence(s) excusée(s) et ";
+                                    echo $nombreAbsencesExcusees . " absence(s) excusée(s)";
+                                }
+                            }
+                            echo ' !';
+                        }
                         if (isset($nombreEtudiants))
                             echo $nombreEtudiants . ' étudiants ont été importés !';
                         ?>

@@ -124,8 +124,6 @@ function ParseFichierEtudiants($idCursus, $delimiter) {
                 $success = InsertEtudiant($idCursus, $data[$indexIDEtudiant], $nom, $prenom, $mail);
                 if($success)
                     $nombreEtudiants++;
-                else
-                    echo var_dump($data, $nom, $prenom, $mail);
             }
         }
         fclose($handle);

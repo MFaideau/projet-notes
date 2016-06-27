@@ -120,7 +120,7 @@ function AddEtudiantNote($idEpreuve, $idEtudiant, $noteEtudiant, $absence)
     {
         $req = $bdd->prepare('UPDATE etudiantnote SET Note_Finale = :noteFinale,Note_Prevue = :notePrevue,Absence_Epreuve=:absence 
 WHERE ID_Epreuve = :idEpreuve AND ID_Etudiant = :idEtudiant');
-        $req->execute(array(
+        $result =  $req->execute(array(
             'idEpreuve' => $idEpreuve,
             'idEtudiant' => $idEtudiant,
             'noteFinale' => $noteEtudiant,
@@ -132,15 +132,15 @@ WHERE ID_Epreuve = :idEpreuve AND ID_Etudiant = :idEtudiant');
     {
         $req = $bdd->prepare('INSERT INTO etudiantnote (ID_Epreuve,ID_Etudiant,Note_Finale,Note_Prevue,Absence_Epreuve) 
 VALUES (:idEpreuve,:idEtudiant,:noteFinale,:notePrevue,:absenceEpreuve)');
-    $req->execute(array(
+    $result = $req->execute(array(
         'idEpreuve' => $idEpreuve,
         'idEtudiant' => $idEtudiant,
         'noteFinale' => $noteEtudiant,
         'notePrevue' =>  $noteEtudiant,
         'absenceEpreuve' => $absence,
     ));
-        return;
     }
+    return $result;
 }
 
 function GetContentEtudiantNote($idCursus) {

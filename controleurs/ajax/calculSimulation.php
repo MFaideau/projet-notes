@@ -28,6 +28,25 @@ if (isset($_POST['action']) && isset($_POST['idEpreuve']) && isset($_POST['noteS
     }
 }
 
+if (isset($_POST['action']) && isset($_POST['idEpreuve'])) {
+    if ($_POST['action'] == "changeAbsenceEpreuve") {
+        $idEpreuve = $_POST['idEpreuve'];
+        // vérification admin
+        if (is_numeric($idEpreuve) && $user->GetAutorite() != 0) {
+            $epreuve = GetEpreuveFromId($idEpreuve);
+            if (isset($user_vue)) {
+                $etudiant = GetEtudiant($user_vue);
+                // Ce ne peut être qu'une absence non excusée (sinon c'est juste 0 en note)
+                AddEtudiantNote($idEpreuve, $etudiant->GetId(), -1, 1);
+
+                // On retourne la liste des nouvelles moyennes calculées
+                echo json_encode(GetNouvellesNotes($etudiant));
+                return;
+            }
+        }
+    }
+}
+
 
 function GetNouvellesNotes($etudiant)
 {

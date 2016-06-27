@@ -8,7 +8,7 @@ global $tab; $tab = $tab[0]; ?>
             <stop offset="100%" style="stop-color:green;"/>
         </linearGradient>
     </defs>
-    <rect x="1" y="1" width="<?php echo $tab[1]; ?>%" height="15" fill="url(#histo)" />
+    <rect x="1" y="1" width="<?php if($tab[1] >= 0) { echo $tab[1];} else { echo "0"; } ?>%" height="15" fill="url(#histo)" />
     <rect x="1" y="1" width="99%" height="14.2" stroke-width="0.8" stroke="black" fill="transparent"/>
     <g stroke="black">
         <line x1="<?php echo $tab[3]; ?>%" y1="7.5" x2="<?php echo $tab[4]; ?>%" y2="7.5"

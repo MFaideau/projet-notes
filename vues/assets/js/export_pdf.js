@@ -3,10 +3,14 @@ function impressionReleve() {
     $(".menu_rapide").hide();
     $(".retour_prec_histo").hide();
     $(".identite").hide();
+    $(".visualisation").hide();
 
     // On réduit l'écart du tableau pour pouvoir tout caser dans 1 page
     $("tr").each(function() { $(this).show(); });
-    $("td").each(function() { $(this).style("line-height","0.5","important"); });
+    $("td").each(function() {
+        $(this).style("line-height","0.5","important");
+        $(this).style("vertical-align","middle","important");
+    });
 
     // On imprime la page
     window.print();
@@ -15,6 +19,7 @@ function impressionReleve() {
     $(".menu_rapide").show();
     $(".retour_prec_histo").show();
     $(".identite").show();
+    $(".visualisation").show();
     $("td").each(function() { $(this).style("line-height","1.42857143","important"); });
 }
 
