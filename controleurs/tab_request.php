@@ -234,38 +234,30 @@ function GetNotePonderee($note, $coefficient) {
 
 function SimulationValidation($moyenne, $idCompetence, $idEtudiant) {
     $listCours = GetCoursListFromCompetence($idCompetence);
+    $sommeCreditsTotalCours = 0;
+    $sommeCreditsMoyennePrevue = 0;
+    $sommeProduitCreditsMoyenneFixe = 0;
     foreach ($listCours as $cours) {
         $idCours = $cours->GetId();
-        $coefCours = $cours->GetCoef();
-        // $sommeCoefTotalCours = $sommeCoefTotalCours + $coefCours;
-        $listEval = GetEvalListFromCours($idCours);
-        $moyenneCours = GetMoyenneFromCours($idCours, $idEtudiant);
-        foreach ($listEval as $eval) {
-            $idEval = $eval->GetId();
-            $coefEval = $eval->GetCoef();
-            // $sommeCoefTotalEval = $sommeCoefTotalEval + $coefEval;
-            $listTypeEval = GetTypeEvalListFromEval($idEval);
-            foreach ($listTypeEval as $typeEval) {
-                $idTypeEval = $typeEval->GetId();
-                $coefTypeEval = $typeEval->GetCoef();
-                // $sommeCoefTotalTypeEval = $sommeCoefTotalTypeEval + $coefTypeEval;
-                $listEpreuve = GetEpreuveListFromTypeEval($idTypeEval);
-                foreach ($listEpreuve as $epreuve) {
-                    $idEpreuve = $epreuve->GetId();
-                    $coefEpreuve = $epreuve->GetCoef();
-                    $studentnote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $idEpreuve);
-                    if (isset($studentnote)) {
-                        $note = $studentnote->GetNoteFinale();
-                        // if ($note != -1) $sommeCoefFinalEpreuve = $sommeCoefFinalEpreuve + $coefEpreuve;
-                        // else $sommeCoefPrevuEpreuve = $sommeCoefPrevuEpreuve + $coefEpreuve;
-                        // $sommeCoefTotalEpreuve = $sommeCoefTotalEpreuve + $coefEpreuve;
-                        
-                    }
-                }
-            }
+        $creditsCours = $cours->GetCredits();
+        $sommeCreditsTotalCours = $sommeCreditsTotalCours + $creditsCours;
+        $moyenneCours = GetMoyenneFromCoursCalc($idCours, $idEtudiant);
+        if ($moyenneCours <= -1) {
+            $sommeCreditsMoyennePrevue = $sommeCreditsMoyennePrevue + $creditsCours;
+        }
+        else {
+            $sommeProduitCreditsMoyenneFixe = $sommeProduitCreditsMoyenneFixe + $creditsCours*$moyenneCours;
         }
     }
+    if ($sommeCreditsMoyennePrevue == 0) {
+        return -1;
+    }
+    else {
+        $moyennePrevue = ($moyenne*$sommeCreditsTotalCours - $sommeProduitCreditsMoyenneFixe)/$sommeCreditsMoyennePrevue;
+    }
+    return $moyennePrevue;
 }
+//echo var_dump(SimulationValidation(8, , ));
 
 function GetNoteSimulation($etudiantNote, $isSimulation = false) {
     if (!isset($etudiantNote))
