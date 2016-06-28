@@ -24,7 +24,7 @@
                          <span class="orgaEdition">
                              <a class="link" data-toggle="modal" data-target="#verifDeleteEpreuve" id="orga_delete_epreuve_<?php echo $epreuve->GetId(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
                              <a class="link" data-toggle="modal" data-target="#modifyEpreuve" id="orga_modify_epreuve_<?php echo $epreuve->GetId(); ?>"><span class="glyphicon glyphicon-edit icone"></span></a>
-                             <a class="link" href="visualisation_eleve.php?listIdEpreuve=<?php echo $epreuve->GetId(); ?>" id="orga_list_epreuve_<?php echo $epreuve->GetId(); ?>"><span class="glyphicon glyphicon-th-list icone"></span></a>
+                             <a class="link" title="Lister les élèves" href="visualisation_eleve.php?listIdEpreuve=<?php echo $epreuve->GetId(); ?>" id="orga_list_epreuve_<?php echo $epreuve->GetId(); ?>"><span class="glyphicon glyphicon-th-list icone"></span></a>
                          </span>
                         <a class="link" id="orga_epreuve_<?php echo $epreuve->GetId(); ?>"><?php echo $epreuve->GetNom(); ?></a>
                     </td>

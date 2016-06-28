@@ -246,3 +246,21 @@ function GetCoursIDListFromCursus($idCursus)
     $req->execute();
     return $req->fetchAll(PDO::FETCH_COLUMN);
 }
+
+function CopyCours($idCours,$idCompetence)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT Nom_Cours,Credits_Cours,Semestre_Cours FROM cours WHERE ID_Cours=:idCours');
+    $req->bindParam(':idCours', $idCours, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll();
+    if (count($result)>0)
+    {
+        $idCoursNew= InsertCours($result[0]["Nom_Cours"],$result[0]["Credits_Cours"],$result[0]["Semestre_Cours"],$idCompetence);
+        foreach(GetEvalListFromCours($idCours) as $eval)
+        {
+            CopyEval($eval->GetId(), $idCoursNew);
+        }
+        return $idCoursNew;
+    }
+}

@@ -120,3 +120,21 @@ AND competence.ID_Cursus=:idCursus');
     }
     return $str;
 }
+
+function CopyEval($idEval,$idCours)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT Nom_Eval,Coef_Eval FROM evaluation WHERE ID_Eval=:idEval');
+    $req->bindParam(':idEval', $idEval, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll();
+    if (count($result)>0)
+    {
+        $idEvalNew= InsertEvaluation($result[0]["Nom_Eval"],$result[0]["Coef_Eval"],$idCours);
+        foreach(GetTypeEvalListFromEval($idEval) as $typeEval)
+        {
+            CopyTypeEval($typeEval->GetId(), $idEvalNew);
+        }
+        return $idEvalNew;
+    }
+}

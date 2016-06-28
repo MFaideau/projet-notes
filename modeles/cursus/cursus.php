@@ -216,3 +216,21 @@ function GetBDDTabNotesMoyenneCursus($idCursus)
     $result=$req->fetchAll(PDO::FETCH_COLUMN);
     return $result;
 }
+
+function CopyCursus($idCursus)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT Nom_Cursus,Annee_Cursus FROM cursus WHERE ID_Cursus=:idCursus');
+    $req->bindParam(':idCursus', $idCursus, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll();
+    if (count($result)>0)
+    {
+        $idCursusNew= InsertCursus($result[0]["Nom_Cursus"],$result[0]["Annee_Cursus"]);
+        foreach(GetCompetenceListFromCursus($idCursus) as $competence)
+        {
+            CopyCompetence($competence->GetId(),$idCursusNew);
+        }
+        return $idCursusNew;
+    }
+}

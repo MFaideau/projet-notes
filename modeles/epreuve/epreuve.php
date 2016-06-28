@@ -161,3 +161,17 @@ AND epreuve.ID_Epreuve=:idEpreuve');
         return $result[0];
     }
 }
+
+function CopyEpreuve($idEpreuve,$idTypeEval)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT ID_Epreuve_Session2,ID_Epreuve_Substitution,Nom_Epreuve,Coef_Epreuve,Date_Epreuve,Evaluateur_Epreuve FROM epreuve 
+WHERE ID_Epreuve=:idEpreuve');
+    $req->bindParam(':idEpreuve', $idEpreuve, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll();
+    if (count($result)>0)
+    {
+        return InsertEpreuve($result[0]["Nom_Epreuve"],$result[0]["Coef_Epreuve"] ,$result[0]["Date_Epreuve"] ,$result[0]["Evaluateur_Epreuve"],0 ,0,$idTypeEval);
+    }
+}

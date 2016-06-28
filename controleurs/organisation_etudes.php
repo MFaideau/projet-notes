@@ -12,10 +12,16 @@ else {
         header('Location: accueil.php');
         die();
     }
+
     if (isset($_GET['idCursusSauvegarde'])){
         if(is_numeric($_GET['idCursusSauvegarde'])){
             ExportDB($_GET['idCursusSauvegarde']);
             die();
+        }
+    }
+    if (isset($_GET['idCursusCopie'])){
+        if(is_numeric($_GET['idCursusCopie'])){
+            CopyCursus($_GET['idCursusCopie']);
         }
     }
 

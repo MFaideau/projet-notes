@@ -204,3 +204,21 @@ function GetCompetenceIDListFromCursus($idCursus)
     $req->execute();
     return $req->fetchAll(PDO::FETCH_COLUMN);
 }
+
+function CopyCompetence($idCompetence,$idCursus)
+{
+    global $bdd;
+    $req = $bdd->prepare('SELECT Nom_Competence FROM competence WHERE ID_Competence=:idCompetence');
+    $req->bindParam(':idCompetence', $idCompetence, PDO::PARAM_INT);
+    $req->execute();
+    $result=$req->fetchAll();
+    if (count($result)>0)
+    {
+        $idCompetenceNew= InsertCompetence($result[0]["Nom_Competence"],$idCursus);
+        foreach(GetCoursListFromCompetence($idCompetence) as $cours)
+        {
+            CopyCours($cours->GetId(), $idCompetenceNew);
+        }
+        return $idCompetenceNew;
+    }
+}
