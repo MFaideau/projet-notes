@@ -14,7 +14,8 @@
                     <th>Libellé</th>
                     <th>Coef</th>
                     <th>Note</th>
-                    <th>Excusé</th>
+                    <?php if ($user->GetAutorite()!=0){ ?>
+                    <th>Excusé</th><?php } ?>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,7 +23,7 @@
                     <tr>
                         <td class="lien_tableau" scope="row">
                             <a class="lien_tableau" id="simu_comp_id_<?php echo $competence->GetId(); ?>">
-                                <b><?php echo $competence->GetNom(); ?></b>
+                                <b><?php echo $competence->GetNom();?></b>
                             </a>
                         </td>
                         <td class="lien_tableau"><b><?php echo $competence->GetCredits(); ?></b></td>
@@ -35,7 +36,8 @@
                                     echo round($note_etudiant, 2);
                                 ?></b>
                         </td>
-                        <td></td>
+                        <?php if ($user->GetAutorite()!=0){ ?>
+                            <td></td><?php } ?>
                     </tr>
                     <?php foreach (GetCoursListFromCompetence($competence->GetId()) as $cours) { ?>
                         <tr class="simu_cours_comp_<?php echo $competence->GetId(); ?>_id_<?php echo $cours->GetId(); ?>">
@@ -52,7 +54,8 @@
                                     ?>
                                 </b>
                             </td>
-                            <td></td>
+                            <?php if ($user->GetAutorite()!=0){ ?>
+                                <td></td><?php } ?>
                         </tr>
                         <?php foreach (GetTypeEvalListFromCours($cours->GetId()) as $typeEval) { ?>
                             <tr id="typeEval_comp_<?php echo $competence->GetId(); ?>"
@@ -72,7 +75,8 @@
                                         ?>
                                     </b>
                                 </td>
-                                <td></td>
+                                <?php if ($user->GetAutorite()!=0){ ?>
+                                    <td></td><?php } ?>
                             </tr>
                             <?php foreach (GetEpreuveListFromTypeEval($typeEval->GetId()) as $epreuve) {
                                 $etudiantNote = GetEtudiantNoteFromEtudiantEpreuve($idEtudiant, $epreuve->GetId()); ?>

@@ -659,3 +659,14 @@ $(document).on("click", "a[id^=orga_delete_epreuve_]", function (e) {
     var idEpreuve = this.id.replace("orga_delete_epreuve_", "");
     $("a[id^=orga_epreuve_"+idEpreuve+"]").trigger("click");
 });
+$(document).on("click", "a[id^=orga_copie_cursus_]", function (e) {
+    var idCursusToCopy = this.id.replace("orga_copie_cursus_", "");
+    $.ajax({
+        url: 'organisation_etudes.php',
+        type: 'POST',
+        data: 'idCursusCopie='+idCursusToCopy,
+        success: function(result2) {
+            location.reload();
+        }
+    });
+});

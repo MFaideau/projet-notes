@@ -19,9 +19,9 @@ else {
             die();
         }
     }
-    if (isset($_GET['idCursusCopie'])){
-        if(is_numeric($_GET['idCursusCopie'])){
-            CopyCursus($_GET['idCursusCopie']);
+    if (isset($_POST['idCursusCopie'])){
+        if(is_numeric($_POST['idCursusCopie'])){
+            CopyCursus($_POST['idCursusCopie']);
         }
     }
 

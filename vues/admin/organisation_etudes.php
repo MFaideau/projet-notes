@@ -23,7 +23,7 @@
                                 <a class="link" data-toggle="modal" data-target="#verifDeleteCursus" id="orga_delete_cursus_<?php echo $cursus->GetId(); ?>"><span class="glyphicon glyphicon-minus-sign icone"></span></a>
                                 <a class="link" data-toggle="modal" data-target="#modifyCursus" id="orga_modify_cursus_<?php echo $cursus->GetId(); ?>"><span class="glyphicon glyphicon-edit icone"></span></a>
                                 <a class="link" title="Lister les élèves" href="visualisation_eleve.php?listIdCursus=<?php echo $cursus->GetId(); ?>"><span class="glyphicon glyphicon-th-list icone"></span></a>
-                                <a class="link" title="Copier le cursus" href="organisation_etudes.php?idCursusCopie=<?php echo $cursus->GetId(); ?>"><span class="glyphicon glyphicon-copy icone"></span></a>
+                                <a class="link" title="Copier le cursus" id="orga_copie_cursus_<?php echo $cursus->GetId(); ?>"><span class="glyphicon glyphicon-copy icone"></span></a>
                             </span>
                             <a class="link" id="orga_cursus_<?php echo $cursus->GetId(); ?>"><?php echo $cursus->GetNom(); ?></a>
                         </td>
