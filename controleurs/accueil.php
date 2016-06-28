@@ -4,6 +4,7 @@
  * @Desc : Accès à la vue de menu_accueil
  */
 defined("ROOT_ACCESS") or die();
+include_once('modeles/sqlConnection.php');
 include_once('./modeles/authentification/utilisateur.class.php');
 include_once('./modeles/consultation/consultation.php');
 

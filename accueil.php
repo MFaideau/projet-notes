@@ -11,7 +11,6 @@ if(!isset($_SESSION['user'])) {
     die("Pas connecté");
 }
 
-include_once('modeles/sqlConnection.php');
 include_once("controleurs/accueil.php");
 
 ?>
